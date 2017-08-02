@@ -24,6 +24,7 @@
         SEESAW_GPIO_BASE = 0x01,
 
         SEESAW_TIMER_BASE = 0x08,
+        SEESAW_ADC_BASE = 0x09,
     };
 
     enum
@@ -49,6 +50,16 @@
         SEESAW_TIMER_PWM = 0x01,
     };
 	
+    enum
+    {
+        SEESAW_ADC_STATUS = 0x00,
+        SEESAW_ADC_INTEN = 0x02,
+        SEESAW_ADC_INTENCLR = 0x03,
+        SEESAW_ADC_WINMODE = 0x04,
+        SEESAW_ADC_WINTHRESH = 0x05,
+        SEESAW_ADC_INTCLR = 0x06,
+        SEESAW_ADC_CHANNEL_OFFSET = 0x07
+    };
 
 /*=========================================================================*/
 
@@ -67,6 +78,9 @@ class Adafruit_seesaw {
         void analogWrite(uint8_t pin, uint8_t value);
         void digitalWrite(uint8_t pin, uint8_t value);
 
+        uint16_t analogRead(uint8_t pin);
+        void analogReadBulk(uint16_t *buf, uint8_t num);
+
         void pinModeBulk(uint32_t pins);
         void gpioSetBulk(uint32_t pins);
         void gpioClrBulk(uint32_t pins);
@@ -77,7 +91,7 @@ class Adafruit_seesaw {
 		void      write8(byte regHigh, byte regLow, byte value);
         uint8_t   read8(byte regHigh, byte regLow);
 		
-		void read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
+		void read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay = 250);
 		void write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
 		void _i2c_init();
 		

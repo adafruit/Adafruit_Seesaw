@@ -34,6 +34,24 @@ void Adafruit_seesaw::digitalWrite(uint8_t pin, uint8_t value)
 	this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PIN_SINGLE, cmd, 2);
 }
 
+uint16_t Adafruit_seesaw::analogRead(uint8_t pin)
+{
+	uint8_t buf[2];
+	this->read(SEESAW_ADC_BASE, SEESAW_ADC_CHANNEL_OFFSET + pin, buf, 2);
+	uint16_t ret = ((uint16_t)buf[0] << 8) | buf[1];
+	return ret;
+}
+
+//TODO: not sure if this is how this is gonna work yet
+void Adafruit_seesaw::analogReadBulk(uint16_t *buf, uint8_t num)
+{
+	uint8_t rawbuf[num * 2];
+	this->read(SEESAW_ADC_BASE, SEESAW_ADC_CHANNEL_OFFSET, rawbuf, num * 2);
+	for(int i=0; i<num; i++){
+		buf[i] = ((uint16_t)rawbuf[i * 2] << 8) | buf[i * 2 + 1];
+	}
+}
+
 void Adafruit_seesaw::pinModeBulk(uint32_t pins)
 {
 	uint8_t cmd[] = { (pins >> 24), (pins >> 16), (pins >> 8), pins };
@@ -76,7 +94,7 @@ void Adafruit_seesaw::_i2c_init()
 	Wire.begin();
 }
 
-void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num)
+void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay)
 {
 	uint8_t value;
 	uint8_t pos = 0;
@@ -91,7 +109,7 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_
 		Wire.endTransmission();
 
 		//TODO: tune this
-		delayMicroseconds(250);
+		delayMicroseconds(delay);
 
 		Wire.requestFrom((uint8_t)_i2caddr, read_now);
 		
