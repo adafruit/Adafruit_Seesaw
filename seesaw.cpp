@@ -22,6 +22,22 @@ void Adafruit_seesaw::SWReset()
 	this->write8(SEESAW_STATUS_BASE, SEESAW_STATUS_SWRST, 0xFF);
 }
 
+uint32_t Adafruit_seesaw::getOptions()
+{
+	uint8_t buf[4];
+	this->read(SEESAW_STATUS_BASE, SEESAW_STATUS_OPTIONS, buf, 4);
+	uint32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
+	return ret;
+}
+
+uint32_t Adafruit_seesaw::getVersion()
+{
+	uint8_t buf[4];
+	this->read(SEESAW_STATUS_BASE, SEESAW_STATUS_VERSION, buf, 4);
+	uint32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
+	return ret;
+}
+
 void Adafruit_seesaw::pinMode(uint8_t pin, uint8_t mode)
 {
 	uint8_t cmd[] = {pin, mode};

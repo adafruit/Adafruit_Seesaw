@@ -22,9 +22,12 @@
     {
         SEESAW_STATUS_BASE = 0x00,
         SEESAW_GPIO_BASE = 0x01,
+        SEESAW_SERCOM0_BASE = 0x02,
 
         SEESAW_TIMER_BASE = 0x08,
         SEESAW_ADC_BASE = 0x09,
+        SEESAW_DAC_BASE = 0x0A,
+        SEESAW_INTERRUPT_BASE = 0x0B,
     };
 
     enum
@@ -78,6 +81,8 @@ class Adafruit_seesaw {
 		~Adafruit_seesaw(void) {};
 		
 		bool begin(uint8_t addr = SEESAW_ADDRESS);
+        uint32_t getOptions();
+        uint32_t getVersion();
 		void SWReset();
 
         void pinMode(uint8_t pin, uint8_t mode);
