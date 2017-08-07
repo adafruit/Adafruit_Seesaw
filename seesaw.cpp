@@ -34,6 +34,19 @@ void Adafruit_seesaw::digitalWrite(uint8_t pin, uint8_t value)
 	this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PIN_SINGLE, cmd, 2);
 }
 
+bool Adafruit_seesaw::digitalRead(uint8_t pin)
+{
+	return digitalReadBulk((1ul << pin)) != 0;
+}
+
+uint32_t Adafruit_seesaw::digitalReadBulk(uint32_t pins)
+{
+	uint8_t buf[4];
+	this->read(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK, buf, 4);
+	uint32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
+	return ret & pins;
+}
+
 uint16_t Adafruit_seesaw::analogRead(uint8_t pin)
 {
 	uint8_t buf[2];
@@ -52,22 +65,31 @@ void Adafruit_seesaw::analogReadBulk(uint16_t *buf, uint8_t num)
 	}
 }
 
-void Adafruit_seesaw::pinModeBulk(uint32_t pins)
+void Adafruit_seesaw::pinModeBulk(uint32_t pins, uint8_t mode)
 {
 	uint8_t cmd[] = { (pins >> 24), (pins >> 16), (pins >> 8), pins };
-	this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PINMODE_BULK, cmd, 4);
+	switch (mode){
+		case OUTPUT:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRSET_BULK, cmd, 4);
+			break;
+		case INPUT:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
+			break;
+		case INPUT_PULLUP:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
+			//TODO: set pullups
+			break;
+	}
+		
 }
 
-void Adafruit_seesaw::gpioSetBulk(uint32_t pins)
+void Adafruit_seesaw::digitalWriteBulk(uint32_t pins, uint8_t value)
 {
 	uint8_t cmd[] = { (pins >> 24), (pins >> 16), (pins >> 8), pins };
-	this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 4);
-}
-
-void Adafruit_seesaw::gpioClrBulk(uint32_t pins)
-{
-	uint8_t cmd[] = { (pins >> 24), (pins >> 16), (pins >> 8), pins };
-	this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 4);
+	if(value)
+		this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 4);
+	else
+		this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 4);
 }
 
 void Adafruit_seesaw::analogWrite(uint8_t pin, uint8_t value)

@@ -7,7 +7,7 @@
 
 Adafruit_seesaw ss;
 
-//blink pins 11, 12, 13
+//blink pins PA11, PA12, PA13
 uint32_t mask = ((uint32_t)0b111 << 11);
 
 void setup() {
@@ -19,12 +19,12 @@ void setup() {
   }
   else Serial.println("seesaw started");
 
-  ss.pinModeBulk(mask); //set pin modes
+  ss.pinModeBulk(mask, OUTPUT); //set pin modes
 }
 
 void loop() {
-  ss.gpioSetBulk(mask);   //set pins
+  ss.digitalWriteBulk(mask, HIGH);   //set pins
   delay(1000);                       // wait for a second
-  ss.gpioClrBulk(mask);   //clear pins
+  ss.digitalWriteBulk(mask, LOW);   //clear pins
   delay(1000);  
 }

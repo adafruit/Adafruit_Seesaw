@@ -31,11 +31,12 @@
     {
         SEESAW_GPIO_PINMODE_SINGLE = 0x00,
         SEESAW_GPIO_PIN_SINGLE = 0x01,
-        SEESAW_GPIO_PINMODE_BULK = 0x02,
-        SEESAW_GPIO_BULK = 0x03,
-        SEESAW_GPIO_BULK_SET = 0x04,
-        SEESAW_GPIO_BULK_CLR = 0x05,
-        SEESAW_GPIO_BULK_TOGGLE = 0x06,
+        SEESAW_GPIO_DIRSET_BULK = 0x02,
+        SEESAW_GPIO_DIRCLR_BULK = 0x03,
+        SEESAW_GPIO_BULK = 0x04,
+        SEESAW_GPIO_BULK_SET = 0x05,
+        SEESAW_GPIO_BULK_CLR = 0x06,
+        SEESAW_GPIO_BULK_TOGGLE = 0x07,
     };
 
     enum
@@ -75,15 +76,16 @@ class Adafruit_seesaw {
 		void SWReset();
 
         void pinMode(uint8_t pin, uint8_t mode);
+        void pinModeBulk(uint32_t pins, uint8_t mode);
         void analogWrite(uint8_t pin, uint8_t value);
         void digitalWrite(uint8_t pin, uint8_t value);
+        void digitalWriteBulk(uint32_t pins, uint8_t value);
+
+        bool digitalRead(uint8_t pin);
+        uint32_t digitalReadBulk(uint32_t pins);
 
         uint16_t analogRead(uint8_t pin);
         void analogReadBulk(uint16_t *buf, uint8_t num);
-
-        void pinModeBulk(uint32_t pins);
-        void gpioSetBulk(uint32_t pins);
-        void gpioClrBulk(uint32_t pins);
 
 	private:
 		uint8_t _i2caddr;
