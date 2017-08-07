@@ -9,7 +9,7 @@ bool Adafruit_seesaw::begin(uint8_t addr)
 	SWReset();
 	delay(500);
 
-	uint8_t c = this->read8(SEESAW_STATUS_BASE, SEESAW_STATUS_VERSION);
+	uint8_t c = this->read8(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID);
 
 	if(c != SEESAW_HW_ID_CODE) return false;
 	
@@ -45,6 +45,15 @@ uint32_t Adafruit_seesaw::digitalReadBulk(uint32_t pins)
 	this->read(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK, buf, 4);
 	uint32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
 	return ret & pins;
+}
+
+void Adafruit_seesaw::setGPIOInterrupts(uint32_t pins, bool enabled)
+{
+	uint8_t cmd[] = { (pins >> 24), (pins >> 16), (pins >> 8), pins };
+	if(enabled)
+		this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_INTENSET, cmd, 4);
+	else
+		this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_INTENCLR, cmd, 4);
 }
 
 uint16_t Adafruit_seesaw::analogRead(uint8_t pin)

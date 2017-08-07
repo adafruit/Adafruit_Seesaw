@@ -37,11 +37,16 @@
         SEESAW_GPIO_BULK_SET = 0x05,
         SEESAW_GPIO_BULK_CLR = 0x06,
         SEESAW_GPIO_BULK_TOGGLE = 0x07,
+        SEESAW_GPIO_INTENSET = 0x08,
+        SEESAW_GPIO_INTENCLR = 0x09,
+        SEESAW_GPIO_INTFLAG = 0x0A,
     };
 
     enum
     {
+        SEESAW_STATUS_HW_ID = 0x01,
         SEESAW_STATUS_VERSION = 0x02,
+        SEESAW_STATUS_OPTIONS = 0x03,
         SEESAW_STATUS_SWRST = 0x7F,
     };
 
@@ -83,6 +88,8 @@ class Adafruit_seesaw {
 
         bool digitalRead(uint8_t pin);
         uint32_t digitalReadBulk(uint32_t pins);
+
+        void setGPIOInterrupts(uint32_t pins, bool enabled);
 
         uint16_t analogRead(uint8_t pin);
         void analogReadBulk(uint16_t *buf, uint8_t num);
