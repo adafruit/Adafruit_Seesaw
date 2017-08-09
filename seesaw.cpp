@@ -102,7 +102,8 @@ void Adafruit_seesaw::pinModeBulk(uint32_t pins, uint8_t mode)
 			break;
 		case INPUT_PULLUP:
 			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
-			//TODO: set pullups
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 4);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 4);
 			break;
 	}
 		

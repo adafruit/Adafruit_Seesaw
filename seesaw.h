@@ -43,6 +43,8 @@
         SEESAW_GPIO_INTENSET = 0x08,
         SEESAW_GPIO_INTENCLR = 0x09,
         SEESAW_GPIO_INTFLAG = 0x0A,
+        SEESAW_GPIO_PULLENSET = 0x0B,
+        SEESAW_GPIO_PULLENCLR = 0x0C,
     };
 
     enum
