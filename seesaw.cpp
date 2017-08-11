@@ -10,6 +10,7 @@ bool Adafruit_seesaw::begin(uint8_t addr)
 	delay(500);
 
 	uint8_t c = this->read8(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID);
+	Serial.println(c);
 
 	if(c != SEESAW_HW_ID_CODE) return false;
 	
@@ -124,6 +125,23 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint8_t value)
 	this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 2);
 }
 
+void Adafruit_seesaw::enableSercomDataRdyInterrupt(uint8_t sercom = 0)
+{
+	_sercom_inten.DATA_RDY = 1;
+	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.get());
+}
+
+void Adafruit_seesaw::disableSercomDataRdyInterrupt(uint8_t sercom = 0)
+{
+	_sercom_inten.DATA_RDY = 0;
+	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.get());
+}
+
+char Adafruit_seesaw::readSercomData(uint8_t sercom = 0)
+{
+	return this->read8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_DATA);
+}
+
 void Adafruit_seesaw::write8(byte regHigh, byte regLow, byte value)
 {
 	this->write(regHigh, regLow, &value, 1);
@@ -175,4 +193,10 @@ void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8
 	Wire.write((uint8_t)regLow);
 	Wire.write((uint8_t *)buf, num);
 	Wire.endTransmission();
+}
+
+//print wrapper
+size_t Adafruit_seesaw::write(uint8_t character) {
+	//TODO: add support for multiple sercoms
+	this->write8(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_DATA, character);
 }

@@ -69,14 +69,22 @@
         SEESAW_ADC_WINMODE = 0x04,
         SEESAW_ADC_WINTHRESH = 0x05,
         SEESAW_ADC_INTCLR = 0x06,
-        SEESAW_ADC_CHANNEL_OFFSET = 0x07
+        SEESAW_ADC_CHANNEL_OFFSET = 0x07,
+    };
+    enum
+    {
+        SEESAW_SERCOM_STATUS = 0x00,
+        SEESAW_SERCOM_INTEN = 0x02,
+        SEESAW_SERCOM_INTENCLR = 0x03,
+        SEESAW_SERCOM_BAUD = 0x04,
+        SEESAW_SERCOM_DATA = 0x05,
     };
 
 /*=========================================================================*/
 
 #define SEESAW_HW_ID_CODE			0x55
 
-class Adafruit_seesaw {
+class Adafruit_seesaw : public Print {
 	public:
 		//constructors
 		Adafruit_seesaw(void) {};
@@ -101,13 +109,20 @@ class Adafruit_seesaw {
         uint16_t analogRead(uint8_t pin);
         void analogReadBulk(uint16_t *buf, uint8_t num);
 
+        void enableSercomDataRdyInterrupt(uint8_t sercom = 0);
+        void disableSercomDataRdyInterrupt(uint8_t sercom = 0);
+
+        char readSercomData(uint8_t sercom = 0);
+
+        virtual size_t write(uint8_t);
+
 	private:
 		uint8_t _i2caddr;
 		
 		void      write8(byte regHigh, byte regLow, byte value);
         uint8_t   read8(byte regHigh, byte regLow);
 		
-		void read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay = 250);
+		void read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay = 125);
 		void write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
 		void _i2c_init();
 		
@@ -115,18 +130,29 @@ class Adafruit_seesaw {
 	REGISTER BITFIELDS
     -----------------------------------------------------------------------*/
 
-		/*
+		
 		// The status register
-        struct status {
+        struct sercom_status {
 
             uint8_t ERROR: 1;
+            uint8_t DATA_RDY : 1;
 
             void set(uint8_t data){
             	ERROR = data & 0x01;
+                ERROR = data & 0x02;
             }
         };
-        status _status;
-        */
+        sercom_status _sercom_status;
+
+        struct sercom_inten {
+
+            uint8_t DATA_RDY : 1;
+
+            uint8_t get(){
+                return DATA_RDY;
+            }
+        };
+        sercom_inten _sercom_inten;
 
 /*=========================================================================*/
 };
