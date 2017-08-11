@@ -199,4 +199,17 @@ void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8
 size_t Adafruit_seesaw::write(uint8_t character) {
 	//TODO: add support for multiple sercoms
 	this->write8(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_DATA, character);
+	delay(1); //TODO: this can be optimized... it's only needed for longer writes
+}
+
+size_t Adafruit_seesaw::write(const char *str) {
+	uint8_t buf[32];
+	uint8_t len = 0;
+	while(*str){
+		buf[len] = *str;
+		str++;
+		len++;
+	}
+	this->write(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_DATA, buf, len);
+	return len;
 }

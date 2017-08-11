@@ -115,6 +115,7 @@ class Adafruit_seesaw : public Print {
         char readSercomData(uint8_t sercom = 0);
 
         virtual size_t write(uint8_t);
+        virtual size_t write(const char *str);
 
 	private:
 		uint8_t _i2caddr;
