@@ -127,19 +127,19 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint8_t value)
 	this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 2);
 }
 
-void Adafruit_seesaw::enableSercomDataRdyInterrupt(uint8_t sercom = 0)
+void Adafruit_seesaw::enableSercomDataRdyInterrupt(uint8_t sercom)
 {
 	_sercom_inten.DATA_RDY = 1;
 	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.get());
 }
 
-void Adafruit_seesaw::disableSercomDataRdyInterrupt(uint8_t sercom = 0)
+void Adafruit_seesaw::disableSercomDataRdyInterrupt(uint8_t sercom)
 {
 	_sercom_inten.DATA_RDY = 0;
 	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.get());
 }
 
-char Adafruit_seesaw::readSercomData(uint8_t sercom = 0)
+char Adafruit_seesaw::readSercomData(uint8_t sercom)
 {
 	return this->read8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_DATA);
 }
@@ -218,16 +218,17 @@ size_t Adafruit_seesaw::write(const char *str) {
 
 int Adafruit_seesaw::dbg_dap_cmd(uint8_t *data, int size, int rsize)
 {
+	//TODO: leaving off here, we can only write 64 bytes at a time
   char cmd = data[0];
   int res;
 
   memset(hid_buffer, 0xff, REPORT_SIZE + 1);
 
   this->write(SEESAW_DAP_BASE, 0x00, data, size);
-  delay(2);
+  delay(1);
 
   this->read(SEESAW_DAP_BASE, 0x00, hid_buffer, REPORT_SIZE + 1);
-  delay(2);
+  delay(1);
 
   check(hid_buffer[0] == cmd, "invalid response received");
 
@@ -240,7 +241,7 @@ void Adafruit_seesaw::check(bool cond, char *fmt)
 {
   if (!cond)
   {
-    va_list args;
+    //va_list args;
 
     //dbg_close();
 
@@ -553,7 +554,7 @@ void Adafruit_seesaw::dap_write_block(uint32_t addr, uint8_t *data, int size)
     buf[3] = ((sz / 4) >> 8) & 0xff;
     buf[4] = SWD_AP_DRW | DAP_TRANSFER_APnDP;
     memcpy(&buf[5], &data[offs], sz);
-    dbg_dap_cmd(buf, sizeof(buf), 5 + sz);
+    dbg_dap_cmd(buf, 5 + sz, 0);
 
     if (DAP_TRANSFER_OK != buf[2])
     {

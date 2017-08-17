@@ -69,6 +69,8 @@
 device_t dap_m0p::devices[] =
 {
   { 0x10040100, "SAM D09D14A",           8*1024,  128 },
+  { 0x10010205, "SAM D21G18A",         256*1024, 4096 },
+  { 0x10010305, "SAM D21G18A (Rev D)", 256*1024, 4096 },
   /*
   { 0x10040107, "SAM D09C13A",           8*1024,  128 },
   { 0x10020100, "SAM D10D14AM",         16*1024,  256 },
@@ -195,6 +197,36 @@ void dap_m0p::program(void)
     Serial.print(".");
   }
 }
+
+//-----------------------------------------------------------------------------
+uint32_t dap_m0p::program_start(void)
+{
+
+  if (dap_read_word(DSU_CTRL_STATUS) & 0x00010000)
+    perror_exit("device is locked, perform a chip erase before programming");
+
+  dap_write_word(NVMCTRL_CTRLB, 0); // Enable automatic write
+
+  return FLASH_START + options.offset;
+}
+
+uint32_t dap_m0p::program(uint32_t addr, uint8_t *buf)
+{
+    dap_write_word(NVMCTRL_ADDR, addr >> 1);
+
+    dap_write_word(NVMCTRL_CTRLA, NVMCTRL_CMD_UR); // Unlock Region
+    while (0 == (dap_read_word(NVMCTRL_INTFLAG) & 1));
+
+    dap_write_word(NVMCTRL_CTRLA, NVMCTRL_CMD_ER); // Erase Row
+    while (0 == (dap_read_word(NVMCTRL_INTFLAG) & 1));
+    dap_write_block(addr, buf, FLASH_ROW_SIZE);
+
+    addr += FLASH_ROW_SIZE;
+
+    Serial.print(".");
+    return addr;
+}
+
 
 //-----------------------------------------------------------------------------
 void dap_m0p::verify(void)

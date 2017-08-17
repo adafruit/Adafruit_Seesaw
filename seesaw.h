@@ -347,9 +347,12 @@ public:
     void erase(void);
     void lock(void);
     void program(void);
+    uint32_t program(uint32_t addr, uint8_t *buf);
     void verify(void);
     void read(void);
     void fuse(void);
+
+    uint32_t program_start(void);
 };
 
 #endif
