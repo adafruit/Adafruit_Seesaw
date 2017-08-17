@@ -1,10 +1,11 @@
 #include "seesaw.h"
-
-
 #include <SPI.h>
 #include <SD.h>
 
 const int chipSelect = 4;
+#define FILENAME "fw.bin"
+
+#define BUFSIZE 256 //don't change
 
 //create a seesaw with m0 DAP support
 dap_m0p ss;
@@ -20,7 +21,7 @@ void setup() {
   
   if(!ss.begin()){
     Serial.println("ERROR!");
-    while(1);
+    return;
   }
   else Serial.println("seesaw started");
 
@@ -32,7 +33,7 @@ void setup() {
   }
   Serial.println("card initialized.");
 
-  File dataFile = SD.open("fw.bin");
+  File dataFile = SD.open(FILENAME);
   uint8_t buf[256];
 
   if(dataFile){
@@ -64,12 +65,10 @@ void setup() {
   }
   // if the file isn't open, pop up an error:
   else {
-    Serial.println("error opening fw.bin");
-    while(1);
+    Serial.println("error opening file");
+    return;
   }
-
   ss.deselect();
-
   ss.dap_disconnect();
 }
 
