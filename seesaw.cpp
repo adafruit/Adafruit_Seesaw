@@ -78,7 +78,7 @@ void Adafruit_seesaw::setGPIOInterrupts(uint32_t pins, bool enabled)
 uint16_t Adafruit_seesaw::analogRead(uint8_t pin)
 {
 	uint8_t buf[2];
-	this->read(SEESAW_ADC_BASE, SEESAW_ADC_CHANNEL_OFFSET + pin, buf, 2);
+	this->read(SEESAW_ADC_BASE, SEESAW_ADC_CHANNEL_OFFSET + pin, buf, 2, 500);
 	uint16_t ret = ((uint16_t)buf[0] << 8) | buf[1];
 	return ret;
 }
