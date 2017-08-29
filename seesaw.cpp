@@ -1,7 +1,9 @@
 #include "seesaw.h"
 
+#ifdef INCLUDE_DAP //DAP support disabled by default
 static uint8_t hid_buffer[256];
 #define REPORT_SIZE 64
+#endif //INCLUDE_DAP
 
 bool Adafruit_seesaw::begin(uint8_t addr)
 {
@@ -215,6 +217,8 @@ size_t Adafruit_seesaw::write(const char *str) {
 	this->write(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_DATA, buf, len);
 	return len;
 }
+
+#ifdef INCLUDE_DAP
 
 int Adafruit_seesaw::dbg_dap_cmd(uint8_t *data, int size, int rsize)
 {
@@ -619,3 +623,5 @@ void Adafruit_seesaw::dap_target_prepare(void)
   dap_write_reg(SWD_DP_W_CTRL_STAT, 0x50000f00);
   dap_write_reg(SWD_AP_CSW, 0x23000052);
 }
+
+#endif // INCLUDE_DAP

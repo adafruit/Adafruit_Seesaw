@@ -86,6 +86,10 @@
 #define SEESAW_HW_ID_CODE			0x55
 
 /*- DAP Types -------------------------------------------------------------------*/
+/*
+DAP is disabled by default and is not yet well supported.
+#define INCLUDE_DAP
+*/
 #define DAP_FREQ            16000000 // Hz
 
 enum
@@ -202,32 +206,6 @@ enum
   FUSE_VERIFY = (1 << 2),
 };
 
-enum
-{
-  M0_PLUS,
-};
-
-typedef struct
-{
-  bool         fuse_read;
-  bool         fuse_write;
-  bool         fuse_verify;
-  int          fuse_start;
-  int          fuse_end;
-  uint32_t     fuse_value;
-  char         *fuse_name;
-  char         *name;
-  int32_t      offset;
-  int32_t      size;
-
-  // For target use only
-  int          file_size;
-  uint8_t      *file_data;
-
-  int          fuse_size;
-  uint8_t      *fuse_data;
-} options_t;
-
 typedef struct
 {
   uint32_t  dsu_did;
@@ -333,26 +311,76 @@ class Adafruit_seesaw : public Print {
 /*=========================================================================*/
 };
 
-class dap_m0p : public Adafruit_seesaw {
+class Adafruit_DAP_SAM : public Adafruit_seesaw {
 public:
-    dap_m0p(void) {};
-    ~dap_m0p(void) {};
+    Adafruit_DAP_SAM(void) {};
+    ~Adafruit_DAP_SAM(void) {};
 
     static device_t devices[];
     device_t target_device;
-    options_t options;
 
-    void select(options_t *target_options);
+    bool select(uint32_t *id);
     void deselect(void);
     void erase(void);
     void lock(void);
-    void program(void);
-    uint32_t program(uint32_t addr, uint8_t *buf);
-    void verify(void);
-    void read(void);
+    void programBlock(uint32_t addr, const uint8_t *buf);
+    void readBlock(uint32_t addr, uint8_t *buf);
+    void verify(uint32_t length, uint32_t crc);
+    //uint32_t verifyBlock(uint32_t addr);
     void fuse(void);
+    void fuseRead();
+    void fuseWrite();
 
-    uint32_t program_start(void);
+    uint32_t program_start(uint32_t offset = 0);
+
+    struct USER_ROW {
+
+            uint8_t BOOTPROT: 3;
+            uint8_t EEPROM : 3;
+            uint8_t BOD33_Level : 6;
+            uint8_t BOD33_Enable : 1;
+            uint8_t BOD33_Action : 2;
+            uint8_t WDT_Enable : 1;
+            uint8_t WDT_Always_On : 1;
+            uint8_t WDT_Period : 4;
+            uint8_t WDT_Window : 4;
+            uint8_t WDR_EWOFFSET : 4;
+            uint8_t WDR_WEN : 1;
+            uint8_t BOD33_Hysteresis : 1;
+            uint16_t LOCK : 16;
+
+            void set(uint64_t data){
+              BOOTPROT = data & 0x07;
+              EEPROM = (data >> 4) & 0x07;
+              BOD33_Level = (data >> 8) & 0x3F;
+              BOD33_Enable = (data >> 14) & 0x01;
+              BOD33_Action = (data >> 15) & 0x03;
+              WDT_Enable = (data >> 25) & 0x01;
+              WDT_Always_On = (data >> 26) & 0x01;
+              WDT_Period = (data >> 27) & 0xF;
+              WDT_Window = (data >> 31) & 0xF;
+              WDR_EWOFFSET = (data >> 35) & 0xF;
+              WDR_WEN = (data >> 39) & 0x01;
+              BOD33_Hysteresis = (data >> 40) & 0x01;
+              LOCK = (data >> 48) & 0xFFFF;
+            }
+            uint64_t get(){
+              return ((uint64_t)LOCK << 48) | 
+              ((uint64_t) BOD33_Hysteresis << 40) | 
+              ((uint64_t) WDR_WEN << 39) |
+              ((uint64_t) WDR_EWOFFSET << 35) |
+              ((uint64_t) WDT_Window << 31) | 
+              ((uint64_t) WDT_Period << 27) | 
+              ((uint64_t) WDT_Always_On << 26) | 
+              ((uint64_t) WDT_Enable << 25) |
+              ((uint64_t) BOD33_Action << 15) |
+              ((uint64_t) BOD33_Enable << 14) |
+              ((uint64_t) BOD33_Level << 8) |
+              ((uint64_t) EEPROM << 4) |
+              (uint64_t) BOOTPROT;
+            }
+        };
+        USER_ROW _USER_ROW;
 };
 
 #endif
