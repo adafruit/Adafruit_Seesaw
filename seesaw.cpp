@@ -82,6 +82,7 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin)
 	uint8_t buf[2];
 	this->read(SEESAW_ADC_BASE, SEESAW_ADC_CHANNEL_OFFSET + pin, buf, 2, 500);
 	uint16_t ret = ((uint16_t)buf[0] << 8) | buf[1];
+  delay(1);
 	return ret;
 }
 
@@ -144,6 +145,33 @@ void Adafruit_seesaw::disableSercomDataRdyInterrupt(uint8_t sercom)
 char Adafruit_seesaw::readSercomData(uint8_t sercom)
 {
 	return this->read8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_DATA);
+}
+
+void Adafruit_seesaw::setI2CAddr(uint8_t addr)
+{
+  this->EEPROMWrite8(SEESAW_EEPROM_I2C_ADDR, addr);
+  delay(250);
+  this->begin(addr); //restart w/ the new addr
+}
+
+uint8_t Adafruit_seesaw::getI2CAddr()
+{
+  return this->read8(SEESAW_EEPROM_BASE, SEESAW_EEPROM_I2C_ADDR);
+}
+
+void Adafruit_seesaw::EEPROMWrite8(uint8_t addr, uint8_t val)
+{
+  this->EEPROMWrite(addr, &val, 1);
+}
+
+void Adafruit_seesaw::EEPROMWrite(uint8_t addr, uint8_t *buf, uint8_t size)
+{
+  this->write(SEESAW_EEPROM_BASE, addr, buf, size);
+}
+
+uint8_t Adafruit_seesaw::EEPROMRead8(uint8_t addr)
+{
+  return this->read8(SEESAW_EEPROM_BASE, addr);
 }
 
 void Adafruit_seesaw::write8(byte regHigh, byte regLow, byte value)

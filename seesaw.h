@@ -29,6 +29,7 @@
         SEESAW_DAC_BASE = 0x0A,
         SEESAW_INTERRUPT_BASE = 0x0B,
         SEESAW_DAP_BASE = 0x0C,
+        SEESAW_EEPROM_BASE = 0x0D,
     };
 
     enum
@@ -84,6 +85,7 @@
 /*=========================================================================*/
 
 #define SEESAW_HW_ID_CODE			0x55
+#define SEESAW_EEPROM_I2C_ADDR 0x3F
 
 /*- DAP Types -------------------------------------------------------------------*/
 /*
@@ -243,6 +245,13 @@ class Adafruit_seesaw : public Print {
         void disableSercomDataRdyInterrupt(uint8_t sercom = 0);
 
         char readSercomData(uint8_t sercom = 0);
+
+        void EEPROMWrite8(uint8_t addr, uint8_t val);
+        void EEPROMWrite(uint8_t addr, uint8_t *buf, uint8_t size);
+        uint8_t EEPROMRead8(uint8_t addr);
+
+        void setI2CAddr(uint8_t addr);
+        uint8_t getI2CAddr();
 
         virtual size_t write(uint8_t);
         virtual size_t write(const char *str);
