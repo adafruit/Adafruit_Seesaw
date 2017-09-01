@@ -30,6 +30,7 @@
         SEESAW_INTERRUPT_BASE = 0x0B,
         SEESAW_DAP_BASE = 0x0C,
         SEESAW_EEPROM_BASE = 0x0D,
+        SEESAW_NEOPIXEL_BASE = 0x0E,
     };
 
     enum
@@ -80,6 +81,15 @@
         SEESAW_SERCOM_INTENCLR = 0x03,
         SEESAW_SERCOM_BAUD = 0x04,
         SEESAW_SERCOM_DATA = 0x05,
+    };
+    enum
+    {
+        SEESAW_NEOPIXEL_STATUS = 0x00,
+        SEESAW_NEOPIXEL_PIN = 0x01,
+        SEESAW_NEOPIXEL_SPEED = 0x02,
+        SEESAW_NEOPIXEL_BUF_LENGTH = 0x03,
+        SEESAW_NEOPIXEL_BUF = 0x04,
+        SEESAW_NEOPIXEL_SHOW = 0x05,
     };
 
 /*=========================================================================*/
@@ -287,6 +297,7 @@ class Adafruit_seesaw : public Print {
 		
 		void read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay = 125);
 		void write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
+    void writeEmpty(uint8_t regHigh, uint8_t regLow);
 		void _i2c_init();
 
 /*=========================================================================

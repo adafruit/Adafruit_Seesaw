@@ -246,6 +246,14 @@ size_t Adafruit_seesaw::write(const char *str) {
 	return len;
 }
 
+void Adafruit_seesaw::writeEmpty(uint8_t regHigh, uint8_t regLow)
+{
+    Wire.beginTransmission((uint8_t)_i2caddr);
+    Wire.write((uint8_t)regHigh);
+    Wire.write((uint8_t)regLow);
+    Wire.endTransmission();
+}
+
 #ifdef INCLUDE_DAP
 
 int Adafruit_seesaw::dbg_dap_cmd(uint8_t *data, int size, int rsize)
