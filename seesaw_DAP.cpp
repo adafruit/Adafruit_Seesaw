@@ -319,7 +319,7 @@ void seesaw_DAP::dap_read_block(uint32_t addr, uint8_t *data, int size)
 }
 
 //-----------------------------------------------------------------------------
-void seesaw_DAP::dap_write_block(uint32_t addr, uint8_t *data, int size)
+void seesaw_DAP::dap_write_block(uint32_t addr, const uint8_t *data, int size)
 {
   int max_size = (32 - 5) & ~3;
   int offs = 0;

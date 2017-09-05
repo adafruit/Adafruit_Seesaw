@@ -1,6 +1,6 @@
 //This example takes UART data given to the seesaw, reads it and then loops it back
 
-#include "seesaw.h"
+#include "Adafruit_seesaw.h"
 
 Adafruit_seesaw ss;
 

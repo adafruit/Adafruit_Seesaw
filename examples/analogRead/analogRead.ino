@@ -1,4 +1,4 @@
-#include "seesaw.h"
+#include "Adafruit_seesaw.h"
 
 Adafruit_seesaw ss;
 

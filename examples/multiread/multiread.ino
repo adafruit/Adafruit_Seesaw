@@ -2,7 +2,7 @@
  * This example shows how to read multiple pins at once on a seesaw.
  */
 
-#include "seesaw.h"
+#include "Adafruit_seesaw.h"
 
 Adafruit_seesaw ss;
 

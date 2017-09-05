@@ -1,4 +1,4 @@
-#include "seesaw.h"
+#include "Adafruit_seesaw.h"
 
 /*- DAP Types -------------------------------------------------------------------*/
 /*
@@ -148,7 +148,7 @@ public:
     uint32_t dap_read_word(uint32_t addr);
     void dap_write_word(uint32_t addr, uint32_t data);
     void dap_read_block(uint32_t addr, uint8_t *data, int size);
-    void dap_write_block(uint32_t addr, uint8_t *data, int size);
+    void dap_write_block(uint32_t addr, const uint8_t *data, int size);
     void dap_reset_link(void);
     uint32_t dap_read_idcode(void);
     void dap_target_prepare(void);

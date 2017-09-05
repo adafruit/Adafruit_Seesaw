@@ -3,7 +3,7 @@
  * pin 13 is attached to the LED on the samd11 xplained board
  */
 
-#include "seesaw.h"
+#include "Adafruit_seesaw.h"
 
 Adafruit_seesaw ss;
 

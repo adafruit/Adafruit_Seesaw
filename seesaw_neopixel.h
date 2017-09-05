@@ -23,7 +23,7 @@
  #include <pins_arduino.h>
 #endif
 
-#include "seesaw.h"
+#include "Adafruit_seesaw.h"
 
 // The order of primary colors in the NeoPixel data stream can vary
 // among device types, manufacturers and even different revisions of
