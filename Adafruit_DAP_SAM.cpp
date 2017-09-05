@@ -33,7 +33,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
-#include "seesaw.h"
+#include "seesaw_DAP.h"
 
 /*- Definitions -------------------------------------------------------------*/
 #define FLASH_START            0
@@ -73,7 +73,6 @@
 #define USER_ROW_ADDR          0x00804000
 #define USER_ROW_SIZE          256
 
-#ifdef INCLUDE_DAP
 /*- Variables ---------------------------------------------------------------*/
 device_t Adafruit_DAP_SAM::devices[] =
 {
@@ -166,7 +165,7 @@ uint32_t Adafruit_DAP_SAM::program_start(uint32_t offset)
 
   dap_write_word(NVMCTRL_CTRLB, 0); // Enable automatic write
 
-  dap_setup_clock(0);
+  //dap_setup_clock(0); TODO: add support for fast clock mode
 
   return FLASH_START + offset;
 }
@@ -274,4 +273,3 @@ void Adafruit_DAP_SAM::fuseWrite()
 
   dap_write_block(USER_ROW_ADDR, buf, USER_ROW_SIZE);
 }
-#endif //INCLUDE_DAP
