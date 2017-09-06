@@ -168,6 +168,12 @@ uint8_t Adafruit_seesaw::EEPROMRead8(uint8_t addr)
   return this->read8(SEESAW_EEPROM_BASE, addr);
 }
 
+void Adafruit_seesaw::UARTSetBaud(uint32_t baud)
+{
+	uint8_t cmd[] = { (baud >> 24), (baud >> 16), (baud >> 8), baud };
+	this->write(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_BAUD, cmd, 4);
+}
+
 void Adafruit_seesaw::write8(byte regHigh, byte regLow, byte value)
 {
 	this->write(regHigh, regLow, &value, 1);

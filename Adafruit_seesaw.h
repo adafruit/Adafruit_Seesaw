@@ -131,6 +131,8 @@ class Adafruit_seesaw : public Print {
         void setI2CAddr(uint8_t addr);
         uint8_t getI2CAddr();
 
+        void UARTSetBaud(uint32_t baud);
+
         virtual size_t write(uint8_t);
         virtual size_t write(const char *str);
 
