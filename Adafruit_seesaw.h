@@ -71,7 +71,6 @@
         SEESAW_ADC_INTENCLR = 0x03,
         SEESAW_ADC_WINMODE = 0x04,
         SEESAW_ADC_WINTHRESH = 0x05,
-        SEESAW_ADC_INTCLR = 0x06,
         SEESAW_ADC_CHANNEL_OFFSET = 0x07,
     };
     enum
