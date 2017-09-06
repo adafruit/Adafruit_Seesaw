@@ -38,16 +38,15 @@ uint32_t Adafruit_seesaw::getVersion()
 	return ret;
 }
 
+
 void Adafruit_seesaw::pinMode(uint8_t pin, uint8_t mode)
 {
-	uint8_t cmd[] = {pin, mode};
-	this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PINMODE_SINGLE, cmd, 2);
+	pinModeBulk(1ul << pin, mode);
 }
 
 void Adafruit_seesaw::digitalWrite(uint8_t pin, uint8_t value)
 {
-	uint8_t cmd[] = {pin, value};
-	this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PIN_SINGLE, cmd, 2);
+	digitalWriteBulk(1ul << pin, value);
 }
 
 bool Adafruit_seesaw::digitalRead(uint8_t pin)

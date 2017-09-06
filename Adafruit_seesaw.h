@@ -35,8 +35,6 @@
 
     enum
     {
-        SEESAW_GPIO_PINMODE_SINGLE = 0x00,
-        SEESAW_GPIO_PIN_SINGLE = 0x01,
         SEESAW_GPIO_DIRSET_BULK = 0x02,
         SEESAW_GPIO_DIRCLR_BULK = 0x03,
         SEESAW_GPIO_BULK = 0x04,
