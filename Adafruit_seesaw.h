@@ -89,6 +89,11 @@
         SEESAW_NEOPIXEL_SHOW = 0x05,
     };
 
+#define ADC_INPUT_0_PIN 2
+#define ADC_INPUT_1_PIN 3
+#define ADC_INPUT_2_PIN 4
+#define ADC_INPUT_3_PIN 5
+
 /*=========================================================================*/
 
 #define SEESAW_HW_ID_CODE			0x55
