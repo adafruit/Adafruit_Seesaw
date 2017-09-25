@@ -13,8 +13,8 @@ void setup() {
 }
 
 void loop() {
-  Serial.print(ss.analogRead(0));
+  Serial.print(ss.analogRead(2));
   Serial.print(",");
-  Serial.println(ss.analogRead(1));
-  //delay(1000);  
+  Serial.println(ss.analogRead(3));
+  delay(50);  
 }
