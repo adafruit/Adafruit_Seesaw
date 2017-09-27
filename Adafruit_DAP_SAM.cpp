@@ -50,9 +50,10 @@
 #define DSU_DATA               0x4100210C
 #define DSU_LENGTH             0x41002108
 
-#define DSU_CTRL_CRC           0x00000004
-#define DSU_STATUSA_DONE       0x00000100
-#define DSU_STATUSA_BERR       0x00000400
+
+#define SAM_DSU_CTRL_CRC           0x00000004
+#define SAM_DSU_STATUSA_DONE       0x00000100
+#define SAM_DSU_STATUSA_BERR       0x00000400
 
 #define NVMCTRL_CTRLA          0x41004000
 #define NVMCTRL_CTRLB          0x41004004
@@ -74,42 +75,42 @@
 #define USER_ROW_SIZE          256
 
 /*- Variables ---------------------------------------------------------------*/
-device_t Adafruit_DAP_SAM::devices[] =
+device_t Adafruit_seesaw_DAP_SAM::devices[] =
 {
-  { 0x10040107, "SAM D09C13A",           8*1024,  128 },
-  { 0x10020100, "SAM D10D14AM",         16*1024,  256 },
-  { 0x10030100, "SAM D11D14A",          16*1024,  256 },
-  { 0x10030000, "SAM D11D14AM",         16*1024,  256 },
-  { 0x10030003, "SAM D11D14AS",         16*1024,  256 },
-  { 0x10030006, "SAM D11C14A",          16*1024,  256 },
-  { 0x10030106, "SAM D11C14A (Rev B)",  16*1024,  256 },
-  { 0x1000120d, "SAM D20E15A",          32*1024,  512 },
-  { 0x1000140a, "SAM D20E18A",         256*1024, 4096 },
-  { 0x10001100, "SAM D20J18A",         256*1024, 4096 },
-  { 0x10001200, "SAM D20J18A (Rev C)", 256*1024, 4096 },
-  { 0x10010100, "SAM D21J18A",         256*1024, 4096 },
-  { 0x10010200, "SAM D21J18A (Rev C)", 256*1024, 4096 },
-  { 0x10010300, "SAM D21J18A (Rev D)", 256*1024, 4096 },
-  { 0x1001020d, "SAM D21E15A (Rev C)",  32*1024,  512 },
-  { 0x1001030a, "SAM D21E18A",         256*1024, 4096 },
-  { 0x10010205, "SAM D21G18A",         256*1024, 4096 },
-  { 0x10010305, "SAM D21G18A (Rev D)", 256*1024, 4096 },
-  { 0x10010019, "SAM R21G18 ES",       256*1024, 4096 },
-  { 0x10010119, "SAM R21G18",          256*1024, 4096 },
-  { 0x10010219, "SAM R21G18A (Rev C)", 256*1024, 4096 },
-  { 0x10010319, "SAM R21G18A (Rev D)", 256*1024, 4096 },
-  { 0x11010100, "SAM C21J18A ES",      256*1024, 4096 },
-  { 0x10810219, "SAM L21E18B",         256*1024, 4096 },
-  { 0x10810000, "SAM L21J18A",         256*1024, 4096 },
-  { 0x1081010f, "SAM L21J18B (Rev B)", 256*1024, 4096 },
-  { 0x1081020f, "SAM L21J18B (Rev C)", 256*1024, 4096 },
-  { 0x1081021e, "SAM R30G18A",         256*1024, 4096 },
-  { 0x1081021f, "SAM R30E18A",         256*1024, 4096 },
+  { 0x10040107, (char *)"SAM D09C13A",           8*1024,  128 },
+  { 0x10020100, (char *)"SAM D10D14AM",         16*1024,  256 },
+  { 0x10030100, (char *)"SAM D11D14A",          16*1024,  256 },
+  { 0x10030000, (char *)"SAM D11D14AM",         16*1024,  256 },
+  { 0x10030003, (char *)"SAM D11D14AS",         16*1024,  256 },
+  { 0x10030006, (char *)"SAM D11C14A",          16*1024,  256 },
+  { 0x10030106, (char *)"SAM D11C14A (Rev B)",  16*1024,  256 },
+  { 0x1000120d, (char *)"SAM D20E15A",          32*1024,  512 },
+  { 0x1000140a, (char *)"SAM D20E18A",         256*1024, 4096 },
+  { 0x10001100, (char *)"SAM D20J18A",         256*1024, 4096 },
+  { 0x10001200, (char *)"SAM D20J18A (Rev C)", 256*1024, 4096 },
+  { 0x10010100, (char *)"SAM D21J18A",         256*1024, 4096 },
+  { 0x10010200, (char *)"SAM D21J18A (Rev C)", 256*1024, 4096 },
+  { 0x10010300, (char *)"SAM D21J18A (Rev D)", 256*1024, 4096 },
+  { 0x1001020d, (char *)"SAM D21E15A (Rev C)",  32*1024,  512 },
+  { 0x1001030a, (char *)"SAM D21E18A",         256*1024, 4096 },
+  { 0x10010205, (char *)"SAM D21G18A",         256*1024, 4096 },
+  { 0x10010305, (char *)"SAM D21G18A (Rev D)", 256*1024, 4096 },
+  { 0x10010019, (char *)"SAM R21G18 ES",       256*1024, 4096 },
+  { 0x10010119, (char *)"SAM R21G18",          256*1024, 4096 },
+  { 0x10010219, (char *)"SAM R21G18A (Rev C)", 256*1024, 4096 },
+  { 0x10010319, (char *)"SAM R21G18A (Rev D)", 256*1024, 4096 },
+  { 0x11010100, (char *)"SAM C21J18A ES",      256*1024, 4096 },
+  { 0x10810219, (char *)"SAM L21E18B",         256*1024, 4096 },
+  { 0x10810000, (char *)"SAM L21J18A",         256*1024, 4096 },
+  { 0x1081010f, (char *)"SAM L21J18B (Rev B)", 256*1024, 4096 },
+  { 0x1081020f, (char *)"SAM L21J18B (Rev C)", 256*1024, 4096 },
+  { 0x1081021e, (char *)"SAM R30G18A",         256*1024, 4096 },
+  { 0x1081021f, (char *)"SAM R30E18A",         256*1024, 4096 },
   { 0 },
 };
 
 //-----------------------------------------------------------------------------
-bool Adafruit_DAP_SAM::select(uint32_t *found_id)
+bool Adafruit_seesaw_DAP_SAM::select(uint32_t *found_id)
 {
   uint32_t dsu_did;
 
@@ -135,14 +136,14 @@ bool Adafruit_DAP_SAM::select(uint32_t *found_id)
 }
 
 //-----------------------------------------------------------------------------
-void Adafruit_DAP_SAM::deselect(void)
+void Adafruit_seesaw_DAP_SAM::deselect(void)
 {
   dap_write_word(DEMCR, 0x00000000);
   dap_write_word(AIRCR, 0x05fa0004);
 }
 
 //-----------------------------------------------------------------------------
-void Adafruit_DAP_SAM::erase(void)
+void Adafruit_seesaw_DAP_SAM::erase(void)
 {
   dap_write_word(DSU_CTRL_STATUS, 0x00001f00); // Clear flags
   dap_write_word(DSU_CTRL_STATUS, 0x00000010); // Chip erase
@@ -151,17 +152,17 @@ void Adafruit_DAP_SAM::erase(void)
 }
 
 //-----------------------------------------------------------------------------
-void Adafruit_DAP_SAM::lock(void)
+void Adafruit_seesaw_DAP_SAM::lock(void)
 {
   dap_write_word(NVMCTRL_CTRLA, NVMCTRL_CMD_SSB); // Set Security Bit
 }
 
 //-----------------------------------------------------------------------------
-uint32_t Adafruit_DAP_SAM::program_start(uint32_t offset)
+uint32_t Adafruit_seesaw_DAP_SAM::program_start(uint32_t offset)
 {
 
   if (dap_read_word(DSU_CTRL_STATUS) & 0x00010000)
-    perror_exit("device is locked, perform a chip erase before programming");
+    perror_exit((char *)"device is locked, perform a chip erase before programming");
 
   dap_write_word(NVMCTRL_CTRLB, 0); // Enable automatic write
 
@@ -170,7 +171,7 @@ uint32_t Adafruit_DAP_SAM::program_start(uint32_t offset)
   return FLASH_START + offset;
 }
 
-void Adafruit_DAP_SAM::programBlock(uint32_t addr, const uint8_t *buf)
+void Adafruit_seesaw_DAP_SAM::programBlock(uint32_t addr, const uint8_t *buf)
 {
     /* DM: this is actually unnecessary after a chip erase
     dap_write_word(NVMCTRL_ADDR, addr >> 1);
@@ -185,16 +186,16 @@ void Adafruit_DAP_SAM::programBlock(uint32_t addr, const uint8_t *buf)
 }
 
 //-----------------------------------------------------------------------------
-void Adafruit_DAP_SAM::readBlock(uint32_t addr, uint8_t *buf)
+void Adafruit_seesaw_DAP_SAM::readBlock(uint32_t addr, uint8_t *buf)
 {
   if (dap_read_word(DSU_CTRL_STATUS) & 0x00010000)
-    perror_exit("device is locked, unable to read");
+    perror_exit((char *)"device is locked, unable to read");
 
   dap_read_block(addr, buf, FLASH_ROW_SIZE);
 }
 
 /*
-uint32_t Adafruit_DAP_SAM::verifyBlock(uint32_t addr)
+uint32_t Adafruit_seesaw_DAP_SAM::verifyBlock(uint32_t addr)
 {
    dap_write_word(DSU_DATA, 0xFFFFFFFF);
    dap_write_word(DSU_ADDR, (addr << 2));
@@ -216,7 +217,7 @@ uint32_t Adafruit_DAP_SAM::verifyBlock(uint32_t addr)
 */
 
 
-void Adafruit_DAP_SAM::verify(uint32_t length, uint32_t crc)
+void Adafruit_seesaw_DAP_SAM::verify(uint32_t length, uint32_t crc)
 {
    /* to verify CRC, compare (dap_read_word(DSU_DATA) ^ 0xFFFFFFFF) to output of crc32 program on linux */
    dap_write_word(DSU_DATA, 0xFFFFFFFF);
@@ -224,20 +225,20 @@ void Adafruit_DAP_SAM::verify(uint32_t length, uint32_t crc)
    dap_write_word(DSU_LENGTH, length);
 
    dap_write_word(DSU_CTRL_STATUS, 0x00001f00); // Clear flags
-   dap_write_word(DSU_CTRL_STATUS, DSU_CTRL_CRC); //start CRC
+   dap_write_word(DSU_CTRL_STATUS, SAM_DSU_CTRL_CRC); //start CRC
 
    uint32_t status = 0;
    while(0 == (status & DSU_STATUSA_DONE) ){
       status = dap_read_word(DSU_CTRL_STATUS);
       if( (status & DSU_STATUSA_BERR) > 0){
        Serial.println(status, BIN);
-       perror_exit("bus read error during verify!");
+       perror_exit((char *)"bus read error during verify!");
      }
    }
-   if(dap_read_word(DSU_DATA)  != crc) perror_exit("verify failed!");
+   if(dap_read_word(DSU_DATA)  != crc) perror_exit((char *)"verify failed!");
 }
 
-void Adafruit_DAP_SAM::fuseRead(){
+void Adafruit_seesaw_DAP_SAM::fuseRead(){
   uint8_t buf[USER_ROW_SIZE];
   dap_read_block(USER_ROW_ADDR, buf, USER_ROW_SIZE);
 
@@ -253,7 +254,7 @@ void Adafruit_DAP_SAM::fuseRead(){
   _USER_ROW.set(fuses);
 }
 
-void Adafruit_DAP_SAM::fuseWrite()
+void Adafruit_seesaw_DAP_SAM::fuseWrite()
 {
   uint64_t fuses = _USER_ROW.get();
   uint8_t buf[USER_ROW_SIZE] = {(uint8_t)fuses,

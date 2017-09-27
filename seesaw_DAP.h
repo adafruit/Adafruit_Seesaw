@@ -160,10 +160,10 @@ protected:
 
 };
 
-class Adafruit_DAP_SAM : public seesaw_DAP {
+class Adafruit_seesaw_DAP_SAM : public seesaw_DAP {
 public:
-    Adafruit_DAP_SAM(void) {};
-    ~Adafruit_DAP_SAM(void) {};
+    Adafruit_seesaw_DAP_SAM(void) {};
+    ~Adafruit_seesaw_DAP_SAM(void) {};
 
     static device_t devices[];
     device_t target_device;

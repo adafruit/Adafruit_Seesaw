@@ -17,7 +17,7 @@ int seesaw_DAP::dbg_dap_cmd(uint8_t *data, int size, int rsize)
   this->read(SEESAW_DAP_BASE, 0x00, hid_buffer, REPORT_SIZE + 1);
   delay(1);
 
-  check(hid_buffer[0] == cmd, "invalid response received");
+  check(hid_buffer[0] == cmd, (char *)"invalid response received");
 
   memcpy(data, &hid_buffer[1], size);
 
@@ -55,7 +55,7 @@ void seesaw_DAP::dap_led(int index, int state)
   buf[2] = state;
   dbg_dap_cmd(buf, sizeof(buf), 3);
 
-  check(DAP_OK == buf[0], "DAP_LED failed");
+  check(DAP_OK == buf[0], (char *)"DAP_LED failed");
 }
 
 //-----------------------------------------------------------------------------
@@ -67,7 +67,7 @@ void seesaw_DAP::dap_connect(void)
   buf[1] = DAP_PORT_SWD;
   dbg_dap_cmd(buf, sizeof(buf), 2);
 
-  check(DAP_PORT_SWD == buf[0], "DAP_CONNECT failed");
+  check(DAP_PORT_SWD == buf[0], (char *)"DAP_CONNECT failed");
 }
 
 //-----------------------------------------------------------------------------
@@ -91,7 +91,7 @@ void seesaw_DAP::dap_swj_clock(uint32_t clock)
   buf[4] = (clock >> 24) & 0xff;
   dbg_dap_cmd(buf, sizeof(buf), 5);
 
-  check(DAP_OK == buf[0], "SWJ_CLOCK failed");
+  check(DAP_OK == buf[0], (char *)"SWJ_CLOCK failed");
 }
 
 //-----------------------------------------------------------------------------
@@ -107,7 +107,7 @@ void seesaw_DAP::dap_transfer_configure(uint8_t idle, uint16_t count, uint16_t r
   buf[5] = (retry >> 8) & 0xff;
   dbg_dap_cmd(buf, sizeof(buf), 6);
 
-  check(DAP_OK == buf[0], "TRANSFER_CONFIGURE failed");
+  check(DAP_OK == buf[0], (char *)"TRANSFER_CONFIGURE failed");
 }
 
 //-----------------------------------------------------------------------------
@@ -119,7 +119,7 @@ void seesaw_DAP::dap_swd_configure(uint8_t cfg)
   buf[1] = cfg;
   dbg_dap_cmd(buf, sizeof(buf), 2);
 
-  check(DAP_OK == buf[0], "SWD_CONFIGURE failed");
+  check(DAP_OK == buf[0], (char *)"SWD_CONFIGURE failed");
 }
 
 //-----------------------------------------------------------------------------
@@ -169,7 +169,7 @@ void seesaw_DAP::dap_get_debugger_info(void)
   //verbose("Debugger: %s\n", str);
   Serial.println(str);
 
-  check(buf[1] & DAP_PORT_SWD, "SWD support required");
+  check(buf[1] & DAP_PORT_SWD, (char *)"SWD support required");
 }
 
 //-----------------------------------------------------------------------------
@@ -180,7 +180,7 @@ void seesaw_DAP::dap_reset_target(void)
   buf[0] = ID_DAP_RESET_TARGET;
   dbg_dap_cmd(buf, sizeof(buf), 1);
 
-  check(DAP_OK == buf[0], "RESET_TARGET failed");
+  check(DAP_OK == buf[0], (char *)"RESET_TARGET failed");
 }
 
 //-----------------------------------------------------------------------------
@@ -231,7 +231,7 @@ uint32_t seesaw_DAP::dap_read_reg(uint8_t reg)
   	Serial.print(buf[0]);
   	Serial.print(", value = ");
   	Serial.print(buf[1]);
-  	perror_exit(")");
+  	perror_exit((char *)")");
   }
 
   return ((uint32_t)buf[5] << 24) | ((uint32_t)buf[4] << 16) |
@@ -262,7 +262,7 @@ void seesaw_DAP::dap_write_reg(uint8_t reg, uint32_t data)
   	Serial.print(buf[0]);
   	Serial.print(", value = ");
   	Serial.print(buf[1]);
-  	perror_exit(")");
+  	perror_exit((char *)")");
   }
 }
 
@@ -382,7 +382,7 @@ void seesaw_DAP::dap_reset_link(void)
   buf[18] = 0x00;
 
   dbg_dap_cmd(buf, sizeof(buf), 19);
-  check(DAP_OK == buf[0], "SWJ_SEQUENCE failed");
+  check(DAP_OK == buf[0], (char *)"SWJ_SEQUENCE failed");
 
   //-------------
   buf[0] = ID_DAP_TRANSFER;
