@@ -131,8 +131,19 @@ void Adafruit_seesaw::digitalWriteBulk(uint32_t pins, uint8_t value)
 
 void Adafruit_seesaw::analogWrite(uint8_t pin, uint8_t value)
 {
-	uint8_t cmd[] = {pin, value};
-	this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 2);
+	int8_t p = -1;
+	switch(pin){
+		case PWM_0_PIN: p = 0; break;
+		case PWM_1_PIN: p = 1; break;
+		case PWM_2_PIN: p = 2; break;
+		case PWM_3_PIN: p = 3; break;
+		default:
+			break;
+	}
+	if(p > -1){
+		uint8_t cmd[] = {p, value};
+		this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 2);
+	}
 }
 
 void Adafruit_seesaw::enableSercomDataRdyInterrupt(uint8_t sercom)

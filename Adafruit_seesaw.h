@@ -94,6 +94,11 @@
 #define ADC_INPUT_2_PIN 4
 #define ADC_INPUT_3_PIN 5
 
+#define PWM_0_PIN 4
+#define PWM_1_PIN 5
+#define PWM_2_PIN 6
+#define PWM_3_PIN 7
+
 /*=========================================================================*/
 
 #define SEESAW_HW_ID_CODE			0x55

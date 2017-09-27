@@ -74,7 +74,7 @@ void seesaw_NeoPixel::updateLength(uint16_t n) {
     numLEDs = numBytes = 0;
   }
 
-  uint8_t buf[] = {(numBytes >> 8), (numBytes & 0xFF)};
+  uint8_t buf[] = {(uint8_t)(numBytes >> 8), (uint8_t)(numBytes & 0xFF)};
   this->write(SEESAW_NEOPIXEL_BASE, SEESAW_NEOPIXEL_BUF_LENGTH, buf, 2);
 }
 
