@@ -141,7 +141,7 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint8_t value)
 			break;
 	}
 	if(p > -1){
-		uint8_t cmd[] = {p, value};
+		uint8_t cmd[] = {(uint8_t)p, value};
 		this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 2);
 	}
 }
