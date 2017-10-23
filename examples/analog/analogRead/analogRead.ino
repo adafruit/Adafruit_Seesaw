@@ -1,3 +1,7 @@
+/*
+ * This example shows how read the ADC on a seesaw. The default ADC pins on the SAMD09 Breakout are 2, 3, and 4.
+ */
+
 #include "Adafruit_seesaw.h"
 
 Adafruit_seesaw ss;
