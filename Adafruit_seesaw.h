@@ -18,6 +18,10 @@
 /*=========================================================================
     REGISTERS
     -----------------------------------------------------------------------*/
+
+    /** Module Base Addreses
+     *  The module base addresses for different seesaw modules.
+     */
     enum
     {
         SEESAW_STATUS_BASE = 0x00,
@@ -33,6 +37,8 @@
         SEESAW_NEOPIXEL_BASE = 0x0E,
     };
 
+    /** GPIO module function addres registers
+     */
     enum
     {
         SEESAW_GPIO_DIRSET_BULK = 0x02,
@@ -147,7 +153,7 @@ class Adafruit_seesaw : public Print {
         virtual size_t write(const char *str);
 
 	protected:
-		uint8_t _i2caddr;
+		uint8_t _i2caddr; /*!< The I2C address used to communicate with the seesaw */
 
 		void      write8(byte regHigh, byte regLow, byte value);
         uint8_t   read8(byte regHigh, byte regLow);
