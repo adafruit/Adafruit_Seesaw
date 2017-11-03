@@ -108,9 +108,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9eef8bd609d5c57257513874f120aede"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__seesaw.html#a9eef8bd609d5c57257513874f120aede">pinModeBulk</a> (uint32_t pins, uint8_t mode)</td></tr>
 <tr class="memdesc:a9eef8bd609d5c57257513874f120aede"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the mode of multiple GPIO pins at once.  <a href="#a9eef8bd609d5c57257513874f120aede">More...</a><br /></td></tr>
 <tr class="separator:a9eef8bd609d5c57257513874f120aede"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f99fa538475d2c6288c0d3a6f40463c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__seesaw.html#a1f99fa538475d2c6288c0d3a6f40463c">analogWrite</a> (uint8_t pin, uint8_t value)</td></tr>
-<tr class="memdesc:a1f99fa538475d2c6288c0d3a6f40463c"><td class="mdescLeft">&#160;</td><td class="mdescRight">write a PWM value to a PWM-enabled pin  <a href="#a1f99fa538475d2c6288c0d3a6f40463c">More...</a><br /></td></tr>
-<tr class="separator:a1f99fa538475d2c6288c0d3a6f40463c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a755d4e791bfa5af30b531e1a413eedc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__seesaw.html#a755d4e791bfa5af30b531e1a413eedc9">analogWrite</a> (uint8_t pin, uint16_t value)</td></tr>
+<tr class="memdesc:a755d4e791bfa5af30b531e1a413eedc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">write a PWM value to a PWM-enabled pin  <a href="#a755d4e791bfa5af30b531e1a413eedc9">More...</a><br /></td></tr>
+<tr class="separator:a755d4e791bfa5af30b531e1a413eedc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08c91e38484df9a042a4cc8d6afa7abb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__seesaw.html#a08c91e38484df9a042a4cc8d6afa7abb">digitalWrite</a> (uint8_t pin, uint8_t value)</td></tr>
 <tr class="memdesc:a08c91e38484df9a042a4cc8d6afa7abb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the output of a GPIO pin.  <a href="#a08c91e38484df9a042a4cc8d6afa7abb">More...</a><br /></td></tr>
 <tr class="separator:a08c91e38484df9a042a4cc8d6afa7abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,6 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5019edda6a5bcb51b0d1405441a614fb"><td class="memItemLeft" align="right" valign="top"><a id="a5019edda6a5bcb51b0d1405441a614fb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>analogReadBulk</b> (uint16_t *buf, uint8_t num)</td></tr>
 <tr class="separator:a5019edda6a5bcb51b0d1405441a614fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73d0a1f528a29604c5666ffd39eb8bd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__seesaw.html#a73d0a1f528a29604c5666ffd39eb8bd9">setPWMFreq</a> (uint8_t pin, uint16_t freq)</td></tr>
+<tr class="memdesc:a73d0a1f528a29604c5666ffd39eb8bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the PWM frequency of a PWM-enabled pin. Note that on SAMD09, SAMD11 boards the frequency will be mapped to closest match fixed frequencies. Also note that PWM pins 4 and 5 share a timer, and PWM pins 6 and 7 share a timer. Changing the frequency for one pin will change the frequency for the other pin that is on the timer.  <a href="#a73d0a1f528a29604c5666ffd39eb8bd9">More...</a><br /></td></tr>
+<tr class="separator:a73d0a1f528a29604c5666ffd39eb8bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c5403ae64446abfdb88ceeb845cc349"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAdafruit__seesaw.html#a9c5403ae64446abfdb88ceeb845cc349">enableSercomDataRdyInterrupt</a> (uint8_t sercom=0)</td></tr>
 <tr class="memdesc:a9c5403ae64446abfdb88ceeb845cc349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the data ready interrupt on the passed sercom. Note that both the interrupt module and the passed sercom must be compiled into the seesaw firmware for this to function. If both of these things are true, the interrupt pin on the seesaw will fire when there is data to be read from the passed sercom. On the default seesaw firmeare on the SAMD09 breakout, no sercoms are enabled.  <a href="#a9c5403ae64446abfdb88ceeb845cc349">More...</a><br /></td></tr>
 <tr class="separator:a9c5403ae64446abfdb88ceeb845cc349"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -254,8 +257,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1f99fa538475d2c6288c0d3a6f40463c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f99fa538475d2c6288c0d3a6f40463c">&#9670;&nbsp;</a></span>analogWrite()</h2>
+<a id="a755d4e791bfa5af30b531e1a413eedc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a755d4e791bfa5af30b531e1a413eedc9">&#9670;&nbsp;</a></span>analogWrite()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,7 +272,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramtype">uint16_t&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -284,7 +287,7 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pin</td><td>the number of the pin to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen. on the default seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled. </td></tr>
-    <tr><td class="paramname">value</td><td>a number between 0 and 255 to write to the pin.</td></tr>
+    <tr><td class="paramname">value</td><td>a number between 0 and 65535 to write to the pin.</td></tr>
   </table>
   </dd>
 </dl>
@@ -948,6 +951,44 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">addr</td><td>the new address for the seesaw. This must be a valid 7 bit I2C address.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="a73d0a1f528a29604c5666ffd39eb8bd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d0a1f528a29604c5666ffd39eb8bd9">&#9670;&nbsp;</a></span>setPWMFreq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Adafruit_seesaw::setPWMFreq </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>freq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set the PWM frequency of a PWM-enabled pin. Note that on SAMD09, SAMD11 boards the frequency will be mapped to closest match fixed frequencies. Also note that PWM pins 4 and 5 share a timer, and PWM pins 6 and 7 share a timer. Changing the frequency for one pin will change the frequency for the other pin that is on the timer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>the number of the pin to change frequency of. On the SAMD09 breakout, this corresponds to the number on the silkscreen. on the default seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled. </td></tr>
+    <tr><td class="paramname">freq</td><td>the frequency to set.</td></tr>
   </table>
   </dd>
 </dl>

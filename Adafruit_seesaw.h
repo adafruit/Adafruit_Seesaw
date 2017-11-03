@@ -66,6 +66,7 @@
     {
         SEESAW_TIMER_STATUS = 0x00,
         SEESAW_TIMER_PWM = 0x01,
+        SEESAW_TIMER_FREQ = 0x02,
     };
 	
     enum
@@ -123,7 +124,7 @@ class Adafruit_seesaw : public Print {
 
         void pinMode(uint8_t pin, uint8_t mode);
         void pinModeBulk(uint32_t pins, uint8_t mode);
-        void analogWrite(uint8_t pin, uint8_t value);
+        void analogWrite(uint8_t pin, uint16_t value);
         void digitalWrite(uint8_t pin, uint8_t value);
         void digitalWriteBulk(uint32_t pins, uint8_t value);
 
@@ -134,6 +135,8 @@ class Adafruit_seesaw : public Print {
 
         uint16_t analogRead(uint8_t pin);
         void analogReadBulk(uint16_t *buf, uint8_t num);
+
+        void setPWMFreq(uint8_t pin, uint16_t freq);
 
         void enableSercomDataRdyInterrupt(uint8_t sercom = 0);
         void disableSercomDataRdyInterrupt(uint8_t sercom = 0);

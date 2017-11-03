@@ -242,11 +242,11 @@ void Adafruit_seesaw::digitalWriteBulk(uint32_t pins, uint8_t value)
  * 
  *  @param      pin the number of the pin to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				on the default seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled.
- *	@param		value a number between 0 and 255 to write to the pin.
+ *	@param		value a number between 0 and 65535 to write to the pin.
  *
  *  @return     none
  ****************************************************************************************/
-void Adafruit_seesaw::analogWrite(uint8_t pin, uint8_t value)
+void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value)
 {
 	int8_t p = -1;
 	switch(pin){
@@ -258,8 +258,39 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint8_t value)
 			break;
 	}
 	if(p > -1){
-		uint8_t cmd[] = {(uint8_t)p, value};
-		this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 2);
+		uint8_t cmd[] = {(uint8_t)p, (uint8_t)(value >> 8), (uint8_t)value};
+		this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 3);
+	}
+}
+
+/**
+ *****************************************************************************************
+ *  @brief      set the PWM frequency of a PWM-enabled pin. Note that on SAMD09, SAMD11 boards
+ *				the frequency will be mapped to closest match fixed frequencies.
+ *				Also note that PWM pins 4 and 5 share a timer, and PWM pins 6 and 7 share a timer.
+ *				Changing the frequency for one pin will change the frequency for the other pin that
+ *				is on the timer.
+ * 
+ *  @param      pin the number of the pin to change frequency of. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
+ *				on the default seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled.
+ *	@param		freq the frequency to set.
+ *
+ *  @return     none
+ ****************************************************************************************/
+void Adafruit_seesaw::setPWMFreq(uint8_t pin, uint16_t freq)
+{
+	int8_t p = -1;
+	switch(pin){
+		case PWM_0_PIN: p = 0; break;
+		case PWM_1_PIN: p = 1; break;
+		case PWM_2_PIN: p = 2; break;
+		case PWM_3_PIN: p = 3; break;
+		default:
+			break;
+	}
+	if(p > -1){
+		uint8_t cmd[] = {(uint8_t)p, (uint8_t)(freq >> 8), (uint8_t)freq};
+		this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_FREQ, cmd, 3);
 	}
 }
 
