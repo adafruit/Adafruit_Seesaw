@@ -242,11 +242,12 @@ void Adafruit_seesaw::digitalWriteBulk(uint32_t pins, uint8_t value)
  * 
  *  @param      pin the number of the pin to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				on the default seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled.
- *	@param		value a number between 0 and 65535 to write to the pin.
+ *	@param		value the value to write to the pin
+ *	@param		width the width of the value to write. Defaults to 8. If 16 is passed a 16 bit value will be written.
  *
  *  @return     none
  ****************************************************************************************/
-void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value)
+void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width)
 {
 	int8_t p = -1;
 	switch(pin){
@@ -258,8 +259,16 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value)
 			break;
 	}
 	if(p > -1){
-		uint8_t cmd[] = {(uint8_t)p, (uint8_t)(value >> 8), (uint8_t)value};
-		this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 3);
+		if(width == 16){
+			uint8_t cmd[] = {(uint8_t)p, (uint8_t)(value >> 8), (uint8_t)value};
+			this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 3);
+		}
+		else 
+		{
+			uint16_t mappedVal = map(value, 0, 255, 0, 65535);
+			uint8_t cmd[] = {(uint8_t)p, (uint8_t)(mappedVal >> 8), (uint8_t)mappedVal};
+			this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 3);
+		}
 	}
 }
 

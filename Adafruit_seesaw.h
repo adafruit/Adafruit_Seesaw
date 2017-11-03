@@ -124,7 +124,7 @@ class Adafruit_seesaw : public Print {
 
         void pinMode(uint8_t pin, uint8_t mode);
         void pinModeBulk(uint32_t pins, uint8_t mode);
-        void analogWrite(uint8_t pin, uint16_t value);
+        void analogWrite(uint8_t pin, uint16_t value, uint8_t width = 8);
         void digitalWrite(uint8_t pin, uint8_t value);
         void digitalWriteBulk(uint32_t pins, uint8_t value);
 
