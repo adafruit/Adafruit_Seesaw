@@ -1,3 +1,30 @@
+/*!
+ * @file Adafruit_seesaw.cpp
+ *
+ * @mainpage Adafruit seesaw arduino driver
+ *
+ * @section intro_sec Introduction
+ *
+ * This is part of Adafruit's seesaw driver for the Arduino platform.  It is
+ * designed specifically to work with the Adafruit products that use seesaw technology.
+ *
+ * These chips use I2C to communicate, 2 pins (SCL+SDA) are required
+ * to interface with the board.
+ *
+ * Adafruit invests time and resources providing this open source code,
+ * please support Adafruit and open-source hardware by purchasing
+ * products from Adafruit!
+ *
+ * @section author Author
+ *
+ * Written by Dean Miller for Adafruit Industries.
+ *
+ * @section license License
+ *
+ * BSD license, all text here must be included in any redistribution.
+ *
+ */
+
 #include "Adafruit_seesaw.h"
 
 /**
