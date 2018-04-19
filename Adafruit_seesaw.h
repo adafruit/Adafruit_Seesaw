@@ -54,6 +54,7 @@
         SEESAW_DAP_BASE = 0x0C,
         SEESAW_EEPROM_BASE = 0x0D,
         SEESAW_NEOPIXEL_BASE = 0x0E,
+        SEESAW_TOUCH_BASE = 0x0F,
     };
 
     /** GPIO module function addres registers
@@ -114,6 +115,10 @@
         SEESAW_NEOPIXEL_BUF = 0x04,
         SEESAW_NEOPIXEL_SHOW = 0x05,
     };
+    enum
+    {
+        SEESAW_TOUCH_CHANNEL_OFFSET = 0x10,
+    };
 
 #define ADC_INPUT_0_PIN 2
 #define ADC_INPUT_1_PIN 3
@@ -143,9 +148,11 @@ class Adafruit_seesaw : public Print {
 
         void pinMode(uint8_t pin, uint8_t mode);
         void pinModeBulk(uint32_t pins, uint8_t mode);
+        void pinModeBulk(uint32_t pinsa, uint32_t pinsb, uint8_t mode);
         void analogWrite(uint8_t pin, uint16_t value, uint8_t width = 8);
         void digitalWrite(uint8_t pin, uint8_t value);
         void digitalWriteBulk(uint32_t pins, uint8_t value);
+        void digitalWriteBulk(uint32_t pinsa, uint32_t pinsb, uint8_t value);
 
         bool digitalRead(uint8_t pin);
         uint32_t digitalReadBulk(uint32_t pins);
@@ -154,6 +161,8 @@ class Adafruit_seesaw : public Print {
 
         uint16_t analogRead(uint8_t pin);
         void analogReadBulk(uint16_t *buf, uint8_t num);
+
+        uint16_t touchRead(uint8_t pin);
 
         void setPWMFreq(uint8_t pin, uint16_t freq);
 
