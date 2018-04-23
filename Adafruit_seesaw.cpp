@@ -37,9 +37,12 @@
  *
  *  @return     true if we could connect to the seesaw, false otherwise
  ****************************************************************************************/
-bool Adafruit_seesaw::begin(uint8_t addr)
+bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow)
 {
 	_i2caddr = addr;
+	_flow = flow;
+
+	if(_flow != -1) ::pinMode(_flow, INPUT);
 	
 	_i2c_init();
 
@@ -580,11 +583,13 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_
 		Wire.beginTransmission((uint8_t)_i2caddr);
 		Wire.write((uint8_t)regHigh);
 		Wire.write((uint8_t)regLow);
+		if(_flow != -1) while(!::digitalRead(_flow));
 		Wire.endTransmission();
 
 		//TODO: tune this
 		delayMicroseconds(delay);
 
+		if(_flow != -1) while(!::digitalRead(_flow));
 		Wire.requestFrom((uint8_t)_i2caddr, read_now);
 		
 		for(int i=0; i<read_now; i++){
@@ -611,6 +616,7 @@ void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8
 	Wire.write((uint8_t)regHigh);
 	Wire.write((uint8_t)regLow);
 	Wire.write((uint8_t *)buf, num);
+	if(_flow != -1) while(!::digitalRead(_flow));
 	Wire.endTransmission();
 }
 
@@ -671,5 +677,6 @@ void Adafruit_seesaw::writeEmpty(uint8_t regHigh, uint8_t regLow)
     Wire.beginTransmission((uint8_t)_i2caddr);
     Wire.write((uint8_t)regHigh);
     Wire.write((uint8_t)regLow);
+    if(_flow != -1) while(!::digitalRead(_flow));
     Wire.endTransmission();
 }

@@ -141,7 +141,7 @@ class Adafruit_seesaw : public Print {
 		Adafruit_seesaw(void) {};
 		~Adafruit_seesaw(void) {};
 		
-		bool begin(uint8_t addr = SEESAW_ADDRESS);
+		bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow=-1);
         uint32_t getOptions();
         uint32_t getVersion();
 		void SWReset();
@@ -185,6 +185,7 @@ class Adafruit_seesaw : public Print {
 
 	protected:
 		uint8_t _i2caddr; /*!< The I2C address used to communicate with the seesaw */
+        int8_t _flow;
 
 		void      write8(byte regHigh, byte regLow, byte value);
         uint8_t   read8(byte regHigh, byte regLow);
