@@ -105,7 +105,7 @@ class seesaw_NeoPixel : public Adafruit_seesaw {
   seesaw_NeoPixel(void);
   ~seesaw_NeoPixel();
 
-  bool begin(uint8_t addr = SEESAW_ADDRESS);
+  bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow = -1);
   void 
     show(void),
     setPin(uint8_t p),
