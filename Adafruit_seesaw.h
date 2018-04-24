@@ -149,7 +149,7 @@ class Adafruit_seesaw : public Print {
         void pinMode(uint8_t pin, uint8_t mode);
         void pinModeBulk(uint32_t pins, uint8_t mode);
         void pinModeBulk(uint32_t pinsa, uint32_t pinsb, uint8_t mode);
-        void analogWrite(uint8_t pin, uint16_t value, uint8_t width = 8);
+        virtual void analogWrite(uint8_t pin, uint16_t value, uint8_t width = 8);
         void digitalWrite(uint8_t pin, uint8_t value);
         void digitalWriteBulk(uint32_t pins, uint8_t value);
         void digitalWriteBulk(uint32_t pinsa, uint32_t pinsb, uint8_t value);
@@ -159,12 +159,12 @@ class Adafruit_seesaw : public Print {
 
         void setGPIOInterrupts(uint32_t pins, bool enabled);
 
-        uint16_t analogRead(uint8_t pin);
+        virtual uint16_t analogRead(uint8_t pin);
         void analogReadBulk(uint16_t *buf, uint8_t num);
 
         uint16_t touchRead(uint8_t pin);
 
-        void setPWMFreq(uint8_t pin, uint16_t freq);
+        virtual void setPWMFreq(uint8_t pin, uint16_t freq);
 
         void enableSercomDataRdyInterrupt(uint8_t sercom = 0);
         void disableSercomDataRdyInterrupt(uint8_t sercom = 0);
