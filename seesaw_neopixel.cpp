@@ -284,3 +284,7 @@ uint16_t seesaw_NeoPixel::numPixels(void) const {
 void seesaw_NeoPixel::clear() {
   memset(pixels, 0, numBytes);
 }
+
+void seesaw_NeoPixel::setBrightness(uint8_t b) {
+  brightness = b;
+}
