@@ -29,6 +29,22 @@
 
 /**
  *****************************************************************************************
+ *  @brief      Create a seesaw object on a given I2C bus
+ *
+ *  @param      i2c_bus the I2C bus connected to the seesaw, defaults to "Wire"
+ ****************************************************************************************/
+Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus)
+{
+  if (i2c_bus == NULL) {
+    _i2cbus = &Wire;
+  } else {
+    _i2cbus = i2c_bus;
+  }
+}
+	
+
+/**
+ *****************************************************************************************
  *  @brief      Start the seesaw
  *
  *				This should be called when your sketch is connecting to the seesaw
@@ -548,14 +564,14 @@ uint8_t Adafruit_seesaw::read8(byte regHigh, byte regLow)
 
 /**
  *****************************************************************************************
- *  @brief      Initialize I2C. On arduino this just calls Wire.begin()
+ *  @brief      Initialize I2C. On arduino this just calls i2c->begin()
  * 
  *
  *  @return     none
  ****************************************************************************************/
 void Adafruit_seesaw::_i2c_init()
 {
-  Wire.begin();
+  _i2cbus->begin();
 }
 
 /**
@@ -580,20 +596,20 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_
 	while(pos < num){
 		
 		uint8_t read_now = min(32, num - pos);
-		Wire.beginTransmission((uint8_t)_i2caddr);
-		Wire.write((uint8_t)regHigh);
-		Wire.write((uint8_t)regLow);
+		_i2cbus->beginTransmission((uint8_t)_i2caddr);
+		_i2cbus->write((uint8_t)regHigh);
+		_i2cbus->write((uint8_t)regLow);
 		if(_flow != -1) while(!::digitalRead(_flow));
-		Wire.endTransmission();
+		_i2cbus->endTransmission();
 
 		//TODO: tune this
 		delayMicroseconds(delay);
 
 		if(_flow != -1) while(!::digitalRead(_flow));
-		Wire.requestFrom((uint8_t)_i2caddr, read_now);
+		_i2cbus->requestFrom((uint8_t)_i2caddr, read_now);
 		
 		for(int i=0; i<read_now; i++){
-			buf[pos] = Wire.read();
+			buf[pos] = _i2cbus->read();
 			pos++;
 		}
 	}
@@ -612,12 +628,12 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_
  ****************************************************************************************/
 void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num)
 { 
-	Wire.beginTransmission((uint8_t)_i2caddr);
-	Wire.write((uint8_t)regHigh);
-	Wire.write((uint8_t)regLow);
-	Wire.write((uint8_t *)buf, num);
+	_i2cbus->beginTransmission((uint8_t)_i2caddr);
+	_i2cbus->write((uint8_t)regHigh);
+	_i2cbus->write((uint8_t)regLow);
+	_i2cbus->write((uint8_t *)buf, num);
 	if(_flow != -1) while(!::digitalRead(_flow));
-	Wire.endTransmission();
+	_i2cbus->endTransmission();
 }
 
 /**
@@ -674,9 +690,9 @@ size_t Adafruit_seesaw::write(const char *str) {
  ****************************************************************************************/
 void Adafruit_seesaw::writeEmpty(uint8_t regHigh, uint8_t regLow)
 {
-    Wire.beginTransmission((uint8_t)_i2caddr);
-    Wire.write((uint8_t)regHigh);
-    Wire.write((uint8_t)regLow);
+    _i2cbus->beginTransmission((uint8_t)_i2caddr);
+    _i2cbus->write((uint8_t)regHigh);
+    _i2cbus->write((uint8_t)regLow);
     if(_flow != -1) while(!::digitalRead(_flow));
-    Wire.endTransmission();
+    _i2cbus->endTransmission();
 }
