@@ -12,23 +12,23 @@ void setup() {
   else Serial.println("seesaw started");
 
   //set the PWM freq for all the servo pins
-  crickit.setPWMFreq(CRICKIT_S1, 50);
+  crickit.setPWMFreq(CRICKIT_SERVO1, 50);
 }
 
 void loop() {
 
   //set some PWMS
-  crickit.analogWrite(CRICKIT_S1, 10000);
-  crickit.analogWrite(CRICKIT_S2, 5000);
-  crickit.analogWrite(CRICKIT_S3, 20000);
-  crickit.analogWrite(CRICKIT_S4, 45000);
+  crickit.analogWrite(CRICKIT_SERVO1, 10000);
+  crickit.analogWrite(CRICKIT_SERVO2, 5000);
+  crickit.analogWrite(CRICKIT_SERVO3, 20000);
+  crickit.analogWrite(CRICKIT_SERVO4, 45000);
 
   // read an ADC
-  Serial.print(crickit.analogRead(CRICKIT_A3));
+  Serial.print(crickit.analogRead(CRICKIT_SIGNAL4));
   Serial.print(",");
 
   // read a captouch
-  Serial.println(crickit.touchRead(CRICKIT_CT2));
+  Serial.println(crickit.touchRead(CRICKIT_TOUCH2));
   
   delay(1);  
 }

@@ -197,7 +197,7 @@ uint32_t Adafruit_seesaw::digitalReadBulk(uint32_t pins)
  ****************************************************************************************/
 uint32_t Adafruit_seesaw::digitalReadBulkB(uint32_t pins)
 {
-	uint8_t buf[4];
+	uint8_t buf[8];
 	this->read(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK, buf, 8);
 	uint32_t ret = ((uint32_t)buf[4] << 24) | ((uint32_t)buf[5] << 16) | ((uint32_t)buf[6] << 8) | (uint32_t)buf[7];
 	return ret & pins;
@@ -640,7 +640,6 @@ void Adafruit_seesaw::_i2c_init()
  ****************************************************************************************/
 void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay)
 {
-	uint8_t value;
 	uint8_t pos = 0;
 	
 	//on arduino we need to read in 32 byte chunks
@@ -703,6 +702,7 @@ size_t Adafruit_seesaw::write(uint8_t character) {
 	//TODO: add support for multiple sercoms
 	this->write8(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_DATA, character);
 	delay(1); //TODO: this can be optimized... it's only needed for longer writes
+	return 1;
 }
 
 /**

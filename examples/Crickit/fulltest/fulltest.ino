@@ -24,11 +24,11 @@ seesaw_Servo *servos[NUM_SERVOS] = {&s1, &s2, &s3, &s4};
 #define PURPLE  strip.Color(180, 0, COLOR_MAX)
 
 #define CRICKIT_NUM_ADC 8
-static const uint8_t crickit_adc[CRICKIT_NUM_ADC] = { CRICKIT_A0, CRICKIT_A1, CRICKIT_A2, CRICKIT_A3,
-                          CRICKIT_A4, CRICKIT_A5, CRICKIT_A6, CRICKIT_A7 };
+static const uint8_t crickit_adc[CRICKIT_NUM_ADC] = { CRICKIT_SIGNAL1, CRICKIT_SIGNAL2, CRICKIT_SIGNAL3, CRICKIT_SIGNAL4,
+                          CRICKIT_SIGNAL5, CRICKIT_SIGNAL6, CRICKIT_SIGNAL7, CRICKIT_SIGNAL8 };
 
 #define CRICKIT_NUM_TOUCH 4
-static const uint8_t crickit_drive[CRICKIT_NUM_TOUCH] = {crickit_drive1, crickit_drive2, crickit_drive3, crickit_drive4};
+static const uint8_t crickit_drive[CRICKIT_NUM_TOUCH] = {CRICKIT_DRIVE1, CRICKIT_DRIVE2, CRICKIT_DRIVE3, CRICKIT_DRIVE4};
 
 #define CAPTOUCH_THRESH 500
 
@@ -47,10 +47,10 @@ void setup() {
   }
   Serial.println("neopix started!");
 
-  s1.attach(CRICKIT_S1);
-  s2.attach(CRICKIT_S2);
-  s3.attach(CRICKIT_S3);
-  s4.attach(CRICKIT_S4);
+  s1.attach(CRICKIT_SERVO1);
+  s2.attach(CRICKIT_SERVO2);
+  s3.attach(CRICKIT_SERVO3);
+  s4.attach(CRICKIT_SERVO4);
 }
 
 void loop() {
@@ -72,7 +72,7 @@ void loop() {
     uint16_t val = crickit.touchRead(i);
 
     if(val > CAPTOUCH_THRESH){
-      crickit.analogWrite(crickit_drive[i], (1 << 16) - 1);
+      crickit.analogWrite(crickit_drive[i], (1UL << 16) - 1);
       Serial.print("CT");
       Serial.print(i + 1);
       Serial.print(" touched! value: ");
