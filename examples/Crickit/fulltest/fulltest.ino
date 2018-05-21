@@ -1,4 +1,4 @@
-#include "adafruit_crickit.h"
+#include "Adafruit_Crickit.h"
 #include "seesaw_neopixel.h"
 #include "seesaw_servo.h"
 #define NEOPIX_PIN 20

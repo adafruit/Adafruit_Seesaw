@@ -1,4 +1,4 @@
-#include "adafruit_crickit.h"
+#include "Adafruit_Crickit.h"
 
 Adafruit_Crickit crickit;
 

@@ -1,4 +1,4 @@
-#include "adafruit_crickit.h"
+#include "Adafruit_Crickit.h"
 
 //the pwm pins
 #define CRICKIT_NUM_PWM 12
