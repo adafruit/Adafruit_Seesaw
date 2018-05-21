@@ -31,7 +31,7 @@
 // Constructor when length, pin and type are known at compile-time:
 seesaw_NeoPixel::seesaw_NeoPixel(uint16_t n, uint8_t p, neoPixelType t, TwoWire *Wi) : 
   Adafruit_seesaw(Wi),
-  begun(false), brightness(0), pixels(NULL), numLEDs(n), pin(p), type(t), endTime(0)
+  begun(false), numLEDs(n), pin(p), brightness(0), pixels(NULL), endTime(0), type(t)
 {
 }
 
