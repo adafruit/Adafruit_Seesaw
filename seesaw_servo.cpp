@@ -3,11 +3,27 @@
 #define MIN_PULSE 3277
 #define MAX_PULSE 6554
 
+/**************************************************************************/
+/*! 
+    @brief  begin the seesaw. This is only necessary if the seesaw is not already started
+    @param addr the address to begin on
+    @param flow the flow control pin to use
+    @returns true on success, false otherwise
+*/
+/**************************************************************************/
 bool seesaw_Servo::begin(uint8_t addr, int8_t flow)
 {
 	return _ss->begin(addr, flow);
 }
 
+/**************************************************************************/
+/*! 
+    @brief  attach the given pin to the next free channel, sets pinMode.
+    @param pin the pin to use
+
+    @returns 0
+*/
+/**************************************************************************/
 uint8_t seesaw_Servo::attach(int pin)
 {
 	_pin = pin;
@@ -16,15 +32,33 @@ uint8_t seesaw_Servo::attach(int pin)
 	_attached = true;
 	min = 0;
 	max = 0;
+	return 0;
 }
 
+/**************************************************************************/
+/*! 
+    @brief  attach the given pin to the next free channel but also sets min and max values for writes.
+    @param pin the pin to use
+    @param min the minimum value is this value times 4 added to MIN_PULSE  
+    @param max the maximum value
+    @returns 0
+*/
+/**************************************************************************/
 uint8_t seesaw_Servo::attach(int pin, int min, int max)
 {
 	attach(pin);
 	min = min;
 	max = max;
+
+	return 0;
 }
 
+/**************************************************************************/
+/*! 
+    @brief  write a value. if value is < 200 its treated as an angle, otherwise as pulse width in microseconds 
+    @param  value the value to write
+*/
+/**************************************************************************/
 void seesaw_Servo::write(int value)
 {
 	if(value < 200){
@@ -39,11 +73,23 @@ void seesaw_Servo::write(int value)
 	
 }
 
+/**************************************************************************/
+/*! 
+    @brief  get current value
+    @returns  current pulse width as an angle between 0 and 180 degrees
+*/
+/**************************************************************************/
 int seesaw_Servo::read()
 {
 	return map(_sval, MIN_PULSE, MAX_PULSE, 0, 180);
 }
 
+/**************************************************************************/
+/*! 
+    @brief  Write pulse width in microseconds 
+    @param  value the value to write
+*/
+/**************************************************************************/
 void seesaw_Servo::writeMicroseconds(int value)
 {
 	uint16_t val = 3.2768 * value;

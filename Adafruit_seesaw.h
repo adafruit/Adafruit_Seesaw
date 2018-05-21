@@ -31,7 +31,7 @@
 /*=========================================================================
     I2C ADDRESS/BITS
     -----------------------------------------------------------------------*/
-    #define SEESAW_ADDRESS                (0x49)
+    #define SEESAW_ADDRESS                (0x49) ///< Default Seesaw I2C address
 /*=========================================================================*/
 
 /*=========================================================================
@@ -74,6 +74,8 @@
         SEESAW_GPIO_PULLENCLR = 0x0C,
     };
 
+    /** status module function addres registers
+     */
     enum
     {
         SEESAW_STATUS_HW_ID = 0x01,
@@ -82,6 +84,8 @@
         SEESAW_STATUS_SWRST = 0x7F,
     };
 
+    /** timer module function addres registers
+     */
     enum
     {
         SEESAW_TIMER_STATUS = 0x00,
@@ -89,6 +93,8 @@
         SEESAW_TIMER_FREQ = 0x02,
     };
 	
+    /** ADC module function addres registers
+     */
     enum
     {
         SEESAW_ADC_STATUS = 0x00,
@@ -98,6 +104,9 @@
         SEESAW_ADC_WINTHRESH = 0x05,
         SEESAW_ADC_CHANNEL_OFFSET = 0x07,
     };
+
+    /** Sercom module function addres registers
+     */
     enum
     {
         SEESAW_SERCOM_STATUS = 0x00,
@@ -106,6 +115,9 @@
         SEESAW_SERCOM_BAUD = 0x04,
         SEESAW_SERCOM_DATA = 0x05,
     };
+
+    /** neopixel module function addres registers
+     */
     enum
     {
         SEESAW_NEOPIXEL_STATUS = 0x00,
@@ -115,30 +127,38 @@
         SEESAW_NEOPIXEL_BUF = 0x04,
         SEESAW_NEOPIXEL_SHOW = 0x05,
     };
+
+    /** touch module function addres registers
+     */
     enum
     {
         SEESAW_TOUCH_CHANNEL_OFFSET = 0x10,
     };
 
-#define ADC_INPUT_0_PIN 2
-#define ADC_INPUT_1_PIN 3
-#define ADC_INPUT_2_PIN 4
-#define ADC_INPUT_3_PIN 5
+#define ADC_INPUT_0_PIN 2 ///< default ADC input pin 
+#define ADC_INPUT_1_PIN 3 ///< default ADC input pin
+#define ADC_INPUT_2_PIN 4 ///< default ADC input pin
+#define ADC_INPUT_3_PIN 5 ///< default ADC input pin
 
-#define PWM_0_PIN 4
-#define PWM_1_PIN 5
-#define PWM_2_PIN 6
-#define PWM_3_PIN 7
+#define PWM_0_PIN 4 ///< default PWM output pin
+#define PWM_1_PIN 5 ///< default PWM output pin
+#define PWM_2_PIN 6 ///< default PWM output pin
+#define PWM_3_PIN 7 ///< default PWM output pin
 
 #ifndef INPUT_PULLDOWN
-#define INPUT_PULLDOWN 0x03
+#define INPUT_PULLDOWN 0x03 ///< for compatibility with platforms that do not already define INPUT_PULLDOWN
 #endif
 
 /*=========================================================================*/
 
-#define SEESAW_HW_ID_CODE			0x55
-#define SEESAW_EEPROM_I2C_ADDR 0x3F
+#define SEESAW_HW_ID_CODE			0x55 ///< seesaw HW ID code
+#define SEESAW_EEPROM_I2C_ADDR 0x3F ///< EEPROM address of i2c address to start up with (for devices that support this feature)
 
+/**************************************************************************/
+/*! 
+    @brief  Class that stores state and functions for interacting with seesaw helper IC
+*/
+/**************************************************************************/
 class Adafruit_seesaw : public Print {
 	public:
 	// constructors
@@ -165,7 +185,6 @@ class Adafruit_seesaw : public Print {
         void setGPIOInterrupts(uint32_t pins, bool enabled);
 
         virtual uint16_t analogRead(uint8_t pin);
-        void analogReadBulk(uint16_t *buf, uint8_t num);
 
         uint16_t touchRead(uint8_t pin);
 
@@ -191,7 +210,7 @@ class Adafruit_seesaw : public Print {
 	protected:
 		uint8_t _i2caddr; /*!< The I2C address used to communicate with the seesaw */
 		TwoWire *_i2cbus; /*!< The I2C Bus used to communicate with the seesaw */
-		int8_t _flow;
+		int8_t _flow; /*!< The flow control pin to use */
 
 		void      write8(byte regHigh, byte regLow, byte value);
 		uint8_t   read8(byte regHigh, byte regLow);
@@ -205,29 +224,15 @@ class Adafruit_seesaw : public Print {
 	REGISTER BITFIELDS
     -----------------------------------------------------------------------*/
 
-		
-		// The status register
-        struct sercom_status {
-
-            uint8_t ERROR: 1;
-            uint8_t DATA_RDY : 1;
-
-            void set(uint8_t data){
-            	ERROR = data & 0x01;
-                ERROR = data & 0x02;
-            }
+        /** Sercom interrupt enable register
+        */
+        union sercom_inten {
+            struct {
+                uint8_t DATA_RDY : 1; ///< this bit is set when data becomes available
+            } bit; ///< bitfields
+            uint8_t reg; ///< full register
         };
-        sercom_status _sercom_status;
-
-        struct sercom_inten {
-
-            uint8_t DATA_RDY : 1;
-
-            uint8_t get(){
-                return DATA_RDY;
-            }
-        };
-        sercom_inten _sercom_inten;
+        sercom_inten _sercom_inten; ///< sercom interrupt enable register instance
 
 /*=========================================================================*/
 };

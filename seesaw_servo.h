@@ -3,9 +3,20 @@
 
 #include "Adafruit_seesaw.h"
 
+/**************************************************************************/
+/*! 
+    @brief  Class that stores state and functions for seesaw servo interface
+*/
+/**************************************************************************/
 class seesaw_Servo {
 
  public:
+  /**************************************************************************/
+  /*! 
+      @brief  class constructor
+      @param ss the seesaw object to use
+  */
+  /**************************************************************************/
   seesaw_Servo(Adafruit_seesaw *ss) {
   	_ss = ss;
   	_attached = false;
@@ -14,21 +25,41 @@ class seesaw_Servo {
   ~seesaw_Servo() {}
   bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow=-1);
 
-  uint8_t attach(int pin);           // attach the given pin to the next free channel, sets pinMode, returns channel number or 0 if failure
-  uint8_t attach(int pin, int min, int max); // as above but also sets min and max values for writes. 
+  uint8_t attach(int pin);           
+  uint8_t attach(int pin, int min, int max);
+
+  /**************************************************************************/
+  /*! 
+      @brief  set attached to false
+  */
+  /**************************************************************************/
   void detach() { _attached = false; }
-  void write(int value);             // if value is < 200 its treated as an angle, otherwise as pulse width in microseconds 
-  void writeMicroseconds(int value); // Write pulse width in microseconds 
-  int read();                        // returns current pulse width as an angle between 0 and 180 degrees
-  int readMicroseconds() { return _sval/3.2768; }            // returns current pulse width in microseconds for this servo (was read_us() in first release)
-  bool attached() { return _attached; }                   // return true if this servo is attached, otherwise false 
+  void write(int value);             
+  void writeMicroseconds(int value);
+  int read();                        
+
+  /**************************************************************************/
+  /*! 
+      @brief  get current value in microseconds
+      @returns  current pulse width in microseconds for this servo
+  */
+  /**************************************************************************/
+  int readMicroseconds() { return _sval/3.2768; }
+  
+  /**************************************************************************/
+  /*! 
+      @brief  check if the servo is attached yet
+      @returns  true if this servo is attached, otherwise false 
+  */
+  /**************************************************************************/
+  bool attached() { return _attached; }
 
 private:
    Adafruit_seesaw *_ss;
    bool _attached;
    uint16_t _sval;
    uint8_t _pin;
-   int8_t min;                       // minimum is this value times 4 added to MIN_PULSE_WIDTH    
+   int8_t min;   
    int8_t max;  
 };
 

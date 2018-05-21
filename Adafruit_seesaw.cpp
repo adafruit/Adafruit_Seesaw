@@ -50,6 +50,7 @@ Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus)
  *				This should be called when your sketch is connecting to the seesaw
  * 
  *  @param      addr the I2C address of the seesaw
+ *  @param      flow the flow control pin to use
  *
  *  @return     true if we could connect to the seesaw, false otherwise
  ****************************************************************************************/
@@ -250,6 +251,14 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin)
 	return ret;
 }
 
+/**
+ *****************************************************************************************
+ *  @brief      read the analog value on an capacitive touch-enabled pin.
+ * 
+ *  @param      pin the number of the pin to read.
+ *
+ *  @return     the analog value. This is an integer between 0 and 1023
+ ****************************************************************************************/
 uint16_t Adafruit_seesaw::touchRead(uint8_t pin)
 {
 	uint8_t buf[2];
@@ -259,16 +268,6 @@ uint16_t Adafruit_seesaw::touchRead(uint8_t pin)
 	uint16_t ret = ((uint16_t)buf[0] << 8) | buf[1];
   	delay(1);
 	return ret;
-}
-
-//TODO: not sure if this is how this is gonna work yet
-void Adafruit_seesaw::analogReadBulk(uint16_t *buf, uint8_t num)
-{
-	uint8_t rawbuf[num * 2];
-	this->read(SEESAW_ADC_BASE, SEESAW_ADC_CHANNEL_OFFSET, rawbuf, num * 2);
-	for(int i=0; i<num; i++){
-		buf[i] = ((uint16_t)rawbuf[i * 2] << 8) | buf[i * 2 + 1];
-	}
 }
 
 /**
@@ -305,6 +304,17 @@ void Adafruit_seesaw::pinModeBulk(uint32_t pins, uint8_t mode)
 		
 }
 
+/**
+ *****************************************************************************************
+ *  @brief      set the mode of multiple GPIO pins at once. This supports both ports A and B.
+ * 
+ *  @param      pinsa a bitmask of the pins to write on port A. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
+ *				For example, passing 0b0110 will set the mode of pins 2 and 3.
+ *  @param      pinsb a bitmask of the pins to write on port B.
+ *	@param		mode the mode to set the pins to. One of INPUT, OUTPUT, or INPUT_PULLUP.
+ *
+ *  @return     none
+ ****************************************************************************************/
 void Adafruit_seesaw::pinModeBulk(uint32_t pinsa, uint32_t pinsb, uint8_t mode)
 {
 	uint8_t cmd[] = { (uint8_t)(pinsa >> 24) , (uint8_t)(pinsa >> 16), (uint8_t)(pinsa >> 8), (uint8_t)pinsa,
@@ -348,6 +358,17 @@ void Adafruit_seesaw::digitalWriteBulk(uint32_t pins, uint8_t value)
 		this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 4);
 }
 
+/**
+ *****************************************************************************************
+ *  @brief      write a value to multiple GPIO pins at once. This supports both ports A and B
+ * 
+ *  @param      pinsa a bitmask of the pins to write on port A. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
+ *				For example, passing 0b0110 will write the passed value to pins 2 and 3.
+ *  @param      pinsb a bitmask of the pins to write on port B.
+ *	@param		value pass HIGH to set the output on the passed pins to HIGH, low to set the output on the passed pins to LOW.
+ *
+ *  @return     none
+ ****************************************************************************************/
 void Adafruit_seesaw::digitalWriteBulk(uint32_t pinsa, uint32_t pinsb, uint8_t value)
 {
 	uint8_t cmd[] = { (uint8_t)(pinsa >> 24) , (uint8_t)(pinsa >> 16), (uint8_t)(pinsa >> 8), (uint8_t)pinsa,
@@ -439,8 +460,8 @@ void Adafruit_seesaw::setPWMFreq(uint8_t pin, uint16_t freq)
  ****************************************************************************************/
 void Adafruit_seesaw::enableSercomDataRdyInterrupt(uint8_t sercom)
 {
-	_sercom_inten.DATA_RDY = 1;
-	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.get());
+	_sercom_inten.bit.DATA_RDY = 1;
+	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.reg);
 }
 
 /**
@@ -453,8 +474,8 @@ void Adafruit_seesaw::enableSercomDataRdyInterrupt(uint8_t sercom)
  ****************************************************************************************/
 void Adafruit_seesaw::disableSercomDataRdyInterrupt(uint8_t sercom)
 {
-	_sercom_inten.DATA_RDY = 0;
-	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.get());
+	_sercom_inten.bit.DATA_RDY = 0;
+	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.reg);
 }
 
 /**
