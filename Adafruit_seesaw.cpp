@@ -29,17 +29,37 @@
 
 /**
  *****************************************************************************************
+ *  @brief      Create a seesaw object on a given I2C bus
+ *
+ *  @param      i2c_bus the I2C bus connected to the seesaw, defaults to "Wire"
+ ****************************************************************************************/
+Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus)
+{
+  if (i2c_bus == NULL) {
+    _i2cbus = &Wire;
+  } else {
+    _i2cbus = i2c_bus;
+  }
+}
+	
+
+/**
+ *****************************************************************************************
  *  @brief      Start the seesaw
  *
  *				This should be called when your sketch is connecting to the seesaw
  * 
  *  @param      addr the I2C address of the seesaw
+ *  @param      flow the flow control pin to use
  *
  *  @return     true if we could connect to the seesaw, false otherwise
  ****************************************************************************************/
-bool Adafruit_seesaw::begin(uint8_t addr)
+bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow)
 {
 	_i2caddr = addr;
+	_flow = flow;
+
+	if(_flow != -1) ::pinMode(_flow, INPUT);
 	
 	_i2c_init();
 
@@ -109,7 +129,10 @@ uint32_t Adafruit_seesaw::getVersion()
  ****************************************************************************************/
 void Adafruit_seesaw::pinMode(uint8_t pin, uint8_t mode)
 {
-	pinModeBulk(1ul << pin, mode);
+	if(pin >= 32)
+		pinModeBulk(0, 1ul << (pin-32), mode);
+	else
+		pinModeBulk(1ul << pin, mode);
 }
 
 /**
@@ -123,7 +146,10 @@ void Adafruit_seesaw::pinMode(uint8_t pin, uint8_t mode)
  ****************************************************************************************/
 void Adafruit_seesaw::digitalWrite(uint8_t pin, uint8_t value)
 {
-	digitalWriteBulk(1ul << pin, value);
+	if(pin >= 32)
+		digitalWriteBulk(0, 1ul << (pin-32), value);
+	else
+		digitalWriteBulk(1ul << pin, value);	
 }
 
 
@@ -137,12 +163,16 @@ void Adafruit_seesaw::digitalWrite(uint8_t pin, uint8_t value)
  ****************************************************************************************/
 bool Adafruit_seesaw::digitalRead(uint8_t pin)
 {
-	return digitalReadBulk((1ul << pin)) != 0;
+	if(pin >= 32)
+		return digitalReadBulkB((1ul << (pin-32))) != 0;
+	else
+		return digitalReadBulk((1ul << pin)) != 0;
+
 }
 
 /**
  *****************************************************************************************
- *  @brief      read the status of multiple pins.
+ *  @brief      read the status of multiple pins on port A.
  * 
  *  @param      pins a bitmask of the pins to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				For example, passing 0b0110 will return the values of pins 2 and 3.
@@ -154,6 +184,22 @@ uint32_t Adafruit_seesaw::digitalReadBulk(uint32_t pins)
 	uint8_t buf[4];
 	this->read(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK, buf, 4);
 	uint32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
+	return ret & pins;
+}
+
+/**
+ *****************************************************************************************
+ *  @brief      read the status of multiple pins on port B.
+ * 
+ *  @param      pins a bitmask of the pins to write.
+ *
+ *  @return     the status of the passed pins. If 0b0110 was passed and pin 2 is high and pin 3 is low, 0b0010 (decimal number 2) will be returned.
+ ****************************************************************************************/
+uint32_t Adafruit_seesaw::digitalReadBulkB(uint32_t pins)
+{
+	uint8_t buf[8];
+	this->read(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK, buf, 8);
+	uint32_t ret = ((uint32_t)buf[4] << 24) | ((uint32_t)buf[5] << 16) | ((uint32_t)buf[6] << 8) | (uint32_t)buf[7];
 	return ret & pins;
 }
 
@@ -205,14 +251,23 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin)
 	return ret;
 }
 
-//TODO: not sure if this is how this is gonna work yet
-void Adafruit_seesaw::analogReadBulk(uint16_t *buf, uint8_t num)
+/**
+ *****************************************************************************************
+ *  @brief      read the analog value on an capacitive touch-enabled pin.
+ * 
+ *  @param      pin the number of the pin to read.
+ *
+ *  @return     the analog value. This is an integer between 0 and 1023
+ ****************************************************************************************/
+uint16_t Adafruit_seesaw::touchRead(uint8_t pin)
 {
-	uint8_t rawbuf[num * 2];
-	this->read(SEESAW_ADC_BASE, SEESAW_ADC_CHANNEL_OFFSET, rawbuf, num * 2);
-	for(int i=0; i<num; i++){
-		buf[i] = ((uint16_t)rawbuf[i * 2] << 8) | buf[i * 2 + 1];
-	}
+	uint8_t buf[2];
+	uint8_t p = pin;
+
+	this->read(SEESAW_TOUCH_BASE, SEESAW_TOUCH_CHANNEL_OFFSET + p, buf, 2, 500);
+	uint16_t ret = ((uint16_t)buf[0] << 8) | buf[1];
+  	delay(1);
+	return ret;
 }
 
 /**
@@ -240,8 +295,48 @@ void Adafruit_seesaw::pinModeBulk(uint32_t pins, uint8_t mode)
 			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 4);
 			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 4);
 			break;
+		case INPUT_PULLDOWN:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 4);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 4);
+			break;
 	}
 		
+}
+
+/**
+ *****************************************************************************************
+ *  @brief      set the mode of multiple GPIO pins at once. This supports both ports A and B.
+ * 
+ *  @param      pinsa a bitmask of the pins to write on port A. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
+ *				For example, passing 0b0110 will set the mode of pins 2 and 3.
+ *  @param      pinsb a bitmask of the pins to write on port B.
+ *	@param		mode the mode to set the pins to. One of INPUT, OUTPUT, or INPUT_PULLUP.
+ *
+ *  @return     none
+ ****************************************************************************************/
+void Adafruit_seesaw::pinModeBulk(uint32_t pinsa, uint32_t pinsb, uint8_t mode)
+{
+	uint8_t cmd[] = { (uint8_t)(pinsa >> 24) , (uint8_t)(pinsa >> 16), (uint8_t)(pinsa >> 8), (uint8_t)pinsa,
+				(uint8_t)(pinsb >> 24) , (uint8_t)(pinsb >> 16), (uint8_t)(pinsb >> 8), (uint8_t)pinsb };
+	switch (mode){
+		case OUTPUT:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRSET_BULK, cmd, 8);
+			break;
+		case INPUT:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
+			break;
+		case INPUT_PULLUP:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 8);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 8);
+			break;
+		case INPUT_PULLDOWN:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 8);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 8);
+			break;
+	}
 }
 
 /**
@@ -261,6 +356,27 @@ void Adafruit_seesaw::digitalWriteBulk(uint32_t pins, uint8_t value)
 		this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 4);
 	else
 		this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 4);
+}
+
+/**
+ *****************************************************************************************
+ *  @brief      write a value to multiple GPIO pins at once. This supports both ports A and B
+ * 
+ *  @param      pinsa a bitmask of the pins to write on port A. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
+ *				For example, passing 0b0110 will write the passed value to pins 2 and 3.
+ *  @param      pinsb a bitmask of the pins to write on port B.
+ *	@param		value pass HIGH to set the output on the passed pins to HIGH, low to set the output on the passed pins to LOW.
+ *
+ *  @return     none
+ ****************************************************************************************/
+void Adafruit_seesaw::digitalWriteBulk(uint32_t pinsa, uint32_t pinsb, uint8_t value)
+{
+	uint8_t cmd[] = { (uint8_t)(pinsa >> 24) , (uint8_t)(pinsa >> 16), (uint8_t)(pinsa >> 8), (uint8_t)pinsa,
+				(uint8_t)(pinsb >> 24) , (uint8_t)(pinsb >> 16), (uint8_t)(pinsb >> 8), (uint8_t)pinsb };
+	if(value)
+		this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 8);
+	else
+		this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 8);
 }
 
 /**
@@ -344,8 +460,8 @@ void Adafruit_seesaw::setPWMFreq(uint8_t pin, uint16_t freq)
  ****************************************************************************************/
 void Adafruit_seesaw::enableSercomDataRdyInterrupt(uint8_t sercom)
 {
-	_sercom_inten.DATA_RDY = 1;
-	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.get());
+	_sercom_inten.bit.DATA_RDY = 1;
+	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.reg);
 }
 
 /**
@@ -358,8 +474,8 @@ void Adafruit_seesaw::enableSercomDataRdyInterrupt(uint8_t sercom)
  ****************************************************************************************/
 void Adafruit_seesaw::disableSercomDataRdyInterrupt(uint8_t sercom)
 {
-	_sercom_inten.DATA_RDY = 0;
-	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.get());
+	_sercom_inten.bit.DATA_RDY = 0;
+	this->write8(SEESAW_SERCOM0_BASE + sercom, SEESAW_SERCOM_INTEN, _sercom_inten.reg);
 }
 
 /**
@@ -499,14 +615,14 @@ uint8_t Adafruit_seesaw::read8(byte regHigh, byte regLow)
 
 /**
  *****************************************************************************************
- *  @brief      Initialize I2C. On arduino this just calls Wire.begin()
+ *  @brief      Initialize I2C. On arduino this just calls i2c->begin()
  * 
  *
  *  @return     none
  ****************************************************************************************/
 void Adafruit_seesaw::_i2c_init()
 {
-  Wire.begin();
+  _i2cbus->begin();
 }
 
 /**
@@ -524,25 +640,26 @@ void Adafruit_seesaw::_i2c_init()
  ****************************************************************************************/
 void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay)
 {
-	uint8_t value;
 	uint8_t pos = 0;
 	
 	//on arduino we need to read in 32 byte chunks
 	while(pos < num){
 		
 		uint8_t read_now = min(32, num - pos);
-		Wire.beginTransmission((uint8_t)_i2caddr);
-		Wire.write((uint8_t)regHigh);
-		Wire.write((uint8_t)regLow);
-		Wire.endTransmission();
+		_i2cbus->beginTransmission((uint8_t)_i2caddr);
+		_i2cbus->write((uint8_t)regHigh);
+		_i2cbus->write((uint8_t)regLow);
+		if(_flow != -1) while(!::digitalRead(_flow));
+		_i2cbus->endTransmission();
 
 		//TODO: tune this
 		delayMicroseconds(delay);
 
-		Wire.requestFrom((uint8_t)_i2caddr, read_now);
+		if(_flow != -1) while(!::digitalRead(_flow));
+		_i2cbus->requestFrom((uint8_t)_i2caddr, read_now);
 		
 		for(int i=0; i<read_now; i++){
-			buf[pos] = Wire.read();
+			buf[pos] = _i2cbus->read();
 			pos++;
 		}
 	}
@@ -561,11 +678,12 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_
  ****************************************************************************************/
 void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num)
 { 
-	Wire.beginTransmission((uint8_t)_i2caddr);
-	Wire.write((uint8_t)regHigh);
-	Wire.write((uint8_t)regLow);
-	Wire.write((uint8_t *)buf, num);
-	Wire.endTransmission();
+	_i2cbus->beginTransmission((uint8_t)_i2caddr);
+	_i2cbus->write((uint8_t)regHigh);
+	_i2cbus->write((uint8_t)regLow);
+	_i2cbus->write((uint8_t *)buf, num);
+	if(_flow != -1) while(!::digitalRead(_flow));
+	_i2cbus->endTransmission();
 }
 
 /**
@@ -584,6 +702,7 @@ size_t Adafruit_seesaw::write(uint8_t character) {
 	//TODO: add support for multiple sercoms
 	this->write8(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_DATA, character);
 	delay(1); //TODO: this can be optimized... it's only needed for longer writes
+	return 1;
 }
 
 /**
@@ -622,8 +741,9 @@ size_t Adafruit_seesaw::write(const char *str) {
  ****************************************************************************************/
 void Adafruit_seesaw::writeEmpty(uint8_t regHigh, uint8_t regLow)
 {
-    Wire.beginTransmission((uint8_t)_i2caddr);
-    Wire.write((uint8_t)regHigh);
-    Wire.write((uint8_t)regLow);
-    Wire.endTransmission();
+    _i2cbus->beginTransmission((uint8_t)_i2caddr);
+    _i2cbus->write((uint8_t)regHigh);
+    _i2cbus->write((uint8_t)regLow);
+    if(_flow != -1) while(!::digitalRead(_flow));
+    _i2cbus->endTransmission();
 }

@@ -29,8 +29,9 @@
 #include "Adafruit_seesaw.h"
 
 // Constructor when length, pin and type are known at compile-time:
-seesaw_NeoPixel::seesaw_NeoPixel(uint16_t n, uint8_t p, neoPixelType t) :
-  begun(false), brightness(0), pixels(NULL), endTime(0), numLEDs(n), pin(p), type(t)
+seesaw_NeoPixel::seesaw_NeoPixel(uint16_t n, uint8_t p, neoPixelType t, TwoWire *Wi) : 
+  Adafruit_seesaw(Wi),
+  begun(false), numLEDs(n), pin(p), brightness(0), pixels(NULL), endTime(0), type(t)
 {
 }
 
@@ -39,7 +40,8 @@ seesaw_NeoPixel::seesaw_NeoPixel(uint16_t n, uint8_t p, neoPixelType t) :
 // read from internal flash memory or an SD card, or arrive via serial
 // command.  If using this constructor, MUST follow up with updateType(),
 // updateLength(), etc. to establish the strand type, length and pin number!
-seesaw_NeoPixel::seesaw_NeoPixel() :
+seesaw_NeoPixel::seesaw_NeoPixel(TwoWire *Wi) :
+  Adafruit_seesaw(Wi),
 #ifdef NEO_KHZ400
   is800KHz(true),
 #endif
@@ -52,8 +54,8 @@ seesaw_NeoPixel::~seesaw_NeoPixel() {
   if(pixels)   free(pixels);
 }
 
-bool seesaw_NeoPixel::begin(uint8_t addr) {
-  if(!Adafruit_seesaw::begin(addr)) return false;
+bool seesaw_NeoPixel::begin(uint8_t addr, int8_t flow) {
+  if(!Adafruit_seesaw::begin(addr, flow)) return false;
 
   updateType(type);
   updateLength(numLEDs);
@@ -283,4 +285,8 @@ uint16_t seesaw_NeoPixel::numPixels(void) const {
 
 void seesaw_NeoPixel::clear() {
   memset(pixels, 0, numBytes);
+}
+
+void seesaw_NeoPixel::setBrightness(uint8_t b) {
+  brightness = b;
 }
