@@ -101,8 +101,8 @@ class seesaw_NeoPixel : public Adafruit_seesaw {
 
  public:
 
-  seesaw_NeoPixel(uint16_t n, uint8_t p=6, neoPixelType t=NEO_GRB + NEO_KHZ800);
-  seesaw_NeoPixel(void);
+  seesaw_NeoPixel(uint16_t n, uint8_t p=6, neoPixelType t=NEO_GRB + NEO_KHZ800, TwoWire *Wi=NULL);
+  seesaw_NeoPixel(TwoWire *Wi=NULL);
   ~seesaw_NeoPixel();
 
   bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow = -1);

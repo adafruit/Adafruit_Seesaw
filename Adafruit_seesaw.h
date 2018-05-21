@@ -141,14 +141,14 @@
 
 class Adafruit_seesaw : public Print {
 	public:
-		//constructors
-		Adafruit_seesaw(void) {};
-		~Adafruit_seesaw(void) {};
+	// constructors
+        Adafruit_seesaw(TwoWire *Wi=NULL);
+        ~Adafruit_seesaw(void) {};
 		
-		bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow=-1);
+	bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow=-1);
         uint32_t getOptions();
         uint32_t getVersion();
-		void SWReset();
+	void SWReset();
 
         void pinMode(uint8_t pin, uint8_t mode);
         void pinModeBulk(uint32_t pins, uint8_t mode);
@@ -190,14 +190,15 @@ class Adafruit_seesaw : public Print {
 
 	protected:
 		uint8_t _i2caddr; /*!< The I2C address used to communicate with the seesaw */
-        int8_t _flow;
+		TwoWire *_i2cbus; /*!< The I2C Bus used to communicate with the seesaw */
+		int8_t _flow;
 
 		void      write8(byte regHigh, byte regLow, byte value);
-        uint8_t   read8(byte regHigh, byte regLow);
+		uint8_t   read8(byte regHigh, byte regLow);
 		
 		void read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay = 125);
 		void write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
-    void writeEmpty(uint8_t regHigh, uint8_t regLow);
+		void writeEmpty(uint8_t regHigh, uint8_t regLow);
 		void _i2c_init();
 
 /*=========================================================================
