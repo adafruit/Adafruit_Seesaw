@@ -28,14 +28,11 @@ uint32_t button_mask = (1 << BUTTON_RIGHT) | (1 << BUTTON_DOWN) |
 
 // For the breakout, you can use any 2 or 3 pins
 // These pins will also work for the 1.8" TFT shield
-#define TFT_CS     A5
+#define TFT_CS     6
 #define TFT_RST    9  // you can also connect this to the Arduino reset
                       // in which case, set this #define pin to -1!
-#ifdef ESP32
-#define TFT_DC     36
-#else
-#define TFT_DC     A4
-#endif
+
+#define TFT_DC     10
 
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS,  TFT_DC, TFT_RST);
 
