@@ -130,6 +130,10 @@
 #define PWM_2_PIN 6
 #define PWM_3_PIN 7
 
+#ifndef INPUT_PULLDOWN
+#define INPUT_PULLDOWN 0x03
+#endif
+
 /*=========================================================================*/
 
 #define SEESAW_HW_ID_CODE			0x55
@@ -156,6 +160,7 @@ class Adafruit_seesaw : public Print {
 
         bool digitalRead(uint8_t pin);
         uint32_t digitalReadBulk(uint32_t pins);
+        uint32_t digitalReadBulkB(uint32_t pins);
 
         void setGPIOInterrupts(uint32_t pins, bool enabled);
 

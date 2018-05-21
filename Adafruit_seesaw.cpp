@@ -146,12 +146,16 @@ void Adafruit_seesaw::digitalWrite(uint8_t pin, uint8_t value)
  ****************************************************************************************/
 bool Adafruit_seesaw::digitalRead(uint8_t pin)
 {
-	return digitalReadBulk((1ul << pin)) != 0;
+	if(pin >= 32)
+		return digitalReadBulkB((1ul << (pin-32))) != 0;
+	else
+		return digitalReadBulk((1ul << pin)) != 0;
+
 }
 
 /**
  *****************************************************************************************
- *  @brief      read the status of multiple pins.
+ *  @brief      read the status of multiple pins on port A.
  * 
  *  @param      pins a bitmask of the pins to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				For example, passing 0b0110 will return the values of pins 2 and 3.
@@ -163,6 +167,22 @@ uint32_t Adafruit_seesaw::digitalReadBulk(uint32_t pins)
 	uint8_t buf[4];
 	this->read(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK, buf, 4);
 	uint32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
+	return ret & pins;
+}
+
+/**
+ *****************************************************************************************
+ *  @brief      read the status of multiple pins on port B.
+ * 
+ *  @param      pins a bitmask of the pins to write.
+ *
+ *  @return     the status of the passed pins. If 0b0110 was passed and pin 2 is high and pin 3 is low, 0b0010 (decimal number 2) will be returned.
+ ****************************************************************************************/
+uint32_t Adafruit_seesaw::digitalReadBulkB(uint32_t pins)
+{
+	uint8_t buf[4];
+	this->read(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK, buf, 8);
+	uint32_t ret = ((uint32_t)buf[4] << 24) | ((uint32_t)buf[5] << 16) | ((uint32_t)buf[6] << 8) | (uint32_t)buf[7];
 	return ret & pins;
 }
 
@@ -260,6 +280,11 @@ void Adafruit_seesaw::pinModeBulk(uint32_t pins, uint8_t mode)
 			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 4);
 			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 4);
 			break;
+		case INPUT_PULLDOWN:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 4);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 4);
+			break;
 	}
 		
 }
@@ -279,6 +304,11 @@ void Adafruit_seesaw::pinModeBulk(uint32_t pinsa, uint32_t pinsb, uint8_t mode)
 			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
 			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 8);
 			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 8);
+			break;
+		case INPUT_PULLDOWN:
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 8);
+			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 8);
 			break;
 	}
 }
