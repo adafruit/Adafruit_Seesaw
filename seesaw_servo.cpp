@@ -47,8 +47,8 @@ uint8_t seesaw_Servo::attach(int pin)
 uint8_t seesaw_Servo::attach(int pin, int min, int max)
 {
 	attach(pin);
-	this->min = min*3.27;
-	this->max = max*3.27;
+	this->min = min*3.2767;
+	this->max = max*3.2767;
 
 	return 0;
 }
@@ -92,7 +92,7 @@ int seesaw_Servo::read()
 /**************************************************************************/
 void seesaw_Servo::writeMicroseconds(int value)
 {
-	uint16_t val = 3.2768 * value;
+	uint16_t val = 3.2767 * value;
 	_ss->analogWrite(_pin, val);
 	_sval = val;
 }   
