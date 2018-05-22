@@ -21,15 +21,18 @@
 #define CRICKIT_MOTOR_A2 19
 #define CRICKIT_MOTOR_B1 22
 #define CRICKIT_MOTOR_B2 23
-#define CRICKIT_DRIVE1 42
-#define CRICKIT_DRIVE2 43
-#define CRICKIT_DRIVE3 12
-#define CRICKIT_DRIVE4 13
+#define CRICKIT_DRIVE1 13
+#define CRICKIT_DRIVE2 12
+#define CRICKIT_DRIVE3 43
+#define CRICKIT_DRIVE4 42
 
 #define CRICKIT_TOUCH1 0
 #define CRICKIT_TOUCH2 1
 #define CRICKIT_TOUCH3 2
 #define CRICKIT_TOUCH4 3
+
+#define CRICKIT_DUTY_CYCLE_OFF 0
+#define CRICKIT_DUTY_CYCLE_MAX 65535
 
 /**************************************************************************/
 /*! 

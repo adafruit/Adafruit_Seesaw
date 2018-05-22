@@ -59,8 +59,8 @@ private:
    bool _attached;
    uint16_t _sval;
    uint8_t _pin;
-   int8_t min;   
-   int8_t max;  
+   uint16_t min;   
+   uint16_t max;  
 };
 
 #endif

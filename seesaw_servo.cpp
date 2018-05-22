@@ -30,8 +30,8 @@ uint8_t seesaw_Servo::attach(int pin)
 	//set frequency to 50 hz
 	_ss->setPWMFreq(_pin, 50);
 	_attached = true;
-	min = 0;
-	max = 0;
+	min = MIN_PULSE;
+	max = MAX_PULSE;
 	return 0;
 }
 
@@ -39,16 +39,16 @@ uint8_t seesaw_Servo::attach(int pin)
 /*! 
     @brief  attach the given pin to the next free channel but also sets min and max values for writes.
     @param pin the pin to use
-    @param min the minimum value is this value times 4 added to MIN_PULSE  
-    @param max the maximum value
+    @param min the minimum pulse width value in microseconds
+    @param max the maximum pulse width value in microseconds
     @returns 0
 */
 /**************************************************************************/
 uint8_t seesaw_Servo::attach(int pin, int min, int max)
 {
 	attach(pin);
-	min = min;
-	max = max;
+	this->min = min*3.27;
+	this->max = max*3.27;
 
 	return 0;
 }
@@ -63,8 +63,8 @@ void seesaw_Servo::write(int value)
 {
 	if(value < 200){
 		//angle
-		uint16_t val = map(value, 0, 180, MIN_PULSE, MAX_PULSE);
-		val = constrain(val, ((uint16_t)min*4 + MIN_PULSE), (MAX_PULSE - (uint16_t)max*4));
+		uint16_t val = map(value, 0, 180, min, max);
+		val = constrain(val, min, max);
 		_ss->analogWrite(_pin, val);
 		_sval = val;
 	}
