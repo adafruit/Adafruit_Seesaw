@@ -10,7 +10,7 @@ var searchData=
   ['adc_5finput_5f3_5fpin',['ADC_INPUT_3_PIN',['../_adafruit__seesaw_8h.html#a96c79214c5c3c13cbdf9b6a53ce2441b',1,'Adafruit_seesaw.h']]],
   ['analogread',['analogRead',['../class_adafruit___crickit.html#a2045bf1544d021135b60dcc4b5335f6f',1,'Adafruit_Crickit::analogRead()'],['../class_adafruit__seesaw.html#ad8fd0188c170a13cff5dea91952e3683',1,'Adafruit_seesaw::analogRead()']]],
   ['analogwrite',['analogWrite',['../class_adafruit___crickit.html#a87bf616b4ecc2364ab2df63da59a4982',1,'Adafruit_Crickit::analogWrite()'],['../class_adafruit__seesaw.html#a509bf5a302730d8d1f5dd512104e11b2',1,'Adafruit_seesaw::analogWrite()']]],
-  ['attach',['attach',['../classseesaw___servo.html#aba34b1a7b06622d7d2c90fb87dc16c8f',1,'seesaw_Servo::attach(int pin)'],['../classseesaw___servo.html#a6aa933613da47d9eb0f31bddec02a1de',1,'seesaw_Servo::attach(int pin, int min, int max)']]],
+  ['attach',['attach',['../classseesaw___motor.html#afc69aafe5d88d66580ca42c4385de7b8',1,'seesaw_Motor::attach()'],['../classseesaw___servo.html#aba34b1a7b06622d7d2c90fb87dc16c8f',1,'seesaw_Servo::attach(int pin)'],['../classseesaw___servo.html#a6aa933613da47d9eb0f31bddec02a1de',1,'seesaw_Servo::attach(int pin, int min, int max)']]],
   ['attached',['attached',['../classseesaw___servo.html#a404df2fcce5bc88403ad0783d3c5c172',1,'seesaw_Servo']]],
   ['adafruit_20seesaw_20arduino_20driver',['Adafruit seesaw arduino driver',['../index.html',1,'']]],
   ['adafruit_5fseesaw',['Adafruit_Seesaw',['../md__r_e_a_d_m_e.html',1,'']]]

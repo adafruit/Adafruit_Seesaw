@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['seesaw_5fmotor',['seesaw_Motor',['../classseesaw___motor.html#af0a9f236559a47f8917e99dbdb79c50b',1,'seesaw_Motor']]],
   ['seesaw_5fservo',['seesaw_Servo',['../classseesaw___servo.html#a02fe2824fa26ee272f5c1fa1905c4917',1,'seesaw_Servo']]],
   ['setgpiointerrupts',['setGPIOInterrupts',['../class_adafruit__seesaw.html#ac19995398c824c88ce27afc1dbb09767',1,'Adafruit_seesaw']]],
   ['seti2caddr',['setI2CAddr',['../class_adafruit__seesaw.html#a3cb1d39d7778df649ae9e8d5ee5d5874',1,'Adafruit_seesaw']]],
