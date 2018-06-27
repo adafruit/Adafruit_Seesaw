@@ -6,7 +6,29 @@
 #define TFTWING_ADDR 0x5E
 #define TFTWING_RESET_PIN 8
 
-//TODO: define the rest of the buttons here
+#define TFTWING_BUTTON_UP_PIN 2
+#define TFTWING_BUTTON_UP (1UL << TFTWING_BUTTON_UP_PIN)
+
+#define TFTWING_BUTTON_DOWN_PIN 4
+#define TFTWING_BUTTON_DOWN (1UL << TFTWING_BUTTON_DOWN_PIN)
+
+#define TFTWING_BUTTON_LEFT_PIN 7
+#define TFTWING_BUTTON_LEFT (1UL << TFTWING_BUTTON_LEFT_PIN)
+
+#define TFTWING_BUTTON_RIGHT_PIN 3
+#define TFTWING_BUTTON_RIGHT (1UL << TFTWING_BUTTON_RIGHT_PIN)
+
+#define TFTWING_BUTTON_IN_PIN 11
+#define TFTWING_BUTTON_IN (1UL << TFTWING_BUTTON_IN_PIN)
+
+#define TFTWING_BUTTON_A_PIN 9
+#define TFTWING_BUTTON_A (1UL << TFTWING_BUTTON_A_PIN)
+
+#define TFTWING_BUTTON_B_PIN 10
+#define TFTWING_BUTTON_B (1UL << TFTWING_BUTTON_B_PIN)
+
+#define TFTWING_BUTTON_ALL (TFTWING_BUTTON_UP | TFTWING_BUTTON_DOWN | TFTWING_BUTTON_LEFT \
+                            | TFTWING_BUTTON_RIGHT | TFTWING_BUTTON_IN | TFTWING_BUTTON_A | TFTWING_BUTTON_B)
 
 /**************************************************************************/
 /*! 
@@ -23,6 +45,7 @@ public:
 	void setBacklight(uint16_t value);
 	void setBacklightFreq(uint16_t freq);
     void tftReset(bool rst = true);
+    uint32_t readButtons();
 };
 
 #endif
