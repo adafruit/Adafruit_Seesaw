@@ -67,9 +67,9 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow)
 	delay(500);
 
 	uint8_t c = this->read8(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID);
-
-	if(c != SEESAW_HW_ID_CODE) return false;
-	
+	if (c != SEESAW_HW_ID_CODE) {
+	  return false;
+	}
 	return true;
 }
 

@@ -1,10 +1,13 @@
 #include "Adafruit_miniTFTWing.h"
 
-bool Adafruit_miniTFTWing::begin(uint8_t addr, int8_t flow){
-    Adafruit_seesaw::begin(addr, flow);
+bool Adafruit_miniTFTWing::begin(uint8_t addr, int8_t flow) {
+  if (! Adafruit_seesaw::begin(addr, flow)) {
+    return false;
+  }
 
-    pinMode(TFTWING_RESET_PIN, OUTPUT);
-    pinModeBulk(TFTWING_BUTTON_ALL, INPUT_PULLUP);
+  pinMode(TFTWING_RESET_PIN, OUTPUT);
+  pinModeBulk(TFTWING_BUTTON_ALL, INPUT_PULLUP);
+  return true;
 }
 
 void Adafruit_miniTFTWing::setBacklight(uint16_t value){
