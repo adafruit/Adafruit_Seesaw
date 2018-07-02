@@ -1,10 +1,13 @@
 #include "Adafruit_TFTShield18.h"
 
 bool Adafruit_TFTShield18::begin(uint8_t addr, int8_t flow){
-    Adafruit_seesaw::begin(addr, flow);
+    if (! Adafruit_seesaw::begin(addr, flow)) {
+        return false;
+    }
 
     pinMode(TFTSHIELD_RESET_PIN, OUTPUT);
     pinModeBulk(TFTSHIELD_BUTTON_ALL, INPUT_PULLUP);
+    return true;
 }
 
 void Adafruit_TFTShield18::setBacklight(uint16_t value){
