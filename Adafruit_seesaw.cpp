@@ -581,6 +581,35 @@ void Adafruit_seesaw::UARTSetBaud(uint32_t baud)
 	this->write(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_BAUD, cmd, 4);
 }
 
+void Adafruit_seesaw::setKeypadEvent(uint8_t key, uint8_t edge, bool enable)
+{
+	keyState ks;
+	ks.bit.STATE = enable;
+	ks.bit.ACTIVE = (1 << edge);
+	uint8_t cmd[] = {key, ks.reg};
+	this->write(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_EVENT, cmd, 2);
+}
+
+void Adafruit_seesaw::enableKeypadInterrupt()
+{
+	this->write8(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_INTENSET, 0x01);
+}
+
+void Adafruit_seesaw::disableKeypadInterrupt()
+{
+	this->write8(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_INTENCLR, 0x01);
+}
+
+uint8_t Adafruit_seesaw::getKeypadCount()
+{
+	return this->read8(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_COUNT);
+}
+
+void Adafruit_seesaw::readKeypad(keyEvent *buf, uint8_t count)
+{
+	return this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf, count);
+}
+
 /**
  *****************************************************************************************
  *  @brief      Write 1 byte to the specified seesaw register.

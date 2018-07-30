@@ -55,6 +55,7 @@
         SEESAW_EEPROM_BASE = 0x0D,
         SEESAW_NEOPIXEL_BASE = 0x0E,
         SEESAW_TOUCH_BASE = 0x0F,
+        SEESAW_KEYPAD_BASE = 0x10,
     };
 
     /** GPIO module function addres registers
@@ -135,6 +136,26 @@
         SEESAW_TOUCH_CHANNEL_OFFSET = 0x10,
     };
 
+    /** keypad module function addres registers
+     */
+    enum
+    {
+        SEESAW_KEYPAD_STATUS = 0x00,
+        SEESAW_KEYPAD_EVENT = 0x01,
+        SEESAW_KEYPAD_INTENSET = 0x02,
+        SEESAW_KEYPAD_INTENCLR = 0x03,
+        SEESAW_KEYPAD_COUNT = 0x04,
+        SEESAW_KEYPAD_FIFO = 0x10,
+    };
+
+    enum 
+    {
+    SEESAW_KEYPAD_EDGE_HIGH = 0,
+    SEESAW_KEYPAD_EDGE_LOW,
+    SEESAW_KEYPAD_EDGE_FALLING,
+    SEESAW_KEYPAD_EDGE_RISING,
+    };
+
 #define ADC_INPUT_0_PIN 2 ///< default ADC input pin 
 #define ADC_INPUT_1_PIN 3 ///< default ADC input pin
 #define ADC_INPUT_2_PIN 4 ///< default ADC input pin
@@ -153,6 +174,25 @@
 
 #define SEESAW_HW_ID_CODE			0x55 ///< seesaw HW ID code
 #define SEESAW_EEPROM_I2C_ADDR 0x3F ///< EEPROM address of i2c address to start up with (for devices that support this feature)
+
+union keyEvent {
+    struct {
+        uint8_t EDGE: 2;
+        uint8_t NUM: 6; //64 events max
+    } bit;
+    uint8_t reg;
+};
+
+union keyState {
+    struct {
+        //the current state of the key
+        uint8_t STATE: 1;
+
+        //the registered events for that key
+        uint8_t ACTIVE: 4;
+    } bit;
+    uint8_t reg;
+};
 
 /**************************************************************************/
 /*! 
@@ -203,6 +243,12 @@ class Adafruit_seesaw : public Print {
         uint8_t getI2CAddr();
 
         void UARTSetBaud(uint32_t baud);
+
+        void setKeypadEvent(uint8_t key, uint8_t edge, bool enable=true);
+        void enableKeypadInterrupt();
+        void disableKeypadInterrupt();
+        uint8_t getKeypadCount();
+        void readKeypad(keyEvent *buf, uint8_t count);
 
         virtual size_t write(uint8_t);
         virtual size_t write(const char *str);
