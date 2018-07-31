@@ -607,7 +607,7 @@ uint8_t Adafruit_seesaw::getKeypadCount()
 
 void Adafruit_seesaw::readKeypad(keyEvent *buf, uint8_t count)
 {
-	return this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf, count);
+	return this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf, count, 1000);
 }
 
 /**

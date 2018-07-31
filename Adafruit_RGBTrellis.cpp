@@ -36,13 +36,14 @@ void Adafruit_RGBTrellis::activateKey(uint8_t key, uint8_t edge, bool enable)
 void Adafruit_RGBTrellis::read()
 {
     uint8_t count = getKeypadCount();
+    delayMicroseconds(500);
     if(count > 0){
         keyEvent e[count];
         readKeypad(e, count);
         for(int i=0; i<count; i++){
             //call any callbacks associated with the key
             e[i].bit.NUM = RGB_TRELLIS_SEESAW_KEY(e[i].bit.NUM);
-            if(_callbacks[e[i].bit.NUM] != NULL)
+            if(e[i].bit.NUM < RGB_TRELLIS_NUM_KEYS && _callbacks[e[i].bit.NUM] != NULL)
                 _callbacks[e[i].bit.NUM](e[i]);
         }
     }

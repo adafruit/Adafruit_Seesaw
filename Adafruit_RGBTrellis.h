@@ -17,6 +17,9 @@
 #define RGB_TRELLIS_KEY(x) (((x)/4)*8 + ((x)%4))
 #define RGB_TRELLIS_SEESAW_KEY(x) (((x)/8)*4 + ((x)%8))
 
+#define RGB_TRELLIS_X(k) ((k)%4)
+#define RGB_TRELLIS_Y(k) ((k)/4)
+
 typedef void (*TrellisCallback)(keyEvent evt);
 
 /**************************************************************************/
