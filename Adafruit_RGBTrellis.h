@@ -4,7 +4,7 @@
 #include "Adafruit_seesaw.h"
 #include "seesaw_neopixel.h"
 
-#define RGB_TRELLIS_ADDR 0x5E
+#define RGB_TRELLIS_ADDR 0x2E
 
 #define RGB_TRELLIS_NEOPIX_PIN 3
 
