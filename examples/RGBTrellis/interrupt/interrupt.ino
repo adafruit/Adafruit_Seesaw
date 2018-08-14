@@ -4,17 +4,28 @@ Adafruit_RGBTrellis trellis;
 
 #define INT_PIN 10
 
+// Input a value 0 to 255 to get a color value.
+// The colors are a transition r - g - b - back to r.
+uint32_t Wheel(byte WheelPos) {
+  if(WheelPos < 85) {
+   return trellis.pixels.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+  } else if(WheelPos < 170) {
+   WheelPos -= 85;
+   return trellis.pixels.Color(255 - WheelPos * 3, 0, WheelPos * 3);
+  } else {
+   WheelPos -= 170;
+   return trellis.pixels.Color(0, WheelPos * 3, 255 - WheelPos * 3);
+  }
+}
+
 //define a callback for key presses
 TrellisCallback blink(keyEvent evt){
   
   if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_RISING)
-    trellis.pixels.setPixelColor(evt.bit.NUM, 0x00FF00); //Green on RISING
+    trellis.pixels.setPixelColor(evt.bit.NUM, Wheel(map(evt.bit.NUM, 0, trellis.pixels.numPixels(), 0, 255))); //on rising
   else if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_FALLING)
-    trellis.pixels.setPixelColor(evt.bit.NUM, 0x0000FF); //blue on FALLING
+    trellis.pixels.setPixelColor(evt.bit.NUM, 0); //off falling
     
-  trellis.pixels.show();
-  delay(50);
-  trellis.pixels.setPixelColor(evt.bit.NUM, 0x000000); //turn off
   trellis.pixels.show();
 }
 
@@ -41,7 +52,7 @@ void setup() {
 
   //do a little animation to show we're on
   for(uint16_t i=0; i<trellis.pixels.numPixels(); i++) {
-    trellis.pixels.setPixelColor(i, 0x0000FF);
+    trellis.pixels.setPixelColor(i, Wheel(map(i, 0, trellis.pixels.numPixels(), 0, 255)));
     trellis.pixels.show();
     delay(50);
   }
@@ -53,7 +64,6 @@ void setup() {
 }
 
 void loop() {
-  //wait for an interrupt to read the trellis
   if(!digitalRead(INT_PIN)){
     trellis.read();
   }
