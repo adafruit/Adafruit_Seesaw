@@ -81,15 +81,14 @@ void loop() {
     Serial.println("LEFT");
     color = ST77XX_WHITE;
   }
-  tft.fillTriangle(120, 30, 120, 50, 110, 40, color);
-
+  tft.fillTriangle(150, 30, 150, 50, 160, 40, color);
   
   color = ST77XX_BLACK;
   if (! (buttons & TFTWING_BUTTON_RIGHT)) {
     Serial.println("RIGHT");
     color = ST77XX_WHITE;
   }
-  tft.fillTriangle(150, 30, 150, 50, 160, 40, color);
+  tft.fillTriangle(120, 30, 120, 50, 110, 40, color);
 
   color = ST77XX_BLACK;
   if (! (buttons & TFTWING_BUTTON_DOWN)) {
