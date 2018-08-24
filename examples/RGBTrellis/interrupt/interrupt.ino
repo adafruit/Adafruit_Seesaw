@@ -27,6 +27,7 @@ TrellisCallback blink(keyEvent evt){
     trellis.pixels.setPixelColor(evt.bit.NUM, 0); //off falling
     
   trellis.pixels.show();
+  return 0;
 }
 
 void setup() {
