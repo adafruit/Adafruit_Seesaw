@@ -14,6 +14,7 @@ uint32_t Wheel(byte WheelPos) {
    WheelPos -= 170;
    return trellis.pixels.Color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
+  return 0;
 }
 
 //define a callback for key presses
@@ -25,6 +26,7 @@ TrellisCallback blink(keyEvent evt){
     trellis.pixels.setPixelColor(evt.bit.NUM, 0); //off falling
     
   trellis.pixels.show();
+  return 0;
 }
 
 void setup() {
