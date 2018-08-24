@@ -60,6 +60,6 @@ void setup() {
 }
 
 void loop() {
-  rellis.read();
+  trellis.read();
   delay(20); //the trellis has a resolution of around 60hz
 }
