@@ -1,9 +1,14 @@
 var searchData=
 [
+  ['activatekey',['activateKey',['../class_adafruit___r_g_b_trellis.html#acf4a5f4d2f2bd8b2b0a194fe5ddd41d6',1,'Adafruit_RGBTrellis']]],
+  ['active',['ACTIVE',['../unionkey_state.html#a0077601e4ce63a8edf7440a89eca1e26',1,'keyState']]],
   ['adafruit_5fcrickit',['Adafruit_Crickit',['../class_adafruit___crickit.html',1,'']]],
+  ['adafruit_5fminitftwing',['Adafruit_miniTFTWing',['../class_adafruit__mini_t_f_t_wing.html',1,'']]],
+  ['adafruit_5frgbtrellis',['Adafruit_RGBTrellis',['../class_adafruit___r_g_b_trellis.html',1,'Adafruit_RGBTrellis'],['../class_adafruit___r_g_b_trellis.html#a31d4886e7ffc9d54173a79edf896e5f4',1,'Adafruit_RGBTrellis::Adafruit_RGBTrellis()']]],
   ['adafruit_5fseesaw',['Adafruit_seesaw',['../class_adafruit__seesaw.html',1,'Adafruit_seesaw'],['../class_adafruit__seesaw.html#a0cc3f76a255b691930983d2e36171ac7',1,'Adafruit_seesaw::Adafruit_seesaw()']]],
   ['adafruit_5fseesaw_2ecpp',['Adafruit_seesaw.cpp',['../_adafruit__seesaw_8cpp.html',1,'']]],
   ['adafruit_5fseesaw_2eh',['Adafruit_seesaw.h',['../_adafruit__seesaw_8h.html',1,'']]],
+  ['adafruit_5ftftshield18',['Adafruit_TFTShield18',['../class_adafruit___t_f_t_shield18.html',1,'']]],
   ['adc_5finput_5f0_5fpin',['ADC_INPUT_0_PIN',['../_adafruit__seesaw_8h.html#ab07facb72a01ee07a6513b4a91c4e3d6',1,'Adafruit_seesaw.h']]],
   ['adc_5finput_5f1_5fpin',['ADC_INPUT_1_PIN',['../_adafruit__seesaw_8h.html#a2d3857adc9b20e42005ff836b83a31c1',1,'Adafruit_seesaw.h']]],
   ['adc_5finput_5f2_5fpin',['ADC_INPUT_2_PIN',['../_adafruit__seesaw_8h.html#a5f80340a1aea3878597f9f94caf29f0d',1,'Adafruit_seesaw.h']]],

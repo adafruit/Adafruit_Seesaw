@@ -73,6 +73,10 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionkey_event.html">keyEvent</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionkey_state.html">keyState</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html">Adafruit_seesaw</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that stores state and functions for interacting with seesaw helper IC.  <a href="class_adafruit__seesaw.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,7 +149,8 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<b>SEESAW_EEPROM_BASE</b> = 0x0D, 
 <b>SEESAW_NEOPIXEL_BASE</b> = 0x0E, 
-<b>SEESAW_TOUCH_BASE</b> = 0x0F
+<b>SEESAW_TOUCH_BASE</b> = 0x0F, 
+<b>SEESAW_KEYPAD_BASE</b> = 0x10
 <br />
  }</td></tr>
 <tr class="separator:a06fc87d81c62e9abb8790b6e5713c55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,6 +217,23 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a0411cd49bb5b71852cecd93bcbf0ca2d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SEESAW_TOUCH_CHANNEL_OFFSET</b> = 0x10
  }</td></tr>
 <tr class="separator:a0411cd49bb5b71852cecd93bcbf0ca2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed82baf7f470b522273a3e37c24c600"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<b>SEESAW_KEYPAD_STATUS</b> = 0x00, 
+<b>SEESAW_KEYPAD_EVENT</b> = 0x01, 
+<b>SEESAW_KEYPAD_INTENSET</b> = 0x02, 
+<b>SEESAW_KEYPAD_INTENCLR</b> = 0x03, 
+<br />
+&#160;&#160;<b>SEESAW_KEYPAD_COUNT</b> = 0x04, 
+<b>SEESAW_KEYPAD_FIFO</b> = 0x10
+<br />
+ }</td></tr>
+<tr class="separator:abed82baf7f470b522273a3e37c24c600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab04a0655cd1e3bcac5e8f48c18df1a57"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>SEESAW_KEYPAD_EDGE_HIGH</b> = 0, 
+<b>SEESAW_KEYPAD_EDGE_LOW</b>, 
+<b>SEESAW_KEYPAD_EDGE_FALLING</b>, 
+<b>SEESAW_KEYPAD_EDGE_RISING</b>
+ }</td></tr>
+<tr class="separator:ab04a0655cd1e3bcac5e8f48c18df1a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is part of Adafruit's seesaw driver for the Arduino platform. It is designed specifically to work with the Adafruit products that use seesaw technology.</p>
@@ -337,6 +359,36 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>touch module function addres registers </p>
+
+</div>
+</div>
+<a id="abed82baf7f470b522273a3e37c24c600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abed82baf7f470b522273a3e37c24c600">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>keypad module function addres registers </p>
+
+</div>
+</div>
+<a id="ab04a0655cd1e3bcac5e8f48c18df1a57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab04a0655cd1e3bcac5e8f48c18df1a57">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>keypad module edge definitions </p>
 
 </div>
 </div>

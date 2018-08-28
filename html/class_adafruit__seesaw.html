@@ -79,7 +79,10 @@ Inheritance diagram for Adafruit_seesaw:</div>
  <div class="center">
   <img src="class_adafruit__seesaw.png" usemap="#Adafruit_5Fseesaw_map" alt=""/>
   <map id="Adafruit_5Fseesaw_map" name="Adafruit_5Fseesaw_map">
-<area href="class_adafruit___crickit.html" title="Class that stores state and functions for interacting with Crickit variant of seesaw helper IC..." alt="Adafruit_Crickit" shape="rect" coords="0,112,106,136"/>
+<area href="class_adafruit___crickit.html" title="Class that stores state and functions for interacting with Crickit variant of seesaw helper IC..." alt="Adafruit_Crickit" shape="rect" coords="0,112,136,136"/>
+<area href="class_adafruit__mini_t_f_t_wing.html" title="Class that stores state and functions for interacting with mini tft wing variant of seesaw helper IC..." alt="Adafruit_miniTFTWing" shape="rect" coords="146,112,282,136"/>
+<area href="class_adafruit___r_g_b_trellis.html" title="Class that stores state and functions for interacting with the seesaw keypad module. " alt="Adafruit_RGBTrellis" shape="rect" coords="292,112,428,136"/>
+<area href="class_adafruit___t_f_t_shield18.html" title="Class that stores state and functions for interacting with 1.8&quot; tft shield variant of seesaw helper I..." alt="Adafruit_TFTShield18" shape="rect" coords="438,112,574,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -174,6 +177,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8a9b29ee8c73611962fae9ea7fb23f4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a8a9b29ee8c73611962fae9ea7fb23f4f">UARTSetBaud</a> (uint32_t baud)</td></tr>
 <tr class="memdesc:a8a9b29ee8c73611962fae9ea7fb23f4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the baud rate on SERCOM0.  <a href="#a8a9b29ee8c73611962fae9ea7fb23f4f">More...</a><br /></td></tr>
 <tr class="separator:a8a9b29ee8c73611962fae9ea7fb23f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1668dcb6cebae9b665a75a9e214bf8d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a1668dcb6cebae9b665a75a9e214bf8d5">setKeypadEvent</a> (uint8_t key, uint8_t edge, bool enable=true)</td></tr>
+<tr class="memdesc:a1668dcb6cebae9b665a75a9e214bf8d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">activate or deactivate a key and edge on the keypad module  <a href="#a1668dcb6cebae9b665a75a9e214bf8d5">More...</a><br /></td></tr>
+<tr class="separator:a1668dcb6cebae9b665a75a9e214bf8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d667d25651dca8012348d475763eada"><td class="memItemLeft" align="right" valign="top"><a id="a3d667d25651dca8012348d475763eada"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a3d667d25651dca8012348d475763eada">enableKeypadInterrupt</a> ()</td></tr>
+<tr class="memdesc:a3d667d25651dca8012348d475763eada"><td class="mdescLeft">&#160;</td><td class="mdescRight">enable the keypad interrupt that fires when events are in the fifo. <br /></td></tr>
+<tr class="separator:a3d667d25651dca8012348d475763eada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cb9e232e60ca82404bf384b42cafc56"><td class="memItemLeft" align="right" valign="top"><a id="a9cb9e232e60ca82404bf384b42cafc56"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a9cb9e232e60ca82404bf384b42cafc56">disableKeypadInterrupt</a> ()</td></tr>
+<tr class="memdesc:a9cb9e232e60ca82404bf384b42cafc56"><td class="mdescLeft">&#160;</td><td class="mdescRight">disable the keypad interrupt that fires when events are in the fifo. <br /></td></tr>
+<tr class="separator:a9cb9e232e60ca82404bf384b42cafc56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7e771551219cab31104a3d278cdd02c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#ab7e771551219cab31104a3d278cdd02c">getKeypadCount</a> ()</td></tr>
+<tr class="memdesc:ab7e771551219cab31104a3d278cdd02c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the number of events currently in the fifo.  <a href="#ab7e771551219cab31104a3d278cdd02c">More...</a><br /></td></tr>
+<tr class="separator:ab7e771551219cab31104a3d278cdd02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22e26ebb634e96564342e978f6a82591"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a22e26ebb634e96564342e978f6a82591">readKeypad</a> (<a class="el" href="unionkey_event.html">keyEvent</a> *buf, uint8_t count)</td></tr>
+<tr class="memdesc:a22e26ebb634e96564342e978f6a82591"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all keyEvents into the passed buffer.  <a href="#a22e26ebb634e96564342e978f6a82591">More...</a><br /></td></tr>
+<tr class="separator:a22e26ebb634e96564342e978f6a82591"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76db275e030f038d6cf4f2cc71029d18"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a76db275e030f038d6cf4f2cc71029d18">write</a> (uint8_t)</td></tr>
 <tr class="memdesc:a76db275e030f038d6cf4f2cc71029d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">The print wrapper for the seesaw class. Calling this allows you to use ss.print() or ss.println() and write to the UART on SERCOM0 of the seesaw. Note that this functionality is only available when the UART (sercom) module is compiled into the seesaw firmware. On the default seesaw firmware on the SAMD09 breakout this functionality is not available.  <a href="#a76db275e030f038d6cf4f2cc71029d18">More...</a><br /></td></tr>
 <tr class="separator:a76db275e030f038d6cf4f2cc71029d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1131,6 +1151,109 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">baud</td><td>the baud rate to set. This is an integer value. Baud rates up to 115200 are supported.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="a1668dcb6cebae9b665a75a9e214bf8d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1668dcb6cebae9b665a75a9e214bf8d5">&#9670;&nbsp;</a></span>setKeypadEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Adafruit_seesaw::setKeypadEvent </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>edge</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>activate or deactivate a key and edge on the keypad module </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>the key number to activate </td></tr>
+    <tr><td class="paramname">edge</td><td>the edge to trigger on </td></tr>
+    <tr><td class="paramname">enable</td><td>passing true will enable the passed event, passing false will disable it.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+
+</div>
+</div>
+<a id="ab7e771551219cab31104a3d278cdd02c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7e771551219cab31104a3d278cdd02c">&#9670;&nbsp;</a></span>getKeypadCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Adafruit_seesaw::getKeypadCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the number of events currently in the fifo. </p>
+<dl class="section return"><dt>Returns</dt><dd>the number of events in the fifo </dd></dl>
+
+</div>
+</div>
+<a id="a22e26ebb634e96564342e978f6a82591"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22e26ebb634e96564342e978f6a82591">&#9670;&nbsp;</a></span>readKeypad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Adafruit_seesaw::readKeypad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionkey_event.html">keyEvent</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read all keyEvents into the passed buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buf</td><td>pointer to where the keyEvents should be stored </td></tr>
+    <tr><td class="paramname">count</td><td>the number of events to read</td></tr>
   </table>
   </dd>
 </dl>

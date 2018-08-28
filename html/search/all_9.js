@@ -1,13 +1,10 @@
 var searchData=
 [
-  ['seesaw_5faddress',['SEESAW_ADDRESS',['../_adafruit__seesaw_8h.html#ae995cbda508547cc9342525a83a15718',1,'Adafruit_seesaw.h']]],
-  ['seesaw_5feeprom_5fi2c_5faddr',['SEESAW_EEPROM_I2C_ADDR',['../_adafruit__seesaw_8h.html#a29230c31db27fba752397eb80a1d0025',1,'Adafruit_seesaw.h']]],
-  ['seesaw_5fhw_5fid_5fcode',['SEESAW_HW_ID_CODE',['../_adafruit__seesaw_8h.html#af483fac973d56ec0a24fb675b0026beb',1,'Adafruit_seesaw.h']]],
-  ['seesaw_5fmotor',['seesaw_Motor',['../classseesaw___motor.html',1,'seesaw_Motor'],['../classseesaw___motor.html#af0a9f236559a47f8917e99dbdb79c50b',1,'seesaw_Motor::seesaw_Motor()']]],
-  ['seesaw_5fservo',['seesaw_Servo',['../classseesaw___servo.html',1,'seesaw_Servo'],['../classseesaw___servo.html#a02fe2824fa26ee272f5c1fa1905c4917',1,'seesaw_Servo::seesaw_Servo()']]],
-  ['sercom_5finten',['sercom_inten',['../union_adafruit__seesaw_1_1sercom__inten.html',1,'Adafruit_seesaw']]],
-  ['setgpiointerrupts',['setGPIOInterrupts',['../class_adafruit__seesaw.html#ac19995398c824c88ce27afc1dbb09767',1,'Adafruit_seesaw']]],
-  ['seti2caddr',['setI2CAddr',['../class_adafruit__seesaw.html#a3cb1d39d7778df649ae9e8d5ee5d5874',1,'Adafruit_seesaw']]],
-  ['setpwmfreq',['setPWMFreq',['../class_adafruit___crickit.html#a052da3d6217b8fce16b0a3136b532808',1,'Adafruit_Crickit::setPWMFreq()'],['../class_adafruit__seesaw.html#a73d0a1f528a29604c5666ffd39eb8bd9',1,'Adafruit_seesaw::setPWMFreq()']]],
-  ['swreset',['SWReset',['../class_adafruit__seesaw.html#ae3fe001dd8ee831be6eb4f6dad5ea18a',1,'Adafruit_seesaw']]]
+  ['pinmode',['pinMode',['../class_adafruit__seesaw.html#a68b73a4418a48146c490c7fb0eb05160',1,'Adafruit_seesaw']]],
+  ['pinmodebulk',['pinModeBulk',['../class_adafruit__seesaw.html#a9eef8bd609d5c57257513874f120aede',1,'Adafruit_seesaw::pinModeBulk(uint32_t pins, uint8_t mode)'],['../class_adafruit__seesaw.html#a71cbdc72bfb68f7a00627f8ad0c7223f',1,'Adafruit_seesaw::pinModeBulk(uint32_t pinsa, uint32_t pinsb, uint8_t mode)']]],
+  ['pixels',['pixels',['../class_adafruit___r_g_b_trellis.html#a353540d7276809135af5c40c2a14e824',1,'Adafruit_RGBTrellis']]],
+  ['pwm_5f0_5fpin',['PWM_0_PIN',['../_adafruit__seesaw_8h.html#a6525c45f26350958565c1d9adbf8b25f',1,'Adafruit_seesaw.h']]],
+  ['pwm_5f1_5fpin',['PWM_1_PIN',['../_adafruit__seesaw_8h.html#adb7905e09ae2b13668d7a61fff492ce1',1,'Adafruit_seesaw.h']]],
+  ['pwm_5f2_5fpin',['PWM_2_PIN',['../_adafruit__seesaw_8h.html#aeced6d01ef4b07d874889a1f79c6b647',1,'Adafruit_seesaw.h']]],
+  ['pwm_5f3_5fpin',['PWM_3_PIN',['../_adafruit__seesaw_8h.html#a0a46f78a5ce30490530fd82c419edc41',1,'Adafruit_seesaw.h']]]
 ];
