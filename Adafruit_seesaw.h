@@ -148,12 +148,14 @@
         SEESAW_KEYPAD_FIFO = 0x10,
     };
 
+    /** keypad module edge definitions
+     */
     enum 
     {
-    SEESAW_KEYPAD_EDGE_HIGH = 0,
-    SEESAW_KEYPAD_EDGE_LOW,
-    SEESAW_KEYPAD_EDGE_FALLING,
-    SEESAW_KEYPAD_EDGE_RISING,
+        SEESAW_KEYPAD_EDGE_HIGH = 0,
+        SEESAW_KEYPAD_EDGE_LOW,
+        SEESAW_KEYPAD_EDGE_FALLING,
+        SEESAW_KEYPAD_EDGE_RISING,
     };
 
 #define ADC_INPUT_0_PIN 2 ///< default ADC input pin 
@@ -175,23 +177,22 @@
 #define SEESAW_HW_ID_CODE			0x55 ///< seesaw HW ID code
 #define SEESAW_EEPROM_I2C_ADDR 0x3F ///< EEPROM address of i2c address to start up with (for devices that support this feature)
 
+/** key event stucture for keypad module */
 union keyEvent {
     struct {
-        uint8_t EDGE: 2;
-        uint8_t NUM: 6; //64 events max
-    } bit;
-    uint8_t reg;
+        uint8_t EDGE: 2; ///< the edge that was triggered
+        uint8_t NUM: 6; ///< the event number (64 max)
+    } bit; ///< bitfield format
+    uint8_t reg; ///< register format
 };
 
+/** key state struct that will be written to seesaw chip keypad module */
 union keyState {
     struct {
-        //the current state of the key
-        uint8_t STATE: 1;
-
-        //the registered events for that key
-        uint8_t ACTIVE: 4;
-    } bit;
-    uint8_t reg;
+        uint8_t STATE: 1; ///< the current state of the key
+        uint8_t ACTIVE: 4; ///< the registered events for that key
+    } bit; ///< bitfield format
+    uint8_t reg; ///< register format
 };
 
 /**************************************************************************/

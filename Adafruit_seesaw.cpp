@@ -581,6 +581,16 @@ void Adafruit_seesaw::UARTSetBaud(uint32_t baud)
 	this->write(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_BAUD, cmd, 4);
 }
 
+/**
+ *****************************************************************************************
+ *  @brief      activate or deactivate a key and edge on the keypad module
+ * 
+ *  @param      key the key number to activate
+ *  @param		edge the edge to trigger on
+ *  @param		enable passing true will enable the passed event, passing false will disable it.
+ *
+ *  @return     none
+ ****************************************************************************************/
 void Adafruit_seesaw::setKeypadEvent(uint8_t key, uint8_t edge, bool enable)
 {
 	keyState ks;
@@ -590,21 +600,43 @@ void Adafruit_seesaw::setKeypadEvent(uint8_t key, uint8_t edge, bool enable)
 	this->write(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_EVENT, cmd, 2);
 }
 
+/**
+ *****************************************************************************************
+ *  @brief      enable the keypad interrupt that fires when events are in the fifo.
+ ****************************************************************************************/
 void Adafruit_seesaw::enableKeypadInterrupt()
 {
 	this->write8(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_INTENSET, 0x01);
 }
 
+/**
+ *****************************************************************************************
+ *  @brief      disable the keypad interrupt that fires when events are in the fifo.
+ ****************************************************************************************/
 void Adafruit_seesaw::disableKeypadInterrupt()
 {
 	this->write8(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_INTENCLR, 0x01);
 }
 
+/**
+ *****************************************************************************************
+ *  @brief      Get the number of events currently in the fifo
+ *  @return     the number of events in the fifo
+ ****************************************************************************************/
 uint8_t Adafruit_seesaw::getKeypadCount()
 {
 	return this->read8(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_COUNT);
 }
 
+/**
+ *****************************************************************************************
+ *  @brief      Read all keyEvents into the passed buffer
+ * 
+ *  @param      buf pointer to where the keyEvents should be stored
+ *  @param		count the number of events to read
+ *
+ *  @return     none
+ ****************************************************************************************/
 void Adafruit_seesaw::readKeypad(keyEvent *buf, uint8_t count)
 {
 	return this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf, count, 1000);

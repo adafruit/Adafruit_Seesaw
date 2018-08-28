@@ -41,10 +41,10 @@ public:
 
     void read();
 
-    seesaw_NeoPixel pixels;
+    seesaw_NeoPixel pixels; ///< the onboard neopixel matrix
     
 protected:
-    TrellisCallback (*_callbacks[RGB_TRELLIS_NUM_KEYS])(keyEvent);
+    TrellisCallback (*_callbacks[RGB_TRELLIS_NUM_KEYS])(keyEvent); ///< the array of callback functions
 };
 
 #endif
