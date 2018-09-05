@@ -178,12 +178,20 @@
 #define SEESAW_EEPROM_I2C_ADDR 0x3F ///< EEPROM address of i2c address to start up with (for devices that support this feature)
 
 /** key event stucture for keypad module */
+union keyEventRaw {
+    struct {
+        uint8_t EDGE: 2; ///< the edge that was triggered
+        uint8_t NUM: 6; ///< the event number
+    } bit; ///< bitfield format
+    uint8_t reg; ///< register format
+};
+
 union keyEvent {
     struct {
         uint8_t EDGE: 2; ///< the edge that was triggered
-        uint8_t NUM: 6; ///< the event number (64 max)
+        uint16_t NUM: 14; ///< the event number
     } bit; ///< bitfield format
-    uint8_t reg; ///< register format
+    uint16_t reg; ///< register format
 };
 
 /** key state struct that will be written to seesaw chip keypad module */
@@ -249,7 +257,7 @@ class Adafruit_seesaw : public Print {
         void enableKeypadInterrupt();
         void disableKeypadInterrupt();
         uint8_t getKeypadCount();
-        void readKeypad(keyEvent *buf, uint8_t count);
+        void readKeypad(keyEventRaw *buf, uint8_t count);
 
         virtual size_t write(uint8_t);
         virtual size_t write(const char *str);

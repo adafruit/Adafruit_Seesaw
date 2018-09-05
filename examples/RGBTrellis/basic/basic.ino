@@ -1,6 +1,6 @@
-#include "Adafruit_RGBTrellis.h"
+#include "Adafruit_NeoTrellis.h"
 
-Adafruit_RGBTrellis trellis;
+Adafruit_NeoTrellis trellis;
 
 // Input a value 0 to 255 to get a color value.
 // The colors are a transition r - g - b - back to r.
@@ -42,7 +42,7 @@ void setup() {
   }
 
   //activate all keys and set callbacks
-  for(int i=0; i<RGB_TRELLIS_NUM_KEYS; i++){
+  for(int i=0; i<NEO_TRELLIS_NUM_KEYS; i++){
     trellis.activateKey(i, SEESAW_KEYPAD_EDGE_RISING);
     trellis.activateKey(i, SEESAW_KEYPAD_EDGE_FALLING);
     trellis.registerCallback(i, blink);
