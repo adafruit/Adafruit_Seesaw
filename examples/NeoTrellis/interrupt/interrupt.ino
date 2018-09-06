@@ -1,6 +1,6 @@
-#include "Adafruit_RGBTrellis.h"
+#include "Adafruit_NeoTrellis.h"
 
-Adafruit_RGBTrellis trellis;
+Adafruit_NeoTrellis trellis;
 
 #define INT_PIN 10
 
@@ -45,7 +45,7 @@ void setup() {
   }
 
   //activate all keys and set callbacks
-  for(int i=0; i<RGB_TRELLIS_NUM_KEYS; i++){
+  for(int i=0; i<NEO_TRELLIS_NUM_KEYS; i++){
     trellis.activateKey(i, SEESAW_KEYPAD_EDGE_RISING);
     trellis.activateKey(i, SEESAW_KEYPAD_EDGE_FALLING);
     trellis.registerCallback(i, blink);
