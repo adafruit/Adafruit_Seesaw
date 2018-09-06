@@ -5,8 +5,9 @@ var indexSectionsWithContent =
   2: "a",
   3: "_abdegprstuw",
   4: "_abdenprs",
-  5: "aips",
-  6: "a"
+  5: "a",
+  6: "aips",
+  7: "a"
 };
 
 var indexSectionNames =
@@ -16,8 +17,9 @@ var indexSectionNames =
   2: "files",
   3: "functions",
   4: "variables",
-  5: "defines",
-  6: "pages"
+  5: "related",
+  6: "defines",
+  7: "pages"
 };
 
 var indexSectionLabels =
@@ -27,7 +29,8 @@ var indexSectionLabels =
   2: "Files",
   3: "Functions",
   4: "Variables",
-  5: "Macros",
-  6: "Pages"
+  5: "Friends",
+  6: "Macros",
+  7: "Pages"
 };
 

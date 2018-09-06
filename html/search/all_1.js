@@ -1,10 +1,11 @@
 var searchData=
 [
-  ['activatekey',['activateKey',['../class_adafruit___r_g_b_trellis.html#acf4a5f4d2f2bd8b2b0a194fe5ddd41d6',1,'Adafruit_RGBTrellis']]],
+  ['activatekey',['activateKey',['../class_adafruit___neo_trellis.html#a6eb9cc3f68a794278670387b0deed2e2',1,'Adafruit_NeoTrellis::activateKey()'],['../class_adafruit___multi_trellis.html#a0d5cc21ac8b37e61d51b3d9d33478533',1,'Adafruit_MultiTrellis::activateKey(uint16_t num, uint8_t edge, bool enable=true)'],['../class_adafruit___multi_trellis.html#a8960f620bdeba16f1c858a57db4b29b7',1,'Adafruit_MultiTrellis::activateKey(uint8_t x, uint8_t y, uint8_t edge, bool enable=true)']]],
   ['active',['ACTIVE',['../unionkey_state.html#a0077601e4ce63a8edf7440a89eca1e26',1,'keyState']]],
   ['adafruit_5fcrickit',['Adafruit_Crickit',['../class_adafruit___crickit.html',1,'']]],
   ['adafruit_5fminitftwing',['Adafruit_miniTFTWing',['../class_adafruit__mini_t_f_t_wing.html',1,'']]],
-  ['adafruit_5frgbtrellis',['Adafruit_RGBTrellis',['../class_adafruit___r_g_b_trellis.html',1,'Adafruit_RGBTrellis'],['../class_adafruit___r_g_b_trellis.html#a31d4886e7ffc9d54173a79edf896e5f4',1,'Adafruit_RGBTrellis::Adafruit_RGBTrellis()']]],
+  ['adafruit_5fmultitrellis',['Adafruit_MultiTrellis',['../class_adafruit___multi_trellis.html',1,'Adafruit_MultiTrellis'],['../class_adafruit___neo_trellis.html#ade7a1f897d425c9424123becebc76392',1,'Adafruit_NeoTrellis::Adafruit_MultiTrellis()'],['../class_adafruit___multi_trellis.html#ad4b40c521837f2ffaca5abd9186669bf',1,'Adafruit_MultiTrellis::Adafruit_MultiTrellis()']]],
+  ['adafruit_5fneotrellis',['Adafruit_NeoTrellis',['../class_adafruit___neo_trellis.html',1,'Adafruit_NeoTrellis'],['../class_adafruit___neo_trellis.html#a6400aa2d1e832a477884a4f0ae4b846b',1,'Adafruit_NeoTrellis::Adafruit_NeoTrellis()']]],
   ['adafruit_5fseesaw',['Adafruit_seesaw',['../class_adafruit__seesaw.html',1,'Adafruit_seesaw'],['../class_adafruit__seesaw.html#a0cc3f76a255b691930983d2e36171ac7',1,'Adafruit_seesaw::Adafruit_seesaw()']]],
   ['adafruit_5fseesaw_2ecpp',['Adafruit_seesaw.cpp',['../_adafruit__seesaw_8cpp.html',1,'']]],
   ['adafruit_5fseesaw_2eh',['Adafruit_seesaw.h',['../_adafruit__seesaw_8h.html',1,'']]],

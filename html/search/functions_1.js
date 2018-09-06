@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['activatekey',['activateKey',['../class_adafruit___r_g_b_trellis.html#acf4a5f4d2f2bd8b2b0a194fe5ddd41d6',1,'Adafruit_RGBTrellis']]],
-  ['adafruit_5frgbtrellis',['Adafruit_RGBTrellis',['../class_adafruit___r_g_b_trellis.html#a31d4886e7ffc9d54173a79edf896e5f4',1,'Adafruit_RGBTrellis']]],
+  ['activatekey',['activateKey',['../class_adafruit___neo_trellis.html#a6eb9cc3f68a794278670387b0deed2e2',1,'Adafruit_NeoTrellis::activateKey()'],['../class_adafruit___multi_trellis.html#a0d5cc21ac8b37e61d51b3d9d33478533',1,'Adafruit_MultiTrellis::activateKey(uint16_t num, uint8_t edge, bool enable=true)'],['../class_adafruit___multi_trellis.html#a8960f620bdeba16f1c858a57db4b29b7',1,'Adafruit_MultiTrellis::activateKey(uint8_t x, uint8_t y, uint8_t edge, bool enable=true)']]],
+  ['adafruit_5fmultitrellis',['Adafruit_MultiTrellis',['../class_adafruit___multi_trellis.html#ad4b40c521837f2ffaca5abd9186669bf',1,'Adafruit_MultiTrellis']]],
+  ['adafruit_5fneotrellis',['Adafruit_NeoTrellis',['../class_adafruit___neo_trellis.html#a6400aa2d1e832a477884a4f0ae4b846b',1,'Adafruit_NeoTrellis']]],
   ['adafruit_5fseesaw',['Adafruit_seesaw',['../class_adafruit__seesaw.html#a0cc3f76a255b691930983d2e36171ac7',1,'Adafruit_seesaw']]],
   ['analogread',['analogRead',['../class_adafruit___crickit.html#a2045bf1544d021135b60dcc4b5335f6f',1,'Adafruit_Crickit::analogRead()'],['../class_adafruit__seesaw.html#ad8fd0188c170a13cff5dea91952e3683',1,'Adafruit_seesaw::analogRead()']]],
   ['analogwrite',['analogWrite',['../class_adafruit___crickit.html#a87bf616b4ecc2364ab2df63da59a4982',1,'Adafruit_Crickit::analogWrite()'],['../class_adafruit__seesaw.html#a509bf5a302730d8d1f5dd512104e11b2',1,'Adafruit_seesaw::analogWrite()']]],
