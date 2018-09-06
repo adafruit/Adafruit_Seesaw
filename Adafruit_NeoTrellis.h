@@ -46,13 +46,18 @@ public:
 
     seesaw_NeoPixel pixels; ///< the onboard neopixel matrix
 
-    friend class Adafruit_MultiTrellis;
+    friend class Adafruit_MultiTrellis; ///< for allowing use of protected methods by aggregate class
     
 protected:
-    uint8_t _addr;
+    uint8_t _addr; ///< the I2C address of this board
     TrellisCallback (*_callbacks[NEO_TRELLIS_NUM_KEYS])(keyEvent); ///< the array of callback functions
 };
 
+/**************************************************************************/
+/*! 
+    @brief  Class that stores state and functions for interacting with multiple neotrellis boards
+*/
+/**************************************************************************/
 class Adafruit_MultiTrellis {
 public:
     Adafruit_MultiTrellis(Adafruit_NeoTrellis *trelli, uint8_t rows, uint8_t cols);
@@ -75,8 +80,9 @@ public:
     void read();
 
 protected:
-    uint8_t _rows, _cols;
-    Adafruit_NeoTrellis *_trelli;
+    uint8_t _rows; ///< the number of trellis boards in the Y direction
+    uint8_t  _cols; ///< the number of trellis boards in the X direction
+    Adafruit_NeoTrellis *_trelli; ///< a multidimensional array of neotrellis objects
 };
 
 #endif

@@ -3,6 +3,7 @@
 /**************************************************************************/
 /*! 
     @brief  Class constructor
+    @param  addr the I2C address this neotrellis object uses
 */
 /**************************************************************************/
 Adafruit_NeoTrellis::Adafruit_NeoTrellis(uint8_t addr) : pixels(NEO_TRELLIS_NUM_KEYS, NEO_TRELLIS_NEOPIX_PIN, NEO_GRB + NEO_KHZ800)
@@ -92,7 +93,18 @@ void Adafruit_NeoTrellis::read()
     }
 }
 
-
+/**************************************************************************/
+/*! 
+    @brief  class constructor
+    @param  trelli pointer to a multidimensional array of neotrellis objects.
+            these object must have their I2C addresses specified in the class
+            constructors.
+    @param  rows the number of individual neotrellis boards in the Y direction
+            of your matrix.
+    @param  cols the number of individual neotrellis boards in the X direction
+            of your matrix.
+*/
+/**************************************************************************/
 Adafruit_MultiTrellis::Adafruit_MultiTrellis(Adafruit_NeoTrellis *trelli, uint8_t rows, uint8_t cols)
 {
     this->_rows = rows;
@@ -100,6 +112,12 @@ Adafruit_MultiTrellis::Adafruit_MultiTrellis(Adafruit_NeoTrellis *trelli, uint8_
     this->_trelli = trelli;
 }
 
+/**************************************************************************/
+/*! 
+    @brief  begin communication with the matrix of neotrellis boards.
+    @returns true on success, false otherwise.
+*/
+/**************************************************************************/
 bool Adafruit_MultiTrellis::begin()
 {
     Adafruit_NeoTrellis *t;
@@ -114,6 +132,16 @@ bool Adafruit_MultiTrellis::begin()
     return true;
 }
 
+/**************************************************************************/
+/*! 
+    @brief  register a callback for a key addressed by key index. 
+    @param  x the column index of the key. column 0 is on the lefthand side of the matix.
+    @param  y the row index of the key. row 0 is at the top of the matrix and the numbers increase
+            downwards.
+    @param  cb the function to be called when an event from the specified key is
+            detected.
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y, TrellisCallback (*cb)(keyEvent))
 {
     Adafruit_NeoTrellis *t = (_trelli+y/NEO_TRELLIS_NUM_ROWS*_cols) + x/NEO_TRELLIS_NUM_COLS;
@@ -123,6 +151,16 @@ void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y, TrellisCallba
     t->registerCallback(NEO_TRELLIS_XY(xkey, ykey), cb);
 }
 
+/**************************************************************************/
+/*! 
+    @brief  register a callback for a key addressed by key number. 
+    @param  num the keynumber to set the color of. Key 0 is in the top left
+            corner of the trellis matrix, key 1 is directly to the right of it,
+            and the last key number is in the bottom righthand corner.
+    @param  cb the function to be called when an event from the specified key is
+            detected.
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::registerCallback(uint16_t num, TrellisCallback (*cb)(keyEvent)){
     uint8_t x = num % (NEO_TRELLIS_NUM_COLS*_cols);
     uint8_t y = num / (NEO_TRELLIS_NUM_COLS*_cols);
@@ -130,6 +168,14 @@ void Adafruit_MultiTrellis::registerCallback(uint16_t num, TrellisCallback (*cb)
     registerCallback(x, y, cb);
 }
 
+/**************************************************************************/
+/*! 
+    @brief  Unregister a callback for a key addressed by key index. 
+    @param  x the column index of the key. column 0 is on the lefthand side of the matix.
+    @param  y the row index of the key. row 0 is at the top of the matrix and the numbers increase
+            downwards.
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::unregisterCallback(uint8_t x, uint8_t y)
 {
     Adafruit_NeoTrellis *t = (_trelli+y/NEO_TRELLIS_NUM_ROWS*_cols) + x/NEO_TRELLIS_NUM_COLS;
@@ -139,6 +185,14 @@ void Adafruit_MultiTrellis::unregisterCallback(uint8_t x, uint8_t y)
     t->unregisterCallback(NEO_TRELLIS_XY(xkey, ykey));
 }
 
+/**************************************************************************/
+/*! 
+    @brief  Unregister a callback for a key addressed by key number. 
+    @param  num the keynumber to set the color of. Key 0 is in the top left
+            corner of the trellis matrix, key 1 is directly to the right of it,
+            and the last key number is in the bottom righthand corner.
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::unregisterCallback(uint16_t num){
     uint8_t x = num % (NEO_TRELLIS_NUM_COLS*_cols);
     uint8_t y = num / (NEO_TRELLIS_NUM_COLS*_cols);
@@ -146,6 +200,17 @@ void Adafruit_MultiTrellis::unregisterCallback(uint16_t num){
     unregisterCallback(x, y);
 }
 
+/**************************************************************************/
+/*! 
+    @brief  Activate or deactivate a key by number. 
+    @param  x the column index of the key. column 0 is on the lefthand side of the matix.
+    @param  y the row index of the key. row 0 is at the top of the matrix and the numbers increase
+            downwards.
+    @param  edge the edge that the key triggers an event on. Use SEESAW_KEYPAD_EDGE_FALLING
+            or SEESAW_KEYPAD_EDGE_RISING.
+    @param  enable pass true to enable the key on the passed edge, false to disable.
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::activateKey(uint8_t x, uint8_t y, uint8_t edge, bool enable)
 {
     Adafruit_NeoTrellis *t = (_trelli+y/NEO_TRELLIS_NUM_ROWS*_cols) + x/NEO_TRELLIS_NUM_COLS;
@@ -155,6 +220,17 @@ void Adafruit_MultiTrellis::activateKey(uint8_t x, uint8_t y, uint8_t edge, bool
     t->activateKey(NEO_TRELLIS_XY(xkey, ykey), edge, enable);
 }
 
+/**************************************************************************/
+/*! 
+    @brief  Activate or deactivate a key by number. 
+    @param  num the keynumber to set the color of. Key 0 is in the top left
+            corner of the trellis matrix, key 1 is directly to the right of it,
+            and the last key number is in the bottom righthand corner.
+    @param  edge the edge that the key triggers an event on. Use SEESAW_KEYPAD_EDGE_FALLING
+            or SEESAW_KEYPAD_EDGE_RISING.
+    @param  enable pass true to enable the key on the passed edge, false to disable.
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::activateKey(uint16_t num, uint8_t edge, bool enable)
 {
     uint8_t x = num % (NEO_TRELLIS_NUM_COLS*_cols);
@@ -163,6 +239,17 @@ void Adafruit_MultiTrellis::activateKey(uint16_t num, uint8_t edge, bool enable)
     activateKey(x, y, edge, enable);
 }
 
+/**************************************************************************/
+/*! 
+    @brief  set the color of a neopixel at a key index.
+    @param  x the column index of the key. column 0 is on the lefthand side of the matix.
+    @param  y the row index of the key. row 0 is at the top of the matrix and the numbers increase
+            downwards.
+    @param  color the color to set the pixel to. This is a 24 bit RGB value.
+            for example, full brightness red would be 0xFF0000, and full brightness
+            blue would be 0x0000FF.
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::setPixelColor(uint8_t x, uint8_t y, uint32_t color)
 {
     Adafruit_NeoTrellis *t = (_trelli+y/NEO_TRELLIS_NUM_ROWS*_cols) + x/NEO_TRELLIS_NUM_COLS;
@@ -172,6 +259,17 @@ void Adafruit_MultiTrellis::setPixelColor(uint8_t x, uint8_t y, uint32_t color)
     t->pixels.setPixelColor(NEO_TRELLIS_XY(xkey, ykey), color);
 }
 
+/**************************************************************************/
+/*! 
+    @brief  set the color of a neopixel at a key number.
+    @param  num the keynumber to set the color of. Key 0 is in the top left
+            corner of the trellis matrix, key 1 is directly to the right of it,
+            and the last key number is in the bottom righthand corner.
+    @param  color the color to set the pixel to. This is a 24 bit RGB value.
+            for example, full brightness red would be 0xFF0000, and full brightness
+            blue would be 0x0000FF.
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::setPixelColor(uint16_t num, uint32_t color)
 {
     uint8_t x = num % (NEO_TRELLIS_NUM_COLS*_cols);
@@ -180,6 +278,11 @@ void Adafruit_MultiTrellis::setPixelColor(uint16_t num, uint32_t color)
     setPixelColor(x, y, color);
 }
 
+/**************************************************************************/
+/*! 
+    @brief  call show for all connected neotrellis boards to show all neopixels
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::show()
 {
     Adafruit_NeoTrellis *t;
@@ -191,6 +294,11 @@ void Adafruit_MultiTrellis::show()
     }
 }
 
+/**************************************************************************/
+/*! 
+    @brief  read all events currently stored in the seesaw fifo and call any callbacks.
+*/
+/**************************************************************************/
 void Adafruit_MultiTrellis::read()
 {
     Adafruit_NeoTrellis *t;

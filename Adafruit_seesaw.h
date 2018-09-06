@@ -177,7 +177,7 @@
 #define SEESAW_HW_ID_CODE			0x55 ///< seesaw HW ID code
 #define SEESAW_EEPROM_I2C_ADDR 0x3F ///< EEPROM address of i2c address to start up with (for devices that support this feature)
 
-/** key event stucture for keypad module */
+/** raw key event stucture for keypad module */
 union keyEventRaw {
     struct {
         uint8_t EDGE: 2; ///< the edge that was triggered
@@ -186,6 +186,8 @@ union keyEventRaw {
     uint8_t reg; ///< register format
 };
 
+
+/** extended key event stucture for keypad module */
 union keyEvent {
     struct {
         uint8_t EDGE: 2; ///< the edge that was triggered
