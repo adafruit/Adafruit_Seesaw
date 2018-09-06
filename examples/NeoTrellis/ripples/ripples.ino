@@ -1,6 +1,6 @@
-#include "Adafruit_RGBTrellis.h"
+#include "Adafruit_NeoTrellis.h"
 
-Adafruit_RGBTrellis trellis;
+Adafruit_NeoTrellis trellis;
 
 #define MAX_RIPPLES 16
 
@@ -53,8 +53,8 @@ TrellisCallback blink(keyEvent evt){
       ripples[i].center = evt.bit.NUM;
       ripples[i].t = 0;
       for(int j=0; j<NUM_POINTS; j++){
-        ripples[i].points[j].x = RGB_TRELLIS_X(evt.bit.NUM);
-        ripples[i].points[j].y = RGB_TRELLIS_Y(evt.bit.NUM);
+        ripples[i].points[j].x = NEO_TRELLIS_X(evt.bit.NUM);
+        ripples[i].points[j].y = NEO_TRELLIS_Y(evt.bit.NUM);
       }
       ripples[i].c.reg = colors[random(sizeof(colors)/sizeof(uint32_t))];
       
@@ -83,7 +83,7 @@ void setup() {
     ripples[i].center = -1;
 
   //activate all keys and set callbacks
-  for(int i=0; i<RGB_TRELLIS_NUM_KEYS; i++){
+  for(int i=0; i<NEO_TRELLIS_NUM_KEYS; i++){
     trellis.activateKey(i, SEESAW_KEYPAD_EDGE_RISING);
     trellis.registerCallback(i, blink);
   }
