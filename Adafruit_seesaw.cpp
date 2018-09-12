@@ -644,6 +644,20 @@ void Adafruit_seesaw::readKeypad(keyEventRaw *buf, uint8_t count)
 
 /**
  *****************************************************************************************
+ *  @brief      Read the temperature of the seesaw board in degrees Celsius. NOTE: not all
+ * 				seesaw firmwares have the temperature sensor enabled.
+ *  @return     Temperature in degrees Celsius as a floating point value.
+ ****************************************************************************************/
+float Adafruit_seesaw::getTemp()
+{
+	uint8_t buf[4];
+	this->read(SEESAW_STATUS_BASE, SEESAW_STATUS_TEMP, buf, 4, 1000);
+	int32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
+	return (1.0/(1UL << 16)) * ret;
+}
+
+/**
+ *****************************************************************************************
  *  @brief      Write 1 byte to the specified seesaw register.
  * 
  *  @param      regHigh the module address register (ex. SEESAW_NEOPIXEL_BASE)

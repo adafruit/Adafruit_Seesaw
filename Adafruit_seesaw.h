@@ -82,6 +82,7 @@
         SEESAW_STATUS_HW_ID = 0x01,
         SEESAW_STATUS_VERSION = 0x02,
         SEESAW_STATUS_OPTIONS = 0x03,
+        SEESAW_STATUS_TEMP = 0x04,
         SEESAW_STATUS_SWRST = 0x7F,
     };
 
@@ -260,6 +261,8 @@ class Adafruit_seesaw : public Print {
         void disableKeypadInterrupt();
         uint8_t getKeypadCount();
         void readKeypad(keyEventRaw *buf, uint8_t count);
+
+        float getTemp();
 
         virtual size_t write(uint8_t);
         virtual size_t write(const char *str);
