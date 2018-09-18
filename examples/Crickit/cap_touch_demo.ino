@@ -33,5 +33,5 @@ void loop() {
       Serial.println(val);
     }
   }
-  delay(500);  // wait half a second between checks
+  delay(100);  // wait tiny bit between checks
 }
