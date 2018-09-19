@@ -54,17 +54,19 @@ Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus)
  *
  *  @return     true if we could connect to the seesaw, false otherwise
  ****************************************************************************************/
-bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow)
+bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset)
 {
 	_i2caddr = addr;
 	_flow = flow;
 
 	if(_flow != -1) ::pinMode(_flow, INPUT);
-	
+
 	_i2c_init();
 
-	SWReset();
-	delay(500);
+	if(reset){
+		SWReset();
+		delay(500);
+	}
 
 	uint8_t c = this->read8(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID);
 	if (c != SEESAW_HW_ID_CODE) {

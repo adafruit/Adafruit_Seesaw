@@ -25,10 +25,12 @@ Adafruit_NeoTrellis::Adafruit_NeoTrellis(uint8_t addr) : pixels(NEO_TRELLIS_NUM_
 bool Adafruit_NeoTrellis::begin(uint8_t addr, int8_t flow)
 {
     _addr = addr;
-    bool ret = Adafruit_seesaw::begin(addr, flow);
+    
+    bool ret = pixels.begin(addr, flow);
+    
+    ret = Adafruit_seesaw::begin(addr, flow, false);
     if(!ret) return ret;
 
-    ret = pixels.begin(addr, flow);
     enableKeypadInterrupt();
 
     return ret;
