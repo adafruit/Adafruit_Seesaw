@@ -1,6 +1,11 @@
 /* This example shows basic usage of the
 MultiTrellis object controlling an array of
 NeoTrellis boards
+
+As is this example shows use of two NeoTrellis boards
+connected together with the leftmost board having the
+default I2C address of 0x2E, and the rightmost board
+having the address of 0x2F (the A0 jumper is soldered)
 */
 
 #include "Adafruit_NeoTrellis.h"
@@ -14,6 +19,22 @@ Adafruit_NeoTrellis t_array[Y_DIM/4][X_DIM/4] = {
   { Adafruit_NeoTrellis(0x2E), Adafruit_NeoTrellis(0x2F) }
   
 };
+
+/*
+If you were using a 2x2 array of NeoTrellis boards, the above lines would be:
+
+#define Y_DIM 8 //number of rows of key
+#define X_DIM 8 //number of columns of keys
+
+//create a matrix of trellis panels
+Adafruit_NeoTrellis t_array[Y_DIM/4][X_DIM/4] = {
+  
+  { Adafruit_NeoTrellis(0x2E), Adafruit_NeoTrellis(0x2F) },
+
+  { Adafruit_NeoTrellis(LOWER_LEFT_I2C_ADDR), Adafruit_NeoTrellis(LOWER_RIGHT_I2C_ADDR) }
+  
+};
+*/
 
 //pass this matrix to the multitrellis object
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)t_array, Y_DIM/4, X_DIM/4);
