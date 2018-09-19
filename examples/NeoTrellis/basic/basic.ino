@@ -1,3 +1,8 @@
+/* This example shows basic usage of the NeoTrellis.
+  The buttons will light up various colors when pressed.
+  The interrupt pin is not used in this example.
+*/
+
 #include "Adafruit_NeoTrellis.h"
 
 Adafruit_NeoTrellis trellis;

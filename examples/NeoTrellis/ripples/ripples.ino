@@ -1,3 +1,10 @@
+/* This example shows a more complex LED pattern
+using a NeoTrellis board.
+Note that due to memory requirements this example
+will not work on boards with very limited memory such
+as the Adafruit Metro (with ATMega328p)
+*/
+
 #include "Adafruit_NeoTrellis.h"
 
 Adafruit_NeoTrellis trellis;

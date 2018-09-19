@@ -1,3 +1,8 @@
+/* This example shows basic usage of the
+MultiTrellis object controlling an array of
+NeoTrellis boards
+*/
+
 #include "Adafruit_NeoTrellis.h"
 
 #define Y_DIM 4 //number of rows of key
@@ -58,11 +63,12 @@ void setup() {
   
   for(int y=0; y<Y_DIM; y++){
     for(int x=0; x<X_DIM; x++){
+      //activate rising and falling edges on all keys
       trellis.activateKey(x, y, SEESAW_KEYPAD_EDGE_RISING, true);
       trellis.activateKey(x, y, SEESAW_KEYPAD_EDGE_FALLING, true);
       trellis.registerCallback(x, y, blink);
       trellis.setPixelColor(x, y, 0x000000); //addressed with x,y
-      trellis.show();
+      trellis.show(); //show all LEDs
       delay(50);
     }
   }
