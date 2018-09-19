@@ -217,7 +217,7 @@ class Adafruit_seesaw : public Print {
         Adafruit_seesaw(TwoWire *Wi=NULL);
         ~Adafruit_seesaw(void) {};
 		
-	bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow=-1, bool reset=false);
+	bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow=-1, bool reset=true);
         uint32_t getOptions();
         uint32_t getVersion();
 	void SWReset();
