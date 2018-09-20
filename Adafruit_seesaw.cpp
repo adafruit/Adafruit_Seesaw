@@ -51,6 +51,7 @@ Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus)
  * 
  *  @param      addr the I2C address of the seesaw
  *  @param      flow the flow control pin to use
+ *  @param		reset pass true to reset the seesaw on startup. Defaults to true.
  *
  *  @return     true if we could connect to the seesaw, false otherwise
  ****************************************************************************************/
@@ -679,6 +680,9 @@ void Adafruit_seesaw::write8(byte regHigh, byte regLow, byte value)
  * 
  *  @param      regHigh the module address register (ex. SEESAW_STATUS_BASE)
  *	@param		regLow the function address register (ex. SEESAW_STATUS_VERSION)
+ *	@param		delay a number of microseconds to delay before reading out the data.
+ *				Different delay values may be necessary to ensure the seesaw chip has
+ *				time to process the requested data. Defaults to 125.
  *
  *  @return     the value between 0 and 255 read from the passed register
  ****************************************************************************************/

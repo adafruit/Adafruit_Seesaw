@@ -75,6 +75,7 @@ void Adafruit_NeoTrellis::activateKey(uint8_t key, uint8_t edge, bool enable)
 /**************************************************************************/
 /*! 
     @brief  read all events currently stored in the seesaw fifo and call any callbacks.
+    @param  polling pass true if the interrupt pin is not being used, false if it is. Defaults to true.
 */
 /**************************************************************************/
 void Adafruit_NeoTrellis::read(bool polling)
