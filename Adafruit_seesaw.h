@@ -273,7 +273,7 @@ class Adafruit_seesaw : public Print {
 		int8_t _flow; /*!< The flow control pin to use */
 
 		void      write8(byte regHigh, byte regLow, byte value);
-		uint8_t   read8(byte regHigh, byte regLow);
+		uint8_t   read8(byte regHigh, byte regLow, uint16_t delay = 125);
 		
 		void read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay = 125);
 		void write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);

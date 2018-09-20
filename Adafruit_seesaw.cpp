@@ -627,7 +627,7 @@ void Adafruit_seesaw::disableKeypadInterrupt()
  ****************************************************************************************/
 uint8_t Adafruit_seesaw::getKeypadCount()
 {
-	return this->read8(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_COUNT);
+	return this->read8(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_COUNT, 500);
 }
 
 /**
@@ -682,10 +682,10 @@ void Adafruit_seesaw::write8(byte regHigh, byte regLow, byte value)
  *
  *  @return     the value between 0 and 255 read from the passed register
  ****************************************************************************************/
-uint8_t Adafruit_seesaw::read8(byte regHigh, byte regLow)
+uint8_t Adafruit_seesaw::read8(byte regHigh, byte regLow, uint16_t delay)
 {
 	uint8_t ret;
-	this->read(regHigh, regLow, &ret, 1);
+	this->read(regHigh, regLow, &ret, 1, delay);
 	
 	return ret;
 }

@@ -77,11 +77,12 @@ void Adafruit_NeoTrellis::activateKey(uint8_t key, uint8_t edge, bool enable)
     @brief  read all events currently stored in the seesaw fifo and call any callbacks.
 */
 /**************************************************************************/
-void Adafruit_NeoTrellis::read()
+void Adafruit_NeoTrellis::read(bool polling)
 {
     uint8_t count = getKeypadCount();
     delayMicroseconds(500);
     if(count > 0){
+        if(polling) count = count + 2;
         keyEventRaw e[count];
         readKeypad(e, count);
         for(int i=0; i<count; i++){
@@ -311,6 +312,7 @@ void Adafruit_MultiTrellis::read()
             uint8_t count = t->getKeypadCount();
             delayMicroseconds(500);
             if(count > 0){
+                count = count + 2;
                 keyEventRaw e[count];
                 t->readKeypad(e, count);
                 for(int i=0; i<count; i++){

@@ -42,7 +42,7 @@ public:
 
     void activateKey(uint8_t key, uint8_t edge, bool enable=true);
 
-    void read();
+    void read(bool polling = true);
 
     seesaw_NeoPixel pixels; ///< the onboard neopixel matrix
 

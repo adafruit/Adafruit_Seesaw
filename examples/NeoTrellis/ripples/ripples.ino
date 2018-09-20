@@ -173,7 +173,7 @@ void processRipples(){
 
 void loop() {
   if(!digitalRead(INT_PIN)){
-    trellis.read();
+    trellis.read(false);
   }
   processRipples();
   delay(20);

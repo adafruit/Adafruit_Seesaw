@@ -71,7 +71,7 @@ void setup() {
 
 void loop() {
   if(!digitalRead(INT_PIN)){
-    trellis.read();
+    trellis.read(false);
   }
   delay(2);
 }
