@@ -20,8 +20,12 @@ bool Adafruit_TFTShield18::begin(uint8_t addr, int8_t flow){
 
 /**************************************************************************/
 /*! 
-    @brief  set the value of the backlight
-    @param  value the backlight value to set
+    @brief  set the intensity of the backlight
+    @param  value to set the backlight to, 
+			0x0000 = 0% 	(TFTSHIELD_BACKLIGHT_OFF)
+			  to
+			0xFFFF = 100%	(TFTSHIELD_BACKLIGHT_ON)
+
 */
 /**************************************************************************/
 void Adafruit_TFTShield18::setBacklight(uint16_t value){
