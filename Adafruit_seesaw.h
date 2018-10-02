@@ -56,6 +56,7 @@
         SEESAW_NEOPIXEL_BASE = 0x0E,
         SEESAW_TOUCH_BASE = 0x0F,
         SEESAW_KEYPAD_BASE = 0x10,
+        SEESAW_ENCODER_BASE = 0x11,
     };
 
     /** GPIO module function addres registers
@@ -157,6 +158,15 @@
         SEESAW_KEYPAD_EDGE_LOW,
         SEESAW_KEYPAD_EDGE_FALLING,
         SEESAW_KEYPAD_EDGE_RISING,
+    };
+
+    enum
+    {
+        SEESAW_ENCODER_STATUS = 0x00,
+        SEESAW_ENCODER_INTENSET = 0x02,
+        SEESAW_ENCODER_INTENCLR = 0x03,
+        SEESAW_ENCODER_POSITION = 0x04,
+        SEESAW_ENCODER_DELTA = 0x05,
     };
 
 #define ADC_INPUT_0_PIN 2 ///< default ADC input pin 
@@ -263,6 +273,12 @@ class Adafruit_seesaw : public Print {
         void readKeypad(keyEventRaw *buf, uint8_t count);
 
         float getTemp();
+
+        int32_t getEncoderPosition();
+        int32_t getEncoderDelta();
+        void enableEncoderInterrupt();
+        void disableEncoderInterrupt();
+        void setEncoderPosition(int32_t pos);
 
         virtual size_t write(uint8_t);
         virtual size_t write(const char *str);

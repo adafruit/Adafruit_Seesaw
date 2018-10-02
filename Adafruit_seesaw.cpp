@@ -661,6 +661,63 @@ float Adafruit_seesaw::getTemp()
 
 /**
  *****************************************************************************************
+ *  @brief      Read the current position of the encoder
+ *  @return     The encoder position as a 32 bit signed integer.
+ ****************************************************************************************/
+int32_t Adafruit_seesaw::getEncoderPosition()
+{
+	uint8_t buf[4];
+	this->read(SEESAW_ENCODER_BASE, SEESAW_ENCODER_POSITION, buf, 4);
+	int32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
+
+	return ret;
+}
+
+/**
+ *****************************************************************************************
+ *  @brief      Set the current position of the encoder
+ *  @param     pos the position to set the encoder to.
+ ****************************************************************************************/
+void Adafruit_seesaw::setEncoderPosition(int32_t pos)
+{
+	uint8_t buf[] = { (uint8_t)(pos >> 24), (uint8_t)(pos >> 16), (uint8_t)(pos >> 8), (uint8_t)(pos & 0xFF) };
+	this->write(SEESAW_ENCODER_BASE, SEESAW_ENCODER_POSITION, buf, 4);
+}
+
+/**
+ *****************************************************************************************
+ *  @brief      Read the change in encoder position since it was last read.
+ *  @return     The encoder change as a 32 bit signed integer.
+ ****************************************************************************************/
+int32_t Adafruit_seesaw::getEncoderDelta()
+{
+	uint8_t buf[4];
+	this->read(SEESAW_ENCODER_BASE, SEESAW_ENCODER_DELTA, buf, 4);
+	int32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
+
+	return ret;
+}
+
+/**
+ *****************************************************************************************
+ *  @brief      Enable the interrupt to fire when the encoder changes position.
+ ****************************************************************************************/
+void Adafruit_seesaw::enableEncoderInterrupt()
+{
+	this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENSET, 0x01);	
+}
+
+/**
+ *****************************************************************************************
+ *  @brief      Disable the interrupt from firing when the encoder changes position.
+ ****************************************************************************************/
+void Adafruit_seesaw::disableEncoderInterrupt()
+{
+	this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENCLR, 0x01);	
+}
+
+/**
+ *****************************************************************************************
  *  @brief      Write 1 byte to the specified seesaw register.
  * 
  *  @param      regHigh the module address register (ex. SEESAW_NEOPIXEL_BASE)
