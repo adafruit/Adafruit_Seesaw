@@ -160,6 +160,8 @@
         SEESAW_KEYPAD_EDGE_RISING,
     };
 
+    /** encoder module edge definitions
+     */
     enum
     {
         SEESAW_ENCODER_STATUS = 0x00,
