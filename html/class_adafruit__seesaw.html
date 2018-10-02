@@ -197,6 +197,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aa2ce94f4e05f8032d61c88bea956cbee"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#aa2ce94f4e05f8032d61c88bea956cbee">getTemp</a> ()</td></tr>
 <tr class="memdesc:aa2ce94f4e05f8032d61c88bea956cbee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the temperature of the seesaw board in degrees Celsius. NOTE: not all seesaw firmwares have the temperature sensor enabled.  <a href="#aa2ce94f4e05f8032d61c88bea956cbee">More...</a><br /></td></tr>
 <tr class="separator:aa2ce94f4e05f8032d61c88bea956cbee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79bb662a47c49736440fe745d19b4958"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a79bb662a47c49736440fe745d19b4958">getEncoderPosition</a> ()</td></tr>
+<tr class="memdesc:a79bb662a47c49736440fe745d19b4958"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the current position of the encoder.  <a href="#a79bb662a47c49736440fe745d19b4958">More...</a><br /></td></tr>
+<tr class="separator:a79bb662a47c49736440fe745d19b4958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4db818e643fad4f52cec0a4d4e33bdb"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#ae4db818e643fad4f52cec0a4d4e33bdb">getEncoderDelta</a> ()</td></tr>
+<tr class="memdesc:ae4db818e643fad4f52cec0a4d4e33bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the change in encoder position since it was last read.  <a href="#ae4db818e643fad4f52cec0a4d4e33bdb">More...</a><br /></td></tr>
+<tr class="separator:ae4db818e643fad4f52cec0a4d4e33bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2690331dd4bbdfd9faf0f6485073f5d4"><td class="memItemLeft" align="right" valign="top"><a id="a2690331dd4bbdfd9faf0f6485073f5d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a2690331dd4bbdfd9faf0f6485073f5d4">enableEncoderInterrupt</a> ()</td></tr>
+<tr class="memdesc:a2690331dd4bbdfd9faf0f6485073f5d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the interrupt to fire when the encoder changes position. <br /></td></tr>
+<tr class="separator:a2690331dd4bbdfd9faf0f6485073f5d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95c9541cb3c9896e2bca5f43075a4dc7"><td class="memItemLeft" align="right" valign="top"><a id="a95c9541cb3c9896e2bca5f43075a4dc7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a95c9541cb3c9896e2bca5f43075a4dc7">disableEncoderInterrupt</a> ()</td></tr>
+<tr class="memdesc:a95c9541cb3c9896e2bca5f43075a4dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the interrupt from firing when the encoder changes position. <br /></td></tr>
+<tr class="separator:a95c9541cb3c9896e2bca5f43075a4dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04159318998a3e2147cf10d525a888e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a04159318998a3e2147cf10d525a888e0">setEncoderPosition</a> (int32_t pos)</td></tr>
+<tr class="memdesc:a04159318998a3e2147cf10d525a888e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current position of the encoder.  <a href="#a04159318998a3e2147cf10d525a888e0">More...</a><br /></td></tr>
+<tr class="separator:a04159318998a3e2147cf10d525a888e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76db275e030f038d6cf4f2cc71029d18"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a76db275e030f038d6cf4f2cc71029d18">write</a> (uint8_t)</td></tr>
 <tr class="memdesc:a76db275e030f038d6cf4f2cc71029d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">The print wrapper for the seesaw class. Calling this allows you to use ss.print() or ss.println() and write to the UART on SERCOM0 of the seesaw. Note that this functionality is only available when the UART (sercom) module is compiled into the seesaw firmware. On the default seesaw firmware on the SAMD09 breakout this functionality is not available.  <a href="#a76db275e030f038d6cf4f2cc71029d18">More...</a><br /></td></tr>
 <tr class="separator:a76db275e030f038d6cf4f2cc71029d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1288,6 +1305,72 @@ Protected Attributes</h2></td></tr>
 
 <p>Read the temperature of the seesaw board in degrees Celsius. NOTE: not all seesaw firmwares have the temperature sensor enabled. </p>
 <dl class="section return"><dt>Returns</dt><dd>Temperature in degrees Celsius as a floating point value. </dd></dl>
+
+</div>
+</div>
+<a id="a79bb662a47c49736440fe745d19b4958"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79bb662a47c49736440fe745d19b4958">&#9670;&nbsp;</a></span>getEncoderPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t Adafruit_seesaw::getEncoderPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read the current position of the encoder. </p>
+<dl class="section return"><dt>Returns</dt><dd>The encoder position as a 32 bit signed integer. </dd></dl>
+
+</div>
+</div>
+<a id="ae4db818e643fad4f52cec0a4d4e33bdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4db818e643fad4f52cec0a4d4e33bdb">&#9670;&nbsp;</a></span>getEncoderDelta()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t Adafruit_seesaw::getEncoderDelta </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read the change in encoder position since it was last read. </p>
+<dl class="section return"><dt>Returns</dt><dd>The encoder change as a 32 bit signed integer. </dd></dl>
+
+</div>
+</div>
+<a id="a04159318998a3e2147cf10d525a888e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04159318998a3e2147cf10d525a888e0">&#9670;&nbsp;</a></span>setEncoderPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Adafruit_seesaw::setEncoderPosition </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the current position of the encoder. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>the position to set the encoder to. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

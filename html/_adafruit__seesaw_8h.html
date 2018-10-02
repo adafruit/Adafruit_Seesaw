@@ -152,7 +152,9 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>SEESAW_EEPROM_BASE</b> = 0x0D, 
 <b>SEESAW_NEOPIXEL_BASE</b> = 0x0E, 
 <b>SEESAW_TOUCH_BASE</b> = 0x0F, 
-<b>SEESAW_KEYPAD_BASE</b> = 0x10
+<b>SEESAW_KEYPAD_BASE</b> = 0x10, 
+<br />
+&#160;&#160;<b>SEESAW_ENCODER_BASE</b> = 0x11
 <br />
  }</td></tr>
 <tr class="separator:a06fc87d81c62e9abb8790b6e5713c55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -240,6 +242,16 @@ Enumerations</h2></td></tr>
 <b>SEESAW_KEYPAD_EDGE_RISING</b>
  }</td></tr>
 <tr class="separator:ab04a0655cd1e3bcac5e8f48c18df1a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a385c44f6fb256e5716a2302a5b940388"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<b>SEESAW_ENCODER_STATUS</b> = 0x00, 
+<b>SEESAW_ENCODER_INTENSET</b> = 0x02, 
+<b>SEESAW_ENCODER_INTENCLR</b> = 0x03, 
+<b>SEESAW_ENCODER_POSITION</b> = 0x04, 
+<br />
+&#160;&#160;<b>SEESAW_ENCODER_DELTA</b> = 0x05
+<br />
+ }</td></tr>
+<tr class="separator:a385c44f6fb256e5716a2302a5b940388"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is part of Adafruit's seesaw driver for the Arduino platform. It is designed specifically to work with the Adafruit products that use seesaw technology.</p>
@@ -395,6 +407,21 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>keypad module edge definitions </p>
+
+</div>
+</div>
+<a id="a385c44f6fb256e5716a2302a5b940388"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a385c44f6fb256e5716a2302a5b940388">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>encoder module edge definitions </p>
 
 </div>
 </div>

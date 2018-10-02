@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bit',['bit',['../unionkey_event_raw.html#a6e39b440bf05e888826ef18d7823b228',1,'keyEventRaw::bit()'],['../unionkey_event.html#abf3ea383e10a47c912f97a1ab513ccb8',1,'keyEvent::bit()'],['../unionkey_state.html#aa3036cc99333f09360fd2d908e83c5ef',1,'keyState::bit()'],['../union_adafruit__seesaw_1_1sercom__inten.html#a548331f1248f3d3ef188c01e6d7e4ca1',1,'Adafruit_seesaw::sercom_inten::bit()']]]
+  ['bit',['bit',['../unionkey_event_raw.html#a07e1664f4e3c7a36bd28f23eac3399a7',1,'keyEventRaw::bit()'],['../unionkey_event.html#a1b446da064e1de0ea83780ddd85f1994',1,'keyEvent::bit()'],['../unionkey_state.html#af92a65915255f767ecf160425180e784',1,'keyState::bit()'],['../union_adafruit__seesaw_1_1sercom__inten.html#a554d6501fb08d2ebeb72be46dc72a169',1,'Adafruit_seesaw::sercom_inten::bit()']]]
 ];
