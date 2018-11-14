@@ -17,7 +17,7 @@ void setup() {
 }
 
 void loop() {
-  uint16_t tempC = ss.getTemp();
+  float tempC = ss.getTemp();
   uint16_t capread = ss.touchRead(0);
 
   Serial.print("Temperature: "); Serial.print(tempC); Serial.println("*C");
