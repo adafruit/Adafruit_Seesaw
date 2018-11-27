@@ -48,7 +48,7 @@ public:
 
 		value = constrain(value, -1.0, 1.0);
 		_throttle = value;
-		uint16_t absolute = abs(value) * 65535;
+		uint16_t absolute = fabs(value) * 65535;
 
 		if(value > 0){
 			_ss->analogWrite(_pina, 0);

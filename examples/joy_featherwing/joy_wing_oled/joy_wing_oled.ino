@@ -16,7 +16,7 @@ uint32_t button_mask = (1 << BUTTON_RIGHT) | (1 << BUTTON_DOWN) |
   #define IRQ_PIN   2
 #elif defined(ESP32)
   #define IRQ_PIN   14
-#elif defined(NRF52)
+#elif defined(ARDUINO_NRF52832_FEATHER)
   #define IRQ_PIN   27
 #elif defined(TEENSYDUINO)
   #define IRQ_PIN   8
@@ -29,10 +29,9 @@ uint32_t button_mask = (1 << BUTTON_RIGHT) | (1 << BUTTON_DOWN) |
 // For the breakout, you can use any 2 or 3 pins
 // These pins will also work for the 1.8" TFT shield
 #define TFT_CS     6
+#define TFT_DC     10
 #define TFT_RST    9  // you can also connect this to the Arduino reset
                       // in which case, set this #define pin to -1!
-
-#define TFT_DC     10
 
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS,  TFT_DC, TFT_RST);
 
@@ -53,7 +52,7 @@ void setup()   {
   ss.setGPIOInterrupts(button_mask, 1);
   pinMode(IRQ_PIN, INPUT);
 
-  Serial.println(F("OLED TIME"));
+  Serial.println(F("TFT TIME"));
 
   tft.initR(INITR_MINI160x80);   // initialize a ST7735S chip, mini display
   Serial.println("Initialized");
