@@ -284,7 +284,17 @@ uint16_t seesaw_NeoPixel::numPixels(void) const {
 }
 
 void seesaw_NeoPixel::clear() {
+  // Clear local pixel buffer
   memset(pixels, 0, numBytes);
+
+  // Now clear the pixels on the seesaw
+  uint8_t writeBuf[32];
+  memset(writeBuf, 0, 32);
+  for(uint8_t offset = 0; offset < numBytes; offset += 32-4) {
+    writeBuf[0] = (offset >> 8);
+    writeBuf[1] = offset;
+    this->write(SEESAW_NEOPIXEL_BASE, SEESAW_NEOPIXEL_BUF, writeBuf, 32);
+  }
 }
 
 void seesaw_NeoPixel::setBrightness(uint8_t b) {
