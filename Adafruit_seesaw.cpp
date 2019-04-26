@@ -27,6 +27,8 @@
 
 #include "Adafruit_seesaw.h"
 
+//#define SEESAW_I2C_DEBUG
+
 /**
  *****************************************************************************************
  *  @brief      Create a seesaw object on a given I2C bus
@@ -760,6 +762,9 @@ uint8_t Adafruit_seesaw::read8(byte regHigh, byte regLow, uint16_t delay)
  ****************************************************************************************/
 void Adafruit_seesaw::_i2c_init()
 {
+#ifdef SEESAW_I2C_DEBUG
+  Serial.println("I2C Begin");
+#endif
   _i2cbus->begin();
 }
 
@@ -776,31 +781,45 @@ void Adafruit_seesaw::_i2c_init()
  *
  *  @return     none
  ****************************************************************************************/
-void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay)
+void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, 
+			   uint8_t *buf, uint8_t num, uint16_t delay)
 {
-	uint8_t pos = 0;
-	
-	//on arduino we need to read in 32 byte chunks
-	while(pos < num){
-		
-		uint8_t read_now = min(32, num - pos);
-		_i2cbus->beginTransmission((uint8_t)_i2caddr);
-		_i2cbus->write((uint8_t)regHigh);
-		_i2cbus->write((uint8_t)regLow);
-		if(_flow != -1) while(!::digitalRead(_flow));
-		_i2cbus->endTransmission();
+  uint8_t pos = 0;
+  
+  //on arduino we need to read in 32 byte chunks
+  while(pos < num){
+    uint8_t read_now = min(32, num - pos);
+    _i2cbus->beginTransmission((uint8_t)_i2caddr);
+    _i2cbus->write((uint8_t)regHigh);
+    _i2cbus->write((uint8_t)regLow);
+#ifdef SEESAW_I2C_DEBUG
+    Serial.print("I2C read $"); 
+    Serial.print((uint16_t)regHigh << 8 | regLow, HEX);
+    Serial.print(" : ");
+#endif		
 
-		//TODO: tune this
-		delayMicroseconds(delay);
-
-		if(_flow != -1) while(!::digitalRead(_flow));
-		_i2cbus->requestFrom((uint8_t)_i2caddr, read_now);
-		
-		for(int i=0; i<read_now; i++){
-			buf[pos] = _i2cbus->read();
-			pos++;
-		}
-	}
+    if(_flow != -1) while(!::digitalRead(_flow));
+    _i2cbus->endTransmission();
+    
+    //TODO: tune this
+    delayMicroseconds(delay);
+    
+    if(_flow != -1) while(!::digitalRead(_flow));
+    _i2cbus->requestFrom((uint8_t)_i2caddr, read_now);
+    
+    for(int i=0; i<read_now; i++){
+      buf[pos] = _i2cbus->read();
+#ifdef SEESAW_I2C_DEBUG
+      Serial.print("0x"); 
+      Serial.print(buf[pos], HEX);
+      Serial.print(",");
+#endif
+      pos++;
+    }
+#ifdef SEESAW_I2C_DEBUG
+    Serial.println();
+#endif
+  }
 }
 
 /**
@@ -808,20 +827,31 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_
  *  @brief      Write a specified number of bytes to the seesaw from the passed buffer.
  * 
  *  @param      regHigh the module address register (ex. SEESAW_GPIO_BASE)
- *	@param		regLow the function address register (ex. SEESAW_GPIO_BULK_SET)
- *	@param		buf the buffer the the bytes from
- *	@param		num the number of bytes to write.
+ *  @param	regLow the function address register (ex. SEESAW_GPIO_BULK_SET)
+ *  @param	buf the buffer the the bytes from
+ *  @param	num the number of bytes to write.
  *
  *  @return     none
  ****************************************************************************************/
 void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num)
 { 
-	_i2cbus->beginTransmission((uint8_t)_i2caddr);
-	_i2cbus->write((uint8_t)regHigh);
-	_i2cbus->write((uint8_t)regLow);
-	_i2cbus->write((uint8_t *)buf, num);
-	if(_flow != -1) while(!::digitalRead(_flow));
-	_i2cbus->endTransmission();
+  _i2cbus->beginTransmission((uint8_t)_i2caddr);
+  _i2cbus->write((uint8_t)regHigh);
+  _i2cbus->write((uint8_t)regLow);
+  _i2cbus->write((uint8_t *)buf, num);
+#ifdef SEESAW_I2C_DEBUG
+  Serial.print("I2C write $"); 
+  Serial.print((uint16_t)regHigh << 8 | regLow, HEX);
+  Serial.print(" : ");
+  for (int i=0; i<num; i++) {
+      Serial.print("0x"); Serial.print(buf[i], HEX);
+      Serial.print(",");
+  }
+  Serial.println();
+#endif
+  
+  if(_flow != -1) while(!::digitalRead(_flow));
+  _i2cbus->endTransmission();
 }
 
 /**
