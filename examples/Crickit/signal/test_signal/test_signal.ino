@@ -16,9 +16,9 @@ void setup() {
   }
   else Serial.println("Crickit started");
 
-  //Two buttons are pullups, connect to ground to activate
-  crickit.pinMode(BUTTON_1, INPUT_PULLUP);
-  crickit.pinMode(BUTTON_2, INPUT_PULLUP);
+  // Two buttons are pulled up, connect to ground to activate
+  crickit.pinMode(BUTTON_1, INPUT);  // INPUT_PULLUP not supported
+  crickit.pinMode(BUTTON_2, INPUT);  //   use external pullup resistors
 
   // Two LEDs are outputs, on by default
   crickit.pinMode(LED_1, OUTPUT);
