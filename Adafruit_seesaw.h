@@ -95,7 +95,7 @@
         SEESAW_TIMER_PWM = 0x01,
         SEESAW_TIMER_FREQ = 0x02,
     };
-	
+
     /** ADC module function addres registers
      */
     enum
@@ -152,7 +152,7 @@
 
     /** keypad module edge definitions
      */
-    enum 
+    enum
     {
         SEESAW_KEYPAD_EDGE_HIGH = 0,
         SEESAW_KEYPAD_EDGE_LOW,
@@ -171,7 +171,7 @@
         SEESAW_ENCODER_DELTA = 0x05,
     };
 
-#define ADC_INPUT_0_PIN 2 ///< default ADC input pin 
+#define ADC_INPUT_0_PIN 2 ///< default ADC input pin
 #define ADC_INPUT_1_PIN 3 ///< default ADC input pin
 #define ADC_INPUT_2_PIN 4 ///< default ADC input pin
 #define ADC_INPUT_3_PIN 5 ///< default ADC input pin
@@ -219,7 +219,7 @@ union keyState {
 };
 
 /**************************************************************************/
-/*! 
+/*!
     @brief  Class that stores state and functions for interacting with seesaw helper IC
 */
 /**************************************************************************/
@@ -228,7 +228,7 @@ class Adafruit_seesaw : public Print {
 	// constructors
         Adafruit_seesaw(TwoWire *Wi=NULL);
         ~Adafruit_seesaw(void) {};
-		
+
 	bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow=-1, bool reset=true);
         uint32_t getOptions();
         uint32_t getVersion();
@@ -250,7 +250,7 @@ class Adafruit_seesaw : public Print {
 
         virtual uint16_t analogRead(uint8_t pin);
 
-        uint16_t touchRead(uint8_t pin);
+        uint16_t touchRead(uint8_t pin, uint16_t delay_us = 1000);
 
         virtual void setPWMFreq(uint8_t pin, uint16_t freq);
 
@@ -292,7 +292,7 @@ class Adafruit_seesaw : public Print {
 
 		void      write8(byte regHigh, byte regLow, byte value);
 		uint8_t   read8(byte regHigh, byte regLow, uint16_t delay = 125);
-		
+
 		void read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay = 125);
 		void write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
 		void writeEmpty(uint8_t regHigh, uint8_t regLow);

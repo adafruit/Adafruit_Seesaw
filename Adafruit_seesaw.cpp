@@ -43,14 +43,14 @@ Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus)
     _i2cbus = i2c_bus;
   }
 }
-	
+
 
 /**
  *****************************************************************************************
  *  @brief      Start the seesaw
  *
  *				This should be called when your sketch is connecting to the seesaw
- * 
+ *
  *  @param      addr the I2C address of the seesaw
  *  @param      flow the flow control pin to use
  *  @param		reset pass true to reset the seesaw on startup. Defaults to true.
@@ -83,7 +83,7 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset)
  *  @brief      perform a software reset. This resets all seesaw registers to their default values.
  *
  *  			This is called automatically from Adafruit_seesaw.begin()
- * 
+ *
  *
  *  @return     none
  ****************************************************************************************/
@@ -95,10 +95,10 @@ void Adafruit_seesaw::SWReset()
 /**
  *****************************************************************************************
  *  @brief      Returns the available options compiled into the seesaw firmware.
- * 
+ *
  *
  *  @return     the available options compiled into the seesaw firmware. If the option is included, the
- *				corresponding bit is set. For example, 
+ *				corresponding bit is set. For example,
  *				if the ADC module is compiled in then (ss.getOptions() & (1UL << SEESAW_ADC_BASE)) > 0
  ****************************************************************************************/
 uint32_t Adafruit_seesaw::getOptions()
@@ -126,7 +126,7 @@ uint32_t Adafruit_seesaw::getVersion()
 /**
  *****************************************************************************************
  *  @brief      Set the mode of a GPIO pin.
- * 
+ *
  *  @param      pin the pin number. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *  @param		mode the mode to set the pin. One of INPUT, OUTPUT, or INPUT_PULLUP.
  *
@@ -143,7 +143,7 @@ void Adafruit_seesaw::pinMode(uint8_t pin, uint8_t mode)
 /**
  *****************************************************************************************
  *  @brief      Set the output of a GPIO pin
- * 
+ *
  *  @param      pin the pin number. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *	@param		value the value to write to the GPIO pin. This should be HIGH or LOW.
  *
@@ -154,14 +154,14 @@ void Adafruit_seesaw::digitalWrite(uint8_t pin, uint8_t value)
 	if(pin >= 32)
 		digitalWriteBulk(0, 1ul << (pin-32), value);
 	else
-		digitalWriteBulk(1ul << pin, value);	
+		digitalWriteBulk(1ul << pin, value);
 }
 
 
 /**
  *****************************************************************************************
  *  @brief      Read the current status of a GPIO pin
- * 
+ *
  *  @param      pin the pin number. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *
  *  @return     the status of the pin. HIGH or LOW (1 or 0).
@@ -178,7 +178,7 @@ bool Adafruit_seesaw::digitalRead(uint8_t pin)
 /**
  *****************************************************************************************
  *  @brief      read the status of multiple pins on port A.
- * 
+ *
  *  @param      pins a bitmask of the pins to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				For example, passing 0b0110 will return the values of pins 2 and 3.
  *
@@ -195,7 +195,7 @@ uint32_t Adafruit_seesaw::digitalReadBulk(uint32_t pins)
 /**
  *****************************************************************************************
  *  @brief      read the status of multiple pins on port B.
- * 
+ *
  *  @param      pins a bitmask of the pins to write.
  *
  *  @return     the status of the passed pins. If 0b0110 was passed and pin 2 is high and pin 3 is low, 0b0010 (decimal number 2) will be returned.
@@ -211,7 +211,7 @@ uint32_t Adafruit_seesaw::digitalReadBulkB(uint32_t pins)
 /**
  *****************************************************************************************
  *  @brief      Enable or disable GPIO interrupts on the passed pins
- * 
+ *
  *  @param      pins a bitmask of the pins to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				For example, passing 0b0110 will enable or disable interrups on pins 2 and 3.
  *	@param		enabled pass true to enable the interrupts on the passed pins, false to disable the interrupts on the passed pins.
@@ -230,7 +230,7 @@ void Adafruit_seesaw::setGPIOInterrupts(uint32_t pins, bool enabled)
 /**
  *****************************************************************************************
  *  @brief      read the analog value on an ADC-enabled pin.
- * 
+ *
  *  @param      pin the number of the pin to read. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				On the default seesaw firmware on the SAMD09 breakout, pins 2, 3, and 4 are ADC-enabled.
  *
@@ -259,19 +259,23 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin)
 /**
  *****************************************************************************************
  *  @brief      read the analog value on an capacitive touch-enabled pin.
- * 
+ *
  *  @param      pin the number of the pin to read.
+ *  @param      delay_us an optional delay in between setting the read register
+ *              and reading out the data.
+ *              This is required for some seesaw functions (ex. reading ADC data).
+ *              Default is 1000.
  *
  *  @return     the analog value. This is an integer between 0 and 1023
  ****************************************************************************************/
-uint16_t Adafruit_seesaw::touchRead(uint8_t pin)
+uint16_t Adafruit_seesaw::touchRead(uint8_t pin, uint16_t delay_us)
 {
 	uint8_t buf[2];
 	uint8_t p = pin;
 	uint16_t ret = 65535;
 	do {
 	  delay(1);
-	  this->read(SEESAW_TOUCH_BASE, SEESAW_TOUCH_CHANNEL_OFFSET + p, buf, 2, 1000);
+	  this->read(SEESAW_TOUCH_BASE, SEESAW_TOUCH_CHANNEL_OFFSET + p, buf, 2, delay_us);
 	  ret = ((uint16_t)buf[0] << 8) | buf[1];
 	} while (ret == 65535);
 	return ret;
@@ -280,7 +284,7 @@ uint16_t Adafruit_seesaw::touchRead(uint8_t pin)
 /**
  *****************************************************************************************
  *  @brief      set the mode of multiple GPIO pins at once.
- * 
+ *
  *  @param      pins a bitmask of the pins to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				For example, passing 0b0110 will set the mode of pins 2 and 3.
  *	@param		mode the mode to set the pins to. One of INPUT, OUTPUT, or INPUT_PULLUP.
@@ -308,13 +312,13 @@ void Adafruit_seesaw::pinModeBulk(uint32_t pins, uint8_t mode)
 			this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 4);
 			break;
 	}
-		
+
 }
 
 /**
  *****************************************************************************************
  *  @brief      set the mode of multiple GPIO pins at once. This supports both ports A and B.
- * 
+ *
  *  @param      pinsa a bitmask of the pins to write on port A. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				For example, passing 0b0110 will set the mode of pins 2 and 3.
  *  @param      pinsb a bitmask of the pins to write on port B.
@@ -349,7 +353,7 @@ void Adafruit_seesaw::pinModeBulk(uint32_t pinsa, uint32_t pinsb, uint8_t mode)
 /**
  *****************************************************************************************
  *  @brief      write a value to multiple GPIO pins at once.
- * 
+ *
  *  @param      pins a bitmask of the pins to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				For example, passing 0b0110 will write the passed value to pins 2 and 3.
  *	@param		value pass HIGH to set the output on the passed pins to HIGH, low to set the output on the passed pins to LOW.
@@ -368,7 +372,7 @@ void Adafruit_seesaw::digitalWriteBulk(uint32_t pins, uint8_t value)
 /**
  *****************************************************************************************
  *  @brief      write a value to multiple GPIO pins at once. This supports both ports A and B
- * 
+ *
  *  @param      pinsa a bitmask of the pins to write on port A. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				For example, passing 0b0110 will write the passed value to pins 2 and 3.
  *  @param      pinsb a bitmask of the pins to write on port B.
@@ -389,7 +393,7 @@ void Adafruit_seesaw::digitalWriteBulk(uint32_t pinsa, uint32_t pinsb, uint8_t v
 /**
  *****************************************************************************************
  *  @brief      write a PWM value to a PWM-enabled pin
- * 
+ *
  *  @param      pin the number of the pin to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				on the default seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled.
  *	@param		value the value to write to the pin
@@ -413,7 +417,7 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width)
 			uint8_t cmd[] = {(uint8_t)p, (uint8_t)(value >> 8), (uint8_t)value};
 			this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 3);
 		}
-		else 
+		else
 		{
 			uint16_t mappedVal = map(value, 0, 255, 0, 65535);
 			uint8_t cmd[] = {(uint8_t)p, (uint8_t)(mappedVal >> 8), (uint8_t)mappedVal};
@@ -429,7 +433,7 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width)
  *				Also note that PWM pins 4 and 5 share a timer, and PWM pins 6 and 7 share a timer.
  *				Changing the frequency for one pin will change the frequency for the other pin that
  *				is on the timer.
- * 
+ *
  *  @param      pin the number of the pin to change frequency of. On the SAMD09 breakout, this corresponds to the number on the silkscreen.
  *				on the default seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled.
  *	@param		freq the frequency to set.
@@ -460,8 +464,8 @@ void Adafruit_seesaw::setPWMFreq(uint8_t pin, uint16_t freq)
  *				If both of these things are true, the interrupt pin on the seesaw will fire when
  *				there is data to be read from the passed sercom. On the default seesaw firmeare
  *				on the SAMD09 breakout, no sercoms are enabled.
- * 
- *  @param      sercom the sercom to enable the interrupt on. 
+ *
+ *  @param      sercom the sercom to enable the interrupt on.
  *
  *  @return     none
  ****************************************************************************************/
@@ -474,8 +478,8 @@ void Adafruit_seesaw::enableSercomDataRdyInterrupt(uint8_t sercom)
 /**
  *****************************************************************************************
  *  @brief      Disable the data ready interrupt on the passed sercom.
- * 
- *  @param      sercom the sercom to disable the interrupt on. 
+ *
+ *  @param      sercom the sercom to disable the interrupt on.
  *
  *  @return     none
  ****************************************************************************************/
@@ -489,7 +493,7 @@ void Adafruit_seesaw::disableSercomDataRdyInterrupt(uint8_t sercom)
  *****************************************************************************************
  *  @brief      Reads a character from the passed sercom if one is available. Note that on
  *				the default seesaw firmware on the SAMD09 breakout no sercoms are enabled.
- * 
+ *
  *  @param      sercom the sercom to read data from.
  *
  *  @return     a character read from the sercom.
@@ -503,7 +507,7 @@ char Adafruit_seesaw::readSercomData(uint8_t sercom)
  *****************************************************************************************
  *  @brief      Set the seesaw I2C address. This will automatically call Adafruit_seesaw.begin()
  *				with the new address.
- * 
+ *
  *  @param      addr the new address for the seesaw. This must be a valid 7 bit I2C address.
  *
  *  @return     none
@@ -531,7 +535,7 @@ uint8_t Adafruit_seesaw::getI2CAddr()
 /**
  *****************************************************************************************
  *  @brief      Write a 1 byte to an EEPROM address
- * 
+ *
  *  @param      addr the address to write to. On the default seesaw firmware on the SAMD09
  *				breakout this is between 0 and 63.
  *	@param		val to write between 0 and 255
@@ -546,7 +550,7 @@ void Adafruit_seesaw::EEPROMWrite8(uint8_t addr, uint8_t val)
 /**
  *****************************************************************************************
  *  @brief      write a string of bytes to EEPROM starting at the passed address
- * 
+ *
  *  @param      addr the starting address to write the first byte. This will be automatically
  *				incremented with each byte written.
  *	@param		buf the buffer of bytes to be written.
@@ -563,7 +567,7 @@ void Adafruit_seesaw::EEPROMWrite(uint8_t addr, uint8_t *buf, uint8_t size)
 /**
  *****************************************************************************************
  *  @brief      Read 1 byte from the specified EEPROM address.
- * 
+ *
  *  @param      addr the address to read from. One the default seesaw firmware on the SAMD09
  *				breakout this is between 0 and 63.
  *
@@ -577,7 +581,7 @@ uint8_t Adafruit_seesaw::EEPROMRead8(uint8_t addr)
 /**
  *****************************************************************************************
  *  @brief      Set the baud rate on SERCOM0.
- * 
+ *
  *  @param      baud the baud rate to set. This is an integer value. Baud rates up to 115200 are supported.
  *
  *  @return     none
@@ -591,7 +595,7 @@ void Adafruit_seesaw::UARTSetBaud(uint32_t baud)
 /**
  *****************************************************************************************
  *  @brief      activate or deactivate a key and edge on the keypad module
- * 
+ *
  *  @param      key the key number to activate
  *  @param		edge the edge to trigger on
  *  @param		enable passing true will enable the passed event, passing false will disable it.
@@ -638,7 +642,7 @@ uint8_t Adafruit_seesaw::getKeypadCount()
 /**
  *****************************************************************************************
  *  @brief      Read all keyEvents into the passed buffer
- * 
+ *
  *  @param      buf pointer to where the keyEvents should be stored
  *  @param		count the number of events to read
  *
@@ -708,7 +712,7 @@ int32_t Adafruit_seesaw::getEncoderDelta()
  ****************************************************************************************/
 void Adafruit_seesaw::enableEncoderInterrupt()
 {
-	this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENSET, 0x01);	
+	this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENSET, 0x01);
 }
 
 /**
@@ -717,13 +721,13 @@ void Adafruit_seesaw::enableEncoderInterrupt()
  ****************************************************************************************/
 void Adafruit_seesaw::disableEncoderInterrupt()
 {
-	this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENCLR, 0x01);	
+	this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENCLR, 0x01);
 }
 
 /**
  *****************************************************************************************
  *  @brief      Write 1 byte to the specified seesaw register.
- * 
+ *
  *  @param      regHigh the module address register (ex. SEESAW_NEOPIXEL_BASE)
  *	@param		regLow the function address register (ex. SEESAW_NEOPIXEL_PIN)
  *	@param		value the value between 0 and 255 to write
@@ -738,7 +742,7 @@ void Adafruit_seesaw::write8(byte regHigh, byte regLow, byte value)
 /**
  *****************************************************************************************
  *  @brief      read 1 byte from the specified seesaw register.
- * 
+ *
  *  @param      regHigh the module address register (ex. SEESAW_STATUS_BASE)
  *	@param		regLow the function address register (ex. SEESAW_STATUS_VERSION)
  *	@param		delay a number of microseconds to delay before reading out the data.
@@ -751,14 +755,14 @@ uint8_t Adafruit_seesaw::read8(byte regHigh, byte regLow, uint16_t delay)
 {
 	uint8_t ret;
 	this->read(regHigh, regLow, &ret, 1, delay);
-	
+
 	return ret;
 }
 
 /**
  *****************************************************************************************
  *  @brief      Initialize I2C. On arduino this just calls i2c->begin()
- * 
+ *
  *
  *  @return     none
  ****************************************************************************************/
@@ -773,7 +777,7 @@ void Adafruit_seesaw::_i2c_init()
 /**
  *****************************************************************************************
  *  @brief      Read a specified number of bytes into a buffer from the seesaw.
- * 
+ *
  *  @param      regHigh the module address register (ex. SEESAW_STATUS_BASE)
  *	@param		regLow the function address register (ex. SEESAW_STATUS_VERSION)
  *	@param		buf the buffer to read the bytes into
@@ -783,11 +787,11 @@ void Adafruit_seesaw::_i2c_init()
  *
  *  @return     none
  ****************************************************************************************/
-void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, 
+void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow,
 			   uint8_t *buf, uint8_t num, uint16_t delay)
 {
   uint8_t pos = 0;
-  
+
   //on arduino we need to read in 32 byte chunks
   while(pos < num){
     uint8_t read_now = min(32, num - pos);
@@ -795,24 +799,24 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow,
     _i2cbus->write((uint8_t)regHigh);
     _i2cbus->write((uint8_t)regLow);
 #ifdef SEESAW_I2C_DEBUG
-    Serial.print("I2C read $"); 
+    Serial.print("I2C read $");
     Serial.print((uint16_t)regHigh << 8 | regLow, HEX);
     Serial.print(" : ");
-#endif		
+#endif
 
     if(_flow != -1) while(!::digitalRead(_flow));
     _i2cbus->endTransmission();
-    
+
     //TODO: tune this
     delayMicroseconds(delay);
-    
+
     if(_flow != -1) while(!::digitalRead(_flow));
     _i2cbus->requestFrom((uint8_t)_i2caddr, read_now);
-    
+
     for(int i=0; i<read_now; i++){
       buf[pos] = _i2cbus->read();
 #ifdef SEESAW_I2C_DEBUG
-      Serial.print("0x"); 
+      Serial.print("0x");
       Serial.print(buf[pos], HEX);
       Serial.print(",");
 #endif
@@ -827,7 +831,7 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow,
 /**
  *****************************************************************************************
  *  @brief      Write a specified number of bytes to the seesaw from the passed buffer.
- * 
+ *
  *  @param      regHigh the module address register (ex. SEESAW_GPIO_BASE)
  *  @param	regLow the function address register (ex. SEESAW_GPIO_BULK_SET)
  *  @param	buf the buffer the the bytes from
@@ -836,13 +840,13 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow,
  *  @return     none
  ****************************************************************************************/
 void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num)
-{ 
+{
   _i2cbus->beginTransmission((uint8_t)_i2caddr);
   _i2cbus->write((uint8_t)regHigh);
   _i2cbus->write((uint8_t)regLow);
   _i2cbus->write((uint8_t *)buf, num);
 #ifdef SEESAW_I2C_DEBUG
-  Serial.print("I2C write $"); 
+  Serial.print("I2C write $");
   Serial.print((uint16_t)regHigh << 8 | regLow, HEX);
   Serial.print(" : ");
   for (int i=0; i<num; i++) {
@@ -851,7 +855,7 @@ void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8
   }
   Serial.println();
 #endif
-  
+
   if(_flow != -1) while(!::digitalRead(_flow));
   _i2cbus->endTransmission();
 }
@@ -863,7 +867,7 @@ void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8
  *				Note that this functionality is only available when the UART (sercom) module
  *				is compiled into the seesaw firmware. On the default seesaw firmware on the
  *				SAMD09 breakout this functionality is not available.
- * 
+ *
  *  @param      character the character to write.
  *
  *  @return     none
@@ -877,13 +881,13 @@ size_t Adafruit_seesaw::write(uint8_t character) {
 
 /**
  *****************************************************************************************
- *  @brief      The print wrapper for the seesaw class allowing the user to print a string. 
+ *  @brief      The print wrapper for the seesaw class allowing the user to print a string.
  *				Calling this allows you to use
  *				ss.print() or ss.println() and write to the UART on SERCOM0 of the seesaw.
  *				Note that this functionality is only available when the UART (sercom) module
  *				is compiled into the seesaw firmware. On the default seesaw firmware on the
  *				SAMD09 breakout this functionality is not available.
- * 
+ *
  *  @param      str the string to write
  *
  *  @return     none
@@ -903,7 +907,7 @@ size_t Adafruit_seesaw::write(const char *str) {
 /**
  *****************************************************************************************
  *  @brief      Write only the module base address register and the function address register.
- * 
+ *
  *  @param      regHigh the module address register (ex. SEESAW_STATUS_BASE)
  *	@param		regLow the function address register (ex. SEESAW_STATUS_SWRST)
  *
