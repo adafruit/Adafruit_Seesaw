@@ -48,8 +48,8 @@ Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus) {
  *****************************************************************************************
  *  @brief      Start the seesaw
  *
- *				This should be called when your sketch is connecting
- *to the seesaw
+ *				This should be called when your sketch is
+ *connecting to the seesaw
  *
  *  @param      addr the I2C address of the seesaw
  *  @param      flow the flow control pin to use
@@ -463,9 +463,9 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width) {
  *****************************************************************************************
  *  @brief      set the PWM frequency of a PWM-enabled pin. Note that on SAMD09,
  *SAMD11 boards the frequency will be mapped to closest match fixed frequencies.
- *				Also note that PWM pins 4 and 5 share a timer, and PWM
- *pins 6 and 7 share a timer. Changing the frequency for one pin will change the
- *frequency for the other pin that is on the timer.
+ *				Also note that PWM pins 4 and 5 share a timer, and
+ *PWM pins 6 and 7 share a timer. Changing the frequency for one pin will change
+ *the frequency for the other pin that is on the timer.
  *
  *  @param      pin the number of the pin to change frequency of. On the SAMD09
  *breakout, this corresponds to the number on the silkscreen. on the default
@@ -637,8 +637,8 @@ void Adafruit_seesaw::UARTSetBaud(uint32_t baud) {
  *
  *  @param      key the key number to activate
  *  @param		edge the edge to trigger on
- *  @param		enable passing true will enable the passed event, passing
- *false will disable it.
+ *  @param		enable passing true will enable the passed event,
+ *passing false will disable it.
  *
  *  @return     none
  ****************************************************************************************/
