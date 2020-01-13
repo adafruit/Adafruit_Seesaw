@@ -459,21 +459,21 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width) {
   }
 }
 
-/**
- *****************************************************************************************
+/****************************************************************************
  *  @brief      set the PWM frequency of a PWM-enabled pin. Note that on SAMD09,
- *SAMD11 boards the frequency will be mapped to closest match fixed frequencies.
- *				Also note that PWM pins 4 and 5 share a timer, and
- *PWM pins 6 and 7 share a timer. Changing the frequency for one pin will change
- *the frequency for the other pin that is on the timer.
+ *              SAMD11 boards the frequency will be mapped to closest match
+ *		fixed frequencies. Also note that PWM pins 4 and 5 share a
+ *timer, and PWM pins 6 and 7 share a timer. Changing the frequency for one pin
+ *will change the frequency for the other pin that is on the timer.
  *
  *  @param      pin the number of the pin to change frequency of. On the SAMD09
- *breakout, this corresponds to the number on the silkscreen. on the default
- *seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled.
- *	@param		freq the frequency to set.
+ *              breakout, this corresponds to the number on the silkscreen.
+ *              on the default seesaw firmware on the SAMD09 breakout, pins 5,
+ *6, and 7 are PWM enabled.
+ *  @param      freq the frequency to set.
  *
  *  @return     none
- ****************************************************************************************/
+ ******************************************************************************/
 void Adafruit_seesaw::setPWMFreq(uint8_t pin, uint16_t freq) {
   int8_t p = -1;
   switch (pin) {
