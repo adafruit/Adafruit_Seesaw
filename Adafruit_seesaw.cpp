@@ -874,7 +874,7 @@ size_t Adafruit_seesaw::write(uint8_t character) {
 }
 
 /*!
- *****************************************************************************************
+ ************************************************************************
  *  @brief      The print wrapper for the seesaw class allowing the user to
  *print a string. Calling this allows you to use ss.print() or ss.println() and
  *write to the UART on SERCOM0 of the seesaw. Note that this functionality is
@@ -883,7 +883,8 @@ size_t Adafruit_seesaw::write(uint8_t character) {
  *functionality is not available.
  *
  *  @param      str the string to write
- ****************************************************************************************/
+ *  @return     number of bytes written (not including trailing 0)
+ *********************************************************************/
 size_t Adafruit_seesaw::write(const char *str) {
   uint8_t buf[32];
   uint8_t len = 0;
@@ -897,14 +898,14 @@ size_t Adafruit_seesaw::write(const char *str) {
 }
 
 /*!
- *****************************************************************************************
+ **********************************************************************
  *  @brief      Write only the module base address register and the function
  *address register.
  *
  *  @param      regHigh the module address register (ex. SEESAW_STATUS_BASE)
  *	@param		regLow the function address register (ex.
  *SEESAW_STATUS_SWRST)
- ****************************************************************************************/
+ **********************************************************************/
 void Adafruit_seesaw::writeEmpty(uint8_t regHigh, uint8_t regLow) {
   _i2cbus->beginTransmission((uint8_t)_i2caddr);
   _i2cbus->write((uint8_t)regHigh);
