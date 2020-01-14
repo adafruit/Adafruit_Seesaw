@@ -51,6 +51,5 @@ jobs:
       env:
         GH_REPO_TOKEN: ${{ secrets.GH_REPO_TOKEN }}
         PRETTYNAME : "Adafruit seesaw Library"
-        DOXYFILE : "${BUILD_DIR}/Doxyfile"
       run: bash ci/doxy_gen_and_deploy.sh
 
