@@ -35,18 +35,19 @@
 #define CRICKIT_DUTY_CYCLE_MAX 65535
 
 /**************************************************************************/
-/*! 
-    @brief  Class that stores state and functions for interacting with Crickit variant of seesaw helper IC
+/*!
+    @brief  Class that stores state and functions for interacting with Crickit
+   variant of seesaw helper IC
 */
 /**************************************************************************/
 class Adafruit_Crickit : public Adafruit_seesaw {
 public:
-	Adafruit_Crickit() {};
-	~Adafruit_Crickit() {};
+  Adafruit_Crickit(){};
+  ~Adafruit_Crickit(){};
 
-	void analogWrite(uint8_t pin, uint16_t value, uint8_t width = 8);
-	uint16_t analogRead(uint8_t pin);
-	void setPWMFreq(uint8_t pin, uint16_t freq);
+  void analogWrite(uint8_t pin, uint16_t value, uint8_t width = 8);
+  uint16_t analogRead(uint8_t pin);
+  void setPWMFreq(uint8_t pin, uint16_t freq);
 };
 
 #endif

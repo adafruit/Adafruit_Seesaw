@@ -6,7 +6,7 @@
 #define TFTSHIELD_ADDR 0x2E
 #define TFTSHIELD_RESET_PIN 3
 
-#define TFTSHIELD_BACKLIGHT_ON  0xFFFF
+#define TFTSHIELD_BACKLIGHT_ON 0xFFFF
 #define TFTSHIELD_BACKLIGHT_OFF 0x0000
 
 #define TFTSHIELD_BUTTON_UP_PIN 5
@@ -33,26 +33,28 @@
 #define TFTSHIELD_BUTTON_3_PIN 14
 #define TFTSHIELD_BUTTON_3 (1UL << TFTSHIELD_BUTTON_3_PIN)
 
-#define TFTSHIELD_BUTTON_ALL (TFTSHIELD_BUTTON_UP | TFTSHIELD_BUTTON_DOWN | TFTSHIELD_BUTTON_LEFT \
-                            | TFTSHIELD_BUTTON_RIGHT | TFTSHIELD_BUTTON_IN | TFTSHIELD_BUTTON_1 \
-                            | TFTSHIELD_BUTTON_2 | TFTSHIELD_BUTTON_3)
+#define TFTSHIELD_BUTTON_ALL                                                   \
+  (TFTSHIELD_BUTTON_UP | TFTSHIELD_BUTTON_DOWN | TFTSHIELD_BUTTON_LEFT |       \
+   TFTSHIELD_BUTTON_RIGHT | TFTSHIELD_BUTTON_IN | TFTSHIELD_BUTTON_1 |         \
+   TFTSHIELD_BUTTON_2 | TFTSHIELD_BUTTON_3)
 
 /**************************************************************************/
-/*! 
-    @brief  Class that stores state and functions for interacting with 1.8" tft shield variant of seesaw helper IC
+/*!
+    @brief  Class that stores state and functions for interacting with 1.8" tft
+   shield variant of seesaw helper IC
 */
 /**************************************************************************/
 class Adafruit_TFTShield18 : public Adafruit_seesaw {
 public:
-	Adafruit_TFTShield18() {};
-	~Adafruit_TFTShield18() {};
+  Adafruit_TFTShield18(){};
+  ~Adafruit_TFTShield18(){};
 
-    bool begin(uint8_t addr = TFTSHIELD_ADDR, int8_t flow=-1);
+  bool begin(uint8_t addr = TFTSHIELD_ADDR, int8_t flow = -1);
 
-	void setBacklight(uint16_t value);
-	void setBacklightFreq(uint16_t freq);
-    void tftReset(bool rst = true);
-    uint32_t readButtons();
+  void setBacklight(uint16_t value);
+  void setBacklightFreq(uint16_t freq);
+  void tftReset(bool rst = true);
+  uint32_t readButtons();
 };
 
 #endif
