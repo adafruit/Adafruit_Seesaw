@@ -105,8 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a45d5b100f38a2cef9ea49518a0233f4b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a45d5b100f38a2cef9ea49518a0233f4b">getVersion</a> ()</td></tr>
 <tr class="memdesc:a45d5b100f38a2cef9ea49518a0233f4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the version of the seesaw.  <a href="#a45d5b100f38a2cef9ea49518a0233f4b">More...</a><br /></td></tr>
 <tr class="separator:a45d5b100f38a2cef9ea49518a0233f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3fe001dd8ee831be6eb4f6dad5ea18a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#ae3fe001dd8ee831be6eb4f6dad5ea18a">SWReset</a> ()</td></tr>
-<tr class="memdesc:ae3fe001dd8ee831be6eb4f6dad5ea18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">perform a software reset. This resets all seesaw registers to their default values.  <a href="#ae3fe001dd8ee831be6eb4f6dad5ea18a">More...</a><br /></td></tr>
+<tr class="memitem:ae3fe001dd8ee831be6eb4f6dad5ea18a"><td class="memItemLeft" align="right" valign="top"><a id="ae3fe001dd8ee831be6eb4f6dad5ea18a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#ae3fe001dd8ee831be6eb4f6dad5ea18a">SWReset</a> ()</td></tr>
+<tr class="memdesc:ae3fe001dd8ee831be6eb4f6dad5ea18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">perform a software reset. This resets all seesaw registers to their default values. This is called automatically from <a class="el" href="class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a" title="Start the seesaw. ">Adafruit_seesaw.begin()</a> <br /></td></tr>
 <tr class="separator:ae3fe001dd8ee831be6eb4f6dad5ea18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68b73a4418a48146c490c7fb0eb05160"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a68b73a4418a48146c490c7fb0eb05160">pinMode</a> (uint8_t pin, uint8_t mode)</td></tr>
 <tr class="memdesc:a68b73a4418a48146c490c7fb0eb05160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the mode of a GPIO pin.  <a href="#a68b73a4418a48146c490c7fb0eb05160">More...</a><br /></td></tr>
@@ -238,8 +239,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a03d488374c0716abeeaf6ec280a2acd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a03d488374c0716abeeaf6ec280a2acd3">writeEmpty</a> (uint8_t regHigh, uint8_t regLow)</td></tr>
 <tr class="memdesc:a03d488374c0716abeeaf6ec280a2acd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write only the module base address register and the function address register.  <a href="#a03d488374c0716abeeaf6ec280a2acd3">More...</a><br /></td></tr>
 <tr class="separator:a03d488374c0716abeeaf6ec280a2acd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd536039e3c38c392bdde31002c32ae9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#afd536039e3c38c392bdde31002c32ae9">_i2c_init</a> ()</td></tr>
-<tr class="memdesc:afd536039e3c38c392bdde31002c32ae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize I2C. On arduino this just calls i2c-&gt;<a class="el" href="class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a" title="Start the seesaw. ">begin()</a>  <a href="#afd536039e3c38c392bdde31002c32ae9">More...</a><br /></td></tr>
+<tr class="memitem:afd536039e3c38c392bdde31002c32ae9"><td class="memItemLeft" align="right" valign="top"><a id="afd536039e3c38c392bdde31002c32ae9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#afd536039e3c38c392bdde31002c32ae9">_i2c_init</a> ()</td></tr>
+<tr class="memdesc:afd536039e3c38c392bdde31002c32ae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize I2C. On arduino this just calls i2c-&gt;<a class="el" href="class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a" title="Start the seesaw. ">begin()</a> <br /></td></tr>
 <tr class="separator:afd536039e3c38c392bdde31002c32ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -371,27 +373,6 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ae3fe001dd8ee831be6eb4f6dad5ea18a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3fe001dd8ee831be6eb4f6dad5ea18a">&#9670;&nbsp;</a></span>SWReset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Adafruit_seesaw::SWReset </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>perform a software reset. This resets all seesaw registers to their default values. </p>
-<p>This is called automatically from <a class="el" href="class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a" title="Start the seesaw. ">Adafruit_seesaw.begin()</a></p>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
-
-</div>
-</div>
 <a id="a68b73a4418a48146c490c7fb0eb05160"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a68b73a4418a48146c490c7fb0eb05160">&#9670;&nbsp;</a></span>pinMode()</h2>
 
@@ -422,11 +403,10 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pin</td><td>the pin number. On the SAMD09 breakout, this corresponds to the number on the silkscreen. </td></tr>
-    <tr><td class="paramname">mode</td><td>the mode to set the pin. One of INPUT, OUTPUT, or INPUT_PULLUP.</td></tr>
+    <tr><td class="paramname">mode</td><td>the mode to set the pin. One of INPUT, OUTPUT, or INPUT_PULLUP. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -460,11 +440,10 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pins</td><td>a bitmask of the pins to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen. For example, passing 0b0110 will set the mode of pins 2 and 3. </td></tr>
-    <tr><td class="paramname">mode</td><td>the mode to set the pins to. One of INPUT, OUTPUT, or INPUT_PULLUP.</td></tr>
+    <tr><td class="paramname">mode</td><td>the mode to set the pins to. One of INPUT, OUTPUT, or INPUT_PULLUP. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -505,11 +484,10 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">pinsa</td><td>a bitmask of the pins to write on port A. On the SAMD09 breakout, this corresponds to the number on the silkscreen. For example, passing 0b0110 will set the mode of pins 2 and 3. </td></tr>
     <tr><td class="paramname">pinsb</td><td>a bitmask of the pins to write on port B. </td></tr>
-    <tr><td class="paramname">mode</td><td>the mode to set the pins to. One of INPUT, OUTPUT, or INPUT_PULLUP.</td></tr>
+    <tr><td class="paramname">mode</td><td>the mode to set the pins to. One of INPUT, OUTPUT, or INPUT_PULLUP. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -558,11 +536,10 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">pin</td><td>the number of the pin to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen. on the default seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled. </td></tr>
     <tr><td class="paramname">value</td><td>the value to write to the pin </td></tr>
-    <tr><td class="paramname">width</td><td>the width of the value to write. Defaults to 8. If 16 is passed a 16 bit value will be written.</td></tr>
+    <tr><td class="paramname">width</td><td>the width of the value to write. Defaults to 8. If 16 is passed a 16 bit value will be written. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_adafruit___crickit.html#a87bf616b4ecc2364ab2df63da59a4982">Adafruit_Crickit</a>.</p>
 
@@ -598,11 +575,10 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pin</td><td>the pin number. On the SAMD09 breakout, this corresponds to the number on the silkscreen. </td></tr>
-    <tr><td class="paramname">value</td><td>the value to write to the GPIO pin. This should be HIGH or LOW.</td></tr>
+    <tr><td class="paramname">value</td><td>the value to write to the GPIO pin. This should be HIGH or LOW. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -636,11 +612,10 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pins</td><td>a bitmask of the pins to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen. For example, passing 0b0110 will write the passed value to pins 2 and 3. </td></tr>
-    <tr><td class="paramname">value</td><td>pass HIGH to set the output on the passed pins to HIGH, low to set the output on the passed pins to LOW.</td></tr>
+    <tr><td class="paramname">value</td><td>pass HIGH to set the output on the passed pins to HIGH, low to set the output on the passed pins to LOW. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -681,11 +656,10 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">pinsa</td><td>a bitmask of the pins to write on port A. On the SAMD09 breakout, this corresponds to the number on the silkscreen. For example, passing 0b0110 will write the passed value to pins 2 and 3. </td></tr>
     <tr><td class="paramname">pinsb</td><td>a bitmask of the pins to write on port B. </td></tr>
-    <tr><td class="paramname">value</td><td>pass HIGH to set the output on the passed pins to HIGH, low to set the output on the passed pins to LOW.</td></tr>
+    <tr><td class="paramname">value</td><td>pass HIGH to set the output on the passed pins to HIGH, low to set the output on the passed pins to LOW. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -800,11 +774,10 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pins</td><td>a bitmask of the pins to write. On the SAMD09 breakout, this corresponds to the number on the silkscreen. For example, passing 0b0110 will enable or disable interrups on pins 2 and 3. </td></tr>
-    <tr><td class="paramname">enabled</td><td>pass true to enable the interrupts on the passed pins, false to disable the interrupts on the passed pins.</td></tr>
+    <tr><td class="paramname">enabled</td><td>pass true to enable the interrupts on the passed pins, false to disable the interrupts on the passed pins. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -910,11 +883,10 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pin</td><td>the number of the pin to change frequency of. On the SAMD09 breakout, this corresponds to the number on the silkscreen. on the default seesaw firmware on the SAMD09 breakout, pins 5, 6, and 7 are PWM enabled. </td></tr>
-    <tr><td class="paramname">freq</td><td>the frequency to set.</td></tr>
+    <tr><td class="paramname">freq</td><td>the frequency to set. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 <p>Reimplemented in <a class="el" href="class_adafruit___crickit.html#a052da3d6217b8fce16b0a3136b532808">Adafruit_Crickit</a>.</p>
 
@@ -939,11 +911,10 @@ Protected Attributes</h2></td></tr>
 <p>Enable the data ready interrupt on the passed sercom. Note that both the interrupt module and the passed sercom must be compiled into the seesaw firmware for this to function. If both of these things are true, the interrupt pin on the seesaw will fire when there is data to be read from the passed sercom. On the default seesaw firmeare on the SAMD09 breakout, no sercoms are enabled. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sercom</td><td>the sercom to enable the interrupt on.</td></tr>
+    <tr><td class="paramname">sercom</td><td>the sercom to enable the interrupt on. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -966,11 +937,10 @@ Protected Attributes</h2></td></tr>
 <p>Disable the data ready interrupt on the passed sercom. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sercom</td><td>the sercom to disable the interrupt on.</td></tr>
+    <tr><td class="paramname">sercom</td><td>the sercom to disable the interrupt on. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -993,11 +963,11 @@ Protected Attributes</h2></td></tr>
 <p>Reads a character from the passed sercom if one is available. Note that on the default seesaw firmware on the SAMD09 breakout no sercoms are enabled. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sercom</td><td>the sercom to read data from.</td></tr>
+    <tr><td class="paramname">sercom</td><td>the sercom to read data from. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a character read from the sercom. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>One byte of data </dd></dl>
 
 </div>
 </div>
@@ -1031,11 +1001,10 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">addr</td><td>the address to write to. On the default seesaw firmware on the SAMD09 breakout this is between 0 and 63. </td></tr>
-    <tr><td class="paramname">val</td><td>to write between 0 and 255</td></tr>
+    <tr><td class="paramname">val</td><td>to write between 0 and 255 </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -1076,11 +1045,10 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">addr</td><td>the starting address to write the first byte. This will be automatically incremented with each byte written. </td></tr>
     <tr><td class="paramname">buf</td><td>the buffer of bytes to be written. </td></tr>
-    <tr><td class="paramname">size</td><td>the number of bytes to write. Writing past the end of available EEPROM may result in undefined behavior.</td></tr>
+    <tr><td class="paramname">size</td><td>the number of bytes to write. Writing past the end of available EEPROM may result in undefined behavior. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -1130,11 +1098,10 @@ Protected Attributes</h2></td></tr>
 <p>Set the seesaw I2C address. This will automatically call <a class="el" href="class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a" title="Start the seesaw. ">Adafruit_seesaw.begin()</a> with the new address. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">addr</td><td>the new address for the seesaw. This must be a valid 7 bit I2C address.</td></tr>
+    <tr><td class="paramname">addr</td><td>the new address for the seesaw. This must be a valid 7 bit I2C address. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -1177,11 +1144,10 @@ Protected Attributes</h2></td></tr>
 <p>Set the baud rate on SERCOM0. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">baud</td><td>the baud rate to set. This is an integer value. Baud rates up to 115200 are supported.</td></tr>
+    <tr><td class="paramname">baud</td><td>the baud rate to set. This is an integer value. Baud rates up to 115200 are supported. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -1222,11 +1188,10 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">key</td><td>the key number to activate </td></tr>
     <tr><td class="paramname">edge</td><td>the edge to trigger on </td></tr>
-    <tr><td class="paramname">enable</td><td>passing true will enable the passed event, passing false will disable it.</td></tr>
+    <tr><td class="paramname">enable</td><td>passing true will enable the passed event, passing false will disable it. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -1280,11 +1245,10 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buf</td><td>pointer to where the keyEvents should be stored </td></tr>
-    <tr><td class="paramname">count</td><td>the number of events to read</td></tr>
+    <tr><td class="paramname">count</td><td>the number of events to read </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -1401,11 +1365,11 @@ Protected Attributes</h2></td></tr>
 <p>The print wrapper for the seesaw class. Calling this allows you to use ss.print() or ss.println() and write to the UART on SERCOM0 of the seesaw. Note that this functionality is only available when the UART (sercom) module is compiled into the seesaw firmware. On the default seesaw firmware on the SAMD09 breakout this functionality is not available. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">character</td><td>the character to write.</td></tr>
+    <tr><td class="paramname">character</td><td>the character to write. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes written (1) </dd></dl>
 
 </div>
 </div>
@@ -1436,11 +1400,11 @@ Protected Attributes</h2></td></tr>
 <p>The print wrapper for the seesaw class allowing the user to print a string. Calling this allows you to use ss.print() or ss.println() and write to the UART on SERCOM0 of the seesaw. Note that this functionality is only available when the UART (sercom) module is compiled into the seesaw firmware. On the default seesaw firmware on the SAMD09 breakout this functionality is not available. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">str</td><td>the string to write</td></tr>
+    <tr><td class="paramname">str</td><td>the string to write </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>number of bytes written (not including trailing 0) </dd></dl>
 
 </div>
 </div>
@@ -1489,11 +1453,10 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">regHigh</td><td>the module address register (ex. SEESAW_NEOPIXEL_BASE) </td></tr>
     <tr><td class="paramname">regLow</td><td>the function address register (ex. SEESAW_NEOPIXEL_PIN) </td></tr>
-    <tr><td class="paramname">value</td><td>the value between 0 and 255 to write</td></tr>
+    <tr><td class="paramname">value</td><td>the value between 0 and 255 to write </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -1609,11 +1572,10 @@ Protected Attributes</h2></td></tr>
     <tr><td class="paramname">regLow</td><td>the function address register (ex. SEESAW_STATUS_VERSION) </td></tr>
     <tr><td class="paramname">buf</td><td>the buffer to read the bytes into </td></tr>
     <tr><td class="paramname">num</td><td>the number of bytes to read. </td></tr>
-    <tr><td class="paramname">delay</td><td>an optional delay in between setting the read register and reading out the data. This is required for some seesaw functions (ex. reading ADC data)</td></tr>
+    <tr><td class="paramname">delay</td><td>an optional delay in between setting the read register and reading out the data. This is required for some seesaw functions (ex. reading ADC data) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -1669,11 +1631,10 @@ Protected Attributes</h2></td></tr>
     <tr><td class="paramname">regHigh</td><td>the module address register (ex. SEESAW_GPIO_BASE) </td></tr>
     <tr><td class="paramname">regLow</td><td>the function address register (ex. SEESAW_GPIO_BULK_SET) </td></tr>
     <tr><td class="paramname">buf</td><td>the buffer the the bytes from </td></tr>
-    <tr><td class="paramname">num</td><td>the number of bytes to write.</td></tr>
+    <tr><td class="paramname">num</td><td>the number of bytes to write. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -1715,39 +1676,10 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">regHigh</td><td>the module address register (ex. SEESAW_STATUS_BASE) </td></tr>
-    <tr><td class="paramname">regLow</td><td>the function address register (ex. SEESAW_STATUS_SWRST)</td></tr>
+    <tr><td class="paramname">regLow</td><td>the function address register (ex. SEESAW_STATUS_SWRST) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
-
-</div>
-</div>
-<a id="afd536039e3c38c392bdde31002c32ae9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd536039e3c38c392bdde31002c32ae9">&#9670;&nbsp;</a></span>_i2c_init()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Adafruit_seesaw::_i2c_init </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initialize I2C. On arduino this just calls i2c-&gt;<a class="el" href="class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a" title="Start the seesaw. ">begin()</a> </p>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
