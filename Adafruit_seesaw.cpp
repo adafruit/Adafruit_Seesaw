@@ -273,8 +273,8 @@ uint16_t Adafruit_seesaw::touchRead(uint8_t pin) {
   uint8_t buf[2];
   uint8_t p = pin;
   uint16_t ret = 65535;
-  bool worked = this->read(SEESAW_TOUCH_BASE, SEESAW_TOUCH_CHANNEL_OFFSET + p, buf, 2,
-              1000, 3);
+  bool worked = this->read(SEESAW_TOUCH_BASE, SEESAW_TOUCH_CHANNEL_OFFSET + p,
+                           buf, 2, 1000, 3);
   if (worked) {
     ret = ((uint16_t)buf[0] << 8) | buf[1];
   }
@@ -645,8 +645,8 @@ uint8_t Adafruit_seesaw::getKeypadCount() {
  *  @param		count the number of events to read
  ****************************************************************************************/
 void Adafruit_seesaw::readKeypad(keyEventRaw *buf, uint8_t count) {
-  this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf,
-                    count, 1000);
+  this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf, count,
+             1000);
 }
 
 /**
