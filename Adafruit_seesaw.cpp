@@ -646,7 +646,7 @@ uint8_t Adafruit_seesaw::getKeypadCount() {
  *  @param		count the number of events to read
  ****************************************************************************************/
 void Adafruit_seesaw::readKeypad(keyEventRaw *buf, uint8_t count) {
-  return this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf,
+  this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf,
                     count, 1000);
 }
 
@@ -776,8 +776,9 @@ void Adafruit_seesaw::_i2c_init() {
  *	@param		delay an optional delay in between setting the read
  *register and reading out the data. This is required for some seesaw functions
  *(ex. reading ADC data)
+ *	@return		false if the operation failed
  ****************************************************************************************/
-void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
+bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
                            uint8_t num, uint16_t delay) {
   uint8_t pos = 0;
 
@@ -819,6 +820,7 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
     Serial.println();
 #endif
   }
+  return true;
 }
 
 /*!
