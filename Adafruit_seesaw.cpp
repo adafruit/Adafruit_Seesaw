@@ -782,22 +782,33 @@ bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
                            uint8_t num, uint16_t delay) {
   uint8_t pos = 0;
 
+  _i2cbus->beginTransmission((uint8_t)_i2caddr);
+  _i2cbus->write((uint8_t)regHigh);
+  _i2cbus->write((uint8_t)regLow);
+#ifdef SEESAW_I2C_DEBUG
+  Serial.printf("I2C read(%d) from $", num);
+  Serial.print((uint16_t)regHigh << 8 | regLow, HEX);
+  Serial.print(" : ");
+#endif
+
+  if (_flow != -1)
+    while (!::digitalRead(_flow))
+      ;
+  byte status = _i2cbus->endTransmission();
+  if (status != 0) {
+#ifdef SEESAW_I2C_DEBUG
+    Serial.println("X");
+#endif
+    return false;
+  }
+
   // on arduino we need to read in 32 byte chunks
   while (pos < num) {
     uint8_t read_now = min(32, num - pos);
-    _i2cbus->beginTransmission((uint8_t)_i2caddr);
-    _i2cbus->write((uint8_t)regHigh);
-    _i2cbus->write((uint8_t)regLow);
-#ifdef SEESAW_I2C_DEBUG
-    Serial.print("I2C read $");
-    Serial.print((uint16_t)regHigh << 8 | regLow, HEX);
-    Serial.print(" : ");
-#endif
 
     if (_flow != -1)
       while (!::digitalRead(_flow))
         ;
-    _i2cbus->endTransmission();
 
     // TODO: tune this
     delayMicroseconds(delay);
