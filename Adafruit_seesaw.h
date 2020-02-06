@@ -289,7 +289,7 @@ protected:
   uint8_t read8(byte regHigh, byte regLow, uint16_t delay = 125);
 
   bool read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num,
-            uint16_t delay = 125);
+            uint16_t delay = 125, int retries = 1);
   void write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
   void writeEmpty(uint8_t regHigh, uint8_t regLow);
   void _i2c_init();

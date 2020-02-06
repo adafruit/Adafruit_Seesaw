@@ -273,12 +273,11 @@ uint16_t Adafruit_seesaw::touchRead(uint8_t pin) {
   uint8_t buf[2];
   uint8_t p = pin;
   uint16_t ret = 65535;
-  do {
-    delay(1);
-    this->read(SEESAW_TOUCH_BASE, SEESAW_TOUCH_CHANNEL_OFFSET + p, buf, 2,
-               1000);
+  bool worked = this->read(SEESAW_TOUCH_BASE, SEESAW_TOUCH_CHANNEL_OFFSET + p, buf, 2,
+              1000, 3);
+  if (worked) {
     ret = ((uint16_t)buf[0] << 8) | buf[1];
-  } while (ret == 65535);
+  }
   return ret;
 }
 
@@ -776,10 +775,11 @@ void Adafruit_seesaw::_i2c_init() {
  *	@param		delay an optional delay in between setting the read
  *register and reading out the data. This is required for some seesaw functions
  *(ex. reading ADC data)
+ *	@param		retries number of delay iterations before giving up
  *	@return		false if the operation failed
  ****************************************************************************************/
 bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
-                           uint8_t num, uint16_t delay) {
+                           uint8_t num, uint16_t delay, int retries) {
   uint8_t pos = 0;
 
   _i2cbus->beginTransmission((uint8_t)_i2caddr);
@@ -810,13 +810,17 @@ bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
       while (!::digitalRead(_flow))
         ;
 
-    // TODO: tune this
-    delayMicroseconds(delay);
+    for (int i = 0; i < retries; i++) {
+      delayMicroseconds(delay);
 
-    if (_flow != -1)
-      while (!::digitalRead(_flow))
-        ;
-    _i2cbus->requestFrom((uint8_t)_i2caddr, read_now);
+      byte ret = _i2cbus->requestFrom((uint8_t)_i2caddr, read_now);
+      if (ret != 0) {
+        break;
+      }
+#ifdef SEESAW_I2C_DEBUG
+      Serial.print(".");
+#endif
+    }
 
     for (int i = 0; i < read_now; i++) {
       buf[pos] = _i2cbus->read();
