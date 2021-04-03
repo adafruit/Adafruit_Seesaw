@@ -111,14 +111,24 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset) {
 #endif
 
   found = false;
-  for (int retries=0; retries<10; retries++) {
-    uint8_t c = this->read8(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID);
+  for (int retries=0; !found && retries<10; retries++) {
+    uint8_t c = 0;
+
+    this->read(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID, &c, 1);
+    Serial.println(c, HEX);
     if (c == SEESAW_HW_ID_CODE) {
       found = true;
-      break;
     }
+    Serial.println();
+    Serial.println(retries);
+
     delay(10);
   }
+
+#ifdef SEESAW_I2C_DEBUG
+  Serial.println("Done!");
+#endif
+
 
   return found;
 }
@@ -689,7 +699,7 @@ uint8_t Adafruit_seesaw::getKeypadCount() {
  *  @param      buf pointer to where the keyEvents should be stored
  *  @param		count the number of events to read
  ****************************************************************************************/
-void Adafruit_seesaw::readKeypad(keyEventRaw *buf, uint8_t count) {
+bool Adafruit_seesaw::readKeypad(keyEventRaw *buf, uint8_t count) {
   return this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf,
                     count, 1000);
 }
@@ -838,11 +848,25 @@ bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
         yield();
     }
 
+#ifdef SEESAW_I2C_DEBUG
+    Serial.print("Reading ");
+    Serial.print(read_now);
+    Serial.println(" bytes");
+#endif
+
+
     if (! _i2c_dev->read(buf+pos, read_now)) {
       return false;
     }
     pos += read_now;
+#ifdef SEESAW_I2C_DEBUG
+    Serial.print("pos: ");
+    Serial.print(pos);
+    Serial.print(" num:");
+    Serial.println(num);
+#endif
   }
+  return true;
 }
 
 /*!

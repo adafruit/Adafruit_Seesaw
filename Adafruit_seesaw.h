@@ -263,7 +263,7 @@ public:
   void enableKeypadInterrupt();
   void disableKeypadInterrupt();
   uint8_t getKeypadCount();
-  void readKeypad(keyEventRaw *buf, uint8_t count);
+  bool readKeypad(keyEventRaw *buf, uint8_t count);
 
   float getTemp();
 
