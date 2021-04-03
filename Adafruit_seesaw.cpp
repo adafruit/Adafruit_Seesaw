@@ -28,6 +28,7 @@
 
 #include "Adafruit_seesaw.h"
 
+
 //#define SEESAW_I2C_DEBUG
 
 /*!
@@ -59,24 +60,67 @@ Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus) {
  *  @return     true if we could connect to the seesaw, false otherwise
  ****************************************************************************************/
 bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset) {
-  _i2caddr = addr;
   _flow = flow;
 
   if (_flow != -1)
     ::pinMode(_flow, INPUT);
 
-  _i2c_init();
-
-  if (reset) {
-    SWReset();
-    delay(500);
+  if (_i2c_dev) {
+    delete _i2c_dev;
   }
 
-  uint8_t c = this->read8(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID);
-  if (c != SEESAW_HW_ID_CODE) {
+  _i2c_dev = new Adafruit_I2CDevice(addr, _i2cbus);
+
+  bool found = false;
+  for (int retries=0; retries<10; retries++) {
+    if (_i2c_dev->begin()) {
+      found = true;
+      break;
+    }
+    delay(10);
+  }
+
+  if (! found) {
     return false;
   }
-  return true;
+
+
+#ifdef SEESAW_I2C_DEBUG
+  Serial.println("Begun");
+#endif
+
+  if (reset) {
+    found = false;
+    SWReset();
+    for (int retries=0; retries<10; retries++) {
+      if (_i2c_dev->detected()) {
+        found = true;
+        break;
+      }
+      delay(10);
+    }
+  }
+
+  if (! found) {
+    return false;
+  }
+
+
+#ifdef SEESAW_I2C_DEBUG
+  Serial.println("Reset");
+#endif
+
+  found = false;
+  for (int retries=0; retries<10; retries++) {
+    uint8_t c = this->read8(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID);
+    if (c == SEESAW_HW_ID_CODE) {
+      found = true;
+      break;
+    }
+    delay(10);
+  }
+
+  return found;
 }
 
 /*!
@@ -87,8 +131,8 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset) {
  *Adafruit_seesaw.begin()
 
  ********************************************************************/
-void Adafruit_seesaw::SWReset() {
-  this->write8(SEESAW_STATUS_BASE, SEESAW_STATUS_SWRST, 0xFF);
+bool Adafruit_seesaw::SWReset() {
+  return this->write8(SEESAW_STATUS_BASE, SEESAW_STATUS_SWRST, 0xFF);
 }
 
 /*!
@@ -729,8 +773,8 @@ void Adafruit_seesaw::disableEncoderInterrupt() {
  *SEESAW_NEOPIXEL_PIN)
  *	@param		value the value between 0 and 255 to write
  ****************************************************************************************/
-void Adafruit_seesaw::write8(byte regHigh, byte regLow, byte value) {
-  this->write(regHigh, regLow, &value, 1);
+bool Adafruit_seesaw::write8(byte regHigh, byte regLow, byte value) {
+  return this->write(regHigh, regLow, &value, 1);
 }
 
 /**
@@ -755,17 +799,6 @@ uint8_t Adafruit_seesaw::read8(byte regHigh, byte regLow, uint16_t delay) {
 
 /**
  *****************************************************************************************
- *  @brief      Initialize I2C. On arduino this just calls i2c->begin()
- ****************************************************************************************/
-void Adafruit_seesaw::_i2c_init() {
-#ifdef SEESAW_I2C_DEBUG
-  Serial.println("I2C Begin");
-#endif
-  _i2cbus->begin();
-}
-
-/**
- *****************************************************************************************
  *  @brief      Read a specified number of bytes into a buffer from the seesaw.
  *
  *  @param      regHigh the module address register (ex. SEESAW_STATUS_BASE)
@@ -777,47 +810,38 @@ void Adafruit_seesaw::_i2c_init() {
  *register and reading out the data. This is required for some seesaw functions
  *(ex. reading ADC data)
  ****************************************************************************************/
-void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
+bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
                            uint8_t num, uint16_t delay) {
   uint8_t pos = 0;
+  uint8_t prefix[2];
+  prefix[0] = (uint8_t)regHigh;
+  prefix[1] = (uint8_t)regLow;
 
   // on arduino we need to read in 32 byte chunks
   while (pos < num) {
     uint8_t read_now = min(32, num - pos);
-    _i2cbus->beginTransmission((uint8_t)_i2caddr);
-    _i2cbus->write((uint8_t)regHigh);
-    _i2cbus->write((uint8_t)regLow);
-#ifdef SEESAW_I2C_DEBUG
-    Serial.print("I2C read $");
-    Serial.print((uint16_t)regHigh << 8 | regLow, HEX);
-    Serial.print(" : ");
-#endif
 
-    if (_flow != -1)
+    if (_flow != -1) {
       while (!::digitalRead(_flow))
-        ;
-    _i2cbus->endTransmission();
+        yield();
+    }
+
+    if (! _i2c_dev->write(prefix, 2)) {
+      return false;
+    }
 
     // TODO: tune this
     delayMicroseconds(delay);
 
-    if (_flow != -1)
+    if (_flow != -1) {
       while (!::digitalRead(_flow))
-        ;
-    _i2cbus->requestFrom((uint8_t)_i2caddr, read_now);
-
-    for (int i = 0; i < read_now; i++) {
-      buf[pos] = _i2cbus->read();
-#ifdef SEESAW_I2C_DEBUG
-      Serial.print("0x");
-      Serial.print(buf[pos], HEX);
-      Serial.print(",");
-#endif
-      pos++;
+        yield();
     }
-#ifdef SEESAW_I2C_DEBUG
-    Serial.println();
-#endif
+
+    if (! _i2c_dev->read(buf+pos, read_now)) {
+      return false;
+    }
+    pos += read_now;
   }
 }
 
@@ -831,28 +855,21 @@ void Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
  *  @param	buf the buffer the the bytes from
  *  @param	num the number of bytes to write.
  ****************************************************************************************/
-void Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
-                            uint8_t num) {
-  _i2cbus->beginTransmission((uint8_t)_i2caddr);
-  _i2cbus->write((uint8_t)regHigh);
-  _i2cbus->write((uint8_t)regLow);
-  _i2cbus->write((uint8_t *)buf, num);
-#ifdef SEESAW_I2C_DEBUG
-  Serial.print("I2C write $");
-  Serial.print((uint16_t)regHigh << 8 | regLow, HEX);
-  Serial.print(" : ");
-  for (int i = 0; i < num; i++) {
-    Serial.print("0x");
-    Serial.print(buf[i], HEX);
-    Serial.print(",");
-  }
-  Serial.println();
-#endif
+bool Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf=NULL,
+                            uint8_t num=0) {
+  uint8_t prefix[2];
+  prefix[0] = (uint8_t)regHigh;
+  prefix[1] = (uint8_t)regLow;
 
   if (_flow != -1)
     while (!::digitalRead(_flow))
-      ;
-  _i2cbus->endTransmission();
+      yield();
+
+  if (! _i2c_dev->write(buf, num, true, prefix, 2)) {
+    return false;
+  }
+
+  return true;
 }
 
 /*!
@@ -895,23 +912,4 @@ size_t Adafruit_seesaw::write(const char *str) {
   }
   this->write(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_DATA, buf, len);
   return len;
-}
-
-/*!
- **********************************************************************
- *  @brief      Write only the module base address register and the function
- *address register.
- *
- *  @param      regHigh the module address register (ex. SEESAW_STATUS_BASE)
- *	@param		regLow the function address register (ex.
- *SEESAW_STATUS_SWRST)
- **********************************************************************/
-void Adafruit_seesaw::writeEmpty(uint8_t regHigh, uint8_t regLow) {
-  _i2cbus->beginTransmission((uint8_t)_i2caddr);
-  _i2cbus->write((uint8_t)regHigh);
-  _i2cbus->write((uint8_t)regLow);
-  if (_flow != -1)
-    while (!::digitalRead(_flow))
-      ;
-  _i2cbus->endTransmission();
 }

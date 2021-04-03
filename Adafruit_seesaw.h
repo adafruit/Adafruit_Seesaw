@@ -21,13 +21,9 @@
 #ifndef LIB_SEESAW_H
 #define LIB_SEESAW_H
 
-#if (ARDUINO >= 100)
 #include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
-
 #include <Wire.h>
+#include "Adafruit_I2CDevice.h"
 
 /*=========================================================================
     I2C ADDRESS/BITS
@@ -227,7 +223,7 @@ public:
              bool reset = true);
   uint32_t getOptions();
   uint32_t getVersion();
-  void SWReset();
+  bool SWReset();
 
   void pinMode(uint8_t pin, uint8_t mode);
   void pinModeBulk(uint32_t pins, uint8_t mode);
@@ -281,18 +277,17 @@ public:
   virtual size_t write(const char *str);
 
 protected:
-  uint8_t _i2caddr; /*!< The I2C address used to communicate with the seesaw */
   TwoWire *_i2cbus; /*!< The I2C Bus used to communicate with the seesaw */
+  Adafruit_I2CDevice *_i2c_dev = NULL;
+
   int8_t _flow;     /*!< The flow control pin to use */
 
-  void write8(byte regHigh, byte regLow, byte value);
+  bool write8(byte regHigh, byte regLow, byte value);
   uint8_t read8(byte regHigh, byte regLow, uint16_t delay = 125);
 
-  void read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num,
+  bool read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num,
             uint16_t delay = 125);
-  void write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
-  void writeEmpty(uint8_t regHigh, uint8_t regLow);
-  void _i2c_init();
+  bool write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
 
   /*=========================================================================
           REGISTER BITFIELDS

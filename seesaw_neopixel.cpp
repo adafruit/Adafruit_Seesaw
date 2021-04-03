@@ -115,7 +115,7 @@ void seesaw_NeoPixel::show(void) {
   while (!canShow())
     ;
 
-  this->writeEmpty(SEESAW_NEOPIXEL_BASE, SEESAW_NEOPIXEL_SHOW);
+  this->write(SEESAW_NEOPIXEL_BASE, SEESAW_NEOPIXEL_SHOW, NULL, 0);
 
   endTime = micros(); // Save EOD time for latch on next call
 }
