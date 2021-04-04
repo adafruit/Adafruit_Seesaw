@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['uartsetbaud',['UARTSetBaud',['../class_adafruit__seesaw.html#a8a9b29ee8c73611962fae9ea7fb23f4f',1,'Adafruit_seesaw']]],
-  ['unregistercallback',['unregisterCallback',['../class_adafruit___neo_key__1x4.html#ad2fbad1b00b751e88bc6a587b21e1a77',1,'Adafruit_NeoKey_1x4::unregisterCallback()'],['../class_adafruit___multi_neo_key1x4.html#a2862719b1800a91ac5488b5d721d214b',1,'Adafruit_MultiNeoKey1x4::unregisterCallback(uint16_t num)'],['../class_adafruit___multi_neo_key1x4.html#a4159c85ae1d09ba9ca526ac6e6b6d73c',1,'Adafruit_MultiNeoKey1x4::unregisterCallback(uint8_t x, uint8_t y)'],['../class_adafruit___neo_trellis.html#a01565a0de17f406931a1c27f96b4f4ac',1,'Adafruit_NeoTrellis::unregisterCallback()'],['../class_adafruit___multi_trellis.html#a27d244f45bbcb72d66bac7ddb630ca3e',1,'Adafruit_MultiTrellis::unregisterCallback(uint16_t num)'],['../class_adafruit___multi_trellis.html#ac082f3ad5a6933e134fe2192af75f957',1,'Adafruit_MultiTrellis::unregisterCallback(uint8_t x, uint8_t y)']]]
+  ['write',['write',['../class_adafruit__seesaw.html#a76db275e030f038d6cf4f2cc71029d18',1,'Adafruit_seesaw::write(uint8_t)'],['../class_adafruit__seesaw.html#a91533cdc9c96c6787c13855cf35444e5',1,'Adafruit_seesaw::write(const char *str)'],['../class_adafruit__seesaw.html#ae97e5128aa04c2e2da1e13da84767706',1,'Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num)'],['../classseesaw___servo.html#a3d65e03a44788bad5a643689a986eea5',1,'seesaw_Servo::write()']]],
+  ['write8',['write8',['../class_adafruit__seesaw.html#a01d4f2c1618e861225c57065ada26ea0',1,'Adafruit_seesaw']]],
+  ['writemicroseconds',['writeMicroseconds',['../classseesaw___servo.html#ab97d0ca44a62ed07bf8e40b2a43e8828',1,'seesaw_Servo']]]
 ];
