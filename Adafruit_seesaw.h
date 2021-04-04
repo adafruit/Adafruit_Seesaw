@@ -21,9 +21,9 @@
 #ifndef LIB_SEESAW_H
 #define LIB_SEESAW_H
 
+#include "Adafruit_I2CDevice.h"
 #include "Arduino.h"
 #include <Wire.h>
-#include "Adafruit_I2CDevice.h"
 
 /*=========================================================================
     I2C ADDRESS/BITS
@@ -280,7 +280,7 @@ protected:
   TwoWire *_i2cbus; /*!< The I2C Bus used to communicate with the seesaw */
   Adafruit_I2CDevice *_i2c_dev = NULL;
 
-  int8_t _flow;     /*!< The flow control pin to use */
+  int8_t _flow; /*!< The flow control pin to use */
 
   bool write8(byte regHigh, byte regLow, byte value);
   uint8_t read8(byte regHigh, byte regLow, uint16_t delay = 125);
