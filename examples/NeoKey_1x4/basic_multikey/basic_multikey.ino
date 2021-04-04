@@ -1,5 +1,5 @@
 #include "Adafruit_NeoKey_1x4.h"
-#include "Adafruit_NeoPixel.h"
+#include "seesaw_neopixel.h"
 
 #define Y_DIM 2 //number of rows of keys
 #define X_DIM 4 //number of columns of keys
@@ -80,13 +80,13 @@ NeoKey1x4Callback blink(keyEvent evt) {
 // The colors are a transition r - g - b - back to r.
 uint32_t Wheel(byte WheelPos) {
   if(WheelPos < 85) {
-   return Adafruit_NeoPixel::Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+   return seesaw_NeoPixel::Color(WheelPos * 3, 255 - WheelPos * 3, 0);
   } else if(WheelPos < 170) {
    WheelPos -= 85;
-   return Adafruit_NeoPixel::Color(255 - WheelPos * 3, 0, WheelPos * 3);
+   return seesaw_NeoPixel::Color(255 - WheelPos * 3, 0, WheelPos * 3);
   } else {
    WheelPos -= 170;
-   return Adafruit_NeoPixel::Color(0, WheelPos * 3, 255 - WheelPos * 3);
+   return seesaw_NeoPixel::Color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
   return 0;
 }
