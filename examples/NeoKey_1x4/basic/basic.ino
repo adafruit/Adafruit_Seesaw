@@ -1,5 +1,5 @@
 #include "Adafruit_NeoKey_1x4.h"
-#include "seesaw_NeoPixel.h"
+#include "seesaw_neopixel.h"
 
 Adafruit_NeoKey_1x4 neokey;  // Create the NeoKey object
 
