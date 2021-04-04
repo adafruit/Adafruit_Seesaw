@@ -8,8 +8,8 @@ var searchData=
   ['setgpiointerrupts',['setGPIOInterrupts',['../class_adafruit__seesaw.html#ac19995398c824c88ce27afc1dbb09767',1,'Adafruit_seesaw']]],
   ['seti2caddr',['setI2CAddr',['../class_adafruit__seesaw.html#a3cb1d39d7778df649ae9e8d5ee5d5874',1,'Adafruit_seesaw']]],
   ['setkeypadevent',['setKeypadEvent',['../class_adafruit__seesaw.html#a1668dcb6cebae9b665a75a9e214bf8d5',1,'Adafruit_seesaw']]],
-  ['setpixelcolor',['setPixelColor',['../class_adafruit___multi_trellis.html#a293c4081d8bd537db258b8af7487f2c5',1,'Adafruit_MultiTrellis::setPixelColor(uint8_t x, uint8_t y, uint32_t color)'],['../class_adafruit___multi_trellis.html#a6ffb50afff8f776defe9abe22e3fb89f',1,'Adafruit_MultiTrellis::setPixelColor(uint16_t num, uint32_t color)']]],
+  ['setpixelcolor',['setPixelColor',['../class_adafruit___multi_neo_key1x4.html#adbc8ed3143f4926dafae8697ebd5364f',1,'Adafruit_MultiNeoKey1x4::setPixelColor(uint8_t x, uint8_t y, uint32_t color)'],['../class_adafruit___multi_neo_key1x4.html#a52e3add371664c1348313a2f841dce89',1,'Adafruit_MultiNeoKey1x4::setPixelColor(uint16_t num, uint32_t color)'],['../class_adafruit___multi_trellis.html#a293c4081d8bd537db258b8af7487f2c5',1,'Adafruit_MultiTrellis::setPixelColor(uint8_t x, uint8_t y, uint32_t color)'],['../class_adafruit___multi_trellis.html#a6ffb50afff8f776defe9abe22e3fb89f',1,'Adafruit_MultiTrellis::setPixelColor(uint16_t num, uint32_t color)']]],
   ['setpwmfreq',['setPWMFreq',['../class_adafruit___crickit.html#a052da3d6217b8fce16b0a3136b532808',1,'Adafruit_Crickit::setPWMFreq()'],['../class_adafruit__seesaw.html#a73d0a1f528a29604c5666ffd39eb8bd9',1,'Adafruit_seesaw::setPWMFreq()']]],
-  ['show',['show',['../class_adafruit___multi_trellis.html#ac49ca7b23cb828e85d0853a473725db9',1,'Adafruit_MultiTrellis']]],
+  ['show',['show',['../class_adafruit___multi_neo_key1x4.html#a0eba3670ab0287c25cff8991dd2787fa',1,'Adafruit_MultiNeoKey1x4::show()'],['../class_adafruit___multi_trellis.html#ac49ca7b23cb828e85d0853a473725db9',1,'Adafruit_MultiTrellis::show()']]],
   ['swreset',['SWReset',['../class_adafruit__seesaw.html#afed864565d44e304fef64ad2008d75c8',1,'Adafruit_seesaw']]]
 ];

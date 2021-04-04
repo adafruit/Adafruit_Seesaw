@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['uartsetbaud',['UARTSetBaud',['../class_adafruit__seesaw.html#a8a9b29ee8c73611962fae9ea7fb23f4f',1,'Adafruit_seesaw']]],
-  ['unregistercallback',['unregisterCallback',['../class_adafruit___neo_trellis.html#a01565a0de17f406931a1c27f96b4f4ac',1,'Adafruit_NeoTrellis::unregisterCallback()'],['../class_adafruit___multi_trellis.html#a27d244f45bbcb72d66bac7ddb630ca3e',1,'Adafruit_MultiTrellis::unregisterCallback(uint16_t num)'],['../class_adafruit___multi_trellis.html#ac082f3ad5a6933e134fe2192af75f957',1,'Adafruit_MultiTrellis::unregisterCallback(uint8_t x, uint8_t y)']]]
+  ['tftreset',['tftReset',['../class_adafruit__mini_t_f_t_wing.html#ae69546b1ddaf3ce92a14aad74edb9204',1,'Adafruit_miniTFTWing::tftReset()'],['../class_adafruit___t_f_t_shield18.html#a158d473ce3520764dbc947d9c3a92243',1,'Adafruit_TFTShield18::tftReset()']]],
+  ['throttle',['throttle',['../classseesaw___motor.html#a9e44431a467bd59f6f1ddc2258442209',1,'seesaw_Motor']]],
+  ['touchread',['touchRead',['../class_adafruit__seesaw.html#af7ddce824fb1d5580618d685f7b2450f',1,'Adafruit_seesaw']]]
 ];

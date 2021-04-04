@@ -1,20 +1,11 @@
 var searchData=
 [
-  ['seesaw_5faddress',['SEESAW_ADDRESS',['../_adafruit__seesaw_8h.html#ae995cbda508547cc9342525a83a15718',1,'Adafruit_seesaw.h']]],
-  ['seesaw_5feeprom_5fi2c_5faddr',['SEESAW_EEPROM_I2C_ADDR',['../_adafruit__seesaw_8h.html#a29230c31db27fba752397eb80a1d0025',1,'Adafruit_seesaw.h']]],
-  ['seesaw_5fhw_5fid_5fcode',['SEESAW_HW_ID_CODE',['../_adafruit__seesaw_8h.html#af483fac973d56ec0a24fb675b0026beb',1,'Adafruit_seesaw.h']]],
-  ['seesaw_5fmotor',['seesaw_Motor',['../classseesaw___motor.html',1,'seesaw_Motor'],['../classseesaw___motor.html#af0a9f236559a47f8917e99dbdb79c50b',1,'seesaw_Motor::seesaw_Motor()']]],
-  ['seesaw_5fservo',['seesaw_Servo',['../classseesaw___servo.html',1,'seesaw_Servo'],['../classseesaw___servo.html#a02fe2824fa26ee272f5c1fa1905c4917',1,'seesaw_Servo::seesaw_Servo()']]],
-  ['sercom_5finten',['sercom_inten',['../union_adafruit__seesaw_1_1sercom__inten.html',1,'Adafruit_seesaw']]],
-  ['setbacklight',['setBacklight',['../class_adafruit__mini_t_f_t_wing.html#adb6e75d2cefa8493e5a41520f54dbfe6',1,'Adafruit_miniTFTWing::setBacklight()'],['../class_adafruit___t_f_t_shield18.html#a8907e019f07160727f23af12df7843fc',1,'Adafruit_TFTShield18::setBacklight()']]],
-  ['setbacklightfreq',['setBacklightFreq',['../class_adafruit__mini_t_f_t_wing.html#ad5bb2a8cb9795b5ef64318d995b34fbf',1,'Adafruit_miniTFTWing::setBacklightFreq()'],['../class_adafruit___t_f_t_shield18.html#a9bf40eb6f72fb55a3a43a19cb0f5bce4',1,'Adafruit_TFTShield18::setBacklightFreq()']]],
-  ['setencoderposition',['setEncoderPosition',['../class_adafruit__seesaw.html#a04159318998a3e2147cf10d525a888e0',1,'Adafruit_seesaw']]],
-  ['setgpiointerrupts',['setGPIOInterrupts',['../class_adafruit__seesaw.html#ac19995398c824c88ce27afc1dbb09767',1,'Adafruit_seesaw']]],
-  ['seti2caddr',['setI2CAddr',['../class_adafruit__seesaw.html#a3cb1d39d7778df649ae9e8d5ee5d5874',1,'Adafruit_seesaw']]],
-  ['setkeypadevent',['setKeypadEvent',['../class_adafruit__seesaw.html#a1668dcb6cebae9b665a75a9e214bf8d5',1,'Adafruit_seesaw']]],
-  ['setpixelcolor',['setPixelColor',['../class_adafruit___multi_trellis.html#a293c4081d8bd537db258b8af7487f2c5',1,'Adafruit_MultiTrellis::setPixelColor(uint8_t x, uint8_t y, uint32_t color)'],['../class_adafruit___multi_trellis.html#a6ffb50afff8f776defe9abe22e3fb89f',1,'Adafruit_MultiTrellis::setPixelColor(uint16_t num, uint32_t color)']]],
-  ['setpwmfreq',['setPWMFreq',['../class_adafruit___crickit.html#a052da3d6217b8fce16b0a3136b532808',1,'Adafruit_Crickit::setPWMFreq()'],['../class_adafruit__seesaw.html#a73d0a1f528a29604c5666ffd39eb8bd9',1,'Adafruit_seesaw::setPWMFreq()']]],
-  ['show',['show',['../class_adafruit___multi_trellis.html#ac49ca7b23cb828e85d0853a473725db9',1,'Adafruit_MultiTrellis']]],
-  ['state',['STATE',['../unionkey_state.html#aa5a2572c02b15a241662a88e6610cd0f',1,'keyState']]],
-  ['swreset',['SWReset',['../class_adafruit__seesaw.html#afed864565d44e304fef64ad2008d75c8',1,'Adafruit_seesaw']]]
+  ['read',['read',['../class_adafruit___neo_key__1x4.html#ab11879cb006edf58e784c7629b675da5',1,'Adafruit_NeoKey_1x4::read()'],['../class_adafruit___multi_neo_key1x4.html#a48366829d635bd4a9b99212eb4d1a1aa',1,'Adafruit_MultiNeoKey1x4::read()'],['../class_adafruit___neo_trellis.html#a58512ca86c0cb84a9f9869cb447d7ba4',1,'Adafruit_NeoTrellis::read()'],['../class_adafruit___multi_trellis.html#a6751a46aaef0680cd9827e3be4185fb1',1,'Adafruit_MultiTrellis::read()'],['../class_adafruit__seesaw.html#ad0b0f4f3d563f0a9b8af0afc4b2b7e29',1,'Adafruit_seesaw::read()'],['../classseesaw___servo.html#a5dd2c1884750a08e563eb2a1c4c21725',1,'seesaw_Servo::read()']]],
+  ['read8',['read8',['../class_adafruit__seesaw.html#ab82eeeb63039cf9f01318835a9426ecc',1,'Adafruit_seesaw']]],
+  ['readbuttons',['readButtons',['../class_adafruit__mini_t_f_t_wing.html#a6c5dd6ee0eaf73b3a1a6d0486c6806f5',1,'Adafruit_miniTFTWing::readButtons()'],['../class_adafruit___t_f_t_shield18.html#a5b3fe3f77292abe20d76bef2b74b134f',1,'Adafruit_TFTShield18::readButtons()']]],
+  ['readkeypad',['readKeypad',['../class_adafruit__seesaw.html#ad23ce0f6fee967ca92c99d92536dffc0',1,'Adafruit_seesaw']]],
+  ['readmicroseconds',['readMicroseconds',['../classseesaw___servo.html#a94d2cf30748460ba8bfb39aabf95efc2',1,'seesaw_Servo']]],
+  ['readsercomdata',['readSercomData',['../class_adafruit__seesaw.html#a12e954d97227360f2b0974da96e84d37',1,'Adafruit_seesaw']]],
+  ['reg',['reg',['../unionkey_event_raw.html#a60eeb2630f4c54e0e34585bf1e8a8c6a',1,'keyEventRaw::reg()'],['../unionkey_event.html#a3a6b56826f9d74f8ca0a84bad83233ed',1,'keyEvent::reg()'],['../unionkey_state.html#a3f406a237469041d2f79e2c58262bf1d',1,'keyState::reg()'],['../union_adafruit__seesaw_1_1sercom__inten.html#a87c663f1ae9dc44e2e506f78402e97c2',1,'Adafruit_seesaw::sercom_inten::reg()']]],
+  ['registercallback',['registerCallback',['../class_adafruit___neo_key__1x4.html#a14e9d80f9e5609ca5a0de5077420ce11',1,'Adafruit_NeoKey_1x4::registerCallback()'],['../class_adafruit___multi_neo_key1x4.html#a5d4098cf0db873ac214967838f3745f8',1,'Adafruit_MultiNeoKey1x4::registerCallback(uint16_t num, NeoKey1x4Callback(*cb)(keyEvent))'],['../class_adafruit___multi_neo_key1x4.html#af38425d626ad3036628dcc0cb0875a22',1,'Adafruit_MultiNeoKey1x4::registerCallback(uint8_t x, uint8_t y, NeoKey1x4Callback(*cb)(keyEvent))'],['../class_adafruit___neo_trellis.html#af99ef3113dda4fedfc69f9c8dee3bcba',1,'Adafruit_NeoTrellis::registerCallback()'],['../class_adafruit___multi_trellis.html#a2945fef6a26bb0fe45d70511cfaf4cee',1,'Adafruit_MultiTrellis::registerCallback(uint16_t num, TrellisCallback(*cb)(keyEvent))'],['../class_adafruit___multi_trellis.html#a0fedaea959de574f0dfe445c5b3d81bc',1,'Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y, TrellisCallback(*cb)(keyEvent))']]]
 ];
