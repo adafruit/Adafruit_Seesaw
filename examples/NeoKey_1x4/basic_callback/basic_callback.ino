@@ -48,10 +48,8 @@ void setup() {
     delay(50);
   }
 
-  // activate all keys and set callbacks
+  // set callbacks
   for(int i=0; i<NEOKEY_1X4_KEYS; i++){
-    neokey.activateKey(i, SEESAW_KEYPAD_EDGE_RISING);
-    neokey.activateKey(i, SEESAW_KEYPAD_EDGE_FALLING);
     neokey.registerCallback(i, blink);
   }
 }
