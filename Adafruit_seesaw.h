@@ -151,10 +151,10 @@ enum {
  */
 enum {
   SEESAW_ENCODER_STATUS = 0x00,
-  SEESAW_ENCODER_INTENSET = 0x02,
-  SEESAW_ENCODER_INTENCLR = 0x03,
-  SEESAW_ENCODER_POSITION = 0x04,
-  SEESAW_ENCODER_DELTA = 0x05,
+  SEESAW_ENCODER_INTENSET = 0x10,
+  SEESAW_ENCODER_INTENCLR = 0x20,
+  SEESAW_ENCODER_POSITION = 0x30,
+  SEESAW_ENCODER_DELTA = 0x40,
 };
 
 #define ADC_INPUT_0_PIN 2 ///< default ADC input pin
@@ -267,11 +267,11 @@ public:
 
   float getTemp();
 
-  int32_t getEncoderPosition();
-  int32_t getEncoderDelta();
-  bool enableEncoderInterrupt();
-  bool disableEncoderInterrupt();
-  void setEncoderPosition(int32_t pos);
+  int32_t getEncoderPosition(uint8_t encoder = 0);
+  int32_t getEncoderDelta(uint8_t encoder = 0);
+  bool enableEncoderInterrupt(uint8_t encoder = 0);
+  bool disableEncoderInterrupt(uint8_t encoder = 0);
+  void setEncoderPosition(int32_t pos, uint8_t encoder = 0);
 
   virtual size_t write(uint8_t);
   virtual size_t write(const char *str);

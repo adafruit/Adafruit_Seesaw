@@ -716,11 +716,12 @@ float Adafruit_seesaw::getTemp() {
 /**
  *****************************************************************************************
  *  @brief      Read the current position of the encoder
+ *  @param encoder Which encoder to use, defaults to 0
  *  @return     The encoder position as a 32 bit signed integer.
  ****************************************************************************************/
-int32_t Adafruit_seesaw::getEncoderPosition() {
+int32_t Adafruit_seesaw::getEncoderPosition(uint8_t encoder) {
   uint8_t buf[4];
-  this->read(SEESAW_ENCODER_BASE, SEESAW_ENCODER_POSITION, buf, 4);
+  this->read(SEESAW_ENCODER_BASE, SEESAW_ENCODER_POSITION + encoder, buf, 4);
   int32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) |
                 ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
 
@@ -730,22 +731,24 @@ int32_t Adafruit_seesaw::getEncoderPosition() {
 /**
  *****************************************************************************************
  *  @brief      Set the current position of the encoder
+ *  @param encoder Which encoder to use, defaults to 0
  *  @param     pos the position to set the encoder to.
  ****************************************************************************************/
-void Adafruit_seesaw::setEncoderPosition(int32_t pos) {
+void Adafruit_seesaw::setEncoderPosition(int32_t pos, uint8_t encoder) {
   uint8_t buf[] = {(uint8_t)(pos >> 24), (uint8_t)(pos >> 16),
                    (uint8_t)(pos >> 8), (uint8_t)(pos & 0xFF)};
-  this->write(SEESAW_ENCODER_BASE, SEESAW_ENCODER_POSITION, buf, 4);
+  this->write(SEESAW_ENCODER_BASE, SEESAW_ENCODER_POSITION + encoder, buf, 4);
 }
 
 /**
  *****************************************************************************************
  *  @brief      Read the change in encoder position since it was last read.
+ *  @param encoder Which encoder to use, defaults to 0
  *  @return     The encoder change as a 32 bit signed integer.
  ****************************************************************************************/
-int32_t Adafruit_seesaw::getEncoderDelta() {
+int32_t Adafruit_seesaw::getEncoderDelta(uint8_t encoder) {
   uint8_t buf[4];
-  this->read(SEESAW_ENCODER_BASE, SEESAW_ENCODER_DELTA, buf, 4);
+  this->read(SEESAW_ENCODER_BASE, SEESAW_ENCODER_DELTA + encoder, buf, 4);
   int32_t ret = ((uint32_t)buf[0] << 24) | ((uint32_t)buf[1] << 16) |
                 ((uint32_t)buf[2] << 8) | (uint32_t)buf[3];
 
@@ -755,20 +758,24 @@ int32_t Adafruit_seesaw::getEncoderDelta() {
 /**
  *****************************************************************************************
  *  @brief      Enable the interrupt to fire when the encoder changes position.
+ *  @param encoder Which encoder to use, defaults to 0
  *  @returns    True on I2C write success
  ****************************************************************************************/
-bool Adafruit_seesaw::enableEncoderInterrupt() {
-  return this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENSET, 0x01);
+bool Adafruit_seesaw::enableEncoderInterrupt(uint8_t encoder) {
+  return this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENSET + encoder,
+                      0x01);
 }
 
 /**
  *****************************************************************************************
  *  @brief      Disable the interrupt from firing when the encoder changes
  *position.
+ *  @param encoder Which encoder to use, defaults to 0
  *  @returns    True on I2C write success
  ****************************************************************************************/
-bool Adafruit_seesaw::disableEncoderInterrupt() {
-  return this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENCLR, 0x01);
+bool Adafruit_seesaw::disableEncoderInterrupt(uint8_t encoder) {
+  return this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENCLR + encoder,
+                      0x01);
 }
 
 /**
