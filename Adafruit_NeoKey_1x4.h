@@ -46,8 +46,6 @@ public:
   void registerCallback(uint8_t key, NeoKey1x4Callback (*cb)(keyEvent));
   void unregisterCallback(uint8_t key);
 
-  void activateKey(uint8_t key, uint8_t edge, bool enable = true);
-
   uint8_t read(void);
 
   seesaw_NeoPixel pixels; ///< the onboard neopixel matrix
@@ -81,9 +79,6 @@ public:
                         NeoKey1x4Callback (*cb)(keyEvent));
   void unregisterCallback(uint16_t num);
   void unregisterCallback(uint8_t x, uint8_t y);
-
-  void activateKey(uint16_t num, uint8_t edge, bool enable = true);
-  void activateKey(uint8_t x, uint8_t y, uint8_t edge, bool enable = true);
 
   void setPixelColor(uint8_t x, uint8_t y, uint32_t color);
   void setPixelColor(uint16_t num, uint32_t color);
