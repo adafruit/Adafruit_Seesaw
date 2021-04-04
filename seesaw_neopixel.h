@@ -16,14 +16,8 @@
 #ifndef SEESAW_NEOPIXEL_H
 #define SEESAW_NEOPIXEL_H
 
-#if (ARDUINO >= 100)
-#include <Arduino.h>
-#else
-#include <WProgram.h>
-#include <pins_arduino.h>
-#endif
-
 #include "Adafruit_seesaw.h"
+#include <Arduino.h>
 
 // The order of primary colors in the NeoPixel data stream can vary
 // among device types, manufacturers and even different revisions of
@@ -97,6 +91,8 @@
 
 typedef uint16_t neoPixelType;
 
+/** Adafruit_NeoPixel-compatible 'wrapper' for LED control over seesaw
+ */
 class seesaw_NeoPixel : public Adafruit_seesaw {
 
 public:

@@ -9,7 +9,7 @@
 Adafruit_seesaw ss;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   
   if(!ss.begin()){
     Serial.println("ERROR!");
