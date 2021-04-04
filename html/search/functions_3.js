@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['detach',['detach',['../classseesaw___servo.html#ad2a6fc4095115afeef1de74811cd1809',1,'seesaw_Servo']]],
-  ['digitalread',['digitalRead',['../class_adafruit__seesaw.html#aefbd691fb207fe97918eba36278493c6',1,'Adafruit_seesaw']]],
-  ['digitalreadbulk',['digitalReadBulk',['../class_adafruit__seesaw.html#aa96c417f70807462f6a392b792bc51fb',1,'Adafruit_seesaw']]],
-  ['digitalreadbulkb',['digitalReadBulkB',['../class_adafruit__seesaw.html#a1133bf2f145bda2d7abce9bd2d4e17bd',1,'Adafruit_seesaw']]],
-  ['digitalwrite',['digitalWrite',['../class_adafruit__seesaw.html#a08c91e38484df9a042a4cc8d6afa7abb',1,'Adafruit_seesaw']]],
-  ['digitalwritebulk',['digitalWriteBulk',['../class_adafruit__seesaw.html#a034eabf00889cb3bcc30ef4a2b8635d2',1,'Adafruit_seesaw::digitalWriteBulk(uint32_t pins, uint8_t value)'],['../class_adafruit__seesaw.html#a017af800d8e05416eb3d851631de50d3',1,'Adafruit_seesaw::digitalWriteBulk(uint32_t pinsa, uint32_t pinsb, uint8_t value)']]],
-  ['disableencoderinterrupt',['disableEncoderInterrupt',['../class_adafruit__seesaw.html#a95c9541cb3c9896e2bca5f43075a4dc7',1,'Adafruit_seesaw']]],
-  ['disablekeypadinterrupt',['disableKeypadInterrupt',['../class_adafruit__seesaw.html#a9cb9e232e60ca82404bf384b42cafc56',1,'Adafruit_seesaw']]],
-  ['disablesercomdatardyinterrupt',['disableSercomDataRdyInterrupt',['../class_adafruit__seesaw.html#a00c975cbbead1b3a9b319b476db72e48',1,'Adafruit_seesaw']]]
+  ['eepromread8',['EEPROMRead8',['../class_adafruit__seesaw.html#aa0e95de00a63fc7ae60cca451d595d4e',1,'Adafruit_seesaw']]],
+  ['eepromwrite',['EEPROMWrite',['../class_adafruit__seesaw.html#a46f08c4dfdf49d55ccc0c246b2afaa64',1,'Adafruit_seesaw']]],
+  ['eepromwrite8',['EEPROMWrite8',['../class_adafruit__seesaw.html#a50438fd0a918a355c38b4c5912bbe597',1,'Adafruit_seesaw']]],
+  ['enableencoderinterrupt',['enableEncoderInterrupt',['../class_adafruit__seesaw.html#afa3d7744c8ae1246925479bf99d5600e',1,'Adafruit_seesaw']]],
+  ['enablekeypadinterrupt',['enableKeypadInterrupt',['../class_adafruit__seesaw.html#a3d667d25651dca8012348d475763eada',1,'Adafruit_seesaw']]],
+  ['enablesercomdatardyinterrupt',['enableSercomDataRdyInterrupt',['../class_adafruit__seesaw.html#a9c5403ae64446abfdb88ceeb845cc349',1,'Adafruit_seesaw']]]
 ];

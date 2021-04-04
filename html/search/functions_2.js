@@ -1,4 +1,12 @@
 var searchData=
 [
-  ['begin',['begin',['../class_adafruit__mini_t_f_t_wing.html#a5ec84489e17caf09bcaffb964b59f7b4',1,'Adafruit_miniTFTWing::begin()'],['../class_adafruit___neo_trellis.html#a300705906df0c7ce1a0ce1cda1ebb0cf',1,'Adafruit_NeoTrellis::begin()'],['../class_adafruit___multi_trellis.html#a0daa78fdf13b4d71a5f9cb63ef732003',1,'Adafruit_MultiTrellis::begin()'],['../class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a',1,'Adafruit_seesaw::begin()'],['../class_adafruit___t_f_t_shield18.html#a4ae9238c7f9a2b26cf6533effeb41087',1,'Adafruit_TFTShield18::begin()'],['../classseesaw___servo.html#affe08e71de7af5f540667d3468b1ec32',1,'seesaw_Servo::begin()']]]
+  ['detach',['detach',['../classseesaw___servo.html#ad2a6fc4095115afeef1de74811cd1809',1,'seesaw_Servo']]],
+  ['digitalread',['digitalRead',['../class_adafruit__seesaw.html#aefbd691fb207fe97918eba36278493c6',1,'Adafruit_seesaw']]],
+  ['digitalreadbulk',['digitalReadBulk',['../class_adafruit__seesaw.html#aa96c417f70807462f6a392b792bc51fb',1,'Adafruit_seesaw']]],
+  ['digitalreadbulkb',['digitalReadBulkB',['../class_adafruit__seesaw.html#a1133bf2f145bda2d7abce9bd2d4e17bd',1,'Adafruit_seesaw']]],
+  ['digitalwrite',['digitalWrite',['../class_adafruit__seesaw.html#a08c91e38484df9a042a4cc8d6afa7abb',1,'Adafruit_seesaw']]],
+  ['digitalwritebulk',['digitalWriteBulk',['../class_adafruit__seesaw.html#a034eabf00889cb3bcc30ef4a2b8635d2',1,'Adafruit_seesaw::digitalWriteBulk(uint32_t pins, uint8_t value)'],['../class_adafruit__seesaw.html#a017af800d8e05416eb3d851631de50d3',1,'Adafruit_seesaw::digitalWriteBulk(uint32_t pinsa, uint32_t pinsb, uint8_t value)']]],
+  ['disableencoderinterrupt',['disableEncoderInterrupt',['../class_adafruit__seesaw.html#a5866799da7486493f0fe3e47cd731c26',1,'Adafruit_seesaw']]],
+  ['disablekeypadinterrupt',['disableKeypadInterrupt',['../class_adafruit__seesaw.html#a9cb9e232e60ca82404bf384b42cafc56',1,'Adafruit_seesaw']]],
+  ['disablesercomdatardyinterrupt',['disableSercomDataRdyInterrupt',['../class_adafruit__seesaw.html#a00c975cbbead1b3a9b319b476db72e48',1,'Adafruit_seesaw']]]
 ];

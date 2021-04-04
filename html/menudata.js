@@ -21,7 +21,6 @@ var menudata={children:[
 {text:"u",url:"functions.html#index_u"},
 {text:"w",url:"functions.html#index_w"}]},
 {text:"Functions",url:"functions_func.html",children:[
-{text:"_",url:"functions_func.html#index__"},
 {text:"a",url:"functions_func.html#index_a"},
 {text:"b",url:"functions_func.html#index_b"},
 {text:"d",url:"functions_func.html#index_d"},
