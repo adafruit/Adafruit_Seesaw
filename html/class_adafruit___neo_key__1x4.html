@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Adafruit Library: Adafruit_NeoTrellis Class Reference</title>
+<title>Adafruit Library: Adafruit_NeoKey_1x4 Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,46 +63,43 @@ $(function() {
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
-<a href="class_adafruit___neo_trellis-members.html">List of all members</a>  </div>
+<a href="class_adafruit___neo_key__1x4-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Adafruit_NeoTrellis Class Reference</div>  </div>
+<div class="title">Adafruit_NeoKey_1x4 Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Class that stores state and functions for interacting with the seesaw keypad module.  
- <a href="class_adafruit___neo_trellis.html#details">More...</a></p>
+<p>Class that stores state and functions for interacting with the seesaw NeoKey module.  
+ <a href="class_adafruit___neo_key__1x4.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_adafruit___neo_trellis_8h_source.html">Adafruit_NeoTrellis.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_adafruit___neo_key__1x4_8h_source.html">Adafruit_NeoKey_1x4.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for Adafruit_NeoTrellis:</div>
+Inheritance diagram for Adafruit_NeoKey_1x4:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="class_adafruit___neo_trellis.png" usemap="#Adafruit_5FNeoTrellis_map" alt=""/>
-  <map id="Adafruit_5FNeoTrellis_map" name="Adafruit_5FNeoTrellis_map">
-<area href="class_adafruit__seesaw.html" title="Class that stores state and functions for interacting with seesaw helper IC. " alt="Adafruit_seesaw" shape="rect" coords="0,56,121,80"/>
+  <img src="class_adafruit___neo_key__1x4.png" usemap="#Adafruit_5FNeoKey_5F1x4_map" alt=""/>
+  <map id="Adafruit_5FNeoKey_5F1x4_map" name="Adafruit_5FNeoKey_5F1x4_map">
+<area href="class_adafruit__seesaw.html" title="Class that stores state and functions for interacting with seesaw helper IC. " alt="Adafruit_seesaw" shape="rect" coords="0,56,136,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6400aa2d1e832a477884a4f0ae4b846b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a6400aa2d1e832a477884a4f0ae4b846b">Adafruit_NeoTrellis</a> (uint8_t addr=NEO_TRELLIS_ADDR)</td></tr>
-<tr class="memdesc:a6400aa2d1e832a477884a4f0ae4b846b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a6400aa2d1e832a477884a4f0ae4b846b">More...</a><br /></td></tr>
-<tr class="separator:a6400aa2d1e832a477884a4f0ae4b846b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a300705906df0c7ce1a0ce1cda1ebb0cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a300705906df0c7ce1a0ce1cda1ebb0cf">begin</a> (uint8_t addr=NEO_TRELLIS_ADDR, int8_t flow=-1)</td></tr>
-<tr class="memdesc:a300705906df0c7ce1a0ce1cda1ebb0cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin communication with the RGB trellis.  <a href="#a300705906df0c7ce1a0ce1cda1ebb0cf">More...</a><br /></td></tr>
-<tr class="separator:a300705906df0c7ce1a0ce1cda1ebb0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af99ef3113dda4fedfc69f9c8dee3bcba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#af99ef3113dda4fedfc69f9c8dee3bcba">registerCallback</a> (uint8_t key, TrellisCallback(*cb)(<a class="el" href="unionkey_event.html">keyEvent</a>))</td></tr>
-<tr class="memdesc:af99ef3113dda4fedfc69f9c8dee3bcba"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback function on the passed key.  <a href="#af99ef3113dda4fedfc69f9c8dee3bcba">More...</a><br /></td></tr>
-<tr class="separator:af99ef3113dda4fedfc69f9c8dee3bcba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01565a0de17f406931a1c27f96b4f4ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a01565a0de17f406931a1c27f96b4f4ac">unregisterCallback</a> (uint8_t key)</td></tr>
-<tr class="memdesc:a01565a0de17f406931a1c27f96b4f4ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">unregister a callback on a given key  <a href="#a01565a0de17f406931a1c27f96b4f4ac">More...</a><br /></td></tr>
-<tr class="separator:a01565a0de17f406931a1c27f96b4f4ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6eb9cc3f68a794278670387b0deed2e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a6eb9cc3f68a794278670387b0deed2e2">activateKey</a> (uint8_t key, uint8_t edge, bool enable=true)</td></tr>
-<tr class="memdesc:a6eb9cc3f68a794278670387b0deed2e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">activate or deactivate a given key event  <a href="#a6eb9cc3f68a794278670387b0deed2e2">More...</a><br /></td></tr>
-<tr class="separator:a6eb9cc3f68a794278670387b0deed2e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58512ca86c0cb84a9f9869cb447d7ba4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a58512ca86c0cb84a9f9869cb447d7ba4">read</a> (bool polling=true)</td></tr>
-<tr class="memdesc:a58512ca86c0cb84a9f9869cb447d7ba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">read all events currently stored in the seesaw fifo and call any callbacks.  <a href="#a58512ca86c0cb84a9f9869cb447d7ba4">More...</a><br /></td></tr>
-<tr class="separator:a58512ca86c0cb84a9f9869cb447d7ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4abd8e62bb0d88869bdd0515525ee0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#ab4abd8e62bb0d88869bdd0515525ee0e">Adafruit_NeoKey_1x4</a> (uint8_t addr=NEOKEY_1X4_ADDR)</td></tr>
+<tr class="memdesc:ab4abd8e62bb0d88869bdd0515525ee0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#ab4abd8e62bb0d88869bdd0515525ee0e">More...</a><br /></td></tr>
+<tr class="separator:ab4abd8e62bb0d88869bdd0515525ee0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63053cff5aade7fff53a8f421fb862d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a63053cff5aade7fff53a8f421fb862d9">begin</a> (uint8_t addr=NEOKEY_1X4_ADDR, int8_t flow=-1)</td></tr>
+<tr class="memdesc:a63053cff5aade7fff53a8f421fb862d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin communication with the RGB trellis.  <a href="#a63053cff5aade7fff53a8f421fb862d9">More...</a><br /></td></tr>
+<tr class="separator:a63053cff5aade7fff53a8f421fb862d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14e9d80f9e5609ca5a0de5077420ce11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a14e9d80f9e5609ca5a0de5077420ce11">registerCallback</a> (uint8_t key, NeoKey1x4Callback(*cb)(<a class="el" href="unionkey_event.html">keyEvent</a>))</td></tr>
+<tr class="memdesc:a14e9d80f9e5609ca5a0de5077420ce11"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback function on the passed key.  <a href="#a14e9d80f9e5609ca5a0de5077420ce11">More...</a><br /></td></tr>
+<tr class="separator:a14e9d80f9e5609ca5a0de5077420ce11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2fbad1b00b751e88bc6a587b21e1a77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#ad2fbad1b00b751e88bc6a587b21e1a77">unregisterCallback</a> (uint8_t key)</td></tr>
+<tr class="memdesc:ad2fbad1b00b751e88bc6a587b21e1a77"><td class="mdescLeft">&#160;</td><td class="mdescRight">unregister a callback on a given key  <a href="#ad2fbad1b00b751e88bc6a587b21e1a77">More...</a><br /></td></tr>
+<tr class="separator:ad2fbad1b00b751e88bc6a587b21e1a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab11879cb006edf58e784c7629b675da5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#ab11879cb006edf58e784c7629b675da5">read</a> (void)</td></tr>
+<tr class="memdesc:ab11879cb006edf58e784c7629b675da5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read key GPIO pins, possibly generating callback events.  <a href="#ab11879cb006edf58e784c7629b675da5">More...</a><br /></td></tr>
+<tr class="separator:ab11879cb006edf58e784c7629b675da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_adafruit__seesaw"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_adafruit__seesaw')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_adafruit__seesaw.html">Adafruit_seesaw</a></td></tr>
 <tr class="memitem:a0cc3f76a255b691930983d2e36171ac7 inherit pub_methods_class_adafruit__seesaw"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a0cc3f76a255b691930983d2e36171ac7">Adafruit_seesaw</a> (TwoWire *Wi=NULL)</td></tr>
 <tr class="memdesc:a0cc3f76a255b691930983d2e36171ac7 inherit pub_methods_class_adafruit__seesaw"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a seesaw object on a given I2C bus.  <a href="class_adafruit__seesaw.html#a0cc3f76a255b691930983d2e36171ac7">More...</a><br /></td></tr>
@@ -232,21 +229,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a9014a1c059e76c1ad5de2c6615d91900"><td class="memItemLeft" align="right" valign="top"><a id="a9014a1c059e76c1ad5de2c6615d91900"></a>
-seesaw_NeoPixel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a9014a1c059e76c1ad5de2c6615d91900">pixels</a></td></tr>
-<tr class="memdesc:a9014a1c059e76c1ad5de2c6615d91900"><td class="mdescLeft">&#160;</td><td class="mdescRight">the onboard neopixel matrix <br /></td></tr>
-<tr class="separator:a9014a1c059e76c1ad5de2c6615d91900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac7a4dc0bacaa547f18a8d0b8f526199"><td class="memItemLeft" align="right" valign="top"><a id="aac7a4dc0bacaa547f18a8d0b8f526199"></a>
+seesaw_NeoPixel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#aac7a4dc0bacaa547f18a8d0b8f526199">pixels</a></td></tr>
+<tr class="memdesc:aac7a4dc0bacaa547f18a8d0b8f526199"><td class="mdescLeft">&#160;</td><td class="mdescRight">the onboard neopixel matrix <br /></td></tr>
+<tr class="separator:aac7a4dc0bacaa547f18a8d0b8f526199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a6824e7df55c874663d4e994c4f7e4dc3"><td class="memItemLeft" align="right" valign="top"><a id="a6824e7df55c874663d4e994c4f7e4dc3"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a6824e7df55c874663d4e994c4f7e4dc3">_addr</a></td></tr>
-<tr class="memdesc:a6824e7df55c874663d4e994c4f7e4dc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">the I2C address of this board <br /></td></tr>
-<tr class="separator:a6824e7df55c874663d4e994c4f7e4dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a221b9b02e195641f518972bfe04d35a2"><td class="memItemLeft" align="right" valign="top"><a id="a221b9b02e195641f518972bfe04d35a2"></a>
-TrellisCallback(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a221b9b02e195641f518972bfe04d35a2">_callbacks</a> [NEO_TRELLIS_NUM_KEYS])(<a class="el" href="unionkey_event.html">keyEvent</a>)</td></tr>
-<tr class="memdesc:a221b9b02e195641f518972bfe04d35a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">the array of callback functions <br /></td></tr>
-<tr class="separator:a221b9b02e195641f518972bfe04d35a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad659c32ce0051f88dfa9ff6fc6ed1a4f"><td class="memItemLeft" align="right" valign="top"><a id="ad659c32ce0051f88dfa9ff6fc6ed1a4f"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#ad659c32ce0051f88dfa9ff6fc6ed1a4f">last_buttons</a> = 0</td></tr>
+<tr class="memdesc:ad659c32ce0051f88dfa9ff6fc6ed1a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last reading for the buttons. <br /></td></tr>
+<tr class="separator:ad659c32ce0051f88dfa9ff6fc6ed1a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a459e5f19f9a68d4aa95d5e73bf3a824b"><td class="memItemLeft" align="right" valign="top"><a id="a459e5f19f9a68d4aa95d5e73bf3a824b"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a459e5f19f9a68d4aa95d5e73bf3a824b">_addr</a></td></tr>
+<tr class="memdesc:a459e5f19f9a68d4aa95d5e73bf3a824b"><td class="mdescLeft">&#160;</td><td class="mdescRight">the I2C address of this board <br /></td></tr>
+<tr class="separator:a459e5f19f9a68d4aa95d5e73bf3a824b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59d2911382736df023da7ba3e6068209"><td class="memItemLeft" align="right" valign="top"><a id="a59d2911382736df023da7ba3e6068209"></a>
+NeoKey1x4Callback(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a59d2911382736df023da7ba3e6068209">_callbacks</a> [NEOKEY_1X4_KEYS])(<a class="el" href="unionkey_event.html">keyEvent</a>)</td></tr>
+<tr class="memdesc:a59d2911382736df023da7ba3e6068209"><td class="mdescLeft">&#160;</td><td class="mdescRight">the array of callback functions <br /></td></tr>
+<tr class="separator:a59d2911382736df023da7ba3e6068209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_adafruit__seesaw"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_adafruit__seesaw')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_adafruit__seesaw.html">Adafruit_seesaw</a></td></tr>
 <tr class="memitem:a6afcd6077410f5d6f6c312b978961492 inherit pro_attribs_class_adafruit__seesaw"><td class="memItemLeft" align="right" valign="top">TwoWire *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a6afcd6077410f5d6f6c312b978961492">_i2cbus</a></td></tr>
 <tr class="separator:a6afcd6077410f5d6f6c312b978961492 inherit pro_attribs_class_adafruit__seesaw"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -263,8 +264,8 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:ade7a1f897d425c9424123becebc76392"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#ade7a1f897d425c9424123becebc76392">Adafruit_MultiTrellis</a></td></tr>
-<tr class="separator:ade7a1f897d425c9424123becebc76392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa395ef6eb6696462a3f3b31aa88803b8"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#aa395ef6eb6696462a3f3b31aa88803b8">Adafruit_MultiNeoKey1x4</a></td></tr>
+<tr class="separator:aa395ef6eb6696462a3f3b31aa88803b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -283,19 +284,19 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ae97e5128aa04c2e2da1e13da84767706 inherit pro_methods_class_adafruit__seesaw"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class that stores state and functions for interacting with the seesaw keypad module. </p>
+<div class="textblock"><p>Class that stores state and functions for interacting with the seesaw NeoKey module. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a6400aa2d1e832a477884a4f0ae4b846b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6400aa2d1e832a477884a4f0ae4b846b">&#9670;&nbsp;</a></span>Adafruit_NeoTrellis()</h2>
+<a id="ab4abd8e62bb0d88869bdd0515525ee0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4abd8e62bb0d88869bdd0515525ee0e">&#9670;&nbsp;</a></span>Adafruit_NeoKey_1x4()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Adafruit_NeoTrellis::Adafruit_NeoTrellis </td>
+          <td class="memname">Adafruit_NeoKey_1x4::Adafruit_NeoKey_1x4 </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>addr</em> = <code>NEO_TRELLIS_ADDR</code></td><td>)</td>
+          <td class="paramname"><em>addr</em> = <code>NEOKEY_1X4_ADDR</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -312,17 +313,17 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a300705906df0c7ce1a0ce1cda1ebb0cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a300705906df0c7ce1a0ce1cda1ebb0cf">&#9670;&nbsp;</a></span>begin()</h2>
+<a id="a63053cff5aade7fff53a8f421fb862d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63053cff5aade7fff53a8f421fb862d9">&#9670;&nbsp;</a></span>begin()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Adafruit_NeoTrellis::begin </td>
+          <td class="memname">bool Adafruit_NeoKey_1x4::begin </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>addr</em> = <code>NEO_TRELLIS_ADDR</code>, </td>
+          <td class="paramname"><em>addr</em> = <code>NEOKEY_1X4_ADDR</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -341,7 +342,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Begin communication with the RGB trellis. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">addr</td><td>optional i2c address where the device can be found. Defaults to NEO_TRELLIS_ADDR </td></tr>
+    <tr><td class="paramname">addr</td><td>optional i2c address where the device can be found. Defaults to NEOKEY_1X4_ADDR </td></tr>
     <tr><td class="paramname">flow</td><td>optional flow control pin </td></tr>
   </table>
   </dd>
@@ -350,14 +351,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="af99ef3113dda4fedfc69f9c8dee3bcba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af99ef3113dda4fedfc69f9c8dee3bcba">&#9670;&nbsp;</a></span>registerCallback()</h2>
+<a id="a14e9d80f9e5609ca5a0de5077420ce11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14e9d80f9e5609ca5a0de5077420ce11">&#9670;&nbsp;</a></span>registerCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Adafruit_NeoTrellis::registerCallback </td>
+          <td class="memname">void Adafruit_NeoKey_1x4::registerCallback </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>key</em>, </td>
@@ -365,7 +366,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TrellisCallback(*)(<a class="el" href="unionkey_event.html">keyEvent</a>)&#160;</td>
+          <td class="paramtype">NeoKey1x4Callback(*)(<a class="el" href="unionkey_event.html">keyEvent</a>)&#160;</td>
           <td class="paramname"><em>cb</em>&#160;</td>
         </tr>
         <tr>
@@ -387,14 +388,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a01565a0de17f406931a1c27f96b4f4ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01565a0de17f406931a1c27f96b4f4ac">&#9670;&nbsp;</a></span>unregisterCallback()</h2>
+<a id="ad2fbad1b00b751e88bc6a587b21e1a77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2fbad1b00b751e88bc6a587b21e1a77">&#9670;&nbsp;</a></span>unregisterCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Adafruit_NeoTrellis::unregisterCallback </td>
+          <td class="memname">void Adafruit_NeoKey_1x4::unregisterCallback </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
@@ -413,79 +414,30 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a6eb9cc3f68a794278670387b0deed2e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6eb9cc3f68a794278670387b0deed2e2">&#9670;&nbsp;</a></span>activateKey()</h2>
+<a id="ab11879cb006edf58e784c7629b675da5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab11879cb006edf58e784c7629b675da5">&#9670;&nbsp;</a></span>read()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Adafruit_NeoTrellis::activateKey </td>
+          <td class="memname">uint8_t Adafruit_NeoKey_1x4::read </td>
           <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>edge</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>enable</em> = <code>true</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>activate or deactivate a given key event </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>the key number to map the event to </td></tr>
-    <tr><td class="paramname">edge</td><td>the edge sensitivity of the event </td></tr>
-    <tr><td class="paramname">enable</td><td>pass true to enable the passed event, false to disable it. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a58512ca86c0cb84a9f9869cb447d7ba4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58512ca86c0cb84a9f9869cb447d7ba4">&#9670;&nbsp;</a></span>read()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Adafruit_NeoTrellis::read </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>polling</em> = <code>true</code></td><td>)</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>read all events currently stored in the seesaw fifo and call any callbacks. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">polling</td><td>pass true if the interrupt pin is not being used, false if it is. Defaults to true. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Read key GPIO pins, possibly generating callback events. </p>
+<dl class="section return"><dt>Returns</dt><dd>Byte with the bottom 4 bits corresponding to each keypress status </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="ade7a1f897d425c9424123becebc76392"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade7a1f897d425c9424123becebc76392">&#9670;&nbsp;</a></span>Adafruit_MultiTrellis</h2>
+<a id="aa395ef6eb6696462a3f3b31aa88803b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa395ef6eb6696462a3f3b31aa88803b8">&#9670;&nbsp;</a></span>Adafruit_MultiNeoKey1x4</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -494,7 +446,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">friend class <a class="el" href="class_adafruit___multi_trellis.html">Adafruit_MultiTrellis</a></td>
+          <td class="memname">friend class <a class="el" href="class_adafruit___multi_neo_key1x4.html">Adafruit_MultiNeoKey1x4</a></td>
         </tr>
       </table>
   </td>
@@ -508,8 +460,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_adafruit___neo_trellis_8h_source.html">Adafruit_NeoTrellis.h</a></li>
-<li>Adafruit_NeoTrellis.cpp</li>
+<li><a class="el" href="_adafruit___neo_key__1x4_8h_source.html">Adafruit_NeoKey_1x4.h</a></li>
+<li>Adafruit_NeoKey_1x4.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
