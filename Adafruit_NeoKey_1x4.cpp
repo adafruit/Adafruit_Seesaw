@@ -66,7 +66,6 @@ void Adafruit_NeoKey_1x4::unregisterCallback(uint8_t key) {
   _callbacks[key] = NULL;
 }
 
-
 /**************************************************************************/
 /*!
     @brief  Read key GPIO pins, possibly generating callback events
@@ -286,7 +285,12 @@ void Adafruit_MultiNeoKey1x4::read() {
       nk = (_neokeys + n * _cols) + m;
 
       // query what buttons are pressed
+      nk->digitalReadBulk(
+          NEOKEY_1X4_BUTTONMASK); // not sure why we have to do it 2ce
       uint32_t buttons = nk->digitalReadBulk(NEOKEY_1X4_BUTTONMASK);
+
+      // Serial.print("Neokey number "); Serial.print(n * _cols + m);
+      // Serial.print(" buttons: 0x"); Serial.println(buttons, HEX);
       buttons ^= NEOKEY_1X4_BUTTONMASK;
       buttons &= NEOKEY_1X4_BUTTONMASK;
       buttons >>= NEOKEY_1X4_BUTTONA;
@@ -296,10 +300,9 @@ void Adafruit_MultiNeoKey1x4::read() {
       uint8_t just_released = (buttons ^ nk->last_buttons) & ~buttons;
       // stash for next run
       nk->last_buttons = buttons;
-
       if (just_pressed | just_released) {
-        //Serial.print("pressed 0x"); Serial.println(just_pressed, HEX);
-        //Serial.print("released 0x"); Serial.println(just_released, HEX);
+        // Serial.print("pressed 0x"); Serial.println(just_pressed, HEX);
+        // Serial.print("released 0x"); Serial.println(just_released, HEX);
 
         // for each key, process the event
         for (int b = 0; b < 4; b++) {
