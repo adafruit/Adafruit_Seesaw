@@ -269,8 +269,8 @@ public:
 
   int32_t getEncoderPosition();
   int32_t getEncoderDelta();
-  void enableEncoderInterrupt();
-  void disableEncoderInterrupt();
+  bool enableEncoderInterrupt();
+  bool disableEncoderInterrupt();
   void setEncoderPosition(int32_t pos);
 
   virtual size_t write(uint8_t);
@@ -278,7 +278,7 @@ public:
 
 protected:
   TwoWire *_i2cbus; /*!< The I2C Bus used to communicate with the seesaw */
-  Adafruit_I2CDevice *_i2c_dev = NULL;
+  Adafruit_I2CDevice *_i2c_dev = NULL; ///< The BusIO device for I2C control
 
   int8_t _flow; /*!< The flow control pin to use */
 

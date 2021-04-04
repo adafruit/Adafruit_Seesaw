@@ -132,6 +132,7 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset) {
  *their default values.
  *  			This is called automatically from
  *Adafruit_seesaw.begin()
+ * @returns  True on I2C write success, false otherwise
 
  ********************************************************************/
 bool Adafruit_seesaw::SWReset() {
@@ -691,6 +692,7 @@ uint8_t Adafruit_seesaw::getKeypadCount() {
  *
  *  @param      buf pointer to where the keyEvents should be stored
  *  @param		count the number of events to read
+ *  @returns    True on I2C read success
  ****************************************************************************************/
 bool Adafruit_seesaw::readKeypad(keyEventRaw *buf, uint8_t count) {
   return this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf,
@@ -753,18 +755,20 @@ int32_t Adafruit_seesaw::getEncoderDelta() {
 /**
  *****************************************************************************************
  *  @brief      Enable the interrupt to fire when the encoder changes position.
+ *  @returns    True on I2C write success
  ****************************************************************************************/
-void Adafruit_seesaw::enableEncoderInterrupt() {
-  this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENSET, 0x01);
+bool Adafruit_seesaw::enableEncoderInterrupt() {
+  return this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENSET, 0x01);
 }
 
 /**
  *****************************************************************************************
  *  @brief      Disable the interrupt from firing when the encoder changes
  *position.
+ *  @returns    True on I2C write success
  ****************************************************************************************/
-void Adafruit_seesaw::disableEncoderInterrupt() {
-  this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENCLR, 0x01);
+bool Adafruit_seesaw::disableEncoderInterrupt() {
+  return this->write8(SEESAW_ENCODER_BASE, SEESAW_ENCODER_INTENCLR, 0x01);
 }
 
 /**
@@ -775,6 +779,7 @@ void Adafruit_seesaw::disableEncoderInterrupt() {
  *	@param		regLow the function address register (ex.
  *SEESAW_NEOPIXEL_PIN)
  *	@param		value the value between 0 and 255 to write
+ *  @returns    True on I2C write success
  ****************************************************************************************/
 bool Adafruit_seesaw::write8(byte regHigh, byte regLow, byte value) {
   return this->write(regHigh, regLow, &value, 1);
@@ -812,6 +817,7 @@ uint8_t Adafruit_seesaw::read8(byte regHigh, byte regLow, uint16_t delay) {
  *	@param		delay an optional delay in between setting the read
  *register and reading out the data. This is required for some seesaw functions
  *(ex. reading ADC data)
+ *  @returns    True on I2C read success
  ****************************************************************************************/
 bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
                            uint8_t num, uint16_t delay) {
@@ -870,6 +876,7 @@ bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
  *  @param	regLow the function address register (ex. SEESAW_GPIO_BULK_SET)
  *  @param	buf the buffer the the bytes from
  *  @param	num the number of bytes to write.
+ *  @returns    True on I2C write success
  ****************************************************************************************/
 bool Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow,
                             uint8_t *buf = NULL, uint8_t num = 0) {
