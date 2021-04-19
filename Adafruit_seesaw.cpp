@@ -317,17 +317,33 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin) {
  *
  *  @return     the analog value. This is an integer between 0 and 1023
  ****************************************************************************/
+ /* 18-Apr-2021, Adafruit_seesaw.TouchRead doesn not work on ESP32 DEVKIT V1 using Adafruit soilsensor.  Code worked with Arduino Mega 2560 but hung in read() when executed on ESP32.
+ Issue seemed to be duration of optional delay between request sent to soilsensor and reading soilsensor.  If delay too brief, device returns 65535 and code hangs because
+ while loop continues to request read until returns something other than 65535, which it never does.
+ Solution is to lengthen delay and only try a finite number of times. The code below was tested on ESP32 DEVKIT V1 and Arduino Mega 2560. Using the code below, a delay of 5000 took only a single call to read to get
+ a valid result, where as a delay of 2500 took 2 reads, 1000 took 3 reads, and 500 took 4 or 8 reads.
+
+ Existing code uses while loop which can hang if timing is off or if sensor fails (e.g. loses power).  Therefore, changed to for loop so that it will only try to read a finite number of times. 
+ In using a finite number of tries to read, the calling code will need to check the value to see if it is valid.  
+ A return of 65535 is an invalid result, something wrong with sensor/wiring.
+ A better solution would be to have this code be able to return an error. */
+
 uint16_t Adafruit_seesaw::touchRead(uint8_t pin) {
-  uint8_t buf[2];
-  uint8_t p = pin;
-  uint16_t ret = 65535;
-  do {
-    delay(1);
-    this->read(SEESAW_TOUCH_BASE, SEESAW_TOUCH_CHANNEL_OFFSET + p, buf, 2,
-               1000);
-    ret = ((uint16_t)buf[0] << 8) | buf[1];
-  } while (ret == 65535);
-  return ret;
+    uint8_t buf[2];
+    uint8_t p = pin;
+    uint16_t ret = 65535;
+    int x;
+
+    for (x = 1; x <= 255; x++)
+    {
+        this->read(SEESAW_TOUCH_BASE, SEESAW_TOUCH_CHANNEL_OFFSET + p, buf, 2, 5000);
+        ret = ((uint16_t)buf[0] << 8) | buf[1];
+        if (ret != 65535) break;  //exit on valid result
+    }
+    #ifdef SEESAW_I2C_DEBUG
+            Serial.print("loop count ="); Serial.println(x); //how many times did this routing need to try to get a valid result from sensor.
+    #endif
+    return ret;
 }
 
 /*!
