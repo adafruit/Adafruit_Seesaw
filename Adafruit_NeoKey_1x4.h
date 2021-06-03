@@ -20,6 +20,8 @@
 
 #define NEOKEY_1X4_MAX_CALLBACKS 32
 
+/* NEOKEY_1X4_KEY depends on PCB routing */
+// #define NEOKEY_1X4_KEY(x) (((x) / 4) * 8 + ((x) % 4))
 #define NEOKEY_1X4_KEY(x) (((x) / 8) * 4 + ((x) % 8))
 
 #define NEOKEY_1X4_X(k) ((k) % 4)
