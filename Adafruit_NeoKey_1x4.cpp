@@ -88,14 +88,14 @@ uint8_t Adafruit_NeoKey_1x4::read(void) {
     for (int b = 0; b < 4; b++) {
       if (just_pressed & (1 << b)) { // if button b is pressed
         if (_callbacks[b] != NULL) {
-          keyEvent evt = {SEESAW_KEYPAD_EDGE_RISING, b};
+          keyEvent evt = {SEESAW_KEYPAD_EDGE_RISING, (uint16_t)b};
           _callbacks[b](evt);
         }
       }
 
       if (just_released & (1 << b)) { // if button b is released
         if (_callbacks[b] != NULL) {
-          keyEvent evt = {SEESAW_KEYPAD_EDGE_FALLING, b};
+          keyEvent evt = {SEESAW_KEYPAD_EDGE_FALLING, (uint16_t)b};
           _callbacks[b](evt);
         }
       }
@@ -317,13 +317,13 @@ void Adafruit_MultiNeoKey1x4::read() {
 
           if (just_pressed & (1 << b)) { // if button b is pressed
             if (nk->_callbacks[b] != NULL) {
-              keyEvent evt = {SEESAW_KEYPAD_EDGE_RISING, event_key};
+              keyEvent evt = {SEESAW_KEYPAD_EDGE_RISING, (uint16_t)event_key};
               nk->_callbacks[b](evt);
             }
           }
           if (just_released & (1 << b)) { // if button b is pressed
             if (nk->_callbacks[b] != NULL) {
-              keyEvent evt = {SEESAW_KEYPAD_EDGE_FALLING, event_key};
+              keyEvent evt = {SEESAW_KEYPAD_EDGE_FALLING, (uint16_t)event_key};
               nk->_callbacks[b](evt);
             }
           }
