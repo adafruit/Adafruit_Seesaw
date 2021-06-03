@@ -17,6 +17,7 @@
 #define SEESAW_NEOPIXEL_H
 
 #include "Adafruit_seesaw.h"
+#include "bitmask.h"
 #include <Arduino.h>
 
 // The order of primary colors in the NeoPixel data stream can vary
@@ -115,7 +116,11 @@ public:
   uint32_t getPixelColor(uint16_t n) const;
   inline bool canShow(void) { return (micros() - endTime) >= 300L; }
 
+  void setPixelRangeColors(uint16_t firstLed, uint16_t length, const uint32_t* colors, uint16_t colorsLength, const BitMask* bitMask = nullptr);
+
 protected:
+  bool isBulkWriteFastest(uint16_t length, const BitMask* bitMask);
+
   boolean is800KHz, // ...true if 800 KHz pixels
       begun;        // true if begin() previously called
   uint16_t numLEDs, // Number of RGB LEDs in strip
