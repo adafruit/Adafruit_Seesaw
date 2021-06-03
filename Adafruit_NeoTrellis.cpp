@@ -349,3 +349,13 @@ void Adafruit_MultiTrellis::read() {
     }
   }
 }
+
+void Adafruit_MultiTrellis::clear(uint32_t color) {
+  Adafruit_NeoTrellis *t;
+  for (int n = 0; n < _rows; n++) {
+    for (int m = 0; m < _cols; m++) {
+      t = (_trelli + n * _cols) + m;
+      t->pixels.clear(color);
+    }
+  }
+}

@@ -80,6 +80,7 @@ public:
 
   void setPixelColor(uint8_t x, uint8_t y, uint32_t color);
   void setPixelColor(uint16_t num, uint32_t color);
+  void clear(uint32_t color = 0);
   void show();
 
   void read();
