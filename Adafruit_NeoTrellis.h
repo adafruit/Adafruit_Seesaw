@@ -80,12 +80,14 @@ public:
 
   void setPixelColor(uint8_t x, uint8_t y, uint32_t color);
   void setPixelColor(uint16_t num, uint32_t color);
+  void setPixelColorsInRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height, const uint32_t* colors, uint16_t colorsLength);
   void clear(uint32_t color = 0);
   void show();
 
   void read();
 
 protected:
+  void setTrellisPixelColorsForRect(uint16_t t_x, uint16_t t_y, uint16_t x, uint16_t y, uint16_t width, uint16_t height, const uint32_t* colors, uint16_t colorsLength);
   uint8_t _rows; ///< the number of trellis boards in the Y direction
   uint8_t _cols; ///< the number of trellis boards in the X direction
   Adafruit_NeoTrellis
