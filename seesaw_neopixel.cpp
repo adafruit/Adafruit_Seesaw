@@ -280,20 +280,10 @@ uint8_t *seesaw_NeoPixel::getPixels(void) const { return pixels; }
 
 uint16_t seesaw_NeoPixel::numPixels(void) const { return numLEDs; }
 
-void seesaw_NeoPixel::clear() {
-  // Clear local pixel buffer
-  memset(pixels, 0, numBytes);
-
-  // Now clear the pixels on the seesaw.
-  // Max write buffer size is I2C buffer limit (32 bytes) minus sizes
-  // for seesaw regHigh (1 byte) and regLow (1 byte).
-  uint8_t writeBuf[30];
-  memset(writeBuf, 0, 30);
-  for (uint8_t offset = 0; offset < numBytes; offset += 32 - 4) {
-    writeBuf[0] = (offset >> 8);
-    writeBuf[1] = offset;
-    this->write(SEESAW_NEOPIXEL_BASE, SEESAW_NEOPIXEL_BUF, writeBuf, 30);
-  }
+// Set all pixels to color (default color = 0)
+void seesaw_NeoPixel::clear(uint32_t color) {
+  uint32_t colorArr[1] = {color};
+  setPixelRangeColors(0, numLEDs, colorArr, 1);
 }
 
 void seesaw_NeoPixel::setBrightness(uint8_t b) { brightness = b; }
