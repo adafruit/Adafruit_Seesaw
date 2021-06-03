@@ -361,6 +361,22 @@ void Adafruit_MultiTrellis::clear(uint32_t color) {
   }
 }
 
+void Adafruit_MultiTrellis::setRowColors(uint8_t row, const uint32_t* color, uint8_t colorsLength, uint8_t offset, uint8_t length) {
+  if(length + offset > _cols*NEO_TRELLIS_NUM_COLS) {
+    return;
+  }
+  length = length == 0 ? _cols*NEO_TRELLIS_NUM_COLS : length;
+  setPixelColorsInRect(offset, row, length, 1, color, colorsLength);
+}
+
+void Adafruit_MultiTrellis::setColumnColors(uint8_t column, const uint32_t* color, uint8_t colorsLength, uint8_t offset, uint8_t length ) {
+  if(length + offset > _rows*NEO_TRELLIS_NUM_ROWS) {
+    return;
+  }
+  length = length == 0 ? _rows*NEO_TRELLIS_NUM_ROWS : length;
+  setPixelColorsInRect(column, offset, 1, length, color, colorsLength);
+}
+
 // Update colors in a rectangle. colorsLength may be smaller than number of LEDs in rect,
 // in which case the color index will wrap around. Use colorsLength=1 for single color fill.
 void Adafruit_MultiTrellis::setPixelColorsInRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height, const uint32_t* colors, uint16_t colorsLength) {

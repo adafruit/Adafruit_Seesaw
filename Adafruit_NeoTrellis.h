@@ -81,6 +81,8 @@ public:
   void setPixelColor(uint8_t x, uint8_t y, uint32_t color);
   void setPixelColor(uint16_t num, uint32_t color);
   void setPixelColorsInRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height, const uint32_t* colors, uint16_t colorsLength);
+  void setRowColors(uint8_t row, const uint32_t* color, uint8_t colorsLength = 1, uint8_t offset = 0, uint8_t length = 0);
+  void setColumnColors(uint8_t col, const uint32_t* color, uint8_t colorsLength = 1, uint8_t offset = 0, uint8_t length = 0);
   void clear(uint32_t color = 0);
   void show();
 
