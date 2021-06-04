@@ -317,12 +317,8 @@ void seesaw_NeoPixel::setPixelRangeColors(uint16_t firstLed, uint16_t length, co
           b = (b * brightness) >> 8;
         }
 
-        w = 0;
         if (stride == 4) {
           w = (uint8_t)(colors[colorIndex] >> 24);
-        }
-
-        if (stride == 4) {
           pixels[(firstLed+i)*stride + wOffset] = brightness ? ((w * brightness) >> 8) : w;
         }
 
@@ -369,5 +365,5 @@ bool seesaw_NeoPixel::isBulkWriteFastest(uint16_t length, const BitMask* bitMask
   // 4 bytes overhead per write
   uint16_t bulkBytes = stride*length + 4*nWrites;
 
-  return bulkBytes < 7*nOnes;
+  return bulkBytes < (stride + 4)*nOnes;
 }
