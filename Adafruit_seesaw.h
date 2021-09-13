@@ -175,7 +175,7 @@ enum {
 
 /*=========================================================================*/
 
-#define SEESAW_HW_ID_CODE_SAMD09 0x55 ///< seesaw HW ID code for SAMD09
+#define SEESAW_HW_ID_CODE_SAMD09 0x55  ///< seesaw HW ID code for SAMD09
 #define SEESAW_HW_ID_CODE_TINY8X7 0x87 ///< seesaw HW ID code for ATtiny817
 
 #define SEESAW_EEPROM_I2C_ADDR                                                 \
