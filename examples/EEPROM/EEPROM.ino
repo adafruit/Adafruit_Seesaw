@@ -16,14 +16,14 @@ void setup() {
   while (!Serial) delay(10);   // wait until serial port is opened
   
   if(!ss.begin()){
-    Serial.println("seesaw not found!");
+    Serial.println(F("seesaw not found!"));
     while(1) delay(10);
   }
   
   Serial.println(F("seesaw started OK!"));
 
   Serial.print(F("Initial read from address 0x02...0x"));
-  eepromval = ss.EEPROMRead8(0x02)
+  eepromval = ss.EEPROMRead8(0x02);
   Serial.println(eepromval, HEX);
 
   Serial.println(F("Incrementing value to address 0x02"));
