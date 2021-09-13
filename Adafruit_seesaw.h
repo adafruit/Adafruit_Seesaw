@@ -284,7 +284,7 @@ protected:
 
   int8_t _flow; /*!< The flow control pin to use */
 
-  uint8_t _hardwaretype = 0;  // what hardware type is attached!
+  uint8_t _hardwaretype = 0; // what hardware type is attached!
 
   bool write8(byte regHigh, byte regLow, byte value);
   uint8_t read8(byte regHigh, byte regLow, uint16_t delay = 125);

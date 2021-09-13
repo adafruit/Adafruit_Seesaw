@@ -112,7 +112,7 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset) {
     uint8_t c = 0;
 
     this->read(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID, &c, 1);
-    if ( (c == SEESAW_HW_ID_CODE_SAMD09) || (c == SEESAW_HW_ID_CODE_TINY8X7) ) {
+    if ((c == SEESAW_HW_ID_CODE_SAMD09) || (c == SEESAW_HW_ID_CODE_TINY8X7)) {
       found = true;
       _hardwaretype = c;
     }
