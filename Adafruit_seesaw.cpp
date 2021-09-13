@@ -112,8 +112,9 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset) {
     uint8_t c = 0;
 
     this->read(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID, &c, 1);
-    if (c == SEESAW_HW_ID_CODE) {
+    if ( (c == SEESAW_HW_ID_CODE_SAMD09) || (c == SEESAW_HW_ID_CODE_TINY8X7) ) {
       found = true;
+      _hardwaretype = c;
     }
 
     delay(10);
@@ -284,23 +285,29 @@ void Adafruit_seesaw::setGPIOInterrupts(uint32_t pins, bool enabled) {
  ***********************************************************************/
 uint16_t Adafruit_seesaw::analogRead(uint8_t pin) {
   uint8_t buf[2];
-  uint8_t p;
-  switch (pin) {
-  case ADC_INPUT_0_PIN:
-    p = 0;
-    break;
-  case ADC_INPUT_1_PIN:
-    p = 1;
-    break;
-  case ADC_INPUT_2_PIN:
-    p = 2;
-    break;
-  case ADC_INPUT_3_PIN:
-    p = 3;
-    break;
-  default:
+  uint8_t p = 0;
+
+  if (_hardwaretype == SEESAW_HW_ID_CODE_SAMD09) {
+    switch (pin) {
+    case ADC_INPUT_0_PIN:
+      p = 0;
+      break;
+    case ADC_INPUT_1_PIN:
+      p = 1;
+      break;
+    case ADC_INPUT_2_PIN:
+      p = 2;
+      break;
+    case ADC_INPUT_3_PIN:
+      p = 3;
+      break;
+    default:
+      return 0;
+    }
+  } else if (_hardwaretype == SEESAW_HW_ID_CODE_TINY8X7) {
+    p = pin;
+  } else {
     return 0;
-    break;
   }
 
   this->read(SEESAW_ADC_BASE, SEESAW_ADC_CHANNEL_OFFSET + p, buf, 2, 500);

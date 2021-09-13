@@ -15,13 +15,16 @@ Adafruit_seesaw ss;
 uint32_t mask = ((uint32_t)0b1 << SCAN_PIN);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  
+  while (!Serial) delay(10);   // wait until serial port is opened
   
   if(!ss.begin()){
-    Serial.println("ERROR!");
-    while(1);
+    Serial.println(F("seesaw not found!"));
+    while(1) delay(10);
   }
-  else Serial.println("seesaw started");
+  
+  Serial.println(F("seesaw started OK!"));
 
   ss.pinModeBulk(mask, INPUT_PULLUP);
   ss.setGPIOInterrupts(mask, 1);
@@ -29,7 +32,7 @@ void setup() {
 
 void loop() {
   if(!digitalRead(INT_PIN)){
-    Serial.print("interrupt fired! pin state: ");
+    Serial.print(F("Interrupt fired! pin state: "));
     Serial.println(ss.digitalRead(SCAN_PIN));
   }
 }
