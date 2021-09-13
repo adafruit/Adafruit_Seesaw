@@ -18,12 +18,15 @@ seesaw_NeoPixel strip = seesaw_NeoPixel(12, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   Serial.begin(115200);
-
+  
+  while (!Serial) delay(10);   // wait until serial port is opened
+  
   if(!strip.begin()){
-    Serial.println("ERROR");
-    while(1);
+    Serial.println("seesaw not found!");
+    while(1) delay(10);
   }
-  Serial.println("seesaw started!");
+  
+  Serial.println(F("seesaw started OK!"));
   
   strip.show(); // Initialize all pixels to 'off'
 }
