@@ -4,6 +4,7 @@ var searchData=
   ['_5fcallbacks',['_callbacks',['../class_adafruit___neo_key__1x4.html#a59d2911382736df023da7ba3e6068209',1,'Adafruit_NeoKey_1x4::_callbacks()'],['../class_adafruit___neo_trellis.html#a221b9b02e195641f518972bfe04d35a2',1,'Adafruit_NeoTrellis::_callbacks()']]],
   ['_5fcols',['_cols',['../class_adafruit___multi_neo_key1x4.html#a531e7452eebe91877f1d4d0db1b7d832',1,'Adafruit_MultiNeoKey1x4::_cols()'],['../class_adafruit___multi_trellis.html#a614833ca4351f5e5b82b21148d1ff8cc',1,'Adafruit_MultiTrellis::_cols()']]],
   ['_5fflow',['_flow',['../class_adafruit__seesaw.html#a9af2deef7ad3554c12c92b73b2000eff',1,'Adafruit_seesaw']]],
+  ['_5fhardwaretype',['_hardwaretype',['../class_adafruit__seesaw.html#ab03fc8be0ae7cca330b9f6b22f15d8f9',1,'Adafruit_seesaw']]],
   ['_5fi2c_5fdev',['_i2c_dev',['../class_adafruit__seesaw.html#a14568a5d307903e4bcb5274af4a30465',1,'Adafruit_seesaw']]],
   ['_5fi2cbus',['_i2cbus',['../class_adafruit__seesaw.html#a6afcd6077410f5d6f6c312b978961492',1,'Adafruit_seesaw']]],
   ['_5fneokeys',['_neokeys',['../class_adafruit___multi_neo_key1x4.html#a8124e04d17c9a43b96217304df3d98c0',1,'Adafruit_MultiNeoKey1x4']]],
