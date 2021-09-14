@@ -9,20 +9,27 @@
 Adafruit_seesaw ss;
 
 void setup() {
+  uint8_t eepromval;
+  
   Serial.begin(115200);
-  //while(!Serial);
+  
+  while (!Serial) delay(10);   // wait until serial port is opened
   
   if(!ss.begin()){
-    Serial.println("ERROR!");
-    while(1);
+    Serial.println(F("seesaw not found!"));
+    while(1) delay(10);
   }
-  else Serial.println("seesaw started");
+  
+  Serial.println(F("seesaw started OK!"));
 
-  Serial.println("writing 0x0D to register 0x02");
-  ss.EEPROMWrite8(0x02, 0xD);
+  Serial.print(F("Initial read from address 0x02...0x"));
+  eepromval = ss.EEPROMRead8(0x02);
+  Serial.println(eepromval, HEX);
 
-  delay(500);
-  Serial.print("reading from register 0x02...0x");
+  Serial.println(F("Incrementing value to address 0x02"));
+  ss.EEPROMWrite8(0x02, eepromval+1);
+
+  Serial.print(F("Second read from address 0x02...0x"));
   Serial.println(ss.EEPROMRead8(0x02), HEX);
 }
 

@@ -5,7 +5,9 @@
   function.
 
   The analogWrite() function uses PWM, so if you want to change the pin you're
-  using, be sure to use another PWM capable pin. On the SAMD09 breakout these are pins 5, 6, and 7
+  using, be sure to use another PWM capable pin. 
+  On the SAMD09 breakout these are pins 5, 6, and 7
+  On the ATtiny8x7 breakout these are pins 0, 1, 9, 12, 13
 */
 
 #include "Adafruit_seesaw.h"
@@ -18,18 +20,19 @@ int fadeAmount = 5;    // how many points to fade the LED by
 
 // the setup routine runs once when you press reset:
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  
+  while (!Serial) delay(10);   // wait until serial port is opened
   
   if(!ss.begin()){
-    Serial.println("ERROR!");
-    while(1);
+    Serial.println("seesaw not found!");
+    while(1) delay(10);
   }
-  else Serial.println("seesaw started");
 }
 
 // the loop routine runs over and over again forever:
 void loop() {
-  // set the brightness of pin 9:
+  // set the brightness of the LED:
   ss.analogWrite(led, brightness);
 
   // change the brightness for next time through the loop:
