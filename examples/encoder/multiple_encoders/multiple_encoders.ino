@@ -13,7 +13,7 @@
 #if USE_OLED
   #include <Adafruit_SH110X.h>
   #include <Fonts/FreeSans9pt7b.h>
-  Adafruit_SH110X display = Adafruit_SH110X(64, 128, &Wire);
+  Adafruit_SH1107 display = Adafruit_SH1107(64, 128, &Wire);
 #endif
 
 #define SS_SWITCH        24      // this is the pin on the encoder connected to switch
