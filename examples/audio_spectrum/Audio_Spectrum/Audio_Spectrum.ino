@@ -16,7 +16,7 @@ void setup() {
   while (!Serial) delay(10);   // wait until serial port is opened
   Serial.println("A");
   
-  if(!ss.begin()){
+  if (!ss.begin()) {
     Serial.println("seesaw not found!");
     while(1) delay(10);
   }
@@ -28,5 +28,5 @@ void setup() {
 // The loop routine runs over and over again forever:
 void loop() {
   ss.getData(); // Pull audio spectrum data from device
-  Serial.println(ss.getLevel(10));
+  Serial.println(ss.getLevel(10)); // What's in bin #10?
 }
