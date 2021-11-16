@@ -53,9 +53,10 @@ enum {
   SEESAW_TOUCH_BASE = 0x0F,
   SEESAW_KEYPAD_BASE = 0x10,
   SEESAW_ENCODER_BASE = 0x11,
+  SEESAW_SPECTRUM_BASE = 0x12,
 };
 
-/** GPIO module function addres registers
+/** GPIO module function address registers
  */
 enum {
   SEESAW_GPIO_DIRSET_BULK = 0x02,
@@ -71,7 +72,7 @@ enum {
   SEESAW_GPIO_PULLENCLR = 0x0C,
 };
 
-/** status module function addres registers
+/** status module function address registers
  */
 enum {
   SEESAW_STATUS_HW_ID = 0x01,
@@ -81,7 +82,7 @@ enum {
   SEESAW_STATUS_SWRST = 0x7F,
 };
 
-/** timer module function addres registers
+/** timer module function address registers
  */
 enum {
   SEESAW_TIMER_STATUS = 0x00,
@@ -89,7 +90,7 @@ enum {
   SEESAW_TIMER_FREQ = 0x02,
 };
 
-/** ADC module function addres registers
+/** ADC module function address registers
  */
 enum {
   SEESAW_ADC_STATUS = 0x00,
@@ -100,7 +101,7 @@ enum {
   SEESAW_ADC_CHANNEL_OFFSET = 0x07,
 };
 
-/** Sercom module function addres registers
+/** Sercom module function address registers
  */
 enum {
   SEESAW_SERCOM_STATUS = 0x00,
@@ -110,7 +111,7 @@ enum {
   SEESAW_SERCOM_DATA = 0x05,
 };
 
-/** neopixel module function addres registers
+/** neopixel module function address registers
  */
 enum {
   SEESAW_NEOPIXEL_STATUS = 0x00,
@@ -121,13 +122,13 @@ enum {
   SEESAW_NEOPIXEL_SHOW = 0x05,
 };
 
-/** touch module function addres registers
+/** touch module function address registers
  */
 enum {
   SEESAW_TOUCH_CHANNEL_OFFSET = 0x10,
 };
 
-/** keypad module function addres registers
+/** keypad module function address registers
  */
 enum {
   SEESAW_KEYPAD_STATUS = 0x00,
@@ -155,6 +156,20 @@ enum {
   SEESAW_ENCODER_INTENCLR = 0x20,
   SEESAW_ENCODER_POSITION = 0x30,
   SEESAW_ENCODER_DELTA = 0x40,
+};
+
+/** Audio spectrum module function address registers
+ */
+enum {
+  SEESAW_SPECTRUM_RESULTS_LOWER = 0x00, // Audio spectrum bins 0-31
+  SEESAW_SPECTRUM_RESULTS_UPPER = 0x01, // Audio spectrum bins 32-63
+  // If some future device supports a larger spectrum, can add additional
+  // "bins" working upward from here. Currently there is one configurable
+  // setting, via SEESAW_SPECTRUM_RATE (STATUS is basically a no-op).
+  // If more configurables are added in the future, work downward from
+  // here to avoid collision between spectrum bins & configurables.
+  SEESAW_SPECTRUM_RATE = 0xFE,
+  SEESAW_SPECTRUM_STATUS = 0xFF,
 };
 
 #define ADC_INPUT_0_PIN 2 ///< default ADC input pin
