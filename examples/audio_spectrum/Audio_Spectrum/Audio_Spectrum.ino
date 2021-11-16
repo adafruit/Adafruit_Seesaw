@@ -28,5 +28,10 @@ void setup() {
 // The loop routine runs over and over again forever:
 void loop() {
   ss.getData(); // Pull audio spectrum data from device
-  Serial.println(ss.getLevel(10)); // What's in bin #10?
+  // Print contents of each of the 64 spectrum bins...
+  for (uint8_t i=0; i<64; i++) {
+    Serial.print(ss.getLevel(i));
+    Serial.write(' ');
+  }
+  Serial.println();
 }
