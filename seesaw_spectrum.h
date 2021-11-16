@@ -17,7 +17,7 @@ public:
     @param  ss  Corresponding seesaw object this is working through.
   */
   /**************************************************************************/
-  seesaw_Audio_Spectrum(TwoWire *Wi=&Wire) : Adafruit_seesaw(Wi) {}
+  seesaw_Audio_Spectrum(TwoWire *Wi=NULL) : Adafruit_seesaw(Wi) {}
 
   ~seesaw_Audio_Spectrum() {}
 
