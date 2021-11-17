@@ -17,7 +17,7 @@ public:
     @param  ss  Corresponding seesaw object this is working through.
   */
   /**************************************************************************/
-  seesaw_Audio_Spectrum(TwoWire *Wi=NULL) : Adafruit_seesaw(Wi) {}
+  seesaw_Audio_Spectrum(TwoWire *Wi = NULL) : Adafruit_seesaw(Wi) {}
 
   ~seesaw_Audio_Spectrum() {}
 
@@ -29,9 +29,9 @@ public:
     return false;
   }
 
-  void getData(void); // Pull latest audio spectrum data from device
+  void getData(void);          // Pull latest audio spectrum data from device
   void setRate(uint8_t index); // Set audio sampling rage 0-31
-  uint8_t getRate(void); // Query audio sampling rate 0-31
+  uint8_t getRate(void);       // Query audio sampling rate 0-31
 
   /**************************************************************************/
   /*!
