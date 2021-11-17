@@ -28,6 +28,6 @@ void seesaw_Audio_Spectrum::setRate(uint8_t index) {
   @return  Sampling rate index, 0-31.
 */
 /**************************************************************************/
-uint8_t seesaw_Audio_Spectrum::getRate(void) const {
-  return this->read8(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RATE);
+uint8_t seesaw_Audio_Spectrum::getRate(void) {
+  return read8(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RATE);
 }

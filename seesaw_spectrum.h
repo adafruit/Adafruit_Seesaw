@@ -31,7 +31,7 @@ public:
 
   void getData(void); // Pull latest audio spectrum data from device
   void setRate(uint8_t index); // Set audio sampling rage 0-31
-  uint8_t getRate(void) const; // Query audio sampling rate 0-31
+  uint8_t getRate(void); // Query audio sampling rate 0-31
 
   /**************************************************************************/
   /*!
