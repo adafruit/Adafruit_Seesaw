@@ -14,13 +14,22 @@ public:
   /**************************************************************************/
   /*!
     @brief  seesaw_Audio_Spectrum class constructor.
-    @param  ss  Corresponding seesaw object this is working through.
+    @param  Wi  TwoWire interface this works through.
   */
   /**************************************************************************/
   seesaw_Audio_Spectrum(TwoWire *Wi = NULL) : Adafruit_seesaw(Wi) {}
 
   ~seesaw_Audio_Spectrum() {}
 
+  /**************************************************************************/
+  /*!
+    @brief  Begin communication with Seesaw audio spectrum device.
+    @param  addr  Optional i2c address where the device can be found.
+                  Defaults to SEESAW_ADDRESS.
+    @param  flow  Optional flow control pin.
+    @return true on success, false on error.
+  */
+  /**************************************************************************/
   bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow = -1) {
     if (Adafruit_seesaw::begin(addr, flow)) {
       memset(bins, 0, sizeof bins);

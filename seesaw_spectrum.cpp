@@ -17,8 +17,8 @@ void seesaw_Audio_Spectrum::getData(void) {
                  will be clipped.
 */
 /**************************************************************************/
-void seesaw_Audio_Spectrum::setRate(uint8_t index) {
-  write8(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RATE, index);
+void seesaw_Audio_Spectrum::setRate(uint8_t value) {
+  write8(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RATE, value);
 }
 
 /**************************************************************************/
