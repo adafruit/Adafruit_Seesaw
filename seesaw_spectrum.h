@@ -1,7 +1,6 @@
 #ifndef _SEESAW_SPECTRUM_H
 #define _SEESAW_SPECTRUM_H
 
-#include <Arduino.h>
 #include "Adafruit_seesaw.h"
 
 /**************************************************************************/
@@ -38,11 +37,11 @@ public:
   /*!
     @brief   Get value of individual spectrum bin, as determined during
              most recent get_data() call.
-    @param   index  Spectrum bin index (0-63) to query.
+    @param   idx  Spectrum bin index (0-63) to query.
     @return  Level: 0 (silent) to 255 (loudest) for bin.
   */
   /**************************************************************************/
-  uint8_t getLevel(uint8_t index) const { return bins[min(index, 63)]; }
+  uint8_t getLevel(uint8_t idx) const { return bins[idx < 64 ? idx : 63]; }
 
   /**************************************************************************/
   /*!
