@@ -49,7 +49,7 @@ public:
     @return  uint8_t base pointer to 64 spectrum bins.
   */
   /**************************************************************************/
-  uint8_t *getBuffer(void) const { return bins; }
+  uint8_t *getBuffer(void) const { return (uint8_t *)bins; }
 
 private:
   uint8_t bins[64]; // Audio spectrum "bins"

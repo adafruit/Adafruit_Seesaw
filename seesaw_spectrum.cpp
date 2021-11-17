@@ -6,8 +6,9 @@
 */
 /**************************************************************************/
 void seesaw_Audio_Spectrum::getData(void) {
-  read(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RESULTS_LOWER, bins, 32, 0);
-  read(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RESULTS_UPPER, &bins[32], 32, 0);
+  this->read(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RESULTS_LOWER, bins, 32, 0);
+  this->read(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RESULTS_UPPER, &bins[32],
+             32, 0);
 }
 
 /**************************************************************************/
@@ -18,7 +19,7 @@ void seesaw_Audio_Spectrum::getData(void) {
 */
 /**************************************************************************/
 void seesaw_Audio_Spectrum::setRate(uint8_t index) {
-  write8(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RATE, index);
+  this->write8(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RATE, index);
 }
 
 /**************************************************************************/
@@ -28,5 +29,5 @@ void seesaw_Audio_Spectrum::setRate(uint8_t index) {
 */
 /**************************************************************************/
 uint8_t seesaw_Audio_Spectrum::getRate(void) const {
-  return read8(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RATE);
+  return this->read8(SEESAW_SPECTRUM_BASE, SEESAW_SPECTRUM_RATE);
 }
