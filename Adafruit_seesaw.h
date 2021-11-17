@@ -226,6 +226,8 @@ public:
              bool reset = true);
   uint32_t getOptions();
   uint32_t getVersion();
+  bool getProdDatecode(uint16_t *pid, uint8_t *year, uint8_t *mon, uint8_t *day);
+
   bool SWReset();
 
   void pinMode(uint8_t pin, uint8_t mode);
@@ -288,10 +290,10 @@ protected:
   uint8_t _hardwaretype = 0; /*!< what hardware type is attached! */
 
   bool write8(byte regHigh, byte regLow, byte value);
-  uint8_t read8(byte regHigh, byte regLow, uint16_t delay = 125);
+  uint8_t read8(byte regHigh, byte regLow, uint16_t delay = 250);
 
   bool read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num,
-            uint16_t delay = 125);
+            uint16_t delay = 250);
   bool write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
 
   /*=========================================================================

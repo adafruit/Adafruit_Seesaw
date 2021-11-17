@@ -170,6 +170,22 @@ uint32_t Adafruit_seesaw::getVersion() {
 }
 
 /*!
+ *********************************************************************
+ *  @brief      Returns the version of the seesaw
+ *  @return     The version code. Bits [31:16] will be a date code, [15:0] will
+ *be the product id.
+ ********************************************************************/
+bool Adafruit_seesaw::getProdDatecode(uint16_t *pid, uint8_t *year, uint8_t *mon, uint8_t *day) {
+  uint32_t vers = getVersion();
+  *pid = vers >> 16;
+
+  *year = vers & 0x3F;
+  *mon = (vers >> 7) & 0xF;
+  *day = (vers >> 11) & 0x1F;
+  return true;
+}
+
+/*!
  **************************************************************************
  *  @brief      Set the mode of a GPIO pin.
  *
