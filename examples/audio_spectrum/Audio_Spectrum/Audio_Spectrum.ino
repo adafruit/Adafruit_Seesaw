@@ -2,7 +2,7 @@
   Audio Spectrum.
 
   This example shows how to set the audio sampling rate and read
-  audio spectrum data.
+  audio spectrum data from a compatible Seesaw device.
 */
 
 #include <seesaw_spectrum.h>
@@ -22,7 +22,15 @@ void setup() {
   }
   Serial.println("B");
 
-  ss.setRate(12); // Configure audio sampling rate
+  // Configure audio sampling rate, which determines the peak
+  // frequency of the spectrum output. There are 32 possible values
+  // (0-31), where lower numbers = higher frequency.
+  // The corresponding frequency for each setting will depend on the
+  // F_CPU frequency on the Seesaw device, which has not yet been
+  // determined. 10 or 20 MHz would be ideal, but others may happen,
+  // so specific numbers are not documented here yet.
+  // If 10 or 20 MHz, value of 12 here maps to 6250 Hz:
+  ss.setRate(12);
 }
 
 // The loop routine runs over and over again forever:
