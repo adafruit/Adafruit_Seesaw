@@ -280,18 +280,90 @@ uint8_t *seesaw_NeoPixel::getPixels(void) const { return pixels; }
 
 uint16_t seesaw_NeoPixel::numPixels(void) const { return numLEDs; }
 
-void seesaw_NeoPixel::clear() {
-  // Clear local pixel buffer
-  memset(pixels, 0, numBytes);
-
-  // Now clear the pixels on the seesaw
-  uint8_t writeBuf[32];
-  memset(writeBuf, 0, 32);
-  for (uint8_t offset = 0; offset < numBytes; offset += 32 - 4) {
-    writeBuf[0] = (offset >> 8);
-    writeBuf[1] = offset;
-    this->write(SEESAW_NEOPIXEL_BASE, SEESAW_NEOPIXEL_BUF, writeBuf, 32);
-  }
+// Set all pixels to color (default color = 0)
+void seesaw_NeoPixel::clear(uint32_t color) {
+  uint32_t colorArr[1] = {color};
+  setPixelRangeColors(0, numLEDs, colorArr, 1);
 }
 
 void seesaw_NeoPixel::setBrightness(uint8_t b) { brightness = b; }
+
+// Set colors for a range of LEDs from a colors array, starting from firstLed up to length LEDs.
+// Minimizes bytes written via I2C by using best method (bulk write vs. setPixelColor()) for given length and bitmask.
+// If colorsLength < length, the index into the array will wrap around, allowing for a simple definition of repeating patterns. colorsLength must be > 0;
+// bitMask can be used, to omit updating the color, i.e. the current LED color will be rewritten to the seesaw.
+void seesaw_NeoPixel::setPixelRangeColors(uint16_t firstLed, uint16_t length, const uint32_t* colors, uint16_t colorsLength, const BitMask* bitMask) {
+  bool isMaskInvalid = (bitMask != nullptr) && (bitMask->maxLength() < (1 + ((length - 1)/32)));
+  if (firstLed + length > numLEDs || length == 0 || isMaskInvalid) {
+    return;
+  }
+
+  uint8_t colorIndex = 0;
+  uint8_t r, g, b, w;
+  uint8_t stride = (wOffset == rOffset) ? 3 : 4;
+
+  bool bulkWrite = isBulkWriteFastest(length, bitMask);
+
+  for(uint8_t i = 0; i < length; ++i) {
+    if (bitMask == nullptr || bitMask->readBit(i)) {
+      if(bulkWrite) {
+        r = (uint8_t)(colors[colorIndex] >> 16);
+        g = (uint8_t)(colors[colorIndex] >> 8);
+        b = (uint8_t)colors[colorIndex];
+
+        if (brightness) { // See notes in setBrightness()
+          r = (r * brightness) >> 8;
+          g = (g * brightness) >> 8;
+          b = (b * brightness) >> 8;
+        }
+
+        if (stride == 4) {
+          w = (uint8_t)(colors[colorIndex] >> 24);
+          pixels[(firstLed+i)*stride + wOffset] = brightness ? ((w * brightness) >> 8) : w;
+        }
+
+        pixels[(firstLed+i)*stride + rOffset] = r;
+        pixels[(firstLed+i)*stride + gOffset] = g;
+        pixels[(firstLed+i)*stride + bOffset] = b;
+      } else {
+        setPixelColor(firstLed + i, colors[colorIndex]);
+      }
+      colorIndex = (colorIndex + 1) % colorsLength;
+    }
+  }
+  if(bulkWrite) {
+    uint8_t byte_offset = firstLed*stride;
+
+    uint8_t bufIndex = 2;
+    uint8_t writeBuf[30];
+
+    for(int i = firstLed; i < firstLed + length; ++i) {
+      for(int j = 0; j < stride; ++j) {
+        writeBuf[bufIndex++] = pixels[i*stride + j];
+      }
+
+      if((i == firstLed + length - 1) || bufIndex >= 28) {
+        writeBuf[0] = (byte_offset >> 8);
+        writeBuf[1] = byte_offset;
+        this->write(SEESAW_NEOPIXEL_BASE, SEESAW_NEOPIXEL_BUF, writeBuf, bufIndex);
+        byte_offset += bufIndex - 2;
+        bufIndex = 2;
+      }
+    }
+  }
+}
+
+bool seesaw_NeoPixel::isBulkWriteFastest(uint16_t length, const BitMask* bitMask) {
+  if(bitMask == nullptr) {
+    return true;
+  }
+
+  uint8_t stride = (wOffset == rOffset) ? 3 : 4;
+
+  uint16_t nOnes = bitMask->count(true);
+  uint8_t nWrites = (1+length*stride/28);
+  // 4 bytes overhead per write
+  uint16_t bulkBytes = stride*length + 4*nWrites;
+
+  return bulkBytes < (stride + 4)*nOnes;
+}

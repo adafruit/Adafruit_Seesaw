@@ -1,4 +1,5 @@
 #include "Adafruit_NeoTrellis.h"
+#include "bitmask.h"
 
 /**************************************************************************/
 /*!
@@ -348,4 +349,82 @@ void Adafruit_MultiTrellis::read() {
       }
     }
   }
+}
+
+void Adafruit_MultiTrellis::clear(uint32_t color) {
+  Adafruit_NeoTrellis *t;
+  for (int n = 0; n < _rows; n++) {
+    for (int m = 0; m < _cols; m++) {
+      t = (_trelli + n * _cols) + m;
+      t->pixels.clear(color);
+    }
+  }
+}
+
+void Adafruit_MultiTrellis::setRowColors(uint8_t row, const uint32_t* color, uint8_t colorsLength, uint8_t offset, uint8_t length) {
+  if(length + offset > _cols*NEO_TRELLIS_NUM_COLS) {
+    return;
+  }
+  length = length == 0 ? _cols*NEO_TRELLIS_NUM_COLS : length;
+  setPixelColorsInRect(offset, row, length, 1, color, colorsLength);
+}
+
+void Adafruit_MultiTrellis::setColumnColors(uint8_t column, const uint32_t* color, uint8_t colorsLength, uint8_t offset, uint8_t length ) {
+  if(length + offset > _rows*NEO_TRELLIS_NUM_ROWS) {
+    return;
+  }
+  length = length == 0 ? _rows*NEO_TRELLIS_NUM_ROWS : length;
+  setPixelColorsInRect(column, offset, 1, length, color, colorsLength);
+}
+
+// Update colors in a rectangle. colorsLength may be smaller than number of LEDs in rect,
+// in which case the color index will wrap around. Use colorsLength=1 for single color fill.
+void Adafruit_MultiTrellis::setPixelColorsInRect(uint16_t x, uint16_t y, uint16_t width, uint16_t height, const uint32_t* colors, uint16_t colorsLength) {
+  for(int r = 0; r < _rows; ++r) {
+    for(int c = 0; c < _cols; ++c) {
+      setTrellisPixelColorsForRect(c, r, x, y, width, height, colors, colorsLength);
+    }
+  }
+}
+
+// Determine rectangle overlap with neotrellis in position (trellisX, trellisY) and update colors.
+void Adafruit_MultiTrellis::setTrellisPixelColorsForRect(uint16_t trellisX, uint16_t trellisY, uint16_t x, uint16_t y, uint16_t width, uint16_t height, const uint32_t* colors, uint16_t colorsLength) {
+  if (x >= (trellisX + 1)*NEO_TRELLIS_NUM_COLS || y >= (trellisY + 1)*NEO_TRELLIS_NUM_ROWS) {
+    return;
+  }
+  if (x + width - 1 < trellisX*NEO_TRELLIS_NUM_COLS || y + height - 1 < trellisY*NEO_TRELLIS_NUM_ROWS) {
+    return;
+  }
+
+  uint16_t x0 = trellisX*NEO_TRELLIS_NUM_COLS;
+  uint16_t y0 = trellisY*NEO_TRELLIS_NUM_ROWS;
+
+  // overlap in current trellis coordinates
+  uint16_t xt0 = max(x0, x) - x0;
+  uint16_t yt0 = max(y0, y) - y0;
+  uint16_t xt1 = min(x0 + NEO_TRELLIS_NUM_COLS - 1, x + width - 1) - x0;
+  uint16_t yt1 = min(y0 + NEO_TRELLIS_NUM_ROWS - 1, y + height - 1) - y0;
+
+  // offset and length local to the current trellis
+  uint16_t offset = xt0 + yt0*NEO_TRELLIS_NUM_COLS;
+  uint16_t length = xt1 + yt1*NEO_TRELLIS_NUM_COLS - offset + 1; 
+
+  uint32_t trellisColors[16] = {0};
+  BitMask bitMask(NEO_TRELLIS_NUM_ROWS*NEO_TRELLIS_NUM_COLS);
+  uint16_t trellisColorsIndex = 0;
+
+  for(int j = yt0; j <= yt1; ++j) {
+    for(int i = xt0; i <= xt1; ++i) {
+      uint16_t colorsIndex = ((i + x0 - x) + width*(j + y0 - y)) % colorsLength;
+
+      uint16_t index = i + j*NEO_TRELLIS_NUM_COLS - offset;
+      bitMask.setBit(index, true);
+
+      trellisColors[trellisColorsIndex++] = colors[colorsIndex];
+    }
+  }
+
+  Adafruit_NeoTrellis *t;
+  t = (_trelli + trellisY * _cols) + trellisX;
+  t->pixels.setPixelRangeColors(offset, length, trellisColors, trellisColorsIndex, &bitMask);
 }
