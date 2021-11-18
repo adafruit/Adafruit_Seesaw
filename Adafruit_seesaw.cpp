@@ -175,9 +175,12 @@ uint32_t Adafruit_seesaw::getVersion() {
 
 /*!
  *********************************************************************
- *  @brief      Returns the version of the seesaw
- *  @return     The version code. Bits [31:16] will be a date code, [15:0] will
- *be the product id.
+ *  @brief        Returns the version of the seesaw
+ *  @param  pid   Pointer to uint16_t for product code result.
+ *  @param  year  Pointer to uint8_t for date code year result.
+ *  @param  mon   Pointer to uint8_t for date code month result.
+ *  @param  day   Pointer to uint8_t for date code day result.
+ *  @return       Always returns true.
  ********************************************************************/
 bool Adafruit_seesaw::getProdDatecode(uint16_t *pid, uint8_t *year,
                                       uint8_t *mon, uint8_t *day) {
