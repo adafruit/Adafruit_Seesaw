@@ -107,6 +107,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a45d5b100f38a2cef9ea49518a0233f4b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a45d5b100f38a2cef9ea49518a0233f4b">getVersion</a> ()</td></tr>
 <tr class="memdesc:a45d5b100f38a2cef9ea49518a0233f4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the version of the seesaw.  <a href="#a45d5b100f38a2cef9ea49518a0233f4b">More...</a><br /></td></tr>
 <tr class="separator:a45d5b100f38a2cef9ea49518a0233f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a674272e3a684dd0836319353a6712e5a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a674272e3a684dd0836319353a6712e5a">getProdDatecode</a> (uint16_t *pid, uint8_t *year, uint8_t *mon, uint8_t *day)</td></tr>
+<tr class="memdesc:a674272e3a684dd0836319353a6712e5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the version of the seesaw.  <a href="#a674272e3a684dd0836319353a6712e5a">More...</a><br /></td></tr>
+<tr class="separator:a674272e3a684dd0836319353a6712e5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afed864565d44e304fef64ad2008d75c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#afed864565d44e304fef64ad2008d75c8">SWReset</a> ()</td></tr>
 <tr class="memdesc:afed864565d44e304fef64ad2008d75c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">perform a software reset. This resets all seesaw registers to their default values. This is called automatically from <a class="el" href="class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a" title="Start the seesaw. ">Adafruit_seesaw.begin()</a>  <a href="#afed864565d44e304fef64ad2008d75c8">More...</a><br /></td></tr>
 <tr class="separator:afed864565d44e304fef64ad2008d75c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -226,12 +229,12 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a01d4f2c1618e861225c57065ada26ea0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a01d4f2c1618e861225c57065ada26ea0">write8</a> (byte regHigh, byte regLow, byte value)</td></tr>
 <tr class="memdesc:a01d4f2c1618e861225c57065ada26ea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write 1 byte to the specified seesaw register.  <a href="#a01d4f2c1618e861225c57065ada26ea0">More...</a><br /></td></tr>
 <tr class="separator:a01d4f2c1618e861225c57065ada26ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82eeeb63039cf9f01318835a9426ecc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#ab82eeeb63039cf9f01318835a9426ecc">read8</a> (byte regHigh, byte regLow, uint16_t delay=125)</td></tr>
-<tr class="memdesc:ab82eeeb63039cf9f01318835a9426ecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 1 byte from the specified seesaw register.  <a href="#ab82eeeb63039cf9f01318835a9426ecc">More...</a><br /></td></tr>
-<tr class="separator:ab82eeeb63039cf9f01318835a9426ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0b0f4f3d563f0a9b8af0afc4b2b7e29"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#ad0b0f4f3d563f0a9b8af0afc4b2b7e29">read</a> (uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay=125)</td></tr>
-<tr class="memdesc:ad0b0f4f3d563f0a9b8af0afc4b2b7e29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a specified number of bytes into a buffer from the seesaw.  <a href="#ad0b0f4f3d563f0a9b8af0afc4b2b7e29">More...</a><br /></td></tr>
-<tr class="separator:ad0b0f4f3d563f0a9b8af0afc4b2b7e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8173597244a6f153835fd429b834f95"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#af8173597244a6f153835fd429b834f95">read8</a> (byte regHigh, byte regLow, uint16_t delay=250)</td></tr>
+<tr class="memdesc:af8173597244a6f153835fd429b834f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">read 1 byte from the specified seesaw register.  <a href="#af8173597244a6f153835fd429b834f95">More...</a><br /></td></tr>
+<tr class="separator:af8173597244a6f153835fd429b834f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9946cc866c86af4af1435ca1677589f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#af9946cc866c86af4af1435ca1677589f">read</a> (uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num, uint16_t delay=250)</td></tr>
+<tr class="memdesc:af9946cc866c86af4af1435ca1677589f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a specified number of bytes into a buffer from the seesaw.  <a href="#af9946cc866c86af4af1435ca1677589f">More...</a><br /></td></tr>
+<tr class="separator:af9946cc866c86af4af1435ca1677589f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae97e5128aa04c2e2da1e13da84767706"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#ae97e5128aa04c2e2da1e13da84767706">write</a> (uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num)</td></tr>
 <tr class="memdesc:ae97e5128aa04c2e2da1e13da84767706"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a specified number of bytes to the seesaw from the passed buffer.  <a href="#ae97e5128aa04c2e2da1e13da84767706">More...</a><br /></td></tr>
 <tr class="separator:ae97e5128aa04c2e2da1e13da84767706"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -366,6 +369,58 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
 
 <p>Returns the version of the seesaw. </p>
 <dl class="section return"><dt>Returns</dt><dd>The version code. Bits [31:16] will be a date code, [15:0] will be the product id. </dd></dl>
+
+</div>
+</div>
+<a id="a674272e3a684dd0836319353a6712e5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a674272e3a684dd0836319353a6712e5a">&#9670;&nbsp;</a></span>getProdDatecode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Adafruit_seesaw::getProdDatecode </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t *&#160;</td>
+          <td class="paramname"><em>pid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>year</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>mon</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>day</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the version of the seesaw. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pid</td><td>Pointer to uint16_t for product code result. </td></tr>
+    <tr><td class="paramname">year</td><td>Pointer to uint8_t for date code year result. </td></tr>
+    <tr><td class="paramname">mon</td><td>Pointer to uint8_t for date code month result. </td></tr>
+    <tr><td class="paramname">day</td><td>Pointer to uint8_t for date code day result. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Always returns true. </dd></dl>
 
 </div>
 </div>
@@ -1557,8 +1612,8 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
 
 </div>
 </div>
-<a id="ab82eeeb63039cf9f01318835a9426ecc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab82eeeb63039cf9f01318835a9426ecc">&#9670;&nbsp;</a></span>read8()</h2>
+<a id="af8173597244a6f153835fd429b834f95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8173597244a6f153835fd429b834f95">&#9670;&nbsp;</a></span>read8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1582,7 +1637,7 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>delay</em> = <code>125</code>&#160;</td>
+          <td class="paramname"><em>delay</em> = <code>250</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1610,8 +1665,8 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
 
 </div>
 </div>
-<a id="ad0b0f4f3d563f0a9b8af0afc4b2b7e29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0b0f4f3d563f0a9b8af0afc4b2b7e29">&#9670;&nbsp;</a></span>read()</h2>
+<a id="af9946cc866c86af4af1435ca1677589f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9946cc866c86af4af1435ca1677589f">&#9670;&nbsp;</a></span>read()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1647,7 +1702,7 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>delay</em> = <code>125</code>&#160;</td>
+          <td class="paramname"><em>delay</em> = <code>250</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
