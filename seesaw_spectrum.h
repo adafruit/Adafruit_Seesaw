@@ -42,9 +42,11 @@ public:
     return false;
   }
 
-  void getData(void);          // Pull latest audio spectrum data from device
-  void setRate(uint8_t index); // Set audio sampling rage 0-31
-  uint8_t getRate(void);       // Query audio sampling rate 0-31
+  void getData(void);             // Fetch latest audio spectrum data
+  void setRate(uint8_t value);    // Set audio sampling rate 0-31
+  void setChannel(uint8_t value); // Set ADC input channel
+  uint8_t getRate(void);          // Query current audio sampling rate 0-31
+  uint8_t getChannel(void);       // Query current ADC channel
 
   /**************************************************************************/
   /*!

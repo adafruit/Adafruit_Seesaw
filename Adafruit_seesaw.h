@@ -164,10 +164,10 @@ enum {
   SEESAW_SPECTRUM_RESULTS_LOWER = 0x00, // Audio spectrum bins 0-31
   SEESAW_SPECTRUM_RESULTS_UPPER = 0x01, // Audio spectrum bins 32-63
   // If some future device supports a larger spectrum, can add additional
-  // "bins" working upward from here. Currently there is one configurable
-  // setting, via SEESAW_SPECTRUM_RATE (STATUS is basically a no-op).
-  // If more configurables are added in the future, work downward from
-  // here to avoid collision between spectrum bins & configurables.
+  // "bins" working upward from here. Configurable setting registers then
+  // work downward from the top to avoid collision between spectrum bins
+  // and configurables.
+  SEESAW_SPECTRUM_CHANNEL = 0xFD,
   SEESAW_SPECTRUM_RATE = 0xFE,
   SEESAW_SPECTRUM_STATUS = 0xFF,
 };
