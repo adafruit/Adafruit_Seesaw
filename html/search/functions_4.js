@@ -1,6 +1,7 @@
 var searchData=
 [
   ['getbuffer',['getBuffer',['../classseesaw___audio___spectrum.html#afdeeca8b523dd2c3c449cda57c10841e',1,'seesaw_Audio_Spectrum']]],
+  ['getchannel',['getChannel',['../classseesaw___audio___spectrum.html#aec2c0d274f3cd8fce455624d630e7cd6',1,'seesaw_Audio_Spectrum']]],
   ['getdata',['getData',['../classseesaw___audio___spectrum.html#a95d5ac68fe7820688669927079df621c',1,'seesaw_Audio_Spectrum']]],
   ['getencoderdelta',['getEncoderDelta',['../class_adafruit__seesaw.html#a5c3d5b2d93a0a10c62b7817e57e59e6f',1,'Adafruit_seesaw']]],
   ['getencoderposition',['getEncoderPosition',['../class_adafruit__seesaw.html#a19dfac93da4a6c9330ba965f199f3081',1,'Adafruit_seesaw']]],
