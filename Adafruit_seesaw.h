@@ -234,7 +234,11 @@ union keyState {
 class Adafruit_seesaw : public Print {
 public:
   // constructors
+#ifdef ARDUINO_SAMD_ZERO
+  Adafruit_seesaw(arduino::TwoWire *Wi = NULL);
+#else
   Adafruit_seesaw(TwoWire *Wi = NULL);
+#endif
   ~Adafruit_seesaw(void){};
 
   bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow = -1,
