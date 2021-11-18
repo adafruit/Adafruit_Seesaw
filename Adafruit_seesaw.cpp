@@ -179,7 +179,8 @@ uint32_t Adafruit_seesaw::getVersion() {
  *  @return     The version code. Bits [31:16] will be a date code, [15:0] will
  *be the product id.
  ********************************************************************/
-bool Adafruit_seesaw::getProdDatecode(uint16_t *pid, uint8_t *year, uint8_t *mon, uint8_t *day) {
+bool Adafruit_seesaw::getProdDatecode(uint16_t *pid, uint8_t *year,
+                                      uint8_t *mon, uint8_t *day) {
   uint32_t vers = getVersion();
   *pid = vers >> 16;
 

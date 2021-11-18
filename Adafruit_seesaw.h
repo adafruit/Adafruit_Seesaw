@@ -245,7 +245,8 @@ public:
              bool reset = true);
   uint32_t getOptions();
   uint32_t getVersion();
-  bool getProdDatecode(uint16_t *pid, uint8_t *year, uint8_t *mon, uint8_t *day);
+  bool getProdDatecode(uint16_t *pid, uint8_t *year, uint8_t *mon,
+                       uint8_t *day);
 
   bool SWReset();
 
