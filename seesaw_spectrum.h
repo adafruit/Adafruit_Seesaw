@@ -1,6 +1,7 @@
 #ifndef _SEESAW_SPECTRUM_H
 #define _SEESAW_SPECTRUM_H
 
+#include <Arduino.h>
 #include "Adafruit_seesaw.h"
 
 /**************************************************************************/
@@ -17,11 +18,7 @@ public:
     @param  Wi  TwoWire interface this works through.
   */
   /**************************************************************************/
-#ifdef ARDUINO_SAMD_ZERO
-  seesaw_Audio_Spectrum(arduino::TwoWire *Wi = NULL) : Adafruit_seesaw(Wi) {}
-#else
   seesaw_Audio_Spectrum(TwoWire *Wi = NULL) : Adafruit_seesaw(Wi) {}
-#endif
 
   ~seesaw_Audio_Spectrum() {}
 
