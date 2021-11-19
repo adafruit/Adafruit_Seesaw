@@ -21,9 +21,9 @@
 #ifndef LIB_SEESAW_H
 #define LIB_SEESAW_H
 
+#include "Adafruit_I2CDevice.h"
 #include <Arduino.h>
 #include <Wire.h>
-#include "Adafruit_I2CDevice.h"
 
 /*=========================================================================
     I2C ADDRESS/BITS

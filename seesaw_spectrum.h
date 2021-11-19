@@ -1,8 +1,8 @@
 #ifndef _SEESAW_SPECTRUM_H
 #define _SEESAW_SPECTRUM_H
 
-#include <Arduino.h>
 #include "Adafruit_seesaw.h"
+#include <Arduino.h>
 
 /**************************************************************************/
 /*!

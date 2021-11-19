@@ -25,15 +25,14 @@
   <http://www.gnu.org/licenses/>.
   -------------------------------------------------------------------------*/
 
-#include "Adafruit_seesaw.h"
 #include "seesaw_neopixel.h"
+#include "Adafruit_seesaw.h"
 
 // Constructor when length, pin and type are known at compile-time:
 seesaw_NeoPixel::seesaw_NeoPixel(uint16_t n, uint8_t p, neoPixelType t,
                                  TwoWire *Wi)
     : Adafruit_seesaw(Wi), begun(false), numLEDs(n), pin(p), brightness(0),
-      pixels(NULL), endTime(0), type(t) {
-}
+      pixels(NULL), endTime(0), type(t) {}
 
 // via Michael Vogt/neophob: empty constructor is used when strand length
 // isn't known at compile-time; situations where program config might be
