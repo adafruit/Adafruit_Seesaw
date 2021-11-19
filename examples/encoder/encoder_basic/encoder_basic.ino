@@ -7,7 +7,6 @@
         void disableEncoderInterrupt();
         void setEncoderPosition(int32_t pos);
  */
-#include "Adafruit_seesaw.h"
 #include <seesaw_neopixel.h>
 
 #define SS_SWITCH        24

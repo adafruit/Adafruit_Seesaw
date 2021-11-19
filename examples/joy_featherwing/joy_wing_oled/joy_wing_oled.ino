@@ -1,8 +1,7 @@
-#include <Wire.h>
+#include <Adafruit_seesaw.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7735.h> // Hardware-specific library
 #include <SPI.h>
-#include "Adafruit_seesaw.h"
 
 Adafruit_seesaw ss;
 #define BUTTON_RIGHT 6

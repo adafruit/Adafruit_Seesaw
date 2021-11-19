@@ -26,7 +26,6 @@
   -------------------------------------------------------------------------*/
 
 #include "seesaw_neopixel.h"
-#include "Adafruit_seesaw.h"
 
 // Constructor when length, pin and type are known at compile-time:
 seesaw_NeoPixel::seesaw_NeoPixel(uint16_t n, uint8_t p, neoPixelType t,

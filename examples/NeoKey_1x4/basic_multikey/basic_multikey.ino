@@ -1,5 +1,4 @@
 #include "Adafruit_NeoKey_1x4.h"
-#include "seesaw_neopixel.h"
 
 #define Y_DIM 2 //number of rows of keys
 #define X_DIM 4 //number of columns of keys

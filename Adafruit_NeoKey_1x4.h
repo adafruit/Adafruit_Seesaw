@@ -1,9 +1,7 @@
 #ifndef _NEOKEY_1X4_H
 #define _NEOKEY_1X4_H
 
-#include "Adafruit_seesaw.h"
 #include "seesaw_neopixel.h"
-#include <Arduino.h>
 
 #define NEOKEY_1X4_ADDR 0x30
 

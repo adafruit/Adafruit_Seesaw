@@ -1,9 +1,7 @@
 #ifndef _NEO_TRELLIS_H
 #define _NEO_TRELLIS_H
 
-#include "Adafruit_seesaw.h"
 #include "seesaw_neopixel.h"
-#include <Arduino.h>
 
 #define NEO_TRELLIS_ADDR 0x2E
 

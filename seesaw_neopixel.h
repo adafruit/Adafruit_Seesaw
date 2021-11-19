@@ -17,7 +17,6 @@
 #define SEESAW_NEOPIXEL_H
 
 #include "Adafruit_seesaw.h"
-#include <Arduino.h>
 
 // The order of primary colors in the NeoPixel data stream can vary
 // among device types, manufacturers and even different revisions of

@@ -27,7 +27,6 @@
  */
 
 #include "Adafruit_seesaw.h"
-#include <Arduino.h>
 
 //#define SEESAW_I2C_DEBUG
 

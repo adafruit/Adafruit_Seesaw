@@ -7,7 +7,6 @@
 #define USE_OLED false  // set to false to skip the OLED, true to use it!
 
 
-#include "Adafruit_seesaw.h"
 #include <seesaw_neopixel.h>
 
 #if USE_OLED
