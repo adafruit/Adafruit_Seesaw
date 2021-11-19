@@ -27,6 +27,7 @@
  */
 
 #include "Adafruit_seesaw.h"
+#include <Arduino.h>
 
 //#define SEESAW_I2C_DEBUG
 
@@ -36,11 +37,7 @@
  *
  *  @param      i2c_bus the I2C bus connected to the seesaw, defaults to "Wire"
  ****************************************************************************************/
-#ifdef ARDUINO_SAMD_ZERO
-Adafruit_seesaw::Adafruit_seesaw(arduino::TwoWire *i2c_bus) {
-#else
 Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus) {
-#endif
   if (i2c_bus == NULL) {
     _i2cbus = &Wire;
   } else {
