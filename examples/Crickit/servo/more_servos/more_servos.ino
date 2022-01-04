@@ -20,7 +20,7 @@ void setup() {
   //begin the crickit
   if(!crickit.begin()){
     Serial.println("ERROR!");
-    while(1);
+    while(1) delay(1);
   }
   else Serial.println("Crickit started");
 

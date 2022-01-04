@@ -35,7 +35,7 @@ void setup() {
   
   if(!ss.begin(0x49)){
     Serial.println("ERROR! seesaw not found");
-    while(1);
+    while(1) delay(1);
   } else {
     Serial.println("seesaw started");
     Serial.print("version: ");

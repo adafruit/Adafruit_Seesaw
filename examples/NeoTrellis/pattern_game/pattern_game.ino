@@ -80,7 +80,7 @@ void setup() {
   
   if (!trellis.begin()) {
     Serial.println("Could not start trellis, check wiring?");
-    while(1);
+    while(1) delay(1);
   } else {
     Serial.println("NeoPixel Trellis started");
   }

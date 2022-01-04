@@ -37,13 +37,13 @@ void setup() {
   while(!Serial);
   if(!crickit.begin(0x49, A0)){
     Serial.println("ERROR Starting crickit");
-    while(1);
+    while(1) delay(1);
   }
   else Serial.println("seesaw started");
 
   if(!strip.begin(0x49, A0)){
     Serial.println("ERROR Starting neopix");
-    while(1);
+    while(1) delay(1);
   }
   Serial.println("neopix started!");
 

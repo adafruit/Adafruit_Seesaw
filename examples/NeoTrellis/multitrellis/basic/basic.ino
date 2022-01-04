@@ -68,11 +68,11 @@ TrellisCallback blink(keyEvent evt){
 
 void setup() {
   Serial.begin(9600);
-  //while(!Serial);
+  //while(!Serial) delay(1);
 
   if(!trellis.begin()){
     Serial.println("failed to begin trellis");
-    while(1);
+    while(1) delay(1);
   }
 
   /* the array can be addressed as x,y or with the key number */

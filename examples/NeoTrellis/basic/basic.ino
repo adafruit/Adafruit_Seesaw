@@ -25,11 +25,11 @@ TrellisCallback blink(keyEvent evt){
 
 void setup() {
   Serial.begin(9600);
-  //while(!Serial);
+  // while(!Serial) delay(1);
   
   if (!trellis.begin()) {
     Serial.println("Could not start trellis, check wiring?");
-    while(1);
+    while(1) delay(1);
   } else {
     Serial.println("NeoPixel Trellis started");
   }

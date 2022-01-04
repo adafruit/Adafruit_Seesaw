@@ -43,7 +43,7 @@ void setup() {
   
   if(!trellis.begin()){
     Serial.println("could not start trellis");
-    while(1);
+    while(1) delay(1);
   }
   else{
     Serial.println("trellis started");
