@@ -41,7 +41,7 @@ void setup()   {
 
   if(!ss.begin(0x49)){
     Serial.println("ERROR!");
-    while(1);
+    while(1) delay(1);
   }
   else{
     Serial.println("seesaw started");

@@ -9,7 +9,7 @@ void setup() {
   
   if (!ss.begin(0x36)) {
     Serial.println("ERROR! seesaw not found");
-    while(1);
+    while(1) delay(1);
   } else {
     Serial.print("seesaw started! version: ");
     Serial.println(ss.getVersion(), HEX);
