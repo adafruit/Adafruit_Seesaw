@@ -4,11 +4,12 @@
 /*!
     @brief  Class constructor
     @param  addr the I2C address this neotrellis object uses
+    @param  i2c_bus the I2C bus connected to this neotrellis, defaults to "Wire"
 */
 /**************************************************************************/
-Adafruit_NeoTrellis::Adafruit_NeoTrellis(uint8_t addr)
-    : pixels(NEO_TRELLIS_NUM_KEYS, NEO_TRELLIS_NEOPIX_PIN,
-             NEO_GRB + NEO_KHZ800) {
+Adafruit_NeoTrellis::Adafruit_NeoTrellis(uint8_t addr, TwoWire *i2c_bus)
+    : Adafruit_seesaw(i2c_bus), pixels(NEO_TRELLIS_NUM_KEYS, NEO_TRELLIS_NEOPIX_PIN,
+             NEO_GRB + NEO_KHZ800, i2c_bus) {
   for (int i = 0; i < NEO_TRELLIS_NUM_KEYS; i++) {
     _callbacks[i] = NULL;
   }
