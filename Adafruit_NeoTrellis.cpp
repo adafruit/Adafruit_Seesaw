@@ -8,8 +8,9 @@
 */
 /**************************************************************************/
 Adafruit_NeoTrellis::Adafruit_NeoTrellis(uint8_t addr, TwoWire *i2c_bus)
-    : Adafruit_seesaw(i2c_bus), pixels(NEO_TRELLIS_NUM_KEYS, NEO_TRELLIS_NEOPIX_PIN,
-             NEO_GRB + NEO_KHZ800, i2c_bus) {
+    : Adafruit_seesaw(i2c_bus),
+      pixels(NEO_TRELLIS_NUM_KEYS, NEO_TRELLIS_NEOPIX_PIN, NEO_GRB + NEO_KHZ800,
+             i2c_bus) {
   for (int i = 0; i < NEO_TRELLIS_NUM_KEYS; i++) {
     _callbacks[i] = NULL;
   }

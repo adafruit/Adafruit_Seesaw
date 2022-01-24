@@ -9,7 +9,7 @@
 /**************************************************************************/
 Adafruit_NeoKey_1x4::Adafruit_NeoKey_1x4(uint8_t addr, TwoWire *i2c_bus)
     : Adafruit_seesaw(i2c_bus), pixels(NEOKEY_1X4_KEYS, NEOKEY_1X4_NEOPIN,
-             NEO_GRB + NEO_KHZ800, i2c_bus) {
+                                       NEO_GRB + NEO_KHZ800, i2c_bus) {
   for (int i = 0; i < NEOKEY_1X4_KEYS; i++) {
     _callbacks[i] = NULL;
   }
