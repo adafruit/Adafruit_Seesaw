@@ -39,7 +39,7 @@ typedef void (*NeoKey1x4Callback)(keyEvent evt);
 /**************************************************************************/
 class Adafruit_NeoKey_1x4 : public Adafruit_seesaw {
 public:
-  Adafruit_NeoKey_1x4(uint8_t addr = NEOKEY_1X4_ADDR, TwoWire *i2c_bus = NULL);
+  Adafruit_NeoKey_1x4(uint8_t addr = NEOKEY_1X4_ADDR, TwoWire *i2c_bus = &Wire);
   ~Adafruit_NeoKey_1x4(){};
 
   bool begin(uint8_t addr = NEOKEY_1X4_ADDR, int8_t flow = -1);
