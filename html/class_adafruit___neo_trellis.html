@@ -85,9 +85,9 @@ Inheritance diagram for Adafruit_NeoTrellis:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6400aa2d1e832a477884a4f0ae4b846b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a6400aa2d1e832a477884a4f0ae4b846b">Adafruit_NeoTrellis</a> (uint8_t addr=NEO_TRELLIS_ADDR)</td></tr>
-<tr class="memdesc:a6400aa2d1e832a477884a4f0ae4b846b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a6400aa2d1e832a477884a4f0ae4b846b">More...</a><br /></td></tr>
-<tr class="separator:a6400aa2d1e832a477884a4f0ae4b846b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a082076d622907e086088c50548ff78e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a082076d622907e086088c50548ff78e0">Adafruit_NeoTrellis</a> (uint8_t addr=NEO_TRELLIS_ADDR, TwoWire *i2c_bus=&amp;Wire)</td></tr>
+<tr class="memdesc:a082076d622907e086088c50548ff78e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a082076d622907e086088c50548ff78e0">More...</a><br /></td></tr>
+<tr class="separator:a082076d622907e086088c50548ff78e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a300705906df0c7ce1a0ce1cda1ebb0cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_trellis.html#a300705906df0c7ce1a0ce1cda1ebb0cf">begin</a> (uint8_t addr=NEO_TRELLIS_ADDR, int8_t flow=-1)</td></tr>
 <tr class="memdesc:a300705906df0c7ce1a0ce1cda1ebb0cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin communication with the RGB trellis.  <a href="#a300705906df0c7ce1a0ce1cda1ebb0cf">More...</a><br /></td></tr>
 <tr class="separator:a300705906df0c7ce1a0ce1cda1ebb0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -290,8 +290,8 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that stores state and functions for interacting with the seesaw keypad module. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a6400aa2d1e832a477884a4f0ae4b846b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6400aa2d1e832a477884a4f0ae4b846b">&#9670;&nbsp;</a></span>Adafruit_NeoTrellis()</h2>
+<a id="a082076d622907e086088c50548ff78e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a082076d622907e086088c50548ff78e0">&#9670;&nbsp;</a></span>Adafruit_NeoTrellis()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -300,8 +300,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">Adafruit_NeoTrellis::Adafruit_NeoTrellis </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>addr</em> = <code>NEO_TRELLIS_ADDR</code></td><td>)</td>
+          <td class="paramname"><em>addr</em> = <code>NEO_TRELLIS_ADDR</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">TwoWire *&#160;</td>
+          <td class="paramname"><em>i2c_bus</em> = <code>&amp;Wire</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -310,6 +320,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">addr</td><td>the I2C address this neotrellis object uses </td></tr>
+    <tr><td class="paramname">i2c_bus</td><td>the I2C bus connected to this neotrellis, defaults to "Wire" </td></tr>
   </table>
   </dd>
 </dl>

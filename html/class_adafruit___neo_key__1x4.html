@@ -85,9 +85,9 @@ Inheritance diagram for Adafruit_NeoKey_1x4:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab4abd8e62bb0d88869bdd0515525ee0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#ab4abd8e62bb0d88869bdd0515525ee0e">Adafruit_NeoKey_1x4</a> (uint8_t addr=NEOKEY_1X4_ADDR)</td></tr>
-<tr class="memdesc:ab4abd8e62bb0d88869bdd0515525ee0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#ab4abd8e62bb0d88869bdd0515525ee0e">More...</a><br /></td></tr>
-<tr class="separator:ab4abd8e62bb0d88869bdd0515525ee0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80a95245b531711ff5f1a7421d66b0ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a80a95245b531711ff5f1a7421d66b0ca">Adafruit_NeoKey_1x4</a> (uint8_t addr=NEOKEY_1X4_ADDR, TwoWire *i2c_bus=&amp;Wire)</td></tr>
+<tr class="memdesc:a80a95245b531711ff5f1a7421d66b0ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a80a95245b531711ff5f1a7421d66b0ca">More...</a><br /></td></tr>
+<tr class="separator:a80a95245b531711ff5f1a7421d66b0ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63053cff5aade7fff53a8f421fb862d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a63053cff5aade7fff53a8f421fb862d9">begin</a> (uint8_t addr=NEOKEY_1X4_ADDR, int8_t flow=-1)</td></tr>
 <tr class="memdesc:a63053cff5aade7fff53a8f421fb862d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin communication with the RGB trellis.  <a href="#a63053cff5aade7fff53a8f421fb862d9">More...</a><br /></td></tr>
 <tr class="separator:a63053cff5aade7fff53a8f421fb862d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -291,8 +291,8 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that stores state and functions for interacting with the seesaw NeoKey module. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab4abd8e62bb0d88869bdd0515525ee0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4abd8e62bb0d88869bdd0515525ee0e">&#9670;&nbsp;</a></span>Adafruit_NeoKey_1x4()</h2>
+<a id="a80a95245b531711ff5f1a7421d66b0ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80a95245b531711ff5f1a7421d66b0ca">&#9670;&nbsp;</a></span>Adafruit_NeoKey_1x4()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -301,8 +301,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">Adafruit_NeoKey_1x4::Adafruit_NeoKey_1x4 </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>addr</em> = <code>NEOKEY_1X4_ADDR</code></td><td>)</td>
+          <td class="paramname"><em>addr</em> = <code>NEOKEY_1X4_ADDR</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">TwoWire *&#160;</td>
+          <td class="paramname"><em>i2c_bus</em> = <code>&amp;Wire</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -311,6 +321,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">addr</td><td>the I2C address this neotrellis object uses </td></tr>
+    <tr><td class="paramname">i2c_bus</td><td>the I2C bus connected to this neokey, defaults to "Wire" </td></tr>
   </table>
   </dd>
 </dl>
