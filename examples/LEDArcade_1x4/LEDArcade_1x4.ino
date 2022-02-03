@@ -7,14 +7,15 @@
 #include <seesaw_neopixel.h>
 
 #define  DEFAULT_I2C_ADDR 0x3A
-#define  SWITCH1  2  // PA06
-#define  SWITCH2  20 // PA03
-#define  SWITCH3  19 // PA02
-#define  SWITCH4  18 // PA01
-#define  PWM1  1  // PA05
-#define  PWM2  0 // PA04
-#define  PWM3  13 // PC01
-#define  PWM4  12 // PC00
+
+#define  SWITCH1  18  // PA01
+#define  SWITCH2  19 // PA02
+#define  SWITCH3  20 // PA03
+#define  SWITCH4  2 // PA04
+#define  PWM1  12  // PC00
+#define  PWM2  13 // PC01
+#define  PWM3  0 // PA04
+#define  PWM4  1 // PA05
 
 
 Adafruit_seesaw ss;
