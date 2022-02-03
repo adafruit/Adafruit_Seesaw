@@ -11,7 +11,7 @@
 #define  SWITCH1  18  // PA01
 #define  SWITCH2  19 // PA02
 #define  SWITCH3  20 // PA03
-#define  SWITCH4  2 // PA04
+#define  SWITCH4  2 // PA06
 #define  PWM1  12  // PC00
 #define  PWM2  13 // PC01
 #define  PWM3  0 // PA04
