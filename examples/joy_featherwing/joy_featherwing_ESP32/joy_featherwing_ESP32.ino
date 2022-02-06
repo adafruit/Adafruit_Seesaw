@@ -169,7 +169,7 @@ void analogStickTask(void *)
         xSemaphoreGive(i2cSem);
 
         // Ignore minute position changes as the values will change slightly with
-        // every read. This can be tuned with STICK_H_DRIFT and STICK_V_DRIFT
+        // every read. This can be tuned with MIN_STICK_H_MOVE and MIN_STICK_V_MOVE
         if (new_x <= x - MIN_STICK_H_MOVE ||
             new_x >= x + MIN_STICK_H_MOVE ||
             new_y <= y - MIN_STICK_V_MOVE ||
