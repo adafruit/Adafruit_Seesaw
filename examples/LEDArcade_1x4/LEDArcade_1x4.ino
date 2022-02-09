@@ -1,6 +1,5 @@
 /*
- * This example shows how read the potentiometer on the I2C QT Slide Potentiometer
- * and make the NeoPixels change too!
+ * This example shows how read arcade buttons and PWM the LEDs on the Adafruit Arcade QT!
  */
 
 #include "Adafruit_seesaw.h"
