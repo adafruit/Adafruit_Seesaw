@@ -8,7 +8,7 @@
 
 #if !defined(ESP8266) && !defined(ESP32)
 #error This sketch only supports ESP32 and ESP8266
-#endif // ESP2866 / ESP32
+#endif // ESP8266 / ESP32
 
 #include "Adafruit_seesaw.h"
 
@@ -196,10 +196,10 @@ void analogStickTask(void *)
 
             // Make a best effort guess as to if the stick is centered or not based on
             // initial calibration and corrections
-            isCentered = x_ctr >= new_y + STICK_L_CORRECTION &&
-                         x_ctr <= new_y + STICK_R_CORRECTION &&
-                         y_ctr <= new_y + STICK_U_CORRECTION &&
-                         y_ctr >= new_y + STICK_D_CORRECTION;
+            isCentered = x_ctr >= max(0, new_x + STICK_L_CORRECTION) &&
+                         x_ctr <= max(0, new_x + STICK_R_CORRECTION) &&
+                         y_ctr <= max(0, new_y + STICK_U_CORRECTION) &&
+                         y_ctr >= max(0, new_y + STICK_D_CORRECTION);
 
             // Ensure value is always 0...1024 and account for any corrections and/or calibrations to prevent over/underflows
             x = new_x < 0 ? 0 : new_x > 1024 ? 1024
@@ -207,11 +207,18 @@ void analogStickTask(void *)
             y = new_y < 0 ? 0 : new_y > 1024 ? 1024
                                              : new_y;
 
-            // Log the position in both absolute position (0...1024) and radians (-128...127 degrees) on each axis
-            Serial.printf("Analog stick position change!\n\tIs centered: %s\n\tPosition: X=%d Y=%d\n\tAngle: X=%f Y=%f\n",
+            double x_rad = x / 4 - 128;
+            double y_rad = y / 4 - 128;
+            double angle = -atan2(-x_rad, y_rad) * (180.0 / PI);
+            double velocity = sqrt(pow(x_rad, 2) + pow(y_rad, 2));
+
+            // Log the position of the analog stick in various ways for different kinds of application
+            Serial.printf("Analog stick position change!\n\tIs centered: %s\n\tPosition: X=%d Y=%d\n\tRadian: X=%f Y=%f\n\tDegrees: %f\n\tPosition from center: %f\n",
                           isCentered ? "true" : "false",
                           x, y,
-                          (double)x / 4 - 128, (double)y / 4 - 128);
+                          x_rad, y_rad,
+                          angle,
+                          velocity);
         }
 
         // Tune this to be quick enough to read the controller position in a reasonable amount of time but not so fast that it 
