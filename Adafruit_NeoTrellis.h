@@ -21,7 +21,7 @@
 #define NEO_TRELLIS_X(k) ((k) % 4)
 #define NEO_TRELLIS_Y(k) ((k) / 4)
 
-#define NEO_TRELLIS_XY(x, y) ((y)*NEO_TRELLIS_NUM_ROWS + (x))
+#define NEO_TRELLIS_XY(x, y) ((y)*NEO_TRELLIS_NUM_COLS + (x))
 
 typedef void (*TrellisCallback)(keyEvent evt);
 
