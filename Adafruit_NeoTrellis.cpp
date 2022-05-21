@@ -317,7 +317,7 @@ void Adafruit_MultiTrellis::show() {
    callbacks.
 */
 /**************************************************************************/
-void Adafruit_MultiTrellis::read() {
+void Adafruit_MultiTrellis::read(bool polling) {
   Adafruit_NeoTrellis *t;
   for (int n = 0; n < _rows; n++) {
     for (int m = 0; m < _cols; m++) {
@@ -326,7 +326,8 @@ void Adafruit_MultiTrellis::read() {
       uint8_t count = t->getKeypadCount();
       delayMicroseconds(500);
       if (count > 0) {
-        count = count + 2;
+        if (polling)
+          count = count + 2;
         keyEventRaw e[count];
         t->readKeypad(e, count);
         for (int i = 0; i < count; i++) {

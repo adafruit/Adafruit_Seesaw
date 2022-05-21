@@ -83,7 +83,7 @@ public:
   void setPixelColor(uint16_t num, uint32_t color);
   void show();
 
-  void read();
+  void read(bool polling = true);
 
 protected:
   uint8_t _rows; ///< the number of trellis boards in the Y direction
