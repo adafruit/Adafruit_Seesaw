@@ -315,6 +315,8 @@ void Adafruit_MultiTrellis::show() {
 /*!
     @brief  read all events currently stored in the seesaw fifo and call any
    callbacks.
+    @param  polling pass true if the interrupt pin is not being used, false if
+   it is. Defaults to true.
 */
 /**************************************************************************/
 void Adafruit_MultiTrellis::read(bool polling) {
