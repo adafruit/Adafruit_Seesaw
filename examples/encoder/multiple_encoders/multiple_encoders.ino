@@ -98,11 +98,18 @@ void loop() {
 #if USE_OLED
   display.clearDisplay();
 #endif
-
+  
   uint16_t display_line = 1;
   
   for (uint8_t enc=0; enc<sizeof(found_encoders); enc++) { 
+     bool pushed = false;
      if (found_encoders[enc] == false) continue;
+     if (! encoders[enc].digitalRead(SS_SWITCH)) {
+        Serial.print("Encoder #");
+        Serial.print(enc);
+        Serial.println(" pressed");
+        pushed = true;
+     }
   
      int32_t new_position = encoders[enc].getEncoderPosition();
      // did we move around?
@@ -125,16 +132,10 @@ void loop() {
      display.print(enc);
      display.print(" : ");
      display.print(encoder_positions[enc]);
-#endif
-
-     if (! encoders[enc].digitalRead(SS_SWITCH)) {
-        Serial.print("Encoder #");
-        Serial.print(enc);
-        Serial.println(" pressed");
-#if USE_OLED
-        display.print(" P");
-#endif
+     if(pushed){
+         display.print(" P");
      }
+#endif
   }
   
 #if USE_OLED
