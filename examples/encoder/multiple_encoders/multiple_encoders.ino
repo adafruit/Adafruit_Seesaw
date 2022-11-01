@@ -1,6 +1,6 @@
 /* Demo with 128x64 OLED display and multiple I2C encoders wired up. The sketch will auto-
  * detect up to 4 encoder on the first 4 addresses. Twisting will display text on OLED
- * and change neopixel color. 
+ * and change neopixel color.
  * set USE_OLED to true t
  */
 
@@ -49,13 +49,13 @@ void setup() {
   delay(500); // Pause for half second
   display.setRotation(1);
   display.setFont(&FreeSans9pt7b);
-  display.setTextColor(SH110X_WHITE); 
+  display.setTextColor(SH110X_WHITE);
 #endif
-  
+
   Serial.println("Looking for seesaws!");
 
   for (uint8_t enc=0; enc<sizeof(found_encoders); enc++) {
-    // See if we can find encoders on this address 
+    // See if we can find encoders on this address
     if (! encoders[enc].begin(SEESAW_BASE_ADDR + enc) ||
         ! encoder_pixels[enc].begin(SEESAW_BASE_ADDR + enc)) {
       Serial.print("Couldn't find encoder #");
@@ -63,7 +63,7 @@ void setup() {
     } else {
       Serial.print("Found encoder + pixel #");
       Serial.println(enc);
-      
+
       uint32_t version = ((encoders[enc].getVersion() >> 16) & 0xFFFF);
       if (version != 4991){
         Serial.print("Wrong firmware loaded? ");
@@ -71,18 +71,18 @@ void setup() {
         while(1) delay(10);
       }
       Serial.println("Found Product 4991");
-  
+
       // use a pin for the built in encoder switch
       encoders[enc].pinMode(SS_SWITCH, INPUT_PULLUP);
 
       // get starting position
       encoder_positions[enc] = encoders[enc].getEncoderPosition();
-  
+
       Serial.println("Turning on interrupts");
       delay(10);
       encoders[enc].setGPIOInterrupts((uint32_t)1 << SS_SWITCH, 1);
       encoders[enc].enableEncoderInterrupt();
-      
+
       // set not so bright!
       encoder_pixels[enc].setBrightness(30);
       encoder_pixels[enc].show();
@@ -90,20 +90,19 @@ void setup() {
       found_encoders[enc] = true;
     }
   }
- 
+
   Serial.println("Encoders started");
 }
 
 void loop() {
 #if USE_OLED
   display.clearDisplay();
+  uint16_t display_line = 1;
 #endif
 
-  uint16_t display_line = 1;
-  
-  for (uint8_t enc=0; enc<sizeof(found_encoders); enc++) { 
+  for (uint8_t enc=0; enc<sizeof(found_encoders); enc++) {
      if (found_encoders[enc] == false) continue;
-  
+
      int32_t new_position = encoders[enc].getEncoderPosition();
      // did we move around?
      if (encoder_positions[enc] != new_position) {
@@ -119,7 +118,7 @@ void loop() {
      }
 
 #if USE_OLED
-     // draw the display 
+     // draw the display
      display.setCursor(0, 20*display_line++);
      display.print("Enc #");
      display.print(enc);
@@ -136,7 +135,7 @@ void loop() {
 #endif
      }
   }
-  
+
 #if USE_OLED
   display.display();
 #endif
