@@ -55,7 +55,7 @@ uint32_t Wheel(byte WheelPos) {
 }
 
 //define a callback for key presses
-TrellisCallback blink(keyEvent evt){
+void blink(keyEvent evt){
   
   if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_RISING)
     trellis.setPixelColor(evt.bit.NUM, Wheel(map(evt.bit.NUM, 0, X_DIM*Y_DIM, 0, 255))); //on rising
@@ -63,7 +63,6 @@ TrellisCallback blink(keyEvent evt){
     trellis.setPixelColor(evt.bit.NUM, 0); //off falling
     
   trellis.show();
-  return 0;
 }
 
 void setup() {
