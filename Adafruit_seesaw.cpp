@@ -478,15 +478,14 @@ void Adafruit_seesaw::digitalWriteBulk(uint32_t pinsa, uint32_t pinsb,
  *****************************************************************************************
  *  @brief      write the entire GPIO port at once.
  *
- *  @param      port_values The up-to-32 values to write to the pins, doesn't set direction
- *  used for bulk writing quickly all valid pins
+ *  @param      port_values The up-to-32 values to write to the pins, doesn't
+ *set direction used for bulk writing quickly all valid pins
  ****************************************************************************************/
 void Adafruit_seesaw::digitalWriteBulk(uint32_t port_values) {
   uint8_t cmd[] = {(uint8_t)(port_values >> 24), (uint8_t)(port_values >> 16),
-                   (uint8_t)(port_values >> 8),  (uint8_t)port_values};
+                   (uint8_t)(port_values >> 8), (uint8_t)port_values};
   this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK, cmd, 4);
 }
-
 
 /*!
  *****************************************************************************************
