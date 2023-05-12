@@ -128,6 +128,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a08c91e38484df9a042a4cc8d6afa7abb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a08c91e38484df9a042a4cc8d6afa7abb">digitalWrite</a> (uint8_t pin, uint8_t value)</td></tr>
 <tr class="memdesc:a08c91e38484df9a042a4cc8d6afa7abb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the output of a GPIO pin.  <a href="#a08c91e38484df9a042a4cc8d6afa7abb">More...</a><br /></td></tr>
 <tr class="separator:a08c91e38484df9a042a4cc8d6afa7abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7815743f63e0953330d5682d07bc0b19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a7815743f63e0953330d5682d07bc0b19">digitalWriteBulk</a> (uint32_t port_values)</td></tr>
+<tr class="memdesc:a7815743f63e0953330d5682d07bc0b19"><td class="mdescLeft">&#160;</td><td class="mdescRight">write the entire GPIO port at once.  <a href="#a7815743f63e0953330d5682d07bc0b19">More...</a><br /></td></tr>
+<tr class="separator:a7815743f63e0953330d5682d07bc0b19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a034eabf00889cb3bcc30ef4a2b8635d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a034eabf00889cb3bcc30ef4a2b8635d2">digitalWriteBulk</a> (uint32_t pins, uint8_t value)</td></tr>
 <tr class="memdesc:a034eabf00889cb3bcc30ef4a2b8635d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">write a value to multiple GPIO pins at once.  <a href="#a034eabf00889cb3bcc30ef4a2b8635d2">More...</a><br /></td></tr>
 <tr class="separator:a034eabf00889cb3bcc30ef4a2b8635d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -653,8 +656,34 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
 
 </div>
 </div>
+<a id="a7815743f63e0953330d5682d07bc0b19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7815743f63e0953330d5682d07bc0b19">&#9670;&nbsp;</a></span>digitalWriteBulk() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Adafruit_seesaw::digitalWriteBulk </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>port_values</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>write the entire GPIO port at once. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port_values</td><td>The up-to-32 values to write to the pins, doesn't set direction used for bulk writing quickly all valid pins </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a034eabf00889cb3bcc30ef4a2b8635d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a034eabf00889cb3bcc30ef4a2b8635d2">&#9670;&nbsp;</a></span>digitalWriteBulk() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a034eabf00889cb3bcc30ef4a2b8635d2">&#9670;&nbsp;</a></span>digitalWriteBulk() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -691,7 +720,7 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
 </div>
 </div>
 <a id="a017af800d8e05416eb3d851631de50d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a017af800d8e05416eb3d851631de50d3">&#9670;&nbsp;</a></span>digitalWriteBulk() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a017af800d8e05416eb3d851631de50d3">&#9670;&nbsp;</a></span>digitalWriteBulk() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
