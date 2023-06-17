@@ -251,6 +251,7 @@ public:
   void pinModeBulk(uint32_t pinsa, uint32_t pinsb, uint8_t mode);
   virtual void analogWrite(uint8_t pin, uint16_t value, uint8_t width = 8);
   void digitalWrite(uint8_t pin, uint8_t value);
+  void digitalWriteBulk(uint32_t port_values);
   void digitalWriteBulk(uint32_t pins, uint8_t value);
   void digitalWriteBulk(uint32_t pinsa, uint32_t pinsb, uint8_t value);
 
