@@ -113,7 +113,12 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset) {
     uint8_t c = 0;
 
     this->read(SEESAW_STATUS_BASE, SEESAW_STATUS_HW_ID, &c, 1);
-    if ((c == SEESAW_HW_ID_CODE_SAMD09) || (c == SEESAW_HW_ID_CODE_TINY8X7)) {
+    if ((c == SEESAW_HW_ID_CODE_SAMD09)
+        || (c == SEESAW_HW_ID_CODE_TINY817) || (c == SEESAW_HW_ID_CODE_TINY807)
+        || (c == SEESAW_HW_ID_CODE_TINY816) || (c == SEESAW_HW_ID_CODE_TINY806)
+        || (c == SEESAW_HW_ID_CODE_TINY1616) || (c == SEESAW_HW_ID_CODE_TINY1617)
+        ) 
+      {
       found = true;
       _hardwaretype = c;
     }
@@ -325,7 +330,13 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin) {
     default:
       return 0;
     }
-  } else if (_hardwaretype == SEESAW_HW_ID_CODE_TINY8X7) {
+  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY807)
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY817)
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY816)
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY806)
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY1616)
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY1617)
+             ) {
     p = pin;
   } else {
     return 0;
@@ -518,8 +529,15 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width) {
     default:
       return;
     }
-  } else if (_hardwaretype == SEESAW_HW_ID_CODE_TINY8X7) {
-    p = pin;
+  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_SAMD09)
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY817)
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY807)
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY816) 
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY806)
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY1616) 
+             || (_hardwaretype == SEESAW_HW_ID_CODE_TINY1617)
+             ) {
+      p = pin;
   } else {
     return;
   }
