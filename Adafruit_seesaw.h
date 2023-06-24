@@ -189,7 +189,7 @@ enum {
 #endif
 
 /*=========================================================================*/
-
+// clang-format off
 #define SEESAW_HW_ID_CODE_SAMD09 0x55 ///< seesaw HW ID code for SAMD09
 #define SEESAW_HW_ID_CODE_TINY806 0x84 ///< seesaw HW ID code for ATtiny806
 #define SEESAW_HW_ID_CODE_TINY807 0x85 ///< seesaw HW ID code for ATtiny807
@@ -197,6 +197,7 @@ enum {
 #define SEESAW_HW_ID_CODE_TINY817 0x87 ///< seesaw HW ID code for ATtiny817
 #define SEESAW_HW_ID_CODE_TINY1616 0x88 ///< seesaw HW ID code for ATtiny1616
 #define SEESAW_HW_ID_CODE_TINY1617 0x89 ///< seesaw HW ID code for ATtiny1617
+// clang-format on
 
 #define SEESAW_EEPROM_I2C_ADDR                                                 \
   0x3F ///< EEPROM address of i2c address to start up with (for devices that
