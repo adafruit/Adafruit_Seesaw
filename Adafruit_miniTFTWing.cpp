@@ -72,8 +72,8 @@ bool Adafruit_miniTFTWing::begin(uint8_t addr, int8_t flow) {
 
     TFTWING_RESET_PIN = 6;
   }
-  pinMode(TFTWING_RESET_PIN, OUTPUT);
-  pinModeBulk(TFTWING_BUTTON_ALL, INPUT_PULLUP);
+  this->pinMode(TFTWING_RESET_PIN, OUTPUT);
+  this->pinModeBulk(TFTWING_BUTTON_ALL, INPUT_PULLUP);
   return true;
 }
 
@@ -85,8 +85,19 @@ bool Adafruit_miniTFTWing::begin(uint8_t addr, int8_t flow) {
 */
 /**************************************************************************/
 void Adafruit_miniTFTWing::setBacklight(uint16_t value) {
-  uint8_t cmd[] = {0x00, (uint8_t)(value >> 8), (uint8_t)value};
-  this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 3);
+
+  if ((getVersion() >> 16) == 3322) {
+    //this->analogWrite(7, value);
+    this->pinMode(7, OUTPUT);
+    if (value == TFTWING_BACKLIGHT_ON) {
+      this->digitalWrite(7, LOW);
+    } else {
+      this->digitalWrite(7, HIGH);
+    }
+  } else {
+    uint8_t cmd[] = {0x00, (uint8_t)(value >> 8), (uint8_t)value};
+    this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_PWM, cmd, 3);
+  }
 }
 
 /**************************************************************************/
@@ -96,8 +107,11 @@ void Adafruit_miniTFTWing::setBacklight(uint16_t value) {
 */
 /**************************************************************************/
 void Adafruit_miniTFTWing::setBacklightFreq(uint16_t freq) {
-  uint8_t cmd[] = {0x0, (uint8_t)(freq >> 8), (uint8_t)freq};
-  this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_FREQ, cmd, 3);
+  if ((getVersion() >> 16) == 3322) {
+  } else {
+    uint8_t cmd[] = {0x0, (uint8_t)(freq >> 8), (uint8_t)freq};
+    this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_FREQ, cmd, 3);
+  }
 }
 
 /**************************************************************************/
@@ -107,7 +121,7 @@ void Adafruit_miniTFTWing::setBacklightFreq(uint16_t freq) {
 */
 /**************************************************************************/
 void Adafruit_miniTFTWing::tftReset(bool rst) {
-  digitalWrite(TFTWING_RESET_PIN, rst);
+  this->digitalWrite(TFTWING_RESET_PIN, rst);
 }
 
 /**************************************************************************/
@@ -117,5 +131,5 @@ void Adafruit_miniTFTWing::tftReset(bool rst) {
 */
 /**************************************************************************/
 uint32_t Adafruit_miniTFTWing::readButtons() {
-  return digitalReadBulk(TFTWING_BUTTON_ALL);
+  return this->digitalReadBulk(TFTWING_BUTTON_ALL);
 }
