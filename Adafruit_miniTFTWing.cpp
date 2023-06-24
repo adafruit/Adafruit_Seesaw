@@ -32,12 +32,17 @@ uint32_t TFTWING_BUTTON_ALL =
 /*!
     @brief  set up the miniTFTWing
     @param  addr optional address the seesaw chip can be found on
-    @param  flow optional flow control pin to use
+    @param  Wi optional alternative I2C port to use, e.g. &Wire1 etc. Defaults
+   to &Wire
     @returns true on success, false on error
 */
 /**************************************************************************/
-bool Adafruit_miniTFTWing::begin(uint8_t addr, int8_t flow) {
-  if (!Adafruit_seesaw::begin(addr, flow)) {
+bool Adafruit_miniTFTWing::begin(uint8_t addr, TwoWire *Wi) {
+  if (Wi != NULL) {
+    Adafruit_seesaw::_i2cbus = Wi;
+  }
+
+  if (!Adafruit_seesaw::begin(addr, -1)) {
     return false;
   }
 

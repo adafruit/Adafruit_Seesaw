@@ -25,7 +25,7 @@ public:
   Adafruit_miniTFTWing(){};
   ~Adafruit_miniTFTWing(){};
 
-  bool begin(uint8_t addr = TFTWING_ADDR, int8_t flow = -1);
+  bool begin(uint8_t addr = TFTWING_ADDR, TwoWire *Wi = NULL);
 
   void setBacklight(uint16_t value);
   void setBacklightFreq(uint16_t freq);
