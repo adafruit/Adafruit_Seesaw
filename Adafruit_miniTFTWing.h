@@ -7,11 +7,12 @@
 
 #define TFTWING_ADDR 0x5E
 
-#define TFTWING_BACKLIGHT_ON   0       // inverted output!
-#define TFTWING_BACKLIGHT_OFF  0xFFFF  // inverted output!
+#define TFTWING_BACKLIGHT_ON 0       // inverted output!
+#define TFTWING_BACKLIGHT_OFF 0xFFFF // inverted output!
 
-extern uint32_t TFTWING_BUTTON_UP, TFTWING_BUTTON_DOWN, TFTWING_BUTTON_LEFT, TFTWING_BUTTON_RIGHT,
-  TFTWING_BUTTON_A, TFTWING_BUTTON_B, TFTWING_BUTTON_SELECT;
+extern uint32_t TFTWING_BUTTON_UP, TFTWING_BUTTON_DOWN, TFTWING_BUTTON_LEFT,
+    TFTWING_BUTTON_RIGHT, TFTWING_BUTTON_A, TFTWING_BUTTON_B,
+    TFTWING_BUTTON_SELECT;
 
 /**************************************************************************/
 /*!

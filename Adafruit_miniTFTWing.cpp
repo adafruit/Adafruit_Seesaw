@@ -1,6 +1,5 @@
 #include "Adafruit_miniTFTWing.h"
 
-
 uint8_t TFTWING_RESET_PIN = 8;
 
 uint8_t TFTWING_BUTTON_UP_PIN = 2;
@@ -24,11 +23,10 @@ uint32_t TFTWING_BUTTON_A = (1UL << TFTWING_BUTTON_A_PIN);
 uint8_t TFTWING_BUTTON_B_PIN = 9;
 uint32_t TFTWING_BUTTON_B = (1UL << TFTWING_BUTTON_B_PIN);
 
-uint32_t TFTWING_BUTTON_ALL =                                                  \
-  (TFTWING_BUTTON_UP | TFTWING_BUTTON_DOWN | TFTWING_BUTTON_LEFT |             \
-   TFTWING_BUTTON_RIGHT | TFTWING_BUTTON_SELECT | TFTWING_BUTTON_A |           \
-   TFTWING_BUTTON_B);
-
+uint32_t TFTWING_BUTTON_ALL =
+    (TFTWING_BUTTON_UP | TFTWING_BUTTON_DOWN | TFTWING_BUTTON_LEFT |
+     TFTWING_BUTTON_RIGHT | TFTWING_BUTTON_SELECT | TFTWING_BUTTON_A |
+     TFTWING_BUTTON_B);
 
 /**************************************************************************/
 /*!
@@ -46,7 +44,7 @@ bool Adafruit_miniTFTWing::begin(uint8_t addr, int8_t flow) {
   if ((getVersion() >> 16) == 3322) {
     TFTWING_BUTTON_UP_PIN = 16;
     TFTWING_BUTTON_UP = (1UL << TFTWING_BUTTON_UP_PIN);
-    
+
     TFTWING_BUTTON_DOWN_PIN = 13;
     TFTWING_BUTTON_DOWN = (1UL << TFTWING_BUTTON_DOWN_PIN);
 
@@ -55,20 +53,20 @@ bool Adafruit_miniTFTWing::begin(uint8_t addr, int8_t flow) {
 
     TFTWING_BUTTON_RIGHT_PIN = 14;
     TFTWING_BUTTON_RIGHT = (1UL << TFTWING_BUTTON_RIGHT_PIN);
-    
+
     TFTWING_BUTTON_SELECT_PIN = 15;
     TFTWING_BUTTON_SELECT = (1UL << TFTWING_BUTTON_SELECT_PIN);
 
     TFTWING_BUTTON_A_PIN = 11;
     TFTWING_BUTTON_A = (1UL << TFTWING_BUTTON_A_PIN);
-    
+
     TFTWING_BUTTON_B_PIN = 10;
     TFTWING_BUTTON_B = (1UL << TFTWING_BUTTON_B_PIN);
 
-    TFTWING_BUTTON_ALL =                                                \
-      (TFTWING_BUTTON_UP | TFTWING_BUTTON_DOWN | TFTWING_BUTTON_LEFT |  \
-       TFTWING_BUTTON_RIGHT | TFTWING_BUTTON_SELECT | TFTWING_BUTTON_A | \
-       TFTWING_BUTTON_B);
+    TFTWING_BUTTON_ALL =
+        (TFTWING_BUTTON_UP | TFTWING_BUTTON_DOWN | TFTWING_BUTTON_LEFT |
+         TFTWING_BUTTON_RIGHT | TFTWING_BUTTON_SELECT | TFTWING_BUTTON_A |
+         TFTWING_BUTTON_B);
 
     TFTWING_RESET_PIN = 6;
   }
@@ -87,7 +85,7 @@ bool Adafruit_miniTFTWing::begin(uint8_t addr, int8_t flow) {
 void Adafruit_miniTFTWing::setBacklight(uint16_t value) {
 
   if ((getVersion() >> 16) == 3322) {
-    //this->analogWrite(7, value);
+    // this->analogWrite(7, value);
     this->pinMode(7, OUTPUT);
     if (value == TFTWING_BACKLIGHT_ON) {
       this->digitalWrite(7, LOW);
