@@ -50,6 +50,7 @@ int last_x = 0, last_y = 0;
 void loop() {
   delay(10); // delay in loop to slow serial output
   
+  // Reverse x/y values to match joystick orientation
   int x = 1023 - ss.analogRead(14);
   int y = 1023 - ss.analogRead(15);
   
