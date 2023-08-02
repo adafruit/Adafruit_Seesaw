@@ -82,9 +82,9 @@ Inheritance diagram for Adafruit_miniTFTWing:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5ec84489e17caf09bcaffb964b59f7b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__mini_t_f_t_wing.html#a5ec84489e17caf09bcaffb964b59f7b4">begin</a> (uint8_t addr=TFTWING_ADDR, int8_t flow=-1)</td></tr>
-<tr class="memdesc:a5ec84489e17caf09bcaffb964b59f7b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">set up the miniTFTWing  <a href="#a5ec84489e17caf09bcaffb964b59f7b4">More...</a><br /></td></tr>
-<tr class="separator:a5ec84489e17caf09bcaffb964b59f7b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a671ddf8b6de2cbcf21bd5a67ed715774"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__mini_t_f_t_wing.html#a671ddf8b6de2cbcf21bd5a67ed715774">begin</a> (uint8_t addr=TFTWING_ADDR, TwoWire *Wi=NULL)</td></tr>
+<tr class="memdesc:a671ddf8b6de2cbcf21bd5a67ed715774"><td class="mdescLeft">&#160;</td><td class="mdescRight">set up the miniTFTWing  <a href="#a671ddf8b6de2cbcf21bd5a67ed715774">More...</a><br /></td></tr>
+<tr class="separator:a671ddf8b6de2cbcf21bd5a67ed715774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb6e75d2cefa8493e5a41520f54dbfe6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__mini_t_f_t_wing.html#adb6e75d2cefa8493e5a41520f54dbfe6">setBacklight</a> (uint16_t value)</td></tr>
 <tr class="memdesc:adb6e75d2cefa8493e5a41520f54dbfe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the value of the backlight  <a href="#adb6e75d2cefa8493e5a41520f54dbfe6">More...</a><br /></td></tr>
 <tr class="separator:adb6e75d2cefa8493e5a41520f54dbfe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -264,8 +264,8 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that stores state and functions for interacting with mini tft wing variant of seesaw helper IC. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5ec84489e17caf09bcaffb964b59f7b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ec84489e17caf09bcaffb964b59f7b4">&#9670;&nbsp;</a></span>begin()</h2>
+<a id="a671ddf8b6de2cbcf21bd5a67ed715774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a671ddf8b6de2cbcf21bd5a67ed715774">&#9670;&nbsp;</a></span>begin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,8 +279,8 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int8_t&#160;</td>
-          <td class="paramname"><em>flow</em> = <code>-1</code>&#160;</td>
+          <td class="paramtype">TwoWire *&#160;</td>
+          <td class="paramname"><em>Wi</em> = <code>NULL</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -294,7 +294,7 @@ Adafruit_I2CDevice *&#160;</td><td class="memItemRight" valign="bottom"><a class
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">addr</td><td>optional address the seesaw chip can be found on </td></tr>
-    <tr><td class="paramname">flow</td><td>optional flow control pin to use </td></tr>
+    <tr><td class="paramname">Wi</td><td>optional alternative I2C port to use, e.g. &amp;Wire1 etc. Defaults to &amp;Wire </td></tr>
   </table>
   </dd>
 </dl>
