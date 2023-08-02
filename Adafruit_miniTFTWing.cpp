@@ -48,6 +48,7 @@ bool Adafruit_miniTFTWing::begin(uint8_t addr, TwoWire *Wi) {
   }
 
   if ((getVersion() >> 16) == 3322) {
+    // check if we have a product ID burned in, if so its the ATtiny816 version!
     TFTWING_BUTTON_UP_PIN = 16;
     TFTWING_BUTTON_UP = (1UL << TFTWING_BUTTON_UP_PIN);
 
