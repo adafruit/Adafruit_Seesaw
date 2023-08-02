@@ -1,5 +1,6 @@
 #include "Adafruit_miniTFTWing.h"
 
+// These are the default SAMD09 version pins! (for back compatibility)
 uint8_t TFTWING_RESET_PIN = 8;
 
 uint8_t TFTWING_BUTTON_UP_PIN = 2;
