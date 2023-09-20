@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arduino-platform: ["uno", "leonardo", "mega2560", "zero", "esp8266", "esp32", "metro_m4", "nrf52840"]
+        arduino-platform: ["uno", "leonardo", "mega2560", "zero", "esp8266", "esp32", "feather_esp32s2_tft", "metro_m4", "nrf52840"]
 
     runs-on: ubuntu-latest
     
