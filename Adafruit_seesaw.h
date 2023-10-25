@@ -199,10 +199,6 @@ enum {
 #define SEESAW_HW_ID_CODE_TINY1617 0x89 ///< seesaw HW ID code for ATtiny1617
 // clang-format on
 
-#define SEESAW_EEPROM_I2C_ADDR                                                 \
-  0x3F ///< EEPROM address of i2c address to start up with (for devices that
-       ///< support this feature)
-
 /** raw key event stucture for keypad module */
 union keyEventRaw {
   struct {
@@ -310,6 +306,7 @@ protected:
   int8_t _flow; /*!< The flow control pin to use */
 
   uint8_t _hardwaretype = 0; /*!< what hardware type is attached! */
+  uint8_t getI2CaddrEEPROMloc();
 
   bool write8(byte regHigh, byte regLow, byte value);
   uint8_t read8(byte regHigh, byte regLow, uint16_t delay = 250);
