@@ -628,6 +628,33 @@ char Adafruit_seesaw::readSercomData(uint8_t sercom) {
 
 /*!
  *****************************************************************************************
+ *  @brief      Return the EEPROM address used to store I2C address
+ *
+ *  @return     the EEPROM address location
+ ****************************************************************************************/
+uint8_t Adafruit_seesaw::getI2CaddrEEPROMloc() {
+  // All SAMDs use fixed location -> 0x3F
+  // ATtinys place at end of EEPROM, so can vary:
+  //   8xx have 128B of EEPROM -> 0x7F
+  //   16xx have 256B of EERPOM -> 0xFF
+  switch (_hardwaretype) {
+  case SEESAW_HW_ID_CODE_SAMD09:
+    return 0x3F;
+  case SEESAW_HW_ID_CODE_TINY817:
+  case SEESAW_HW_ID_CODE_TINY807:
+  case SEESAW_HW_ID_CODE_TINY816:
+  case SEESAW_HW_ID_CODE_TINY806:
+    return 0x7F;
+  case SEESAW_HW_ID_CODE_TINY1616:
+  case SEESAW_HW_ID_CODE_TINY1617:
+    return 0xFF;
+  default:
+    return 0x00;
+  }
+}
+
+/*!
+ *****************************************************************************************
  *  @brief      Set the seesaw I2C address. This will automatically call
  *Adafruit_seesaw.begin() with the new address.
  *
@@ -635,7 +662,7 @@ char Adafruit_seesaw::readSercomData(uint8_t sercom) {
  *I2C address.
  ****************************************************************************************/
 void Adafruit_seesaw::setI2CAddr(uint8_t addr) {
-  this->EEPROMWrite8(SEESAW_EEPROM_I2C_ADDR, addr);
+  this->EEPROMWrite8(getI2CaddrEEPROMloc(), addr);
   delay(250);
   this->begin(addr); // restart w/ the new addr
 }
@@ -648,7 +675,7 @@ void Adafruit_seesaw::setI2CAddr(uint8_t addr) {
  *already know because you just read data from it.
  ****************************************************************************************/
 uint8_t Adafruit_seesaw::getI2CAddr() {
-  return this->read8(SEESAW_EEPROM_BASE, SEESAW_EEPROM_I2C_ADDR);
+  return this->EEPROMRead8(getI2CaddrEEPROMloc());
 }
 
 /*!
