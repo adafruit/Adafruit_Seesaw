@@ -563,22 +563,35 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width) {
  ******************************************************************************/
 void Adafruit_seesaw::setPWMFreq(uint8_t pin, uint16_t freq) {
   int8_t p = -1;
-  switch (pin) {
-  case PWM_0_PIN:
-    p = 0;
-    break;
-  case PWM_1_PIN:
-    p = 1;
-    break;
-  case PWM_2_PIN:
-    p = 2;
-    break;
-  case PWM_3_PIN:
-    p = 3;
-    break;
-  default:
-    break;
+
+  if (_hardwaretype == SEESAW_HW_ID_CODE_SAMD09) {
+    switch (pin) {
+    case PWM_0_PIN:
+      p = 0;
+      break;
+    case PWM_1_PIN:
+      p = 1;
+      break;
+    case PWM_2_PIN:
+      p = 2;
+      break;
+    case PWM_3_PIN:
+      p = 3;
+      break;
+    default:
+      break;
+    }
+  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY816) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY806) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY1616) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY1617)) {
+    p = pin;
+  } else {
+    return;
   }
+
   if (p > -1) {
     uint8_t cmd[] = {(uint8_t)p, (uint8_t)(freq >> 8), (uint8_t)freq};
     this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_FREQ, cmd, 3);
