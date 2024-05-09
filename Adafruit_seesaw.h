@@ -174,7 +174,7 @@ enum {
 };
 
 /** soil moisture module function address registers
-*/
+ */
 enum {
   // 0x00..0x0F Global Settings
   SEESAW_SOIL_STATUS = 0x00,
