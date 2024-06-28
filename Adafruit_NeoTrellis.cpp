@@ -49,7 +49,7 @@ bool Adafruit_NeoTrellis::begin(uint8_t addr, int8_t flow) {
 */
 /**************************************************************************/
 void Adafruit_NeoTrellis::registerCallback(uint8_t key,
-                                           TrellisCallback (*cb)(keyEvent)) {
+                                           TrellisCallback cb) {
   _callbacks[key] = cb;
 }
 
@@ -153,7 +153,7 @@ bool Adafruit_MultiTrellis::begin() {
 */
 /**************************************************************************/
 void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y,
-                                             TrellisCallback (*cb)(keyEvent)) {
+                                             TrellisCallback cb) {
   Adafruit_NeoTrellis *t =
       (_trelli + y / NEO_TRELLIS_NUM_ROWS * _cols) + x / NEO_TRELLIS_NUM_COLS;
   int xkey = NEO_TRELLIS_X(x);
@@ -173,7 +173,7 @@ void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y,
 */
 /**************************************************************************/
 void Adafruit_MultiTrellis::registerCallback(uint16_t num,
-                                             TrellisCallback (*cb)(keyEvent)) {
+                                             TrellisCallback cb) {
   uint8_t x = num % (NEO_TRELLIS_NUM_COLS * _cols);
   uint8_t y = num / (NEO_TRELLIS_NUM_COLS * _cols);
 
@@ -315,9 +315,11 @@ void Adafruit_MultiTrellis::show() {
 /*!
     @brief  read all events currently stored in the seesaw fifo and call any
    callbacks.
+    @param  polling pass true if the interrupt pin is not being used, false if
+   it is. Defaults to true.
 */
 /**************************************************************************/
-void Adafruit_MultiTrellis::read() {
+void Adafruit_MultiTrellis::read(bool polling) {
   Adafruit_NeoTrellis *t;
   for (int n = 0; n < _rows; n++) {
     for (int m = 0; m < _cols; m++) {
@@ -326,7 +328,8 @@ void Adafruit_MultiTrellis::read() {
       uint8_t count = t->getKeypadCount();
       delayMicroseconds(500);
       if (count > 0) {
-        count = count + 2;
+        if (polling)
+          count = count + 2;
         keyEventRaw e[count];
         t->readKeypad(e, count);
         for (int i = 0; i < count; i++) {
