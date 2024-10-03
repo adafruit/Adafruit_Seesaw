@@ -54,7 +54,6 @@ enum {
   SEESAW_KEYPAD_BASE = 0x10,
   SEESAW_ENCODER_BASE = 0x11,
   SEESAW_SPECTRUM_BASE = 0x12,
-  SEESAW_SOIL_BASE = 0x13,
 };
 
 /** GPIO module function address registers
@@ -171,21 +170,6 @@ enum {
   SEESAW_SPECTRUM_CHANNEL = 0xFD,
   SEESAW_SPECTRUM_RATE = 0xFE,
   SEESAW_SPECTRUM_STATUS = 0xFF,
-};
-
-/** soil moisture module function address registers
- */
-enum {
-  // 0x00..0x0F Global Settings
-  SEESAW_SOIL_STATUS = 0x00,
-  SEESAW_SOIL_RATE = 0x01,
-  // 0x10..0xF0 Sensor Settings
-  // lower four bits = sensor number
-  // upper four bits = setting type
-  SEESAW_SOIL_VALUE = 0x10,
-  SEESAW_SOIL_SAMPLES = 0x20,
-  SEESAW_SOIL_XDELAY = 0x30,
-  SEESAW_SOIL_TIMEOUT = 0x40,
 };
 
 #define ADC_INPUT_0_PIN 2 ///< default ADC input pin
