@@ -191,6 +191,7 @@ enum {
 /*=========================================================================*/
 // clang-format off
 #define SEESAW_HW_ID_CODE_SAMD09 0x55 ///< seesaw HW ID code for SAMD09
+#define SEESAW_HW_ID_CODE_TINY416 0x46 ///< seesaw HW ID code for ATtiny416
 #define SEESAW_HW_ID_CODE_TINY806 0x84 ///< seesaw HW ID code for ATtiny806
 #define SEESAW_HW_ID_CODE_TINY807 0x85 ///< seesaw HW ID code for ATtiny807
 #define SEESAW_HW_ID_CODE_TINY816 0x86 ///< seesaw HW ID code for ATtiny816
