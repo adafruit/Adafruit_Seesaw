@@ -116,7 +116,7 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset) {
     if ((c == SEESAW_HW_ID_CODE_SAMD09) || (c == SEESAW_HW_ID_CODE_TINY817) ||
         (c == SEESAW_HW_ID_CODE_TINY807) || (c == SEESAW_HW_ID_CODE_TINY816) ||
         (c == SEESAW_HW_ID_CODE_TINY806) || (c == SEESAW_HW_ID_CODE_TINY1616) ||
-        (c == SEESAW_HW_ID_CODE_TINY1617)) {
+        (c == SEESAW_HW_ID_CODE_TINY1617) || (c == SEESAW_HW_ID_CODE_TINY416)) {
       found = true;
       _hardwaretype = c;
     }
@@ -328,7 +328,8 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin) {
     default:
       return 0;
     }
-  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
+  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY416) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY816) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY806) ||
@@ -527,6 +528,7 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width) {
       return;
     }
   } else if ((_hardwaretype == SEESAW_HW_ID_CODE_SAMD09) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY416) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY816) ||
@@ -581,7 +583,8 @@ void Adafruit_seesaw::setPWMFreq(uint8_t pin, uint16_t freq) {
     default:
       break;
     }
-  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
+  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY416) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY816) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY806) ||
@@ -653,6 +656,7 @@ uint8_t Adafruit_seesaw::getI2CaddrEEPROMloc() {
   switch (_hardwaretype) {
   case SEESAW_HW_ID_CODE_SAMD09:
     return 0x3F;
+  case SEESAW_HW_ID_CODE_TINY416:
   case SEESAW_HW_ID_CODE_TINY817:
   case SEESAW_HW_ID_CODE_TINY807:
   case SEESAW_HW_ID_CODE_TINY816:
