@@ -296,7 +296,8 @@ public:
   bool disableEncoderInterrupt(uint8_t encoder = 0);
   void setEncoderPosition(int32_t pos, uint8_t encoder = 0);
 
-  virtual size_t write(uint8_t);
+  using Print::write;
+  virtual size_t write(uint8_t) override;
   virtual size_t write(const char *str);
 
 protected:
