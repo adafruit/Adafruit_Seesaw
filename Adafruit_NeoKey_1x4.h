@@ -27,7 +27,7 @@
 #define NEOKEY_1X4_X(k) ((k) % 4)
 #define NEOKEY_1X4_Y(k) ((k) / 4)
 
-#define NEOKEY_1X4_XY(x, y) ((y)*NEOKEY_1X4_ROWS + (x))
+#define NEOKEY_1X4_XY(x, y) ((y) * NEOKEY_1X4_ROWS + (x))
 
 typedef void (*NeoKey1x4Callback)(keyEvent evt);
 

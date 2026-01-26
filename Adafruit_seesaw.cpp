@@ -29,7 +29,23 @@
 #include "Adafruit_seesaw.h"
 #include <Arduino.h>
 
-//#define SEESAW_I2C_DEBUG
+// #define SEESAW_I2C_DEBUG
+
+// ESP32 core has macros that interfere with the compilation
+#ifdef ARDUINO_ARCH_ESP32
+#pragma push_macro("pinMode")
+#undef pinMode
+#pragma push_macro("analogWrite")
+#undef analogWrite
+#pragma push_macro("analogRead")
+#undef analogRead
+#pragma push_macro("digitalRead")
+#undef digitalRead
+#pragma push_macro("digitalWrite")
+#undef digitalWrite
+#pragma push_macro("touchRead")
+#undef touchRead
+#endif
 
 /*!
  *****************************************************************************************
@@ -1045,3 +1061,13 @@ size_t Adafruit_seesaw::write(const char *str) {
   this->write(SEESAW_SERCOM0_BASE, SEESAW_SERCOM_DATA, buf, len);
   return len;
 }
+
+// ESP32 core macros reinstate
+#ifdef ARDUINO_ARCH_ESP32
+#pragma pop_macro("touchRead")
+#pragma pop_macro("digitalWrite")
+#pragma pop_macro("digitalRead")
+#pragma pop_macro("analogRead")
+#pragma pop_macro("analogWrite")
+#pragma pop_macro("pinMode")
+#endif

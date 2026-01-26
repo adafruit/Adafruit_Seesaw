@@ -1,5 +1,21 @@
 #include "Adafruit_Crickit.h"
 
+// ESP32 core has macros that interfere with the compilation
+#ifdef ARDUINO_ARCH_ESP32
+#pragma push_macro("pinMode")
+#undef pinMode
+#pragma push_macro("analogWrite")
+#undef analogWrite
+#pragma push_macro("analogRead")
+#undef analogRead
+#pragma push_macro("digitalRead")
+#undef digitalRead
+#pragma push_macro("digitalWrite")
+#undef digitalWrite
+#pragma push_macro("touchRead")
+#undef touchRead
+#endif
+
 // the pwm pins
 #define CRICKIT_NUM_PWM 12
 static const uint8_t CRICKIT_pwms[CRICKIT_NUM_PWM] = {
@@ -63,3 +79,13 @@ void Adafruit_Crickit::setPWMFreq(uint8_t pin, uint16_t freq) {
     this->write(SEESAW_TIMER_BASE, SEESAW_TIMER_FREQ, cmd, 3);
   }
 }
+
+// ESP32 core macros reinstate
+#ifdef ARDUINO_ARCH_ESP32
+#pragma pop_macro("touchRead")
+#pragma pop_macro("digitalWrite")
+#pragma pop_macro("digitalRead")
+#pragma pop_macro("analogRead")
+#pragma pop_macro("analogWrite")
+#pragma pop_macro("pinMode")
+#endif

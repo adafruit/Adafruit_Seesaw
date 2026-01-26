@@ -34,9 +34,25 @@
 #define CRICKIT_DUTY_CYCLE_OFF 0
 #define CRICKIT_DUTY_CYCLE_MAX 65535
 
+// ESP32 core has macros that interfere with the compilation
+#ifdef ARDUINO_ARCH_ESP32
+#pragma push_macro("pinMode")
+#undef pinMode
+#pragma push_macro("analogWrite")
+#undef analogWrite
+#pragma push_macro("analogRead")
+#undef analogRead
+#pragma push_macro("digitalRead")
+#undef digitalRead
+#pragma push_macro("digitalWrite")
+#undef digitalWrite
+#pragma push_macro("touchRead")
+#undef touchRead
+#endif
+
 /**************************************************************************/
 /*!
-    @brief  Class that stores state and functions for interacting with Crickit
+   @brief  Class that stores state and functions for interacting with Crickit
    variant of seesaw helper IC
 */
 /**************************************************************************/
@@ -50,4 +66,14 @@ public:
   void setPWMFreq(uint8_t pin, uint16_t freq);
 };
 
+#endif
+
+// ESP32 core macros reinstate
+#ifdef ARDUINO_ARCH_ESP32
+#pragma pop_macro("touchRead")
+#pragma pop_macro("digitalWrite")
+#pragma pop_macro("digitalRead")
+#pragma pop_macro("analogRead")
+#pragma pop_macro("analogWrite")
+#pragma pop_macro("pinMode")
 #endif
