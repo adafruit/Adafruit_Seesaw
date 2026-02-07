@@ -53,7 +53,7 @@ public:
 
 protected:
   uint8_t _addr; ///< the I2C address of this board
-  TrellisCallback *_callbacks[NEO_TRELLIS_NUM_KEYS]; ///< the array of callback functions
+  TrellisCallback _callbacks[NEO_TRELLIS_NUM_KEYS]; ///< the array of callback functions
 };
 
 /**************************************************************************/
