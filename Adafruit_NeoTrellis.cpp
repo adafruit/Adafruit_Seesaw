@@ -48,8 +48,7 @@ bool Adafruit_NeoTrellis::begin(uint8_t addr, int8_t flow) {
    key happens
 */
 /**************************************************************************/
-void Adafruit_NeoTrellis::registerCallback(uint8_t key,
-                                           TrellisCallback (*cb)(keyEvent)) {
+void Adafruit_NeoTrellis::registerCallback(uint8_t key, TrellisCallback cb) {
   _callbacks[key] = cb;
 }
 
@@ -152,8 +151,7 @@ bool Adafruit_MultiTrellis::begin() {
             detected.
 */
 /**************************************************************************/
-void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y,
-                                             TrellisCallback (*cb)(keyEvent)) {
+void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y, TrellisCallback cb) {
   Adafruit_NeoTrellis *t =
       (_trelli + y / NEO_TRELLIS_NUM_ROWS * _cols) + x / NEO_TRELLIS_NUM_COLS;
   int xkey = NEO_TRELLIS_X(x);
@@ -172,8 +170,7 @@ void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y,
             detected.
 */
 /**************************************************************************/
-void Adafruit_MultiTrellis::registerCallback(uint16_t num,
-                                             TrellisCallback (*cb)(keyEvent)) {
+void Adafruit_MultiTrellis::registerCallback(uint16_t num, TrellisCallback cb) {
   uint8_t x = num % (NEO_TRELLIS_NUM_COLS * _cols);
   uint8_t y = num / (NEO_TRELLIS_NUM_COLS * _cols);
 
