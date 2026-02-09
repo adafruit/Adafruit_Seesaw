@@ -39,7 +39,7 @@ public:
 
   bool begin(uint8_t addr = NEO_TRELLIS_ADDR, int8_t flow = -1);
 
-  void registerCallback(uint8_t key, TrellisCallback (*cb)(keyEvent));
+  void registerCallback(uint8_t key, TrellisCallback cb);
   void unregisterCallback(uint8_t key);
 
   void activateKey(uint8_t key, uint8_t edge, bool enable = true);
@@ -53,8 +53,7 @@ public:
 
 protected:
   uint8_t _addr; ///< the I2C address of this board
-  TrellisCallback (*_callbacks[NEO_TRELLIS_NUM_KEYS])(
-      keyEvent); ///< the array of callback functions
+  TrellisCallback _callbacks[NEO_TRELLIS_NUM_KEYS]; ///< the array of callback functions
 };
 
 /**************************************************************************/
@@ -71,8 +70,8 @@ public:
 
   bool begin();
 
-  void registerCallback(uint16_t num, TrellisCallback (*cb)(keyEvent));
-  void registerCallback(uint8_t x, uint8_t y, TrellisCallback (*cb)(keyEvent));
+  void registerCallback(uint16_t num, TrellisCallback cb);
+  void registerCallback(uint8_t x, uint8_t y, TrellisCallback cb);
   void unregisterCallback(uint16_t num);
   void unregisterCallback(uint8_t x, uint8_t y);
 

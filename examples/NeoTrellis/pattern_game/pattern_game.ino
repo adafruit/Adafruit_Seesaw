@@ -17,7 +17,7 @@ int cur = 0;
 
 //define a callback for key presses
 // Release event will trigger the game check
-TrellisCallback blink(keyEvent evt){
+void blink(keyEvent evt){
   // Check is the pad pressed?
   if (evt.bit.EDGE == SEESAW_KEYPAD_EDGE_RISING) {
     trellis.pixels.setPixelColor(evt.bit.NUM, Wheel(map(evt.bit.NUM, 0, trellis.pixels.numPixels(), 0, 255))); //on rising
@@ -45,7 +45,6 @@ TrellisCallback blink(keyEvent evt){
 
   // Turn on/off the neopixels!
   trellis.pixels.show();
-  return 0;
 }
 
 /*Increse difficulty and restart the game*/
