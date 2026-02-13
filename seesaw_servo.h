@@ -9,15 +9,14 @@
 */
 /**************************************************************************/
 class seesaw_Servo {
-
-public:
+ public:
   /**************************************************************************/
   /*!
       @brief  class constructor
       @param ss the seesaw object to use
   */
   /**************************************************************************/
-  seesaw_Servo(Adafruit_seesaw *ss) {
+  seesaw_Servo(Adafruit_seesaw* ss) {
     _ss = ss;
     _attached = false;
   }
@@ -33,7 +32,9 @@ public:
       @brief  set attached to false
   */
   /**************************************************************************/
-  void detach() { _attached = false; }
+  void detach() {
+    _attached = false;
+  }
   void write(int value);
   void writeMicroseconds(int value);
   int read();
@@ -44,7 +45,9 @@ public:
       @returns  current pulse width in microseconds for this servo
   */
   /**************************************************************************/
-  int readMicroseconds() { return _sval / 3.2768; }
+  int readMicroseconds() {
+    return _sval / 3.2768;
+  }
 
   /**************************************************************************/
   /*!
@@ -52,10 +55,12 @@ public:
       @returns  true if this servo is attached, otherwise false
   */
   /**************************************************************************/
-  bool attached() { return _attached; }
+  bool attached() {
+    return _attached;
+  }
 
-private:
-  Adafruit_seesaw *_ss;
+ private:
+  Adafruit_seesaw* _ss;
   bool _attached;
   uint16_t _sval;
   uint8_t _pin;

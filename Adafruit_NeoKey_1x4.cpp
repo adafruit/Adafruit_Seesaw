@@ -7,9 +7,10 @@
     @param  i2c_bus the I2C bus connected to this neokey, defaults to "Wire"
 */
 /**************************************************************************/
-Adafruit_NeoKey_1x4::Adafruit_NeoKey_1x4(uint8_t addr, TwoWire *i2c_bus)
-    : Adafruit_seesaw(i2c_bus), pixels(NEOKEY_1X4_KEYS, NEOKEY_1X4_NEOPIN,
-                                       NEO_GRB + NEO_KHZ800, i2c_bus) {
+Adafruit_NeoKey_1x4::Adafruit_NeoKey_1x4(uint8_t addr, TwoWire* i2c_bus)
+    : Adafruit_seesaw(i2c_bus),
+      pixels(NEOKEY_1X4_KEYS, NEOKEY_1X4_NEOPIN, NEO_GRB + NEO_KHZ800,
+             i2c_bus) {
   for (int i = 0; i < NEOKEY_1X4_KEYS; i++) {
     _callbacks[i] = NULL;
   }
@@ -75,7 +76,6 @@ void Adafruit_NeoKey_1x4::unregisterCallback(uint8_t key) {
 */
 /**************************************************************************/
 uint8_t Adafruit_NeoKey_1x4::read(void) {
-
   uint32_t buttons = digitalReadBulk(NEOKEY_1X4_BUTTONMASK);
   buttons ^= NEOKEY_1X4_BUTTONMASK;
   buttons &= NEOKEY_1X4_BUTTONMASK;
@@ -119,7 +119,7 @@ uint8_t Adafruit_NeoKey_1x4::read(void) {
             of your matrix.
 */
 /**************************************************************************/
-Adafruit_MultiNeoKey1x4::Adafruit_MultiNeoKey1x4(Adafruit_NeoKey_1x4 *neokeys,
+Adafruit_MultiNeoKey1x4::Adafruit_MultiNeoKey1x4(Adafruit_NeoKey_1x4* neokeys,
                                                  uint8_t rows, uint8_t cols) {
   this->_rows = rows;
   this->_cols = cols;
@@ -133,7 +133,7 @@ Adafruit_MultiNeoKey1x4::Adafruit_MultiNeoKey1x4(Adafruit_NeoKey_1x4 *neokeys,
 */
 /**************************************************************************/
 bool Adafruit_MultiNeoKey1x4::begin() {
-  Adafruit_NeoKey_1x4 *t;
+  Adafruit_NeoKey_1x4* t;
   for (int n = 0; n < _rows; n++) {
     for (int m = 0; m < _cols; m++) {
       t = (_neokeys + n * _cols) + m;
@@ -158,7 +158,7 @@ bool Adafruit_MultiNeoKey1x4::begin() {
 /**************************************************************************/
 void Adafruit_MultiNeoKey1x4::registerCallback(
     uint8_t x, uint8_t y, NeoKey1x4Callback (*cb)(keyEvent)) {
-  Adafruit_NeoKey_1x4 *t =
+  Adafruit_NeoKey_1x4* t =
       (_neokeys + y / NEOKEY_1X4_ROWS * _cols) + x / NEOKEY_1X4_COLS;
   int xkey = NEOKEY_1X4_X(x);
   int ykey = NEOKEY_1X4_Y(y % NEOKEY_1X4_ROWS * NEOKEY_1X4_COLS);
@@ -194,7 +194,7 @@ void Adafruit_MultiNeoKey1x4::registerCallback(
 */
 /**************************************************************************/
 void Adafruit_MultiNeoKey1x4::unregisterCallback(uint8_t x, uint8_t y) {
-  Adafruit_NeoKey_1x4 *t =
+  Adafruit_NeoKey_1x4* t =
       (_neokeys + y / NEOKEY_1X4_ROWS * _cols) + x / NEOKEY_1X4_COLS;
   int xkey = NEOKEY_1X4_X(x);
   int ykey = NEOKEY_1X4_Y(y % NEOKEY_1X4_ROWS * NEOKEY_1X4_COLS);
@@ -231,7 +231,7 @@ void Adafruit_MultiNeoKey1x4::unregisterCallback(uint16_t num) {
 /**************************************************************************/
 void Adafruit_MultiNeoKey1x4::setPixelColor(uint8_t x, uint8_t y,
                                             uint32_t color) {
-  Adafruit_NeoKey_1x4 *t =
+  Adafruit_NeoKey_1x4* t =
       (_neokeys + y / NEOKEY_1X4_ROWS * _cols) + x / NEOKEY_1X4_COLS;
   int xkey = NEOKEY_1X4_X(x);
   int ykey = NEOKEY_1X4_Y(y % NEOKEY_1X4_ROWS * NEOKEY_1X4_COLS);
@@ -263,7 +263,7 @@ void Adafruit_MultiNeoKey1x4::setPixelColor(uint16_t num, uint32_t color) {
 */
 /**************************************************************************/
 void Adafruit_MultiNeoKey1x4::show() {
-  Adafruit_NeoKey_1x4 *t;
+  Adafruit_NeoKey_1x4* t;
   for (int n = 0; n < _rows; n++) {
     for (int m = 0; m < _cols; m++) {
       t = (_neokeys + n * _cols) + m;
@@ -279,7 +279,7 @@ void Adafruit_MultiNeoKey1x4::show() {
 */
 /**************************************************************************/
 void Adafruit_MultiNeoKey1x4::read() {
-  Adafruit_NeoKey_1x4 *nk;
+  Adafruit_NeoKey_1x4* nk;
 
   for (int n = 0; n < _rows; n++) {
     for (int m = 0; m < _cols; m++) {

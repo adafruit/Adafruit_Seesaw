@@ -2,18 +2,19 @@
 #include "seesaw_servo.h"
 
 Adafruit_Crickit crickit;
-seesaw_Servo myservo(&crickit);  // create servo object to control a servo
+seesaw_Servo myservo(&crickit); // create servo object to control a servo
 
 void setup() {
   Serial.begin(115200);
-  
-  if(!crickit.begin()){
+
+  if (!crickit.begin()) {
     Serial.println("ERROR!");
-    while(1) delay(1);
-  }
-  else Serial.println("Crickit started");
-  
-  myservo.attach(CRICKIT_SERVO1);  // attaches the servo to CRICKIT_SERVO1 pin
+    while (1)
+      delay(1);
+  } else
+    Serial.println("Crickit started");
+
+  myservo.attach(CRICKIT_SERVO1); // attaches the servo to CRICKIT_SERVO1 pin
 }
 
 void loop() {
@@ -26,4 +27,3 @@ void loop() {
   myservo.write(90);
   delay(1000);
 }
-

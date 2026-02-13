@@ -9,14 +9,14 @@
 */
 /**************************************************************************/
 class seesaw_Motor {
-public:
+ public:
   /**************************************************************************/
   /*!
     @brief  class constructor
     @param ss the seesaw object to use
   */
   /**************************************************************************/
-  seesaw_Motor(Adafruit_seesaw *ss) {
+  seesaw_Motor(Adafruit_seesaw* ss) {
     _ss = ss;
     _pina = -1;
     _pinb = -1;
@@ -71,10 +71,12 @@ public:
     @returns the current throttle value between -1 and 1
   */
   /**************************************************************************/
-  float getThrottle() { return _throttle; }
+  float getThrottle() {
+    return _throttle;
+  }
 
-private:
-  Adafruit_seesaw *_ss;
+ private:
+  Adafruit_seesaw* _ss;
   int8_t _pina, _pinb;
   float _throttle;
 };

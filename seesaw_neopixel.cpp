@@ -26,26 +26,42 @@
   -------------------------------------------------------------------------*/
 
 #include "seesaw_neopixel.h"
+
 #include "Adafruit_seesaw.h"
 
 // Constructor when length, pin and type are known at compile-time:
 seesaw_NeoPixel::seesaw_NeoPixel(uint16_t n, uint8_t p, neoPixelType t,
-                                 TwoWire *Wi)
-    : Adafruit_seesaw(Wi), begun(false), numLEDs(n), pin(p), brightness(0),
-      pixels(NULL), endTime(0), type(t) {}
+                                 TwoWire* Wi)
+    : Adafruit_seesaw(Wi),
+      begun(false),
+      numLEDs(n),
+      pin(p),
+      brightness(0),
+      pixels(NULL),
+      endTime(0),
+      type(t) {}
 
 // via Michael Vogt/neophob: empty constructor is used when strand length
 // isn't known at compile-time; situations where program config might be
 // read from internal flash memory or an SD card, or arrive via serial
 // command.  If using this constructor, MUST follow up with updateType(),
 // updateLength(), etc. to establish the strand type, length and pin number!
-seesaw_NeoPixel::seesaw_NeoPixel(TwoWire *Wi)
+seesaw_NeoPixel::seesaw_NeoPixel(TwoWire* Wi)
     : Adafruit_seesaw(Wi),
 #ifdef NEO_KHZ400
       is800KHz(true),
 #endif
-      begun(false), numLEDs(0), numBytes(0), pin(-1), brightness(0),
-      pixels(NULL), rOffset(1), gOffset(0), bOffset(2), wOffset(1), endTime(0) {
+      begun(false),
+      numLEDs(0),
+      numBytes(0),
+      pin(-1),
+      brightness(0),
+      pixels(NULL),
+      rOffset(1),
+      gOffset(0),
+      bOffset(2),
+      wOffset(1),
+      endTime(0) {
 }
 
 seesaw_NeoPixel::~seesaw_NeoPixel() {
@@ -70,7 +86,7 @@ void seesaw_NeoPixel::updateLength(uint16_t n) {
 
   // Allocate new data -- note: ALL PIXELS ARE CLEARED
   numBytes = n * ((wOffset == rOffset) ? 3 : 4);
-  if ((pixels = (uint8_t *)malloc(numBytes))) {
+  if ((pixels = (uint8_t*)malloc(numBytes))) {
     memset(pixels, 0, numBytes);
     numLEDs = n;
   } else {
@@ -102,7 +118,6 @@ void seesaw_NeoPixel::updateType(neoPixelType t) {
 }
 
 void seesaw_NeoPixel::show(void) {
-
   if (!pixels)
     return;
 
@@ -129,14 +144,13 @@ void seesaw_NeoPixel::setPin(uint8_t p) {
 // Set pixel color from separate R,G,B components:
 void seesaw_NeoPixel::setPixelColor(uint16_t n, uint8_t r, uint8_t g,
                                     uint8_t b) {
-
   if (n < numLEDs) {
     if (brightness) { // See notes in setBrightness()
       r = (r * brightness) >> 8;
       g = (g * brightness) >> 8;
       b = (b * brightness) >> 8;
     }
-    uint8_t *p;
+    uint8_t* p;
     if (wOffset == rOffset) { // Is an RGB-type strip
       p = &pixels[n * 3];     // 3 bytes per pixel
     } else {                  // Is a WRGB-type strip
@@ -161,7 +175,6 @@ void seesaw_NeoPixel::setPixelColor(uint16_t n, uint8_t r, uint8_t g,
 
 void seesaw_NeoPixel::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b,
                                     uint8_t w) {
-
   if (n < numLEDs) {
     if (brightness) { // See notes in setBrightness()
       r = (r * brightness) >> 8;
@@ -169,7 +182,7 @@ void seesaw_NeoPixel::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b,
       b = (b * brightness) >> 8;
       w = (w * brightness) >> 8;
     }
-    uint8_t *p;
+    uint8_t* p;
     if (wOffset == rOffset) { // Is an RGB-type strip
       p = &pixels[n * 3];     // 3 bytes per pixel (ignore W)
     } else {                  // Is a WRGB-type strip
@@ -241,7 +254,7 @@ uint32_t seesaw_NeoPixel::getPixelColor(uint16_t n) const {
   if (n >= numLEDs)
     return 0; // Out of bounds, return no color.
 
-  uint8_t *p;
+  uint8_t* p;
 
   if (wOffset == rOffset) { // Is RGB-type device
     p = &pixels[n * 3];
@@ -276,9 +289,13 @@ uint32_t seesaw_NeoPixel::getPixelColor(uint16_t n) const {
 // Returns pointer to pixels[] array.  Pixel data is stored in device-
 // native format and is not translated here.  Application will need to be
 // aware of specific pixel data format and handle colors appropriately.
-uint8_t *seesaw_NeoPixel::getPixels(void) const { return pixels; }
+uint8_t* seesaw_NeoPixel::getPixels(void) const {
+  return pixels;
+}
 
-uint16_t seesaw_NeoPixel::numPixels(void) const { return numLEDs; }
+uint16_t seesaw_NeoPixel::numPixels(void) const {
+  return numLEDs;
+}
 
 void seesaw_NeoPixel::clear() {
   // Clear local pixel buffer
@@ -294,4 +311,6 @@ void seesaw_NeoPixel::clear() {
   }
 }
 
-void seesaw_NeoPixel::setBrightness(uint8_t b) { brightness = b; }
+void seesaw_NeoPixel::setBrightness(uint8_t b) {
+  brightness = b;
+}

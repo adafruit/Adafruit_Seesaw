@@ -21,11 +21,11 @@ extern uint32_t TFTWING_BUTTON_UP, TFTWING_BUTTON_DOWN, TFTWING_BUTTON_LEFT,
 */
 /**************************************************************************/
 class Adafruit_miniTFTWing : public Adafruit_seesaw {
-public:
-  Adafruit_miniTFTWing(){};
-  ~Adafruit_miniTFTWing(){};
+ public:
+  Adafruit_miniTFTWing() {};
+  ~Adafruit_miniTFTWing() {};
 
-  bool begin(uint8_t addr = TFTWING_ADDR, TwoWire *Wi = NULL);
+  bool begin(uint8_t addr = TFTWING_ADDR, TwoWire* Wi = NULL);
 
   void setBacklight(uint16_t value);
   void setBacklightFreq(uint16_t freq);

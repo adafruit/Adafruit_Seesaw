@@ -21,9 +21,10 @@
 #ifndef LIB_SEESAW_H
 #define LIB_SEESAW_H
 
-#include "Adafruit_I2CDevice.h"
 #include <Arduino.h>
 #include <Wire.h>
+
+#include "Adafruit_I2CDevice.h"
 
 /*=========================================================================
     I2C ADDRESS/BITS
@@ -183,7 +184,7 @@ enum {
 #define PWM_3_PIN 7 ///< default PWM output pin
 
 #ifndef INPUT_PULLDOWN
-#define INPUT_PULLDOWN                                                         \
+#define INPUT_PULLDOWN \
   0x03 ///< for compatibility with platforms that do not already define
        ///< INPUT_PULLDOWN
 #endif
@@ -233,17 +234,17 @@ union keyState {
 */
 /**************************************************************************/
 class Adafruit_seesaw : public Print {
-public:
+ public:
   // constructors
-  Adafruit_seesaw(TwoWire *Wi = NULL);
-  ~Adafruit_seesaw(void){};
+  Adafruit_seesaw(TwoWire* Wi = NULL);
+  ~Adafruit_seesaw(void) {};
 
   bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow = -1,
              bool reset = true);
   uint32_t getOptions();
   uint32_t getVersion();
-  bool getProdDatecode(uint16_t *pid, uint8_t *year, uint8_t *mon,
-                       uint8_t *day);
+  bool getProdDatecode(uint16_t* pid, uint8_t* year, uint8_t* mon,
+                       uint8_t* day);
 
   bool SWReset();
 
@@ -274,7 +275,7 @@ public:
   char readSercomData(uint8_t sercom = 0);
 
   void EEPROMWrite8(uint8_t addr, uint8_t val);
-  void EEPROMWrite(uint8_t addr, uint8_t *buf, uint8_t size);
+  void EEPROMWrite(uint8_t addr, uint8_t* buf, uint8_t size);
   uint8_t EEPROMRead8(uint8_t addr);
 
   void setI2CAddr(uint8_t addr);
@@ -286,7 +287,7 @@ public:
   void enableKeypadInterrupt();
   void disableKeypadInterrupt();
   uint8_t getKeypadCount();
-  bool readKeypad(keyEventRaw *buf, uint8_t count);
+  bool readKeypad(keyEventRaw* buf, uint8_t count);
 
   float getTemp();
 
@@ -297,11 +298,11 @@ public:
   void setEncoderPosition(int32_t pos, uint8_t encoder = 0);
 
   virtual size_t write(uint8_t);
-  virtual size_t write(const char *str);
+  virtual size_t write(const char* str);
 
-protected:
-  TwoWire *_i2cbus; /*!< The I2C Bus used to communicate with the seesaw */
-  Adafruit_I2CDevice *_i2c_dev = NULL; ///< The BusIO device for I2C control
+ protected:
+  TwoWire* _i2cbus; /*!< The I2C Bus used to communicate with the seesaw */
+  Adafruit_I2CDevice* _i2c_dev = NULL; ///< The BusIO device for I2C control
 
   int8_t _flow; /*!< The flow control pin to use */
 
@@ -311,9 +312,9 @@ protected:
   bool write8(byte regHigh, byte regLow, byte value);
   uint8_t read8(byte regHigh, byte regLow, uint16_t delay = 250);
 
-  bool read(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num,
+  bool read(uint8_t regHigh, uint8_t regLow, uint8_t* buf, uint8_t num,
             uint16_t delay = 250);
-  bool write(uint8_t regHigh, uint8_t regLow, uint8_t *buf, uint8_t num);
+  bool write(uint8_t regHigh, uint8_t regLow, uint8_t* buf, uint8_t num);
 
   /*=========================================================================
           REGISTER BITFIELDS

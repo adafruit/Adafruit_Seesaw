@@ -33,9 +33,9 @@
 #define TFTSHIELD_BUTTON_3_PIN 14
 #define TFTSHIELD_BUTTON_3 (1UL << TFTSHIELD_BUTTON_3_PIN)
 
-#define TFTSHIELD_BUTTON_ALL                                                   \
-  (TFTSHIELD_BUTTON_UP | TFTSHIELD_BUTTON_DOWN | TFTSHIELD_BUTTON_LEFT |       \
-   TFTSHIELD_BUTTON_RIGHT | TFTSHIELD_BUTTON_IN | TFTSHIELD_BUTTON_1 |         \
+#define TFTSHIELD_BUTTON_ALL                                             \
+  (TFTSHIELD_BUTTON_UP | TFTSHIELD_BUTTON_DOWN | TFTSHIELD_BUTTON_LEFT | \
+   TFTSHIELD_BUTTON_RIGHT | TFTSHIELD_BUTTON_IN | TFTSHIELD_BUTTON_1 |   \
    TFTSHIELD_BUTTON_2 | TFTSHIELD_BUTTON_3)
 
 /**************************************************************************/
@@ -45,9 +45,9 @@
 */
 /**************************************************************************/
 class Adafruit_TFTShield18 : public Adafruit_seesaw {
-public:
-  Adafruit_TFTShield18(){};
-  ~Adafruit_TFTShield18(){};
+ public:
+  Adafruit_TFTShield18() {};
+  ~Adafruit_TFTShield18() {};
 
   bool begin(uint8_t addr = TFTSHIELD_ADDR, int8_t flow = -1);
 

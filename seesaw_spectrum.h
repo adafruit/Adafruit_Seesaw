@@ -1,8 +1,9 @@
 #ifndef _SEESAW_SPECTRUM_H
 #define _SEESAW_SPECTRUM_H
 
-#include "Adafruit_seesaw.h"
 #include <Arduino.h>
+
+#include "Adafruit_seesaw.h"
 
 /**************************************************************************/
 /*!
@@ -11,14 +12,14 @@
 */
 /**************************************************************************/
 class seesaw_Audio_Spectrum : public Adafruit_seesaw {
-public:
+ public:
   /**************************************************************************/
   /*!
     @brief  seesaw_Audio_Spectrum class constructor.
     @param  Wi  TwoWire interface this works through.
   */
   /**************************************************************************/
-  seesaw_Audio_Spectrum(TwoWire *Wi = NULL) : Adafruit_seesaw(Wi) {}
+  seesaw_Audio_Spectrum(TwoWire* Wi = NULL) : Adafruit_seesaw(Wi) {}
 
   ~seesaw_Audio_Spectrum() {}
 
@@ -53,7 +54,9 @@ public:
     @return  Level: 0 (silent) to 255 (loudest) for bin.
   */
   /**************************************************************************/
-  uint8_t getLevel(uint8_t idx) const { return bins[idx < 64 ? idx : 63]; }
+  uint8_t getLevel(uint8_t idx) const {
+    return bins[idx < 64 ? idx : 63];
+  }
 
   /**************************************************************************/
   /*!
@@ -61,9 +64,11 @@ public:
     @return  uint8_t base pointer to 64 spectrum bins.
   */
   /**************************************************************************/
-  uint8_t *getBuffer(void) const { return (uint8_t *)bins; }
+  uint8_t* getBuffer(void) const {
+    return (uint8_t*)bins;
+  }
 
-private:
+ private:
   uint8_t bins[64]; // Audio spectrum "bins"
 };
 

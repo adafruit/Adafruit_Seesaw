@@ -16,8 +16,9 @@
 #ifndef SEESAW_NEOPIXEL_H
 #define SEESAW_NEOPIXEL_H
 
-#include "Adafruit_seesaw.h"
 #include <Arduino.h>
+
+#include "Adafruit_seesaw.h"
 
 // The order of primary colors in the NeoPixel data stream can vary
 // among device types, manufacturers and even different revisions of
@@ -94,11 +95,10 @@ typedef uint16_t neoPixelType;
 /** Adafruit_NeoPixel-compatible 'wrapper' for LED control over seesaw
  */
 class seesaw_NeoPixel : public Adafruit_seesaw {
-
-public:
+ public:
   seesaw_NeoPixel(uint16_t n, uint8_t p = 6,
-                  neoPixelType t = NEO_GRB + NEO_KHZ800, TwoWire *Wi = NULL);
-  seesaw_NeoPixel(TwoWire *Wi = NULL);
+                  neoPixelType t = NEO_GRB + NEO_KHZ800, TwoWire* Wi = NULL);
+  seesaw_NeoPixel(TwoWire* Wi = NULL);
   ~seesaw_NeoPixel();
 
   bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow = -1);
@@ -108,14 +108,18 @@ public:
       setPixelColor(uint16_t n, uint32_t c), setBrightness(uint8_t), clear(),
       updateLength(uint16_t n), updateType(neoPixelType t);
   uint8_t *getPixels(void) const, getBrightness(void) const;
-  int8_t getPin(void) { return pin; };
+  int8_t getPin(void) {
+    return pin;
+  };
   uint16_t numPixels(void) const;
   static uint32_t Color(uint8_t r, uint8_t g, uint8_t b),
       Color(uint8_t r, uint8_t g, uint8_t b, uint8_t w);
   uint32_t getPixelColor(uint16_t n) const;
-  inline bool canShow(void) { return (micros() - endTime) >= 300L; }
+  inline bool canShow(void) {
+    return (micros() - endTime) >= 300L;
+  }
 
-protected:
+ protected:
   boolean is800KHz, // ...true if 800 KHz pixels
       begun;        // true if begin() previously called
   uint16_t numLEDs, // Number of RGB LEDs in strip

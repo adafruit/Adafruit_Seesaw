@@ -7,7 +7,7 @@
     @param  i2c_bus the I2C bus connected to this neotrellis, defaults to "Wire"
 */
 /**************************************************************************/
-Adafruit_NeoTrellis::Adafruit_NeoTrellis(uint8_t addr, TwoWire *i2c_bus)
+Adafruit_NeoTrellis::Adafruit_NeoTrellis(uint8_t addr, TwoWire* i2c_bus)
     : Adafruit_seesaw(i2c_bus),
       pixels(NEO_TRELLIS_NUM_KEYS, NEO_TRELLIS_NEOPIX_PIN, NEO_GRB + NEO_KHZ800,
              i2c_bus) {
@@ -115,7 +115,7 @@ void Adafruit_NeoTrellis::read(bool polling) {
             of your matrix.
 */
 /**************************************************************************/
-Adafruit_MultiTrellis::Adafruit_MultiTrellis(Adafruit_NeoTrellis *trelli,
+Adafruit_MultiTrellis::Adafruit_MultiTrellis(Adafruit_NeoTrellis* trelli,
                                              uint8_t rows, uint8_t cols) {
   this->_rows = rows;
   this->_cols = cols;
@@ -129,7 +129,7 @@ Adafruit_MultiTrellis::Adafruit_MultiTrellis(Adafruit_NeoTrellis *trelli,
 */
 /**************************************************************************/
 bool Adafruit_MultiTrellis::begin() {
-  Adafruit_NeoTrellis *t;
+  Adafruit_NeoTrellis* t;
   for (int n = 0; n < _rows; n++) {
     for (int m = 0; m < _cols; m++) {
       t = (_trelli + n * _cols) + m;
@@ -154,7 +154,7 @@ bool Adafruit_MultiTrellis::begin() {
 /**************************************************************************/
 void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y,
                                              TrellisCallback (*cb)(keyEvent)) {
-  Adafruit_NeoTrellis *t =
+  Adafruit_NeoTrellis* t =
       (_trelli + y / NEO_TRELLIS_NUM_ROWS * _cols) + x / NEO_TRELLIS_NUM_COLS;
   int xkey = NEO_TRELLIS_X(x);
   int ykey = NEO_TRELLIS_Y(y % NEO_TRELLIS_NUM_ROWS * NEO_TRELLIS_NUM_COLS);
@@ -190,7 +190,7 @@ void Adafruit_MultiTrellis::registerCallback(uint16_t num,
 */
 /**************************************************************************/
 void Adafruit_MultiTrellis::unregisterCallback(uint8_t x, uint8_t y) {
-  Adafruit_NeoTrellis *t =
+  Adafruit_NeoTrellis* t =
       (_trelli + y / NEO_TRELLIS_NUM_ROWS * _cols) + x / NEO_TRELLIS_NUM_COLS;
   int xkey = NEO_TRELLIS_X(x);
   int ykey = NEO_TRELLIS_Y(y % NEO_TRELLIS_NUM_ROWS * NEO_TRELLIS_NUM_COLS);
@@ -228,7 +228,7 @@ void Adafruit_MultiTrellis::unregisterCallback(uint16_t num) {
 /**************************************************************************/
 void Adafruit_MultiTrellis::activateKey(uint8_t x, uint8_t y, uint8_t edge,
                                         bool enable) {
-  Adafruit_NeoTrellis *t =
+  Adafruit_NeoTrellis* t =
       (_trelli + y / NEO_TRELLIS_NUM_ROWS * _cols) + x / NEO_TRELLIS_NUM_COLS;
   int xkey = NEO_TRELLIS_X(x);
   int ykey = NEO_TRELLIS_Y(y % NEO_TRELLIS_NUM_ROWS * NEO_TRELLIS_NUM_COLS);
@@ -270,7 +270,7 @@ void Adafruit_MultiTrellis::activateKey(uint16_t num, uint8_t edge,
 /**************************************************************************/
 void Adafruit_MultiTrellis::setPixelColor(uint8_t x, uint8_t y,
                                           uint32_t color) {
-  Adafruit_NeoTrellis *t =
+  Adafruit_NeoTrellis* t =
       (_trelli + y / NEO_TRELLIS_NUM_ROWS * _cols) + x / NEO_TRELLIS_NUM_COLS;
   int xkey = NEO_TRELLIS_X(x);
   int ykey = NEO_TRELLIS_Y(y % NEO_TRELLIS_NUM_ROWS * NEO_TRELLIS_NUM_COLS);
@@ -302,7 +302,7 @@ void Adafruit_MultiTrellis::setPixelColor(uint16_t num, uint32_t color) {
 */
 /**************************************************************************/
 void Adafruit_MultiTrellis::show() {
-  Adafruit_NeoTrellis *t;
+  Adafruit_NeoTrellis* t;
   for (int n = 0; n < _rows; n++) {
     for (int m = 0; m < _cols; m++) {
       t = (_trelli + n * _cols) + m;
@@ -318,7 +318,7 @@ void Adafruit_MultiTrellis::show() {
 */
 /**************************************************************************/
 void Adafruit_MultiTrellis::read() {
-  Adafruit_NeoTrellis *t;
+  Adafruit_NeoTrellis* t;
   for (int n = 0; n < _rows; n++) {
     for (int m = 0; m < _cols; m++) {
       t = (_trelli + n * _cols) + m;

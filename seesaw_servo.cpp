@@ -76,7 +76,9 @@ void seesaw_Servo::write(int value) {
     @returns  current pulse width as an angle between 0 and 180 degrees
 */
 /**************************************************************************/
-int seesaw_Servo::read() { return map(_sval, MIN_PULSE, MAX_PULSE, 0, 180); }
+int seesaw_Servo::read() {
+  return map(_sval, MIN_PULSE, MAX_PULSE, 0, 180);
+}
 
 /**************************************************************************/
 /*!

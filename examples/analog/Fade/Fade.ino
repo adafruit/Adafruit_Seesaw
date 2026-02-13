@@ -1,11 +1,11 @@
 /*
   Fade
 
-  This example shows how to fade an LED on pin 6 of a seesaw board using the analogWrite()
-  function.
+  This example shows how to fade an LED on pin 6 of a seesaw board using the
+  analogWrite() function.
 
   The analogWrite() function uses PWM, so if you want to change the pin you're
-  using, be sure to use another PWM capable pin. 
+  using, be sure to use another PWM capable pin.
   On the SAMD09 breakout these are pins 5, 6, and 7
   On the ATtinyxy7 breakout these are pins 0, 1, 9, 12, 13
   On the ATtinyxy6 breakout these are pins 0, 1, 7, 11, 16
@@ -15,19 +15,21 @@
 
 Adafruit_seesaw ss;
 
-int led = 6;           // the PWM pin the LED is attached to
-int brightness = 0;    // how bright the LED is
-int fadeAmount = 5;    // how many points to fade the LED by
+int led = 6;        // the PWM pin the LED is attached to
+int brightness = 0; // how bright the LED is
+int fadeAmount = 5; // how many points to fade the LED by
 
 // the setup routine runs once when you press reset:
 void setup() {
   Serial.begin(115200);
-  
-  while (!Serial) delay(10);   // wait until serial port is opened
-  
-  if(!ss.begin()){
+
+  while (!Serial)
+    delay(10); // wait until serial port is opened
+
+  if (!ss.begin()) {
     Serial.println("seesaw not found!");
-    while(1) delay(10);
+    while (1)
+      delay(10);
   }
 }
 

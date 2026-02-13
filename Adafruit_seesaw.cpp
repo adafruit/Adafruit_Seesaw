@@ -27,9 +27,10 @@
  */
 
 #include "Adafruit_seesaw.h"
+
 #include <Arduino.h>
 
-//#define SEESAW_I2C_DEBUG
+// #define SEESAW_I2C_DEBUG
 
 /*!
  *****************************************************************************************
@@ -37,7 +38,7 @@
  *
  *  @param      i2c_bus the I2C bus connected to the seesaw, defaults to "Wire"
  ****************************************************************************************/
-Adafruit_seesaw::Adafruit_seesaw(TwoWire *i2c_bus) {
+Adafruit_seesaw::Adafruit_seesaw(TwoWire* i2c_bus) {
   if (i2c_bus == NULL) {
     _i2cbus = &Wire;
   } else {
@@ -182,8 +183,8 @@ uint32_t Adafruit_seesaw::getVersion() {
  *  @param  day   Pointer to uint8_t for date code day result.
  *  @return       Always returns true.
  ********************************************************************/
-bool Adafruit_seesaw::getProdDatecode(uint16_t *pid, uint8_t *year,
-                                      uint8_t *mon, uint8_t *day) {
+bool Adafruit_seesaw::getProdDatecode(uint16_t* pid, uint8_t* year,
+                                      uint8_t* mon, uint8_t* day) {
   uint32_t vers = getVersion();
   *pid = vers >> 16;
 
@@ -313,20 +314,20 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin) {
 
   if (_hardwaretype == SEESAW_HW_ID_CODE_SAMD09) {
     switch (pin) {
-    case ADC_INPUT_0_PIN:
-      p = 0;
-      break;
-    case ADC_INPUT_1_PIN:
-      p = 1;
-      break;
-    case ADC_INPUT_2_PIN:
-      p = 2;
-      break;
-    case ADC_INPUT_3_PIN:
-      p = 3;
-      break;
-    default:
-      return 0;
+      case ADC_INPUT_0_PIN:
+        p = 0;
+        break;
+      case ADC_INPUT_1_PIN:
+        p = 1;
+        break;
+      case ADC_INPUT_2_PIN:
+        p = 2;
+        break;
+      case ADC_INPUT_3_PIN:
+        p = 3;
+        break;
+      default:
+        return 0;
     }
   } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
@@ -382,22 +383,22 @@ void Adafruit_seesaw::pinModeBulk(uint32_t pins, uint8_t mode) {
   uint8_t cmd[] = {(uint8_t)(pins >> 24), (uint8_t)(pins >> 16),
                    (uint8_t)(pins >> 8), (uint8_t)pins};
   switch (mode) {
-  case OUTPUT:
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRSET_BULK, cmd, 4);
-    break;
-  case INPUT:
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
-    break;
-  case INPUT_PULLUP:
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 4);
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 4);
-    break;
-  case INPUT_PULLDOWN:
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 4);
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 4);
-    break;
+    case OUTPUT:
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRSET_BULK, cmd, 4);
+      break;
+    case INPUT:
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
+      break;
+    case INPUT_PULLUP:
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 4);
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 4);
+      break;
+    case INPUT_PULLDOWN:
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 4);
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 4);
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 4);
+      break;
   }
 }
 
@@ -420,22 +421,22 @@ void Adafruit_seesaw::pinModeBulk(uint32_t pinsa, uint32_t pinsb,
                    (uint8_t)(pinsb >> 24), (uint8_t)(pinsb >> 16),
                    (uint8_t)(pinsb >> 8),  (uint8_t)pinsb};
   switch (mode) {
-  case OUTPUT:
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRSET_BULK, cmd, 8);
-    break;
-  case INPUT:
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
-    break;
-  case INPUT_PULLUP:
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 8);
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 8);
-    break;
-  case INPUT_PULLDOWN:
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 8);
-    this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 8);
-    break;
+    case OUTPUT:
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRSET_BULK, cmd, 8);
+      break;
+    case INPUT:
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
+      break;
+    case INPUT_PULLUP:
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 8);
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_SET, cmd, 8);
+      break;
+    case INPUT_PULLDOWN:
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_DIRCLR_BULK, cmd, 8);
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_PULLENSET, cmd, 8);
+      this->write(SEESAW_GPIO_BASE, SEESAW_GPIO_BULK_CLR, cmd, 8);
+      break;
   }
 }
 
@@ -511,20 +512,20 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width) {
 
   if (_hardwaretype == SEESAW_HW_ID_CODE_SAMD09) {
     switch (pin) {
-    case PWM_0_PIN:
-      p = 0;
-      break;
-    case PWM_1_PIN:
-      p = 1;
-      break;
-    case PWM_2_PIN:
-      p = 2;
-      break;
-    case PWM_3_PIN:
-      p = 3;
-      break;
-    default:
-      return;
+      case PWM_0_PIN:
+        p = 0;
+        break;
+      case PWM_1_PIN:
+        p = 1;
+        break;
+      case PWM_2_PIN:
+        p = 2;
+        break;
+      case PWM_3_PIN:
+        p = 3;
+        break;
+      default:
+        return;
     }
   } else if ((_hardwaretype == SEESAW_HW_ID_CODE_SAMD09) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
@@ -566,20 +567,20 @@ void Adafruit_seesaw::setPWMFreq(uint8_t pin, uint16_t freq) {
 
   if (_hardwaretype == SEESAW_HW_ID_CODE_SAMD09) {
     switch (pin) {
-    case PWM_0_PIN:
-      p = 0;
-      break;
-    case PWM_1_PIN:
-      p = 1;
-      break;
-    case PWM_2_PIN:
-      p = 2;
-      break;
-    case PWM_3_PIN:
-      p = 3;
-      break;
-    default:
-      break;
+      case PWM_0_PIN:
+        p = 0;
+        break;
+      case PWM_1_PIN:
+        p = 1;
+        break;
+      case PWM_2_PIN:
+        p = 2;
+        break;
+      case PWM_3_PIN:
+        p = 3;
+        break;
+      default:
+        break;
     }
   } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
@@ -651,18 +652,18 @@ uint8_t Adafruit_seesaw::getI2CaddrEEPROMloc() {
   //   8xx have 128B of EEPROM -> 0x7F
   //   16xx have 256B of EERPOM -> 0xFF
   switch (_hardwaretype) {
-  case SEESAW_HW_ID_CODE_SAMD09:
-    return 0x3F;
-  case SEESAW_HW_ID_CODE_TINY817:
-  case SEESAW_HW_ID_CODE_TINY807:
-  case SEESAW_HW_ID_CODE_TINY816:
-  case SEESAW_HW_ID_CODE_TINY806:
-    return 0x7F;
-  case SEESAW_HW_ID_CODE_TINY1616:
-  case SEESAW_HW_ID_CODE_TINY1617:
-    return 0xFF;
-  default:
-    return 0x00;
+    case SEESAW_HW_ID_CODE_SAMD09:
+      return 0x3F;
+    case SEESAW_HW_ID_CODE_TINY817:
+    case SEESAW_HW_ID_CODE_TINY807:
+    case SEESAW_HW_ID_CODE_TINY816:
+    case SEESAW_HW_ID_CODE_TINY806:
+      return 0x7F;
+    case SEESAW_HW_ID_CODE_TINY1616:
+    case SEESAW_HW_ID_CODE_TINY1617:
+      return 0xFF;
+    default:
+      return 0x00;
   }
 }
 
@@ -713,7 +714,7 @@ void Adafruit_seesaw::EEPROMWrite8(uint8_t addr, uint8_t val) {
  *	@param		size the number of bytes to write. Writing past the end
  *of available EEPROM may result in undefined behavior.
  ****************************************************************************************/
-void Adafruit_seesaw::EEPROMWrite(uint8_t addr, uint8_t *buf, uint8_t size) {
+void Adafruit_seesaw::EEPROMWrite(uint8_t addr, uint8_t* buf, uint8_t size) {
   this->write(SEESAW_EEPROM_BASE, addr, buf, size);
 }
 
@@ -796,8 +797,8 @@ uint8_t Adafruit_seesaw::getKeypadCount() {
  *  @param		count the number of events to read
  *  @returns    True on I2C read success
  ****************************************************************************************/
-bool Adafruit_seesaw::readKeypad(keyEventRaw *buf, uint8_t count) {
-  return this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t *)buf,
+bool Adafruit_seesaw::readKeypad(keyEventRaw* buf, uint8_t count) {
+  return this->read(SEESAW_KEYPAD_BASE, SEESAW_KEYPAD_FIFO, (uint8_t*)buf,
                     count, 1000);
 }
 
@@ -928,7 +929,7 @@ uint8_t Adafruit_seesaw::read8(byte regHigh, byte regLow, uint16_t delay) {
  *(ex. reading ADC data)
  *  @returns    True on I2C read success
  ****************************************************************************************/
-bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
+bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t* buf,
                            uint8_t num, uint16_t delay) {
   uint8_t pos = 0;
   uint8_t prefix[2];
@@ -988,7 +989,7 @@ bool Adafruit_seesaw::read(uint8_t regHigh, uint8_t regLow, uint8_t *buf,
  *  @returns    True on I2C write success
  ****************************************************************************************/
 bool Adafruit_seesaw::write(uint8_t regHigh, uint8_t regLow,
-                            uint8_t *buf = NULL, uint8_t num = 0) {
+                            uint8_t* buf = NULL, uint8_t num = 0) {
   uint8_t prefix[2];
   prefix[0] = (uint8_t)regHigh;
   prefix[1] = (uint8_t)regLow;
@@ -1034,7 +1035,7 @@ size_t Adafruit_seesaw::write(uint8_t character) {
  *  @param      str the string to write
  *  @return     number of bytes written (not including trailing 0)
  *********************************************************************/
-size_t Adafruit_seesaw::write(const char *str) {
+size_t Adafruit_seesaw::write(const char* str) {
   uint8_t buf[32];
   uint8_t len = 0;
   while (*str) {

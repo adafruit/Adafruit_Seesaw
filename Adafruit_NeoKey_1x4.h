@@ -1,9 +1,10 @@
 #ifndef _NEOKEY_1X4_H
 #define _NEOKEY_1X4_H
 
+#include <Arduino.h>
+
 #include "Adafruit_seesaw.h"
 #include "seesaw_neopixel.h"
-#include <Arduino.h>
 
 #define NEOKEY_1X4_ADDR 0x30
 
@@ -27,7 +28,7 @@
 #define NEOKEY_1X4_X(k) ((k) % 4)
 #define NEOKEY_1X4_Y(k) ((k) / 4)
 
-#define NEOKEY_1X4_XY(x, y) ((y)*NEOKEY_1X4_ROWS + (x))
+#define NEOKEY_1X4_XY(x, y) ((y) * NEOKEY_1X4_ROWS + (x))
 
 typedef void (*NeoKey1x4Callback)(keyEvent evt);
 
@@ -38,9 +39,9 @@ typedef void (*NeoKey1x4Callback)(keyEvent evt);
 */
 /**************************************************************************/
 class Adafruit_NeoKey_1x4 : public Adafruit_seesaw {
-public:
-  Adafruit_NeoKey_1x4(uint8_t addr = NEOKEY_1X4_ADDR, TwoWire *i2c_bus = &Wire);
-  ~Adafruit_NeoKey_1x4(){};
+ public:
+  Adafruit_NeoKey_1x4(uint8_t addr = NEOKEY_1X4_ADDR, TwoWire* i2c_bus = &Wire);
+  ~Adafruit_NeoKey_1x4() {};
 
   bool begin(uint8_t addr = NEOKEY_1X4_ADDR, int8_t flow = -1);
 
@@ -54,7 +55,7 @@ public:
   friend class Adafruit_MultiNeoKey1x4; ///< for allowing use of protected
                                         ///< methods by aggregate class
 
-protected:
+ protected:
   uint8_t last_buttons = 0; ///< The last reading for the buttons
   uint8_t _addr;            ///< the I2C address of this board
   NeoKey1x4Callback (*_callbacks[NEOKEY_1X4_KEYS])(
@@ -68,10 +69,10 @@ protected:
 */
 /**************************************************************************/
 class Adafruit_MultiNeoKey1x4 {
-public:
-  Adafruit_MultiNeoKey1x4(Adafruit_NeoKey_1x4 *neokeys, uint8_t rows,
+ public:
+  Adafruit_MultiNeoKey1x4(Adafruit_NeoKey_1x4* neokeys, uint8_t rows,
                           uint8_t cols);
-  ~Adafruit_MultiNeoKey1x4(){};
+  ~Adafruit_MultiNeoKey1x4() {};
 
   bool begin();
 
@@ -87,10 +88,10 @@ public:
 
   void read();
 
-protected:
+ protected:
   uint8_t _rows; ///< the number of trellis boards in the Y direction
   uint8_t _cols; ///< the number of trellis boards in the X direction
-  Adafruit_NeoKey_1x4 *_neokeys; ///< a multidimensional array of neokey objects
+  Adafruit_NeoKey_1x4* _neokeys; ///< a multidimensional array of neokey objects
 };
 
 #endif

@@ -1,9 +1,10 @@
 #ifndef _NEO_TRELLIS_H
 #define _NEO_TRELLIS_H
 
+#include <Arduino.h>
+
 #include "Adafruit_seesaw.h"
 #include "seesaw_neopixel.h"
-#include <Arduino.h>
 
 #define NEO_TRELLIS_ADDR 0x2E
 
@@ -21,7 +22,7 @@
 #define NEO_TRELLIS_X(k) ((k) % 4)
 #define NEO_TRELLIS_Y(k) ((k) / 4)
 
-#define NEO_TRELLIS_XY(x, y) ((y)*NEO_TRELLIS_NUM_COLS + (x))
+#define NEO_TRELLIS_XY(x, y) ((y) * NEO_TRELLIS_NUM_COLS + (x))
 
 typedef void (*TrellisCallback)(keyEvent evt);
 
@@ -32,10 +33,10 @@ typedef void (*TrellisCallback)(keyEvent evt);
 */
 /**************************************************************************/
 class Adafruit_NeoTrellis : public Adafruit_seesaw {
-public:
+ public:
   Adafruit_NeoTrellis(uint8_t addr = NEO_TRELLIS_ADDR,
-                      TwoWire *i2c_bus = &Wire);
-  ~Adafruit_NeoTrellis(){};
+                      TwoWire* i2c_bus = &Wire);
+  ~Adafruit_NeoTrellis() {};
 
   bool begin(uint8_t addr = NEO_TRELLIS_ADDR, int8_t flow = -1);
 
@@ -51,7 +52,7 @@ public:
   friend class Adafruit_MultiTrellis; ///< for allowing use of protected methods
                                       ///< by aggregate class
 
-protected:
+ protected:
   uint8_t _addr; ///< the I2C address of this board
   TrellisCallback (*_callbacks[NEO_TRELLIS_NUM_KEYS])(
       keyEvent); ///< the array of callback functions
@@ -64,10 +65,10 @@ protected:
 */
 /**************************************************************************/
 class Adafruit_MultiTrellis {
-public:
-  Adafruit_MultiTrellis(Adafruit_NeoTrellis *trelli, uint8_t rows,
+ public:
+  Adafruit_MultiTrellis(Adafruit_NeoTrellis* trelli, uint8_t rows,
                         uint8_t cols);
-  ~Adafruit_MultiTrellis(){};
+  ~Adafruit_MultiTrellis() {};
 
   bool begin();
 
@@ -85,11 +86,11 @@ public:
 
   void read();
 
-protected:
+ protected:
   uint8_t _rows; ///< the number of trellis boards in the Y direction
   uint8_t _cols; ///< the number of trellis boards in the X direction
-  Adafruit_NeoTrellis
-      *_trelli; ///< a multidimensional array of neotrellis objects
+  Adafruit_NeoTrellis*
+      _trelli; ///< a multidimensional array of neotrellis objects
 };
 
 #endif

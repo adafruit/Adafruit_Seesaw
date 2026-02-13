@@ -38,7 +38,7 @@ uint32_t TFTWING_BUTTON_ALL =
     @returns true on success, false on error
 */
 /**************************************************************************/
-bool Adafruit_miniTFTWing::begin(uint8_t addr, TwoWire *Wi) {
+bool Adafruit_miniTFTWing::begin(uint8_t addr, TwoWire* Wi) {
   if (Wi != NULL) {
     Adafruit_seesaw::_i2cbus = Wi;
   }
@@ -90,7 +90,6 @@ bool Adafruit_miniTFTWing::begin(uint8_t addr, TwoWire *Wi) {
 */
 /**************************************************************************/
 void Adafruit_miniTFTWing::setBacklight(uint16_t value) {
-
   if ((getVersion() >> 16) == 3322) {
     // this->analogWrite(7, value);
     this->pinMode(7, OUTPUT);
