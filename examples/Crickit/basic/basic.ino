@@ -4,20 +4,21 @@ Adafruit_Crickit crickit;
 
 void setup() {
   Serial.begin(9600);
-  
-  if(!crickit.begin()){
-    Serial.println("ERROR!");
-    while(1) delay(1);
-  }
-  else Serial.println("seesaw started");
 
-  //set the PWM freq for all the servo pins
+  if (!crickit.begin()) {
+    Serial.println("ERROR!");
+    while (1)
+      delay(1);
+  } else
+    Serial.println("seesaw started");
+
+  // set the PWM freq for all the servo pins
   crickit.setPWMFreq(CRICKIT_SERVO1, 50);
 }
 
 void loop() {
 
-  //set some PWMS
+  // set some PWMS
   crickit.analogWrite(CRICKIT_SERVO1, 10000);
   crickit.analogWrite(CRICKIT_SERVO2, 5000);
   crickit.analogWrite(CRICKIT_SERVO3, 20000);
@@ -29,6 +30,6 @@ void loop() {
 
   // read a captouch
   Serial.println(crickit.touchRead(CRICKIT_TOUCH2));
-  
-  delay(1);  
+
+  delay(1);
 }

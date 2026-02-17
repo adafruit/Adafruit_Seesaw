@@ -9,14 +9,15 @@ Adafruit_Crickit crickit;
 
 void setup() {
   Serial.begin(9600);
-  
-  if(!crickit.begin()){
-    Serial.println("ERROR!");
-    while(1) delay(1);
-  }
-  else Serial.println("Crickit started");
 
-  //Two buttons are pullups, connect to ground to activate
+  if (!crickit.begin()) {
+    Serial.println("ERROR!");
+    while (1)
+      delay(1);
+  } else
+    Serial.println("Crickit started");
+
+  // Two buttons are pullups, connect to ground to activate
   crickit.pinMode(BUTTON_1, INPUT_PULLUP);
   crickit.pinMode(BUTTON_2, INPUT_PULLUP);
 
@@ -28,12 +29,12 @@ void setup() {
 }
 
 void loop() {
-  if(!crickit.digitalRead(BUTTON_1))
+  if (!crickit.digitalRead(BUTTON_1))
     crickit.digitalWrite(LED_1, HIGH);
   else
     crickit.digitalWrite(LED_1, LOW);
 
-  if(!crickit.digitalRead(BUTTON_2))
+  if (!crickit.digitalRead(BUTTON_2))
     crickit.digitalWrite(LED_2, HIGH);
   else
     crickit.digitalWrite(LED_2, LOW);

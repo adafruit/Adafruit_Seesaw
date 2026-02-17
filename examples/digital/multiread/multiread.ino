@@ -6,18 +6,19 @@
 
 Adafruit_seesaw ss;
 
-//read pins A8, A9, A10
+// read pins A8, A9, A10
 uint32_t mask = ((uint32_t)0b111 << 8);
 
 void setup() {
   Serial.begin(9600);
-  
-  if(!ss.begin()){
+
+  if (!ss.begin()) {
     Serial.println("ERROR!");
-    while(1) delay(1);
-  }
-  else Serial.println("seesaw started");
-  
+    while (1)
+      delay(1);
+  } else
+    Serial.println("seesaw started");
+
   ss.pinModeBulk(mask, INPUT);
 }
 

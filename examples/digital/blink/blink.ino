@@ -12,22 +12,25 @@ Adafruit_seesaw ss;
 
 void setup() {
   Serial.begin(115200);
-  
-  while (!Serial) delay(10);   // wait until serial port is opened
-  
-  if(!ss.begin()){
+
+  while (!Serial)
+    delay(10); // wait until serial port is opened
+
+  if (!ss.begin()) {
     Serial.println("seesaw not found!");
-    while(1) delay(10);
+    while (1)
+      delay(10);
   }
-  
+
   Serial.println(F("seesaw started OK!"));
 
   ss.pinMode(BLINK_PIN, OUTPUT);
 }
 
 void loop() {
-  ss.digitalWrite(BLINK_PIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(100);                       // wait for a second
-  ss.digitalWrite(BLINK_PIN, LOW);    // turn the LED off by making the voltage LOW
-  delay(100);  
+  ss.digitalWrite(BLINK_PIN,
+                  HIGH); // turn the LED on (HIGH is the voltage level)
+  delay(100);            // wait for a second
+  ss.digitalWrite(BLINK_PIN, LOW); // turn the LED off by making the voltage LOW
+  delay(100);
 }
