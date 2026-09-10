@@ -2,4 +2,27 @@
 
 Arduino driver for seesaw multi-use chip
 
+## STM32C011 bring-up
+
+The experimental C011 peripheral uses hardware ID `0x90`. GPIO indices 0–8 map
+to PA0–PA8, 9 to PA11, 10 to PA12, and 15 to PC14. ADC and PWM use those same
+indices; enabled peripheral features can reserve individual pins. PA12 has no
+PWM output, and PC14 has no ADC input. PWM frequency is shared, with additional
+timer-channel aliases documented by the peripheral firmware.
+
+`analogRead()` retains its documented 0–1023 range by shifting the C011's native
+12-bit register value by two bits. The persistent I2C-address byte is at `0xFF`.
+The hardware ID remains provisional until the C011 firmware/host changes are
+accepted together; this does not claim support in older released host libraries.
+
+The experimental `seesaw_SPI` class adds an I2C-to-SPI controller bridge for
+SPI-enabled C011 firmware. Call `begin()`, then `beginSPI(frequency, mode,
+lsbFirst)`. `transfer(tx, rx, length, begin, end)` splits buffers into 29-byte
+chunks and can hold CS across calls; null TX sends 0xFF and null RX discards
+received bytes. `getSPIClockFrequency()` reports the actual divided clock.
+`abortSPI()` releases CS and the four SPI pins. See
+`examples/communication/SPI_bridge` for electrical loopback wiring.
+This is not a drop-in `SPIClass` or e-paper driver. The bridge uses provisional
+module 0x13; its companion firmware documents the register protocol.
+
 Check out the [documentation](https://adafruit.github.io/Adafruit_Seesaw/html/class_adafruit__seesaw.html) for a listing and explanation of the available methods!
