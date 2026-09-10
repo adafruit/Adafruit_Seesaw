@@ -54,6 +54,8 @@ enum {
   SEESAW_KEYPAD_BASE = 0x10,
   SEESAW_ENCODER_BASE = 0x11,
   SEESAW_SPECTRUM_BASE = 0x12,
+  SEESAW_SPI_BASE =
+      0x13, ///< Experimental SPI controller bridge, not SPI slave transport.
 };
 
 /** GPIO module function address registers

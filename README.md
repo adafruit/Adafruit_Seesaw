@@ -15,4 +15,14 @@ timer-channel aliases documented by the peripheral firmware.
 The hardware ID remains provisional until the C011 firmware/host changes are
 accepted together; this does not claim support in older released host libraries.
 
+The experimental `seesaw_SPI` class adds an I2C-to-SPI controller bridge for
+SPI-enabled C011 firmware. Call `begin()`, then `beginSPI(frequency, mode,
+lsbFirst)`. `transfer(tx, rx, length, begin, end)` splits buffers into 29-byte
+chunks and can hold CS across calls; null TX sends 0xFF and null RX discards
+received bytes. `getSPIClockFrequency()` reports the actual divided clock.
+`abortSPI()` releases CS and the four SPI pins. See
+`examples/communication/SPI_bridge` for electrical loopback wiring.
+This is not a drop-in `SPIClass` or e-paper driver. The bridge uses provisional
+module 0x13; its companion firmware documents the register protocol.
+
 Check out the [documentation](https://adafruit.github.io/Adafruit_Seesaw/html/class_adafruit__seesaw.html) for a listing and explanation of the available methods!
