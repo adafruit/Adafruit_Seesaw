@@ -197,6 +197,7 @@ enum {
 #define SEESAW_HW_ID_CODE_TINY817 0x87 ///< seesaw HW ID code for ATtiny817
 #define SEESAW_HW_ID_CODE_TINY1616 0x88 ///< seesaw HW ID code for ATtiny1616
 #define SEESAW_HW_ID_CODE_TINY1617 0x89 ///< seesaw HW ID code for ATtiny1617
+#define SEESAW_HW_ID_CODE_STM32C011 0x90 ///< Provisional seesaw HW ID for STM32C011
 // clang-format on
 
 /** raw key event stucture for keypad module */
@@ -236,7 +237,7 @@ class Adafruit_seesaw : public Print {
 public:
   // constructors
   Adafruit_seesaw(TwoWire *Wi = NULL);
-  ~Adafruit_seesaw(void){};
+  ~Adafruit_seesaw(void) {};
 
   bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow = -1,
              bool reset = true);
