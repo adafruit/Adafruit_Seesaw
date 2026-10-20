@@ -9,18 +9,17 @@ seesaw_Motor motor_b(&crickit);
 void setup() {
   Serial.begin(115200);
   Serial.println("Dual motor demo!");
-
-  if (!crickit.begin()) {
+  
+  if(!crickit.begin()){
     Serial.println("ERROR!");
-    while (1)
-      delay(1);
-  } else
-    Serial.println("Crickit started");
+    while(1) delay(1);
+  }
+  else Serial.println("Crickit started");
 
-  // attach motor a
+  //attach motor a
   motor_a.attach(CRICKIT_MOTOR_A1, CRICKIT_MOTOR_A2);
 
-  // attach motor b
+  //attach motor b
   motor_b.attach(CRICKIT_MOTOR_B1, CRICKIT_MOTOR_B2);
 }
 
@@ -49,3 +48,4 @@ void loop() {
   motor_b.throttle(0);
   delay(500);
 }
+
