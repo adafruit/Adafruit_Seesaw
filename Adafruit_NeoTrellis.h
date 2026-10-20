@@ -35,7 +35,7 @@ class Adafruit_NeoTrellis : public Adafruit_seesaw {
 public:
   Adafruit_NeoTrellis(uint8_t addr = NEO_TRELLIS_ADDR,
                       TwoWire *i2c_bus = &Wire);
-  ~Adafruit_NeoTrellis(){};
+  ~Adafruit_NeoTrellis() {};
 
   bool begin(uint8_t addr = NEO_TRELLIS_ADDR, int8_t flow = -1);
 
@@ -67,7 +67,7 @@ class Adafruit_MultiTrellis {
 public:
   Adafruit_MultiTrellis(Adafruit_NeoTrellis *trelli, uint8_t rows,
                         uint8_t cols);
-  ~Adafruit_MultiTrellis(){};
+  ~Adafruit_MultiTrellis() {};
 
   bool begin();
 
