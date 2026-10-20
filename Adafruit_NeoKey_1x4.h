@@ -27,7 +27,7 @@
 #define NEOKEY_1X4_X(k) ((k) % 4)
 #define NEOKEY_1X4_Y(k) ((k) / 4)
 
-#define NEOKEY_1X4_XY(x, y) ((y)*NEOKEY_1X4_ROWS + (x))
+#define NEOKEY_1X4_XY(x, y) ((y) * NEOKEY_1X4_ROWS + (x))
 
 typedef void (*NeoKey1x4Callback)(keyEvent evt);
 
@@ -40,7 +40,7 @@ typedef void (*NeoKey1x4Callback)(keyEvent evt);
 class Adafruit_NeoKey_1x4 : public Adafruit_seesaw {
 public:
   Adafruit_NeoKey_1x4(uint8_t addr = NEOKEY_1X4_ADDR, TwoWire *i2c_bus = &Wire);
-  ~Adafruit_NeoKey_1x4(){};
+  ~Adafruit_NeoKey_1x4() {};
 
   bool begin(uint8_t addr = NEOKEY_1X4_ADDR, int8_t flow = -1);
 
@@ -71,7 +71,7 @@ class Adafruit_MultiNeoKey1x4 {
 public:
   Adafruit_MultiNeoKey1x4(Adafruit_NeoKey_1x4 *neokeys, uint8_t rows,
                           uint8_t cols);
-  ~Adafruit_MultiNeoKey1x4(){};
+  ~Adafruit_MultiNeoKey1x4() {};
 
   bool begin();
 

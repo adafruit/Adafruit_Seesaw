@@ -54,6 +54,8 @@ enum {
   SEESAW_KEYPAD_BASE = 0x10,
   SEESAW_ENCODER_BASE = 0x11,
   SEESAW_SPECTRUM_BASE = 0x12,
+  SEESAW_SPI_BASE =
+      0x13, ///< Experimental SPI controller bridge, not SPI slave transport.
 };
 
 /** GPIO module function address registers
@@ -198,6 +200,10 @@ enum {
 #define SEESAW_HW_ID_CODE_TINY817 0x87 ///< seesaw HW ID code for ATtiny817
 #define SEESAW_HW_ID_CODE_TINY1616 0x88 ///< seesaw HW ID code for ATtiny1616
 #define SEESAW_HW_ID_CODE_TINY1617 0x89 ///< seesaw HW ID code for ATtiny1617
+#define SEESAW_HW_ID_CODE_STM32C011 0x90 ///< seesaw HW ID for STM32C011
+#define SEESAW_HW_ID_CODE_STM32C031 0x91 ///< seesaw HW ID for STM32C031
+#define SEESAW_HW_ID_CODE_STM32C051 0x92 ///< seesaw HW ID for STM32C051
+#define SEESAW_HW_ID_CODE_STM32G071 0x93 ///< seesaw HW ID for STM32G071
 // clang-format on
 
 /** raw key event stucture for keypad module */
@@ -237,7 +243,7 @@ class Adafruit_seesaw : public Print {
 public:
   // constructors
   Adafruit_seesaw(TwoWire *Wi = NULL);
-  ~Adafruit_seesaw(void){};
+  ~Adafruit_seesaw(void) {};
 
   bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow = -1,
              bool reset = true);
