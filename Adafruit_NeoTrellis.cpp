@@ -151,7 +151,8 @@ bool Adafruit_MultiTrellis::begin() {
             detected.
 */
 /**************************************************************************/
-void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y, TrellisCallback cb) {
+void Adafruit_MultiTrellis::registerCallback(uint8_t x, uint8_t y,
+                                             TrellisCallback cb) {
   Adafruit_NeoTrellis *t =
       (_trelli + y / NEO_TRELLIS_NUM_ROWS * _cols) + x / NEO_TRELLIS_NUM_COLS;
   int xkey = NEO_TRELLIS_X(x);

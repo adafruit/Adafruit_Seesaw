@@ -29,7 +29,7 @@
 #include "Adafruit_seesaw.h"
 #include <Arduino.h>
 
-//#define SEESAW_I2C_DEBUG
+// #define SEESAW_I2C_DEBUG
 
 /*!
  *****************************************************************************************
@@ -116,7 +116,11 @@ bool Adafruit_seesaw::begin(uint8_t addr, int8_t flow, bool reset) {
     if ((c == SEESAW_HW_ID_CODE_SAMD09) || (c == SEESAW_HW_ID_CODE_TINY817) ||
         (c == SEESAW_HW_ID_CODE_TINY807) || (c == SEESAW_HW_ID_CODE_TINY816) ||
         (c == SEESAW_HW_ID_CODE_TINY806) || (c == SEESAW_HW_ID_CODE_TINY1616) ||
-        (c == SEESAW_HW_ID_CODE_TINY1617)) {
+        (c == SEESAW_HW_ID_CODE_TINY1617) || (c == SEESAW_HW_ID_CODE_TINY416) ||
+        (c == SEESAW_HW_ID_CODE_STM32C011) ||
+        (c == SEESAW_HW_ID_CODE_STM32C031) ||
+        (c == SEESAW_HW_ID_CODE_STM32C051) ||
+        (c == SEESAW_HW_ID_CODE_STM32G071)) {
       found = true;
       _hardwaretype = c;
     }
@@ -328,12 +332,17 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin) {
     default:
       return 0;
     }
-  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
+  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY416) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY816) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY806) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY1616) ||
-             (_hardwaretype == SEESAW_HW_ID_CODE_TINY1617)) {
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY1617) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32C011) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32C031) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32C051) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32G071)) {
     p = pin;
   } else {
     return 0;
@@ -341,6 +350,13 @@ uint16_t Adafruit_seesaw::analogRead(uint8_t pin) {
 
   this->read(SEESAW_ADC_BASE, SEESAW_ADC_CHANNEL_OFFSET + p, buf, 2, 500);
   uint16_t ret = ((uint16_t)buf[0] << 8) | buf[1];
+  // Keep the public Arduino API at 10 bits; STM32 wire readings are 12-bit.
+  if ((_hardwaretype == SEESAW_HW_ID_CODE_STM32C011) ||
+      (_hardwaretype == SEESAW_HW_ID_CODE_STM32C031) ||
+      (_hardwaretype == SEESAW_HW_ID_CODE_STM32C051) ||
+      (_hardwaretype == SEESAW_HW_ID_CODE_STM32G071)) {
+    ret >>= 2;
+  }
   delay(1);
   return ret;
 }
@@ -527,12 +543,17 @@ void Adafruit_seesaw::analogWrite(uint8_t pin, uint16_t value, uint8_t width) {
       return;
     }
   } else if ((_hardwaretype == SEESAW_HW_ID_CODE_SAMD09) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY416) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY816) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY806) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY1616) ||
-             (_hardwaretype == SEESAW_HW_ID_CODE_TINY1617)) {
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY1617) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32C011) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32C031) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32C051) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32G071)) {
     p = pin;
   } else {
     return;
@@ -581,12 +602,17 @@ void Adafruit_seesaw::setPWMFreq(uint8_t pin, uint16_t freq) {
     default:
       break;
     }
-  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
+  } else if ((_hardwaretype == SEESAW_HW_ID_CODE_TINY416) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY817) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY807) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY816) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY806) ||
              (_hardwaretype == SEESAW_HW_ID_CODE_TINY1616) ||
-             (_hardwaretype == SEESAW_HW_ID_CODE_TINY1617)) {
+             (_hardwaretype == SEESAW_HW_ID_CODE_TINY1617) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32C011) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32C031) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32C051) ||
+             (_hardwaretype == SEESAW_HW_ID_CODE_STM32G071)) {
     p = pin;
   } else {
     return;
@@ -650,9 +676,11 @@ uint8_t Adafruit_seesaw::getI2CaddrEEPROMloc() {
   // ATtinys place at end of EEPROM, so can vary:
   //   8xx have 128B of EEPROM -> 0x7F
   //   16xx have 256B of EERPOM -> 0xFF
+  // STM32 exposes 256 bytes backed by its reserved flash page -> 0xFF.
   switch (_hardwaretype) {
   case SEESAW_HW_ID_CODE_SAMD09:
     return 0x3F;
+  case SEESAW_HW_ID_CODE_TINY416:
   case SEESAW_HW_ID_CODE_TINY817:
   case SEESAW_HW_ID_CODE_TINY807:
   case SEESAW_HW_ID_CODE_TINY816:
@@ -660,23 +688,48 @@ uint8_t Adafruit_seesaw::getI2CaddrEEPROMloc() {
     return 0x7F;
   case SEESAW_HW_ID_CODE_TINY1616:
   case SEESAW_HW_ID_CODE_TINY1617:
+  case SEESAW_HW_ID_CODE_STM32C011:
+  case SEESAW_HW_ID_CODE_STM32C031:
+  case SEESAW_HW_ID_CODE_STM32C051:
+  case SEESAW_HW_ID_CODE_STM32G071:
     return 0xFF;
   default:
     return 0x00;
   }
 }
 
-/*!
- *****************************************************************************************
- *  @brief      Set the seesaw I2C address. This will automatically call
- *Adafruit_seesaw.begin() with the new address.
+/*! @brief Set the seesaw I2C address and call begin() with the new address.
  *
- *  @param      addr the new address for the seesaw. This must be a valid 7 bit
- *I2C address.
- ****************************************************************************************/
+ * @param addr The new valid 7-bit I2C address.
+ * @note STM32 requires EEPROM
+ * enabled and inactive address straps.
+ * The saved base address is applied
+ * after a software reset.
+ */
 void Adafruit_seesaw::setI2CAddr(uint8_t addr) {
+  bool isSTM32 = (_hardwaretype == SEESAW_HW_ID_CODE_STM32C011) ||
+                 (_hardwaretype == SEESAW_HW_ID_CODE_STM32C031) ||
+                 (_hardwaretype == SEESAW_HW_ID_CODE_STM32C051) ||
+                 (_hardwaretype == SEESAW_HW_ID_CODE_STM32G071);
+  if (isSTM32 && (addr < 0x08 || addr > 0x77)) {
+    return;
+  }
   this->EEPROMWrite8(getI2CaddrEEPROMloc(), addr);
   delay(250);
+  if (isSTM32) {
+    uint8_t savedAddress = 0;
+    // Flash-backed writes are deferred. Confirm the saved byte before reset.
+    if (!this->read(SEESAW_EEPROM_BASE, getI2CaddrEEPROMloc(), &savedAddress,
+                    1) ||
+        savedAddress != addr) {
+      return;
+    }
+    // STM32 still listens at the old address until this reset command arrives.
+    if (!this->SWReset()) {
+      return;
+    }
+    delay(10);
+  }
   this->begin(addr); // restart w/ the new addr
 }
 

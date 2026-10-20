@@ -53,8 +53,7 @@ bool Adafruit_NeoKey_1x4::begin(uint8_t addr, int8_t flow) {
    key happens
 */
 /**************************************************************************/
-void Adafruit_NeoKey_1x4::registerCallback(uint8_t key,
-                                           NeoKey1x4Callback (*cb)(keyEvent)) {
+void Adafruit_NeoKey_1x4::registerCallback(uint8_t key, NeoKey1x4Callback cb) {
   _callbacks[key] = cb;
 }
 
@@ -156,8 +155,8 @@ bool Adafruit_MultiNeoKey1x4::begin() {
             detected.
 */
 /**************************************************************************/
-void Adafruit_MultiNeoKey1x4::registerCallback(
-    uint8_t x, uint8_t y, NeoKey1x4Callback (*cb)(keyEvent)) {
+void Adafruit_MultiNeoKey1x4::registerCallback(uint8_t x, uint8_t y,
+                                               NeoKey1x4Callback cb) {
   Adafruit_NeoKey_1x4 *t =
       (_neokeys + y / NEOKEY_1X4_ROWS * _cols) + x / NEOKEY_1X4_COLS;
   int xkey = NEOKEY_1X4_X(x);
@@ -176,8 +175,8 @@ void Adafruit_MultiNeoKey1x4::registerCallback(
             detected.
 */
 /**************************************************************************/
-void Adafruit_MultiNeoKey1x4::registerCallback(
-    uint16_t num, NeoKey1x4Callback (*cb)(keyEvent)) {
+void Adafruit_MultiNeoKey1x4::registerCallback(uint16_t num,
+                                               NeoKey1x4Callback cb) {
   uint8_t x = num % (NEOKEY_1X4_COLS * _cols);
   uint8_t y = num / (NEOKEY_1X4_COLS * _cols);
 
