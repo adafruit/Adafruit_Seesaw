@@ -54,7 +54,7 @@ void loop() {
 
 
 //define a callback for key presses
-NeoKey1x4Callback blink(keyEvent evt) {
+void blink(keyEvent evt) {
   uint8_t key = evt.bit.NUM;
   
   if (evt.bit.EDGE == SEESAW_KEYPAD_EDGE_RISING) {
@@ -71,7 +71,6 @@ NeoKey1x4Callback blink(keyEvent evt) {
 
   // Turn on/off the neopixels!
   neokey.show();
-  return 0;
 }
 
 /******************************************/

@@ -52,7 +52,7 @@ struct ripple {
 static struct ripple ripples[MAX_RIPPLES];
 
 //define a callback for key presses
-TrellisCallback blink(keyEvent evt){
+void blink(keyEvent evt){
 
   for(int i=0; i<MAX_RIPPLES; i++){
     if(ripples[i].center == -1){
@@ -68,7 +68,6 @@ TrellisCallback blink(keyEvent evt){
       break;
     }
   }
-  return 0; 
 }
 
 void setup() {

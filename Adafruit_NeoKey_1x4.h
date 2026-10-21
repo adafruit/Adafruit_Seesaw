@@ -44,7 +44,7 @@ public:
 
   bool begin(uint8_t addr = NEOKEY_1X4_ADDR, int8_t flow = -1);
 
-  void registerCallback(uint8_t key, NeoKey1x4Callback (*cb)(keyEvent));
+  void registerCallback(uint8_t key, NeoKey1x4Callback cb);
   void unregisterCallback(uint8_t key);
 
   uint8_t read(void);
@@ -57,8 +57,8 @@ public:
 protected:
   uint8_t last_buttons = 0; ///< The last reading for the buttons
   uint8_t _addr;            ///< the I2C address of this board
-  NeoKey1x4Callback (*_callbacks[NEOKEY_1X4_KEYS])(
-      keyEvent); ///< the array of callback functions
+  NeoKey1x4Callback
+      _callbacks[NEOKEY_1X4_KEYS]; ///< the array of callback functions
 };
 
 /**************************************************************************/
@@ -75,9 +75,8 @@ public:
 
   bool begin();
 
-  void registerCallback(uint16_t num, NeoKey1x4Callback (*cb)(keyEvent));
-  void registerCallback(uint8_t x, uint8_t y,
-                        NeoKey1x4Callback (*cb)(keyEvent));
+  void registerCallback(uint16_t num, NeoKey1x4Callback cb);
+  void registerCallback(uint8_t x, uint8_t y, NeoKey1x4Callback cb);
   void unregisterCallback(uint16_t num);
   void unregisterCallback(uint8_t x, uint8_t y);
 

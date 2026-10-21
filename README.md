@@ -2,6 +2,23 @@
 
 Arduino driver for seesaw multi-use chip
 
+## NeoTrellis and NeoKey callback migration
+
+NeoTrellis and NeoKey callbacks now use the declared `TrellisCallback` and
+`NeoKey1x4Callback` types: a function that takes `keyEvent` and returns `void`.
+This applies to both single-board and multi-board classes.
+
+Older sketches that declare `TrellisCallback blink(keyEvent evt)` or
+`NeoKey1x4Callback blink(keyEvent evt)` must change the return type to `void`
+and remove the callback's `return 0;`. Keep the `registerCallback()` calls
+unchanged. For example:
+
+```cpp
+void blink(keyEvent evt) {
+  // Handle the key event here; no return value is needed.
+}
+```
+
 ## STM32 peripherals
 
 This driver recognizes the STM32 targets in

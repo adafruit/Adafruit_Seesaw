@@ -4,7 +4,7 @@
 Adafruit_NeoKey_1x4 neokey;  // Create the NeoKey object
 
 //define a callback for key presses
-NeoKey1x4Callback blink(keyEvent evt) {
+void blink(keyEvent evt) {
   uint8_t key = evt.bit.NUM;
   
   if (evt.bit.EDGE == SEESAW_KEYPAD_EDGE_RISING) {
@@ -21,7 +21,6 @@ NeoKey1x4Callback blink(keyEvent evt) {
 
   // Turn on/off the neopixels!
   neokey.pixels.show();
-  return 0;
 }
 
 
