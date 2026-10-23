@@ -13,14 +13,31 @@ Adafruit_seesaw ss;
 void setup() {
   Serial.begin(115200);
   
-  while (!Serial) delay(10);   // wait until serial port is opened
+  while (!Serial) delay(10);   // waits for Serial Monitor on native USB boards
+  delay(250);
+
+  Serial.print(F("Adafruit seesaw blink test!\n\r"));
   
   if(!ss.begin()){
-    Serial.println("seesaw not found!");
+    Serial.print(F("seesaw not found!\n\r"));
     while(1) delay(10);
   }
   
-  Serial.println(F("seesaw started OK!"));
+  uint16_t pid;
+  uint8_t year, mon, day;
+
+  ss.getProdDatecode(&pid, &year, &mon, &day);
+  Serial.print(F("seesaw found PID: "));
+  Serial.print(pid);
+  Serial.print(F(" datecode: "));
+  Serial.print(2000 + year);
+  Serial.print("/");
+  Serial.print(mon);
+  Serial.print("/");
+  Serial.print(day);
+  Serial.print(F("\n\r"));
+
+  Serial.print(F("seesaw started OK!\n\r"));
 
   ss.pinMode(BLINK_PIN, OUTPUT);
 }
