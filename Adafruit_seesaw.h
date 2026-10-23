@@ -243,7 +243,7 @@ class Adafruit_seesaw : public Print {
 public:
   // constructors
   Adafruit_seesaw(TwoWire *Wi = NULL);
-  ~Adafruit_seesaw(void) {};
+  ~Adafruit_seesaw(void) {}
 
   bool begin(uint8_t addr = SEESAW_ADDRESS, int8_t flow = -1,
              bool reset = true);
