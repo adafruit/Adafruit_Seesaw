@@ -91,9 +91,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a63053cff5aade7fff53a8f421fb862d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a63053cff5aade7fff53a8f421fb862d9">begin</a> (uint8_t addr=NEOKEY_1X4_ADDR, int8_t flow=-1)</td></tr>
 <tr class="memdesc:a63053cff5aade7fff53a8f421fb862d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin communication with the RGB trellis.  <a href="#a63053cff5aade7fff53a8f421fb862d9">More...</a><br /></td></tr>
 <tr class="separator:a63053cff5aade7fff53a8f421fb862d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14e9d80f9e5609ca5a0de5077420ce11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a14e9d80f9e5609ca5a0de5077420ce11">registerCallback</a> (uint8_t key, NeoKey1x4Callback(*cb)(<a class="el" href="unionkey_event.html">keyEvent</a>))</td></tr>
-<tr class="memdesc:a14e9d80f9e5609ca5a0de5077420ce11"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback function on the passed key.  <a href="#a14e9d80f9e5609ca5a0de5077420ce11">More...</a><br /></td></tr>
-<tr class="separator:a14e9d80f9e5609ca5a0de5077420ce11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a680bff72d72a0d630aaa32840c8db12d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a680bff72d72a0d630aaa32840c8db12d">registerCallback</a> (uint8_t key, NeoKey1x4Callback cb)</td></tr>
+<tr class="memdesc:a680bff72d72a0d630aaa32840c8db12d"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback function on the passed key.  <a href="#a680bff72d72a0d630aaa32840c8db12d">More...</a><br /></td></tr>
+<tr class="separator:a680bff72d72a0d630aaa32840c8db12d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2fbad1b00b751e88bc6a587b21e1a77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#ad2fbad1b00b751e88bc6a587b21e1a77">unregisterCallback</a> (uint8_t key)</td></tr>
 <tr class="memdesc:ad2fbad1b00b751e88bc6a587b21e1a77"><td class="mdescLeft">&#160;</td><td class="mdescRight">unregister a callback on a given key  <a href="#ad2fbad1b00b751e88bc6a587b21e1a77">More...</a><br /></td></tr>
 <tr class="separator:ad2fbad1b00b751e88bc6a587b21e1a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,7 +183,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa0e95de00a63fc7ae60cca451d595d4e inherit pub_methods_class_adafruit__seesaw"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read 1 byte from the specified EEPROM address.  <a href="class_adafruit__seesaw.html#aa0e95de00a63fc7ae60cca451d595d4e">More...</a><br /></td></tr>
 <tr class="separator:aa0e95de00a63fc7ae60cca451d595d4e inherit pub_methods_class_adafruit__seesaw"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cb1d39d7778df649ae9e8d5ee5d5874 inherit pub_methods_class_adafruit__seesaw"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a3cb1d39d7778df649ae9e8d5ee5d5874">setI2CAddr</a> (uint8_t addr)</td></tr>
-<tr class="memdesc:a3cb1d39d7778df649ae9e8d5ee5d5874 inherit pub_methods_class_adafruit__seesaw"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the seesaw I2C address. This will automatically call <a class="el" href="class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a" title="Start the seesaw. ">Adafruit_seesaw.begin()</a> with the new address.  <a href="class_adafruit__seesaw.html#a3cb1d39d7778df649ae9e8d5ee5d5874">More...</a><br /></td></tr>
+<tr class="memdesc:a3cb1d39d7778df649ae9e8d5ee5d5874 inherit pub_methods_class_adafruit__seesaw"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the seesaw I2C address and call <a class="el" href="class_adafruit__seesaw.html#a89d53d9ef5afd6cef0449962de34d90a" title="Start the seesaw. ">begin()</a> with the new address.  <a href="class_adafruit__seesaw.html#a3cb1d39d7778df649ae9e8d5ee5d5874">More...</a><br /></td></tr>
 <tr class="separator:a3cb1d39d7778df649ae9e8d5ee5d5874 inherit pub_methods_class_adafruit__seesaw"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bd7da9dad57027004caf4fc2a3d5d72 inherit pub_methods_class_adafruit__seesaw"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a5bd7da9dad57027004caf4fc2a3d5d72">getI2CAddr</a> ()</td></tr>
 <tr class="memdesc:a5bd7da9dad57027004caf4fc2a3d5d72 inherit pub_methods_class_adafruit__seesaw"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the I2C address of the seesaw.  <a href="class_adafruit__seesaw.html#a5bd7da9dad57027004caf4fc2a3d5d72">More...</a><br /></td></tr>
@@ -226,9 +226,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:af39a8fe496d97684b3c116d30c38679d inherit pub_methods_class_adafruit__seesaw"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#af39a8fe496d97684b3c116d30c38679d">setEncoderPosition</a> (int32_t pos, uint8_t encoder=0)</td></tr>
 <tr class="memdesc:af39a8fe496d97684b3c116d30c38679d inherit pub_methods_class_adafruit__seesaw"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current position of the encoder.  <a href="class_adafruit__seesaw.html#af39a8fe496d97684b3c116d30c38679d">More...</a><br /></td></tr>
 <tr class="separator:af39a8fe496d97684b3c116d30c38679d inherit pub_methods_class_adafruit__seesaw"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76db275e030f038d6cf4f2cc71029d18 inherit pub_methods_class_adafruit__seesaw"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a76db275e030f038d6cf4f2cc71029d18">write</a> (uint8_t)</td></tr>
-<tr class="memdesc:a76db275e030f038d6cf4f2cc71029d18 inherit pub_methods_class_adafruit__seesaw"><td class="mdescLeft">&#160;</td><td class="mdescRight">The print wrapper for the seesaw class. Calling this allows you to use ss.print() or ss.println() and write to the UART on SERCOM0 of the seesaw. Note that this functionality is only available when the UART (sercom) module is compiled into the seesaw firmware. On the default seesaw firmware on the SAMD09 breakout this functionality is not available.  <a href="class_adafruit__seesaw.html#a76db275e030f038d6cf4f2cc71029d18">More...</a><br /></td></tr>
-<tr class="separator:a76db275e030f038d6cf4f2cc71029d18 inherit pub_methods_class_adafruit__seesaw"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1113c328b3364a4b11d5c692f12dc028 inherit pub_methods_class_adafruit__seesaw"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a1113c328b3364a4b11d5c692f12dc028">write</a> (uint8_t) override</td></tr>
+<tr class="memdesc:a1113c328b3364a4b11d5c692f12dc028 inherit pub_methods_class_adafruit__seesaw"><td class="mdescLeft">&#160;</td><td class="mdescRight">The print wrapper for the seesaw class. Calling this allows you to use ss.print() or ss.println() and write to the UART on SERCOM0 of the seesaw. Note that this functionality is only available when the UART (sercom) module is compiled into the seesaw firmware. On the default seesaw firmware on the SAMD09 breakout this functionality is not available.  <a href="class_adafruit__seesaw.html#a1113c328b3364a4b11d5c692f12dc028">More...</a><br /></td></tr>
+<tr class="separator:a1113c328b3364a4b11d5c692f12dc028 inherit pub_methods_class_adafruit__seesaw"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91533cdc9c96c6787c13855cf35444e5 inherit pub_methods_class_adafruit__seesaw"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a91533cdc9c96c6787c13855cf35444e5">write</a> (const char *str)</td></tr>
 <tr class="memdesc:a91533cdc9c96c6787c13855cf35444e5 inherit pub_methods_class_adafruit__seesaw"><td class="mdescLeft">&#160;</td><td class="mdescRight">The print wrapper for the seesaw class allowing the user to print a string. Calling this allows you to use ss.print() or ss.println() and write to the UART on SERCOM0 of the seesaw. Note that this functionality is only available when the UART (sercom) module is compiled into the seesaw firmware. On the default seesaw firmware on the SAMD09 breakout this functionality is not available.  <a href="class_adafruit__seesaw.html#a91533cdc9c96c6787c13855cf35444e5">More...</a><br /></td></tr>
 <tr class="separator:a91533cdc9c96c6787c13855cf35444e5 inherit pub_methods_class_adafruit__seesaw"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,10 +250,10 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a459e5f19f9a68d4aa95d5e73bf3a824b">_addr</a></td></tr>
 <tr class="memdesc:a459e5f19f9a68d4aa95d5e73bf3a824b"><td class="mdescLeft">&#160;</td><td class="mdescRight">the I2C address of this board <br /></td></tr>
 <tr class="separator:a459e5f19f9a68d4aa95d5e73bf3a824b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59d2911382736df023da7ba3e6068209"><td class="memItemLeft" align="right" valign="top"><a id="a59d2911382736df023da7ba3e6068209"></a>
-NeoKey1x4Callback(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#a59d2911382736df023da7ba3e6068209">_callbacks</a> [NEOKEY_1X4_KEYS])(<a class="el" href="unionkey_event.html">keyEvent</a>)</td></tr>
-<tr class="memdesc:a59d2911382736df023da7ba3e6068209"><td class="mdescLeft">&#160;</td><td class="mdescRight">the array of callback functions <br /></td></tr>
-<tr class="separator:a59d2911382736df023da7ba3e6068209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af428c000a8306e9e0727ff396966b8ce"><td class="memItemLeft" align="right" valign="top"><a id="af428c000a8306e9e0727ff396966b8ce"></a>
+NeoKey1x4Callback&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___neo_key__1x4.html#af428c000a8306e9e0727ff396966b8ce">_callbacks</a> [NEOKEY_1X4_KEYS]</td></tr>
+<tr class="memdesc:af428c000a8306e9e0727ff396966b8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">the array of callback functions <br /></td></tr>
+<tr class="separator:af428c000a8306e9e0727ff396966b8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_adafruit__seesaw"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_adafruit__seesaw')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_adafruit__seesaw.html">Adafruit_seesaw</a></td></tr>
 <tr class="memitem:a6afcd6077410f5d6f6c312b978961492 inherit pro_attribs_class_adafruit__seesaw"><td class="memItemLeft" align="right" valign="top">TwoWire *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit__seesaw.html#a6afcd6077410f5d6f6c312b978961492">_i2cbus</a></td></tr>
 <tr class="separator:a6afcd6077410f5d6f6c312b978961492 inherit pro_attribs_class_adafruit__seesaw"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -373,8 +373,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a14e9d80f9e5609ca5a0de5077420ce11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14e9d80f9e5609ca5a0de5077420ce11">&#9670;&nbsp;</a></span>registerCallback()</h2>
+<a id="a680bff72d72a0d630aaa32840c8db12d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a680bff72d72a0d630aaa32840c8db12d">&#9670;&nbsp;</a></span>registerCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,7 +388,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">NeoKey1x4Callback(*)(<a class="el" href="unionkey_event.html">keyEvent</a>)&#160;</td>
+          <td class="paramtype">NeoKey1x4Callback&#160;</td>
           <td class="paramname"><em>cb</em>&#160;</td>
         </tr>
         <tr>

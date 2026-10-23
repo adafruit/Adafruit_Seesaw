@@ -8,10 +8,12 @@ var searchData=
   ['geti2caddr',['getI2CAddr',['../class_adafruit__seesaw.html#a5bd7da9dad57027004caf4fc2a3d5d72',1,'Adafruit_seesaw']]],
   ['geti2caddreepromloc',['getI2CaddrEEPROMloc',['../class_adafruit__seesaw.html#a2be6821454e5a36a0f849ee0b8645232',1,'Adafruit_seesaw']]],
   ['getkeypadcount',['getKeypadCount',['../class_adafruit__seesaw.html#ab7e771551219cab31104a3d278cdd02c',1,'Adafruit_seesaw']]],
+  ['getlastspierror',['getLastSPIError',['../classseesaw___s_p_i.html#af4df4c016b5a49a61eb28db4edab165d',1,'seesaw_SPI']]],
   ['getlevel',['getLevel',['../classseesaw___audio___spectrum.html#aed95de69c6dfb3e1f82b30e390311ab9',1,'seesaw_Audio_Spectrum']]],
   ['getoptions',['getOptions',['../class_adafruit__seesaw.html#aa9b2e4d4ab1166863a3013c11e0ec606',1,'Adafruit_seesaw']]],
   ['getproddatecode',['getProdDatecode',['../class_adafruit__seesaw.html#a674272e3a684dd0836319353a6712e5a',1,'Adafruit_seesaw']]],
   ['getrate',['getRate',['../classseesaw___audio___spectrum.html#a123fe49433e315f09d8fa3eadac83e2a',1,'seesaw_Audio_Spectrum']]],
+  ['getspiclockfrequency',['getSPIClockFrequency',['../classseesaw___s_p_i.html#af4431a8410e66cb7ab01dfd032e2cdcf',1,'seesaw_SPI']]],
   ['gettemp',['getTemp',['../class_adafruit__seesaw.html#aa2ce94f4e05f8032d61c88bea956cbee',1,'Adafruit_seesaw']]],
   ['getthrottle',['getThrottle',['../classseesaw___motor.html#ac3d1deb874d930d2f0fe2e5b28f01d21',1,'seesaw_Motor']]],
   ['getversion',['getVersion',['../class_adafruit__seesaw.html#a45d5b100f38a2cef9ea49518a0233f4b',1,'Adafruit_seesaw']]]

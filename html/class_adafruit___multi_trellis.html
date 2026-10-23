@@ -80,12 +80,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0daa78fdf13b4d71a5f9cb63ef732003"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_trellis.html#a0daa78fdf13b4d71a5f9cb63ef732003">begin</a> ()</td></tr>
 <tr class="memdesc:a0daa78fdf13b4d71a5f9cb63ef732003"><td class="mdescLeft">&#160;</td><td class="mdescRight">begin communication with the matrix of neotrellis boards.  <a href="#a0daa78fdf13b4d71a5f9cb63ef732003">More...</a><br /></td></tr>
 <tr class="separator:a0daa78fdf13b4d71a5f9cb63ef732003"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2945fef6a26bb0fe45d70511cfaf4cee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_trellis.html#a2945fef6a26bb0fe45d70511cfaf4cee">registerCallback</a> (uint16_t num, TrellisCallback(*cb)(<a class="el" href="unionkey_event.html">keyEvent</a>))</td></tr>
-<tr class="memdesc:a2945fef6a26bb0fe45d70511cfaf4cee"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback for a key addressed by key number.  <a href="#a2945fef6a26bb0fe45d70511cfaf4cee">More...</a><br /></td></tr>
-<tr class="separator:a2945fef6a26bb0fe45d70511cfaf4cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fedaea959de574f0dfe445c5b3d81bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_trellis.html#a0fedaea959de574f0dfe445c5b3d81bc">registerCallback</a> (uint8_t x, uint8_t y, TrellisCallback(*cb)(<a class="el" href="unionkey_event.html">keyEvent</a>))</td></tr>
-<tr class="memdesc:a0fedaea959de574f0dfe445c5b3d81bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback for a key addressed by key index.  <a href="#a0fedaea959de574f0dfe445c5b3d81bc">More...</a><br /></td></tr>
-<tr class="separator:a0fedaea959de574f0dfe445c5b3d81bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf1c3f07da81fbde73a19244ce701a78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_trellis.html#aaf1c3f07da81fbde73a19244ce701a78">registerCallback</a> (uint16_t num, TrellisCallback cb)</td></tr>
+<tr class="memdesc:aaf1c3f07da81fbde73a19244ce701a78"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback for a key addressed by key number.  <a href="#aaf1c3f07da81fbde73a19244ce701a78">More...</a><br /></td></tr>
+<tr class="separator:aaf1c3f07da81fbde73a19244ce701a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a468df7be283f9b342660a024555adc6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_trellis.html#a468df7be283f9b342660a024555adc6e">registerCallback</a> (uint8_t x, uint8_t y, TrellisCallback cb)</td></tr>
+<tr class="memdesc:a468df7be283f9b342660a024555adc6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback for a key addressed by key index.  <a href="#a468df7be283f9b342660a024555adc6e">More...</a><br /></td></tr>
+<tr class="separator:a468df7be283f9b342660a024555adc6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27d244f45bbcb72d66bac7ddb630ca3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_trellis.html#a27d244f45bbcb72d66bac7ddb630ca3e">unregisterCallback</a> (uint16_t num)</td></tr>
 <tr class="memdesc:a27d244f45bbcb72d66bac7ddb630ca3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregister a callback for a key addressed by key number.  <a href="#a27d244f45bbcb72d66bac7ddb630ca3e">More...</a><br /></td></tr>
 <tr class="separator:a27d244f45bbcb72d66bac7ddb630ca3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,8 +196,8 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a id="a2945fef6a26bb0fe45d70511cfaf4cee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2945fef6a26bb0fe45d70511cfaf4cee">&#9670;&nbsp;</a></span>registerCallback() <span class="overload">[1/2]</span></h2>
+<a id="aaf1c3f07da81fbde73a19244ce701a78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf1c3f07da81fbde73a19244ce701a78">&#9670;&nbsp;</a></span>registerCallback() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +211,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TrellisCallback(*)(<a class="el" href="unionkey_event.html">keyEvent</a>)&#160;</td>
+          <td class="paramtype">TrellisCallback&#160;</td>
           <td class="paramname"><em>cb</em>&#160;</td>
         </tr>
         <tr>
@@ -233,8 +233,8 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a id="a0fedaea959de574f0dfe445c5b3d81bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fedaea959de574f0dfe445c5b3d81bc">&#9670;&nbsp;</a></span>registerCallback() <span class="overload">[2/2]</span></h2>
+<a id="a468df7be283f9b342660a024555adc6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a468df7be283f9b342660a024555adc6e">&#9670;&nbsp;</a></span>registerCallback() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +254,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TrellisCallback(*)(<a class="el" href="unionkey_event.html">keyEvent</a>)&#160;</td>
+          <td class="paramtype">TrellisCallback&#160;</td>
           <td class="paramname"><em>cb</em>&#160;</td>
         </tr>
         <tr>

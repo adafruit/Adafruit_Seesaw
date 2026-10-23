@@ -3,6 +3,7 @@ var searchData=
   ['seesaw_5faudio_5fspectrum',['seesaw_Audio_Spectrum',['../classseesaw___audio___spectrum.html#aed8c1bbeb62651d312340451bd81a5c6',1,'seesaw_Audio_Spectrum']]],
   ['seesaw_5fmotor',['seesaw_Motor',['../classseesaw___motor.html#af0a9f236559a47f8917e99dbdb79c50b',1,'seesaw_Motor']]],
   ['seesaw_5fservo',['seesaw_Servo',['../classseesaw___servo.html#a02fe2824fa26ee272f5c1fa1905c4917',1,'seesaw_Servo']]],
+  ['seesaw_5fspi',['seesaw_SPI',['../classseesaw___s_p_i.html#a5576366bbd1112647d16438e93777515',1,'seesaw_SPI']]],
   ['setbacklight',['setBacklight',['../class_adafruit__mini_t_f_t_wing.html#adb6e75d2cefa8493e5a41520f54dbfe6',1,'Adafruit_miniTFTWing::setBacklight()'],['../class_adafruit___t_f_t_shield18.html#a8907e019f07160727f23af12df7843fc',1,'Adafruit_TFTShield18::setBacklight()']]],
   ['setbacklightfreq',['setBacklightFreq',['../class_adafruit__mini_t_f_t_wing.html#ad5bb2a8cb9795b5ef64318d995b34fbf',1,'Adafruit_miniTFTWing::setBacklightFreq()'],['../class_adafruit___t_f_t_shield18.html#a9bf40eb6f72fb55a3a43a19cb0f5bce4',1,'Adafruit_TFTShield18::setBacklightFreq()']]],
   ['setchannel',['setChannel',['../classseesaw___audio___spectrum.html#aaa84613baa51c08a40652808542a1e22',1,'seesaw_Audio_Spectrum']]],

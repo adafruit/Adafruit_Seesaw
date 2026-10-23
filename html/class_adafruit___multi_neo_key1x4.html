@@ -80,12 +80,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a883e98867bb152a07a29babff53ab7d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_neo_key1x4.html#a883e98867bb152a07a29babff53ab7d0">begin</a> ()</td></tr>
 <tr class="memdesc:a883e98867bb152a07a29babff53ab7d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">begin communication with the matrix of neotrellis boards.  <a href="#a883e98867bb152a07a29babff53ab7d0">More...</a><br /></td></tr>
 <tr class="separator:a883e98867bb152a07a29babff53ab7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d4098cf0db873ac214967838f3745f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_neo_key1x4.html#a5d4098cf0db873ac214967838f3745f8">registerCallback</a> (uint16_t num, NeoKey1x4Callback(*cb)(<a class="el" href="unionkey_event.html">keyEvent</a>))</td></tr>
-<tr class="memdesc:a5d4098cf0db873ac214967838f3745f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback for a key addressed by key number.  <a href="#a5d4098cf0db873ac214967838f3745f8">More...</a><br /></td></tr>
-<tr class="separator:a5d4098cf0db873ac214967838f3745f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af38425d626ad3036628dcc0cb0875a22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_neo_key1x4.html#af38425d626ad3036628dcc0cb0875a22">registerCallback</a> (uint8_t x, uint8_t y, NeoKey1x4Callback(*cb)(<a class="el" href="unionkey_event.html">keyEvent</a>))</td></tr>
-<tr class="memdesc:af38425d626ad3036628dcc0cb0875a22"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback for a key addressed by key index.  <a href="#af38425d626ad3036628dcc0cb0875a22">More...</a><br /></td></tr>
-<tr class="separator:af38425d626ad3036628dcc0cb0875a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd184b8a24c924566bf3a1804e2f9841"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_neo_key1x4.html#acd184b8a24c924566bf3a1804e2f9841">registerCallback</a> (uint16_t num, NeoKey1x4Callback cb)</td></tr>
+<tr class="memdesc:acd184b8a24c924566bf3a1804e2f9841"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback for a key addressed by key number.  <a href="#acd184b8a24c924566bf3a1804e2f9841">More...</a><br /></td></tr>
+<tr class="separator:acd184b8a24c924566bf3a1804e2f9841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ad48f3e9f12e74ec57d9bb35c683292"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_neo_key1x4.html#a6ad48f3e9f12e74ec57d9bb35c683292">registerCallback</a> (uint8_t x, uint8_t y, NeoKey1x4Callback cb)</td></tr>
+<tr class="memdesc:a6ad48f3e9f12e74ec57d9bb35c683292"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a callback for a key addressed by key index.  <a href="#a6ad48f3e9f12e74ec57d9bb35c683292">More...</a><br /></td></tr>
+<tr class="separator:a6ad48f3e9f12e74ec57d9bb35c683292"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2862719b1800a91ac5488b5d721d214b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___multi_neo_key1x4.html#a2862719b1800a91ac5488b5d721d214b">unregisterCallback</a> (uint16_t num)</td></tr>
 <tr class="memdesc:a2862719b1800a91ac5488b5d721d214b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregister a callback for a key addressed by key number.  <a href="#a2862719b1800a91ac5488b5d721d214b">More...</a><br /></td></tr>
 <tr class="separator:a2862719b1800a91ac5488b5d721d214b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,8 +190,8 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a id="a5d4098cf0db873ac214967838f3745f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d4098cf0db873ac214967838f3745f8">&#9670;&nbsp;</a></span>registerCallback() <span class="overload">[1/2]</span></h2>
+<a id="acd184b8a24c924566bf3a1804e2f9841"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd184b8a24c924566bf3a1804e2f9841">&#9670;&nbsp;</a></span>registerCallback() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,7 +205,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">NeoKey1x4Callback(*)(<a class="el" href="unionkey_event.html">keyEvent</a>)&#160;</td>
+          <td class="paramtype">NeoKey1x4Callback&#160;</td>
           <td class="paramname"><em>cb</em>&#160;</td>
         </tr>
         <tr>
@@ -227,8 +227,8 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a id="af38425d626ad3036628dcc0cb0875a22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af38425d626ad3036628dcc0cb0875a22">&#9670;&nbsp;</a></span>registerCallback() <span class="overload">[2/2]</span></h2>
+<a id="a6ad48f3e9f12e74ec57d9bb35c683292"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ad48f3e9f12e74ec57d9bb35c683292">&#9670;&nbsp;</a></span>registerCallback() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,7 +248,7 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">NeoKey1x4Callback(*)(<a class="el" href="unionkey_event.html">keyEvent</a>)&#160;</td>
+          <td class="paramtype">NeoKey1x4Callback&#160;</td>
           <td class="paramname"><em>cb</em>&#160;</td>
         </tr>
         <tr>

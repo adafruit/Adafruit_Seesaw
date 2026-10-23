@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['abortspi',['abortSPI',['../classseesaw___s_p_i.html#a8a916d777e459b223e75f44cb147c660',1,'seesaw_SPI']]],
   ['activatekey',['activateKey',['../class_adafruit___neo_trellis.html#a6eb9cc3f68a794278670387b0deed2e2',1,'Adafruit_NeoTrellis::activateKey()'],['../class_adafruit___multi_trellis.html#a0d5cc21ac8b37e61d51b3d9d33478533',1,'Adafruit_MultiTrellis::activateKey(uint16_t num, uint8_t edge, bool enable=true)'],['../class_adafruit___multi_trellis.html#a8960f620bdeba16f1c858a57db4b29b7',1,'Adafruit_MultiTrellis::activateKey(uint8_t x, uint8_t y, uint8_t edge, bool enable=true)']]],
   ['active',['ACTIVE',['../unionkey_state.html#a0077601e4ce63a8edf7440a89eca1e26',1,'keyState']]],
   ['adafruit_5fcrickit',['Adafruit_Crickit',['../class_adafruit___crickit.html',1,'']]],
