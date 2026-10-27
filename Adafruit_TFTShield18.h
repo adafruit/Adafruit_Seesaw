@@ -46,8 +46,12 @@
 /**************************************************************************/
 class Adafruit_TFTShield18 : public Adafruit_seesaw {
 public:
-  Adafruit_TFTShield18() {}
-  ~Adafruit_TFTShield18() {}
+  /*!
+   * @brief Creates an instance of the TFT Shield class.
+   * @param Wi I2C interface to use. Defaults to NULL.
+   */
+  Adafruit_TFTShield18(TwoWire *Wi = NULL) : Adafruit_seesaw(Wi){};
+  ~Adafruit_TFTShield18(){};
 
   bool begin(uint8_t addr = TFTSHIELD_ADDR, int8_t flow = -1);
 
